@@ -118,20 +118,69 @@ body {
 
 .entrarEmContato {
     background-color: green;
-    height: 500px;
+    height: 480px;
     display: grid;
     grid-template-columns: 1fr 1fr; 
     align-items: center;
-    padding: 40px;
+    padding: 20px;
 }
 
 .textoPequeno p {
+    padding: 20px;
     color: #fff;
 }
+
+.formulario-contato {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+
+.campo-formulario label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+  border: none;
+  border-bottom: 2px solid white; 
+  background: transparent;
+  padding: 8px;
+  font-size: 16px;
+  color: white; 
+  outline: none;
+  resize: none; 
+}
+
+
+.botao-enviar {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: green;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-enviar:hover {
+  background: #f0f0f0;
+}
+
 
 
 .tituloContato{
     color: #fff;
+    padding: 40px;
 }
 
 .textoPequeno {
@@ -139,6 +188,7 @@ body {
     align-items: flex-start; 
     color: #fff;
     max-width: 500px; 
+      padding: 30px;
 }
 
 
