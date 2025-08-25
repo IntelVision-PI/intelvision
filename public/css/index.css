@@ -120,3 +120,18 @@ margin-top: 50px;
   flex-direction: column;
   align-items: center;
 }
+
+.camera{
+  display: flex;
+  background-image:linear-gradient(rgba(8, 146, 82, 0.352), rgba(14, 134, 78, 0.374)), url('../assets/img/Câmera\ real.png');
+  background-size: cover;
+  justify-content: right;
+  height: 600px;
+  border-bottom: green 20px solid;
+}
+
+.camera h1{
+  color: white;
+  align-self: flex-end;
+  margin: 50px;
+}
