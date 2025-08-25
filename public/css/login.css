@@ -1,0 +1,97 @@
+body{
+    background-image: url("../assets/login/background.svg");
+    background-repeat: no-repeat;
+    background-position: -70% 50%;
+    background-size: 70%;
+}
+.login_container{
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 100dvh;
+}
+.login_button_page{
+    border-radius: 100px;
+    padding: 10px 10px 10px 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00863F;
+    width: 170px;
+    color: #fff;
+    font-weight: 600;
+}
+.login_button_page .icon_circle{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 100%;
+    background-color: #00A335;
+    color: #fff;
+}
+.form .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.form .buttons p a{
+    font-weight: 600;
+    color: #00863F;
+}
+.login_wrapper h1{
+    font-size: 44px;
+    color: rgba(43, 43, 43);
+}
+.login_wrapper h2{
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(43, 43, 43, 0.5);
+    margin-bottom: 30px;
+}
+.login_container{
+    padding-right: 10vw;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form .field{
+    position: relative;
+}
+.form .field label{
+    position: absolute;
+    z-index: 10;
+    top: 35%;
+    left: 14%;
+    font-size: 14px;
+    color: rgba(43, 43, 43, 0.5);
+    transition: .25s;
+}
+.form .field span{
+    position: absolute;
+    z-index: 10;
+    top: 30%;
+    left: 5%;
+    color: rgba(43, 43, 43, 0.5);
+}
+.form .field input{
+    border: #00863F 2px solid;
+    background-color: #f4f4f4;
+    font-size: 16px;
+    padding: 15px 20px 15px 60px;
+    border-radius: 100px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+.form .field input:focus + label, .field input:not(:placeholder-shown) + label{
+    top: 10%;
+    font-size: 10px;
+}
