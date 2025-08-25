@@ -109,3 +109,21 @@ body{
     top: 10%;
     font-size: 10px;
 }
+
+@media (max-width: 1130px) {
+    body{
+        background-image: none;
+    }
+    .login_container{
+        justify-content: center;
+    }
+    .login_container{
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .login_wrapper{
+        width: 80vw;
+    }
+}
