@@ -55,3 +55,68 @@ body {
   background-color: white;
   border-radius: 50px;
 }
+
+.social {
+  background-color: white;
+  display: flex;
+  min-height: 800px;
+  border-top: green 20px solid;
+  border-bottom: green 20px solid;
+}
+
+.social .container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;     
+  height: 100%;            
+  min-height: 130px;       
+  flex-direction: column;
+  text-align: center;
+  padding-top: 0;
+}
+
+.social .container h1{
+margin-bottom: 90px;
+margin-top: 50px;
+}
+
+.social .container h2{
+    padding-bottom: 50px;
+}
+.social .container p{ 
+  justify-self: center;
+  font-size: 16px;
+}
+
+.social .container span{
+    font-family: "alro-400";
+    color: green;
+    font-size: 50px;
+}
+
+.social .container .img{
+    width: 65px;
+}
+
+.boxes img {
+  width: 350px;
+  align-self: self-end;
+  padding-left: 100px;
+}
+
+.social .container .boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.social p {
+  text-align: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
