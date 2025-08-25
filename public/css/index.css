@@ -7,3 +7,51 @@ body {
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: black;
 }
+
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.agora {
+  font-weight: 800;
+}
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
+  color: white;
+  background-image:linear-gradient(rgba(8, 146, 82, 0.352), rgba(14, 134, 78, 0.374)), url('../assets/img/cameras\ 1.png');
+  background-size: cover;
+}
+
+.banner .container {
+  justify-content: right;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.banner .container h1 {
+  width: 30%;
+  margin-top: 100px;
+  margin-right: 100px;
+  padding: 0;
+  font-size: 46px;
+}
+
+.banner .container span {
+  font-weight: 800;
+  color: green;
+  background-color: white;
+  border-radius: 50px;
+}
