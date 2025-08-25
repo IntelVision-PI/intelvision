@@ -74,12 +74,26 @@ body{
     color: rgba(43, 43, 43, 0.5);
     transition: .25s;
 }
-.form .field span{
+.form .field .input_icon{
     position: absolute;
     z-index: 10;
     top: 30%;
     left: 5%;
     color: rgba(43, 43, 43, 0.5);
+    user-select: none;
+}
+.form .field .password_icon{
+    position: absolute;
+    z-index: 10;
+    top: 30%;
+    right: 5%;
+    cursor: pointer;
+    color: rgba(43, 43, 43, 0.5);
+    transition: .1s;
+    user-select: none;
+}
+.form .field .password_icon:hover{
+    color: rgba(43, 43, 43, 0.8);
 }
 .form .field input{
     border: #00863F 2px solid;
