@@ -69,12 +69,17 @@ body {
   background-size: cover;
 }
 
-.bannerContato{
+.bannerContato {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/a\ \(1\)\ 1.png');
+  background-image: url('../assets/a (1) 1.png');
   background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 255, 0, 0.1); /* verde sutil */
+  background-blend-mode: overlay; /* mistura a cor com a imagem */
 }
+
+
 .banner .container {
   justify-content: center;
   align-items: center;
@@ -102,12 +107,23 @@ body {
 .socialContato {
   background-color: #e5e5e5;
   display: flex;
-  text-align: center;
+  justify-content: center;
   align-items: center;
   height: 120px;
-  justify-content: center;
+  text-align: center;
 }
 
+.socialContato h1 {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.socialContato .logo img {
+  height: 40px; 
+  margin-left: 10px; 
+}
 .social .container {
   justify-content: center;
 }
@@ -115,15 +131,74 @@ body {
 .box img {
   width: 170px;
 }
-
 .entrarEmContato {
-    background-color: green;
-    height: 480px;
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    background-color: green;
+    padding: 50px;
+    color: white;
+    gap: 50px;
 }
+
+.texto-contato {
+    flex: 1;
+    max-width: 500px;
+}
+
+.texto-contato h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.texto-contato p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.formulario-contato {
+    flex: 1;
+    max-width: 400px;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.campo-formulario label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    outline: none;
+    resize: none;
+}
+
+.botao-enviar {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: green;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-enviar:hover {
+    background-color: #f0f0f0;
+}
+
 
 .localizacao {
     background-color: #f0f0f0;
@@ -155,52 +230,6 @@ body {
 .textoPequeno p {
     padding: 20px;
     color: #fff;
-}
-
-.formulario-contato {
-  max-width: 400px;
-  margin: 20px auto;
-}
-
-.campo-formulario {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-}
-
-
-.campo-formulario label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.campo-formulario input,
-.campo-formulario textarea {
-  border: none;
-  border-bottom: 2px solid white; 
-  background: transparent;
-  padding: 8px;
-  font-size: 16px;
-  color: white; 
-  outline: none;
-  resize: none; 
-}
-
-
-.botao-enviar {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: white;
-  color: green;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.botao-enviar:hover {
-  background: #f0f0f0;
 }
 
 
