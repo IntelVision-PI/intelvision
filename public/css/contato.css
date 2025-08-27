@@ -166,7 +166,14 @@ body {
     padding: 40px;
     gap: 30px;
 }
+.info{
+    display: flex;
+    line-height:4.0 ;
+}
 
+.info-endereco{
+    
+}
 
 .localizacao .info {
     display: flex;
@@ -174,6 +181,10 @@ body {
     gap: 15px;
     font-family: Arial, sans-serif;
     color: #1e1e1e;
+}
+
+.nomeEmpresa{
+    font-family: alro-400;
 }
 
 
