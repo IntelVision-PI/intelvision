@@ -24,20 +24,19 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/a\ \(1\)\ 1.png');
+  background-image: url('/assets/banner.png');
   background-size: cover;
 }
 
 .bannerContato {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/a (1) 1.png');
+  background-image: url('/assets/banner.png');
   background-size: cover;
   background-position: center;
-  background-color: rgba(0, 255, 0, 0.1); /* verde sutil */
-  background-blend-mode: overlay; /* mistura a cor com a imagem */
+  background-color: rgba(0, 255, 0, 0.1); 
+  background-blend-mode: overlay;
 }
-
 
 .banner .container {
   justify-content: center;
@@ -169,10 +168,6 @@ body {
 .info{
     display: flex;
     line-height:4.0 ;
-}
-
-.info-endereco{
-    
 }
 
 .localizacao .info {
