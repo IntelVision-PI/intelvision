@@ -1,0 +1,214 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    z-index: 1;
+}
+
+.inicio {
+    background-image: 
+    linear-gradient(rgba(0, 134, 63, 0.3), rgba(0, 134, 63, 0.3)),
+    url("../assets/sobre/background/inicio.png");
+    height: 100dvh;
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+}
+
+.membros {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    height: 100dvh;
+    gap: 30px;
+}
+
+.div-membros-foto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;    
+    width: 60rem;
+}
+
+.membro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+}
+
+.membro img {
+  width: 13.75rem;
+  height: 13.75rem;
+  border-radius: 50%;
+  border: 2px solid #00863F;
+  object-fit: cover;
+}
+
+.membro p {
+    font-family: Inter;
+    font-size: 0.9;
+    font-weight: 700;
+}
+
+.membros h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.membros .descricao-membros {
+    font-size: 1.9rem;
+    font-family: Inter;
+}
+
+.membros h2 img {
+    width: 3.75rem;
+}
+
+.membros .titulo-membros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'alro-400';
+    color: #00863F;
+}
+
+.faculdade-avaliacoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    height: 100dvh;
+    gap: 6.25rem;
+}
+
+.faculdade {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.faculdade h3 {
+    font-family: Inter;
+    font-size: 1.9rem;
+}
+
+.faculdade-descricao {
+    width: 75dvw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.75rem;
+    font-family: Inter;
+}
+
+.faculdade img {
+    width: 50%;
+}
+
+.avaliacoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.avaliacoes h3 {
+    font-family: Inter;
+    font-size: 1.9rem;
+}
+
+.avaliacoes-descricao {
+    width: 75dvw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+    font-family: Inter;
+}
+
+.avaliacoes img {
+    width: 50%;
+}
+
+footer{
+    height: 500px;
+    background-color: #00863F;
+    border-top: #00A335 10px solid;
+    border-bottom: #00A335 10px solid;
+    padding: 0 10vw;
+    color: #fff;
+}
+
+footer .p {
+    font-family: Inter;
+}
+
+.footer_container{
+    height: 93%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10vw;
+}
+
+.logo_footer p{
+    font-family: 'alro-400';
+    font-size: 60px;
+    color: #fff;
+}
+
+.navigation_footer_container{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Inter;
+}
+
+.navigation_footer h3{
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.navigation_footer ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.horario_footer ul, .redes_footer ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.horario_footer li, .redes_footer li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.horario_footer li span, .redes_footer li span, .fa-brands{
+    font-size: 32px;
+}
+
+footer > p{
+    text-align: center;
+}
+
+.copyright {
+    font-family: 'Inter', sans-serif;
+}
