@@ -1,6 +1,6 @@
 let usuarioModel = require("../models/usuarioModel");
 
-function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa) {
+function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivacao) {
     if (!nomeUsuario) {
         throw new Error("Nome de usuário inválido!");
     }
@@ -13,11 +13,11 @@ function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa) {
         throw new Error("Senha inválida!");
     }
     
-    if (!fkEmpresa) {
+    if (!codigoAtivacao) {
         throw new Error("fkEmpresa inválida!");
     }
 
-    return usuarioModel.cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa);
+    return usuarioModel.cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivacao);
 }
 
 module.exports = {
