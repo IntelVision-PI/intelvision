@@ -1,6 +1,7 @@
 @import url('../assets/fontes/alro/otf/');
 @import url('../assets/fontes/alro/ttf/alro-alro-bold-700.ttf');
 
+
 body {
   margin: 0;
   padding: 0;
@@ -190,7 +191,7 @@ body {
   padding: 50px;
 }
 
-p{
+.boxes p{
   padding: 20px;
 }
 
