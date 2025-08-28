@@ -8,6 +8,10 @@ router.post("/cadastrarUsuario", function (req, res) {
 
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
+})
+
+router.put("/atualizarCadastro", function(req, res){
+    usuarioController.atualizarCadastro(req, res);
 });
 
 module.exports = router;
