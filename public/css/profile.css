@@ -31,7 +31,6 @@ body{
     height: 200px;
     border-radius: 1000px;
     border: #00863F 3px solid;
-    position: relative;
     transition: 0.25s;
     display: flex;
     align-items: center;
@@ -125,6 +124,7 @@ body{
 
 .all_users .users{
     overflow-y: scroll;
+    scrollbar-color: #00863F #eeeeee; /* thumb color, track color */
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -176,4 +176,45 @@ body{
 .all_users .user .user_email{
     font-weight: 600;
     margin-right: 5%;
+}
+
+@media (max-width: 1285px) {
+    .all_users .user{
+        flex-direction: column;
+        align-items: center;
+    }
+    .all_users .user .user_email{
+        margin: 0;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .users_container{
+        margin-top: 0;
+        flex-direction: column;
+    }
+    body{
+        padding-top: 30vh;
+        height: auto;
+    }
+}
+
+@media (max-width: 550px){
+    body{
+        padding: 20vh 1vw;
+    }
+    .users_container{
+        width: 100vw;
+    }
+    .my_profile{
+        box-sizing: border-box;
+        padding: 10%;
+    }
+    .profile_info .profile_image{
+        height: 100px;
+    }
+    .delete_account{
+        width: 70%;
+    }
 }
