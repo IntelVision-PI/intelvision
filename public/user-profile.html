@@ -231,7 +231,41 @@
             </div>
         </div>
     </div>
+    <div class="out_edit_password" id="out_edit_password"></div>
+    <div class="edit_password_modal" id="edit_password_modal">
+        <div class="edit_password_headers">
+            <h3>Editar Senha</h3>
+            <span class="material-symbols-outlined" id="close_edit_password_button">
+                close
+            </span>
+        </div>
+        <div class="edit_password_content">
+            <div class="edit_password_field">
+                <label for="">Senha atual</label>
+                <input type="password">
+                <span class="material-symbols-outlined password_icon" id="view_password_current">
+                    visibility
+                </span>
+            </div>
+            <div class="edit_password_field">
+                <label for="">Nova senha</label>
+                <input type="password">
+                <span class="material-symbols-outlined password_icon" id="view_password_new">
+                    visibility
+                </span>
+            </div>
+            <div class="edit_password_button">
+                <button class="cancel_button" id="cancel_button_edit_password">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="js/edit_email.js"></script>
+<script src="js/edit_password.js"></script>
 
 </html>
