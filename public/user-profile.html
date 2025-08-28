@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil | IntelVision</title>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dehaze,edit,mail,password,visibility,visibility_off" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,dehaze,edit,mail,password,visibility,visibility_off" />
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/profile.css">
@@ -67,7 +67,7 @@
                             </span>
                             <p>joaomedeiros@intelbras.com</p>
                         </div>
-                        <span class="material-symbols-outlined">
+                        <span class="material-symbols-outlined" id="edit_email">
                             edit
                         </span>
                     </div>
@@ -78,7 +78,7 @@
                             </span>
                             <p>**************</p>
                         </div>
-                        <span class="material-symbols-outlined">
+                        <span class="material-symbols-outlined" id="edit_password">
                             edit
                         </span>
                     </div>
@@ -208,6 +208,30 @@
             </div>
         </div>
     </div>
+    <div class="out_edit_email" id="out_edit_email"></div>
+    <div class="edit_email_modal" id="edit_email_modal">
+        <div class="edit_email_headers">
+            <h3>Editar email</h3>
+            <span class="material-symbols-outlined" id="close_edit_email_button">
+                close
+            </span>
+        </div>
+        <div class="edit_email_content">
+            <div class="edit_email_field">
+                <label for="">Novo email</label>
+                <input type="email">
+            </div>
+            <div class="edit_email_button">
+                <button class="cancel_button" id="cancel_button_edit">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="js/edit_email.js"></script>
 
 </html>
