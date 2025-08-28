@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="delete_account">
-                    <button>
+                    <button id="delete_account">
                         Excluir conta
                     </button>
                 </div>
@@ -219,6 +219,26 @@
             </div>
         </div>
     </div>
+    <div class="out_delete_account" id="out_delete_account"></div>
+    <div class="delete_account_modal" id="delete_account_modal">
+        <div class="delete_account_headers">
+            <h3>Excluir conta</h3>
+            <span class="material-symbols-outlined" id="close_delete_account_button">
+                close
+            </span>
+        </div>
+        <div class="delete_account_content">
+            <p>Você tem certeza que deseja excluir a sua conta?</p>
+            <div class="delete_account_button">
+                <button class="cancel_button" id="cancel_button_delete_account">
+                    Cancelar
+                </button>
+                <button class="confirm_button_delete">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="out_edit_name" id="out_edit_name"></div>
     <div class="edit_name_modal" id="edit_name_modal">
         <div class="edit_name_headers">
@@ -302,5 +322,6 @@
 <script src="js/edit_email.js"></script>
 <script src="js/edit_password.js"></script>
 <script src="js/edit_name.js"></script>
+<script src="js/delete_account.js"></script>
 
 </html>
