@@ -1,0 +1,218 @@
+@import url('../assets/fontes/alro/otf/');
+@import url('../assets/fontes/alro/ttf/alro-alro-bold-700.ttf');
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
+}
+
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.agora {
+  font-weight: 800;
+}
+
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
+  color: white;
+  background-image: linear-gradient(rgba(8, 146, 82, 0.352), rgba(14, 134, 78, 0.374)), url('../assets/img/cameras\ 1.png');
+  background-size: cover;
+}
+
+.banner .container {
+  justify-content: right;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.banner .container h1 {
+  width: 30%;
+  margin-top: 100px;
+  margin-right: 100px;
+  padding: 0;
+  font-size: 48px;
+}
+
+.banner .container span {
+  font-weight: 800;
+  color: green;
+  background-color: white;
+  border-radius: 50px;
+  padding: 15px;
+}
+
+.social {
+  background-color: white;
+  display: flex;
+  min-height: 800px;
+  border-top: green 20px solid;
+  border-bottom: green 20px solid;
+}
+
+.social .container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  min-height: 130px;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 0;
+}
+
+.social .container h1 {
+  margin-bottom: 90px;
+  margin-top: 50px;
+  font-size: 45px;
+}
+
+.social .container h2 {
+  padding-bottom: 50px;
+  font-size: 48px;
+}
+
+.social .container p {
+  justify-self: center;
+  font-size: 16px;
+}
+
+.social .container span {
+  font-family: "alro-400";
+  color: green;
+  font-size: 48px;
+}
+
+.social .container .img {
+  width: 65px;
+}
+
+.boxes img {
+  width: 350px;
+  align-self: self-end;
+  padding-left: 100px;
+}
+
+.social .container .boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.social p {
+  text-align: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camera {
+  display: flex;
+  background-image: linear-gradient(rgba(8, 146, 82, 0.352), rgba(14, 134, 78, 0.374)), url('../assets/img/Câmera\ real.png');
+  background-size: cover;
+  justify-content: right;
+  height: 600px;
+  border-bottom: green 20px solid;
+}
+
+.camera h1 {
+  color: white;
+  align-self: flex-end;
+  margin: 50px;
+  font-size: 48px;
+}
+
+.camera h1 {
+  color: white;
+  align-self: flex-end;
+  margin: 50px;
+}
+
+.vantagens .container .boxes .box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: green solid 5px;
+  border-radius: 20px;
+}
+
+.vantagens .container .boxes .box2{
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: green solid 5px;
+  border-radius: 20px;
+}
+
+.vantagens p{
+  text-align: center;
+}
+
+.vantagens .container .boxes{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.vantagens .container .boxes .box .img {
+  align-self: center;
+  width: 150px;
+  padding: 50px;
+}
+
+.vantagens .container .boxes .box2 .img {
+  align-self: center;
+  width: 150px;
+  padding: 50px;
+}
+
+.boxes p{
+  padding: 20px;
+}
+
+.p{
+  color: white;
+}
+
+.vantagens .container .box{
+  height: 446px;
+  width: 456px;
+  margin: 50px;
+}
+
+.vantagens .container .box2{
+  height: 446px;
+  width: 456px;
+  margin: 50px;
+}
+
+.vantagens h1{
+  font-size: 48px;
+  margin-top: 150px;
+  margin-left: 200px;
+}
