@@ -14,8 +14,8 @@ router.put("/atualizarCadastro", function(req, res){
     usuarioController.atualizarCadastro(req, res);
 });
 
-router.delete("/excluirCadastro", function(req,res){
-    usuarioController.excluirCadastro(req,res)
+router.delete("/excluirUsuario", function(req,res){
+    usuarioController.excluirUsuario(req,res)
 })
 
 module.exports = router;

@@ -100,13 +100,13 @@ function atualizarCadastro(req, res){
 
 }
 
-function excluirCadastro(req, res) {
+function excluirUsuario(req, res) {
     let id = req.body.id;
 
     if (id == undefined) {
         res.status(400).send("O id do usuário está indefinido");
     } else {
-        usuarioModel.excluirCadastro(id)
+        usuarioModel.excluirUsuario(id)
             .then(
                 function (resultadoExcluir) {
                     res.json(resultadoExcluir);
@@ -128,5 +128,5 @@ module.exports = {
     autenticar,
     cadastrarUsuario,
     atualizarCadastro,
-    excluirCadastro
+    excluirUsuario
 }
