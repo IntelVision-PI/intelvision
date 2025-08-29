@@ -49,8 +49,15 @@ function atualizarCadastro(id, nome, email, senha){
     return database.executar(atualiza)
 }
 
+function excluirCadastro(id){
+    let excluir = `delete from usuario where id = ${id}`
+    console.log("Executando a instrução de alualizar: \n" + excluir)
+     return database.executar(excluir)
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
-    atualizarCadastro
+    atualizarCadastro,
+    excluirCadastro
 };
