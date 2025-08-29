@@ -100,8 +100,33 @@ function atualizarCadastro(req, res){
 
 }
 
+function excluirCadastro(req, res) {
+    let id = req.body.id;
+
+    if (id == undefined) {
+        res.status(400).send("O id do usuário está indefinido");
+    } else {
+        usuarioModel.excluirCadastro(id)
+            .then(
+                function (resultadoExcluir) {
+                    res.json(resultadoExcluir);
+                    console.log("Usuário excluído com sucesso!");
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao excluir o usuário! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
-    atualizarCadastro
+    atualizarCadastro,
+    excluirCadastro
 }
