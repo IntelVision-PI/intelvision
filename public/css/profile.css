@@ -80,6 +80,7 @@ body {
 }
 
 .profile_info .text_infos h2 {
+    text-align: center;
     font-size: 20px;
 }
 
@@ -313,6 +314,57 @@ body {
 .cancel_button:hover{
     background-color: #a7a7a7;
 }
+.register_new{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 7vw;
+    bottom: 5vh;
+    cursor: pointer;
+    background-color: #00863F;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+.register_new span{
+    cursor: pointer;
+}
+
+.register_new:hover{
+    background-color: #005829;
+}
+
+.user_controls{
+    display: flex;
+    gap: 10px;
+    margin-right: 30px;
+}
+.user_controls div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.25s;
+}
+.user_controls .edit_user_button{
+    background-color: #00A335;
+}
+.user_controls .edit_user_button:hover{
+    background-color: #00832c;
+}
+.user_controls .delete_user_button{
+    background-color: #E30B0B;
+}
+.user_controls .delete_user_button:hover{
+    background-color: #b30909;
+}
+.user_controls span{
+    cursor: pointer;
+}
 
 @media (max-width: 1285px) {
     .all_users .user {
@@ -364,5 +416,8 @@ body {
 
     .delete_account {
         width: 70%;
+    }
+    .user_controls{
+        margin-top: 20px;
     }
 }
