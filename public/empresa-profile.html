@@ -315,7 +315,7 @@
             </div>
         </div>
     </div>
-    <div class="register_new">
+    <div class="register_new" id="create_user_button_empresa">
         <span class="material-symbols-outlined">
             person_add
         </span>
@@ -473,6 +473,40 @@
             </div>
         </div>
     </div>
+    <div class="out_create_user out_edit" id="out_create_user"></div>
+    <div class="create_user_modal modal_edit" id="create_user_modal">
+        <div class="create_user_headers edit_headers">
+            <h3>Criar usuário</h3>
+            <span class="material-symbols-outlined" id="close_create_user_button">
+                close
+            </span>
+        </div>
+        <div class="create_user_content edit_content">
+            <div class="create_user_field edit_field">
+                <label for="">Nome</label>
+                <input type="text" class="name_input">
+            </div>
+            <div class="create_user_field edit_field">
+                <label for="">Email</label>
+                <input type="email" class="email_input">
+            </div>
+            <div class="create_user_field edit_password_field edit_field">
+                <label for="">Senha</label>
+                <input type="password" class="password_input">
+                <span class="material-symbols-outlined user_icon" id="view_password_new_create">
+                    visibility
+                </span>
+            </div>
+            <div class="create_user_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_create_user">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="js/edit_email.js"></script>
 <script src="js/edit_password.js"></script>
@@ -480,5 +514,6 @@
 <script src="js/delete_account.js"></script>
 <script src="js/edit_user_info.js"></script>
 <script src="js/delete_account_user_empresa.js"></script>
+<script src="js/criar_usuario_empresa.js"></script>
 
 </html>
