@@ -286,13 +286,13 @@ body {
     font-size: 14px;
     transition: .25s;
 }
-.confirm_button_delete{
+.confirm_button_delete, .confirm_button_delete_user{
     color: #fff;
     border: none;
     background-color: #E30B0B;
     border-radius: 100px;
 }
-.confirm_button_delete:hover{
+.confirm_button_delete:hover, .confirm_button_delete_user:hover{
     background-color: #9f0b0b;
 }
 .confirm_button{
