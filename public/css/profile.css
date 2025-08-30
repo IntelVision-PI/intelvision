@@ -137,7 +137,6 @@ body {
 .all_users .users {
     overflow-y: scroll;
     scrollbar-color: #00863F #eeeeee;
-    /* thumb color, track color */
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -194,7 +193,7 @@ body {
     margin-right: 5%;
 }
 
-.out_edit_email, .out_edit_password, .out_edit_name, .out_delete_account {
+.out_edit {
     top: 0;
     left: 0;
     z-index: 10;
@@ -209,7 +208,7 @@ body {
     opacity: 0;
 }
 
-.edit_email_modal, .edit_password_modal, .edit_name_modal, .delete_account_modal {
+.modal_edit{
     transition: .25s;
     z-index: 11;
     padding: 20px;
@@ -226,21 +225,21 @@ body {
     opacity: 0;
 }
 
-.edit_email_modal .edit_email_content div, .edit_password_modal .edit_password_content div, .edit_name_modal .edit_name_content div, .delete_account_modal .delete_account_content div {
+.edit_modal .edit_content div {
     display: flex;
 }
 
-.edit_email_modal h3, .edit_password_modal h3, .edit_name_modal h3, .delete_account_modal h3 {
+.modal_edit h3 {
     margin-bottom: 20px;
 }
 
-.edit_email_content, .edit_password_content, .edit_name_content, .delete_account_content {
+.edit_content {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.edit_email_field, .edit_password_field, .edit_name_field, .delete_account_field{
+.edit_field{
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -254,10 +253,10 @@ body {
     top: 50%;
     cursor: pointer;
 }
-.edit_email_field label, .edit_password_field label, .edit_name_field label, .delete_account_field label{
+.edit_content > div label{
     margin-left: 20px;
 }
-.edit_email_field input, .edit_password_field input, .edit_name_field input, .delete_account_field input {
+.edit_content > div input {
     border: #00863F 2px solid;
     background-color: #f4f4f4;
     font-size: 16px;
@@ -267,20 +266,20 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-.edit_email_headers, .edit_password_headers, .edit_name_headers, .delete_account_headers{
+.edit_headers{
     display: flex;
     justify-content: space-between;
     user-select: none;    
 }
-.edit_email_headers span, .edit_password_headers span, .edit_name_headers span, .delete_account_headers span{
+.edit_headers span{
     cursor: pointer;
 }
-.edit_email_button, .edit_password_button, .edit_name_button, .delete_account_button{
+.edit_buttons{
     display: flex;
     gap: 10px;
     justify-content: end;
 }
-.edit_email_button button, .edit_password_button button, .edit_name_button button, .delete_account_button button{
+.edit_buttons button{
     padding: 20px 30px;
     font-weight: 600;
     cursor: pointer;
@@ -391,7 +390,7 @@ body {
 }
 
 @media (max-width: 860px) {
-    .edit_email_modal, .edit_password_modal, .edit_name_modal, .delete_account_modal{
+    .modal_edit{
         width: 90vw;
     }
 }

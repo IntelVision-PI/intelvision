@@ -104,7 +104,7 @@
         <div class="all_users">
             <h2>Funcionários da empresa</h2>
             <div class="users">
-                <div class="user">
+                <div class="user" idUser="1">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="2">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -156,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="3">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="4">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -208,7 +208,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="5">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -234,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="6">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -260,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="7">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -286,7 +286,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="user">
+                <div class="user" idUser="8">
                     <div class="photo_info">
                         <div class="photo">
                             <img src="assets/profile/default_avatar.webp">
@@ -320,17 +320,17 @@
             person_add
         </span>
     </div>
-    <div class="out_delete_account" id="out_delete_account"></div>
-    <div class="delete_account_modal" id="delete_account_modal">
-        <div class="delete_account_headers">
+    <div class="out_delete_account out_edit" id="out_delete_account"></div>
+    <div class="delete_account_modal modal_edit" id="delete_account_modal">
+        <div class="delete_account_headers edit_headers">
             <h3>Excluir conta</h3>
             <span class="material-symbols-outlined" id="close_delete_account_button">
                 close
             </span>
         </div>
-        <div class="delete_account_content">
+        <div class="delete_account_content edit_content">
             <p>Você tem certeza que deseja excluir a sua conta?</p>
-            <div class="delete_account_button">
+            <div class="delete_account_button edit_buttons">
                 <button class="cancel_button" id="cancel_button_delete_account">
                     Cancelar
                 </button>
@@ -340,20 +340,20 @@
             </div>
         </div>
     </div>
-    <div class="out_edit_name" id="out_edit_name"></div>
-    <div class="edit_name_modal" id="edit_name_modal">
-        <div class="edit_name_headers">
+    <div class="out_edit_name out_edit" id="out_edit_name"></div>
+    <div class="edit_name_modal modal_edit" id="edit_name_modal">
+        <div class="edit_name_headers edit_headers">
             <h3>Editar nome</h3>
             <span class="material-symbols-outlined" id="close_edit_name_button">
                 close
             </span>
         </div>
-        <div class="edit_name_content">
-            <div class="edit_name_field">
+        <div class="edit_name_content edit_content">
+            <div class="edit_name_field edit_field">
                 <label for="">Novo nome</label>
                 <input type="name">
             </div>
-            <div class="edit_name_button">
+            <div class="edit_name_button edit_buttons">
                 <button class="cancel_button" id="cancel_button_edit_name">
                     Cancelar
                 </button>
@@ -363,20 +363,20 @@
             </div>
         </div>
     </div>
-    <div class="out_edit_email" id="out_edit_email"></div>
-    <div class="edit_email_modal" id="edit_email_modal">
-        <div class="edit_email_headers">
+    <div class="out_edit_email out_edit" id="out_edit_email"></div>
+    <div class="edit_email_modal modal_edit" id="edit_email_modal">
+        <div class="edit_email_headers edit_headers">
             <h3>Editar email</h3>
             <span class="material-symbols-outlined" id="close_edit_email_button">
                 close
             </span>
         </div>
-        <div class="edit_email_content">
-            <div class="edit_email_field">
+        <div class="edit_email_content edit_content">
+            <div class="edit_email_field edit_field">
                 <label for="">Novo email</label>
                 <input type="email">
             </div>
-            <div class="edit_email_button">
+            <div class="edit_email_button edit_buttons">
                 <button class="cancel_button" id="cancel_button_edit">
                     Cancelar
                 </button>
@@ -386,31 +386,65 @@
             </div>
         </div>
     </div>
-    <div class="out_edit_password" id="out_edit_password"></div>
-    <div class="edit_password_modal" id="edit_password_modal">
-        <div class="edit_password_headers">
+    <div class="out_edit_password out_edit" id="out_edit_password"></div>
+    <div class="edit_password_modal modal_edit" id="edit_password_modal">
+        <div class="edit_password_headers edit_headers">
             <h3>Editar Senha</h3>
             <span class="material-symbols-outlined" id="close_edit_password_button">
                 close
             </span>
         </div>
-        <div class="edit_password_content">
-            <div class="edit_password_field">
+        <div class="edit_password_content edit_content">
+            <div class="edit_password_field edit_field">
                 <label for="">Senha atual</label>
                 <input type="password">
                 <span class="material-symbols-outlined password_icon" id="view_password_current">
                     visibility
                 </span>
             </div>
-            <div class="edit_password_field">
+            <div class="edit_password_field edit_field">
                 <label for="">Nova senha</label>
                 <input type="password">
                 <span class="material-symbols-outlined password_icon" id="view_password_new">
                     visibility
                 </span>
             </div>
-            <div class="edit_password_button">
+            <div class="edit_password_button edit_buttons">
                 <button class="cancel_button" id="cancel_button_edit_password">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_edit_user out_edit" id="out_edit_user"></div>
+    <div class="edit_user_modal modal_edit" id="edit_user_modal">
+        <div class="edit_user_headers edit_headers">
+            <h3>Editar usuário</h3>
+            <span class="material-symbols-outlined" id="close_edit_user_button">
+                close
+            </span>
+        </div>
+        <div class="edit_user_content edit_content">
+            <div class="edit_user_field edit_field">
+                <label for="">Nome</label>
+                <input type="text" class="name_input">
+            </div>
+            <div class="edit_user_field edit_field">
+                <label for="">Email</label>
+                <input type="email" class="email_input">
+            </div>
+            <div class="edit_user_field edit_password_field edit_field">
+                <label for="">Nova senha</label>
+                <input type="password" class="password_input">
+                <span class="material-symbols-outlined user_icon" id="view_password_new_edit">
+                    visibility
+                </span>
+            </div>
+            <div class="edit_user_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_edit_user">
                     Cancelar
                 </button>
                 <button class="confirm_button">
@@ -424,5 +458,6 @@
 <script src="js/edit_password.js"></script>
 <script src="js/edit_name.js"></script>
 <script src="js/delete_account.js"></script>
+<script src="js/edit_user_info.js"></script>
 
 </html>
