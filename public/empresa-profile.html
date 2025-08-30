@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | IntelVision</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,dehaze,delete,edit,enterprise,mail,password,person,person_add,person_edit,visibility,visibility_off" />
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <nav>
+        <ul class="first_links">
+            <li>
+                <a href="#">Serviços</a>
+            </li>
+            <li>
+                <a href="#">Contato</a>
+            </li>
+            <li>
+                <a href="#">Sobre nós</a>
+            </li>
+        </ul>
+        <div class="logo">
+            <h1>
+                IntelVision
+            </h1>
+        </div>
+        <ul class="buttons_account">
+            <li>
+                <a href="#" class="login_button">Entrar</a>
+            </li>
+            <li>
+                <a href="#" class="register_button">Cadastro</a>
+            </li>
+        </ul>
+        <div class="hamburguer_menu">
+            <span class="material-symbols-outlined">
+                dehaze
+            </span>
+        </div>
+    </nav>
+    <div class="users_container">
+        <div class="my_profile">
+            <div class="profile_info">
+                <div class="profile_image">
+                    <img src="assets/profile/default_avatar_empresa.jpeg">
+                    <div class="edit">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </div>
+                </div>
+                <div class="text_infos">
+                    <h2>Intelbras</h2>
+                    <h3>Código: 59EF2GG</h3>
+                </div>
+                <div class="alter_infos">
+                    <div class="name">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                enterprise
+                            </span>
+                            <p>Intelbras</p>
+                        </div>
+                        <span class="material-symbols-outlined" id="edit_name">
+                            edit
+                        </span>
+                    </div>
+                    <div class="email">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                mail
+                            </span>
+                            <p>intelbras.sistema@intelbras.com</p>
+                        </div>
+                        <span class="material-symbols-outlined" id="edit_email">
+                            edit
+                        </span>
+                    </div>
+                    <div class="password">
+                        <div>
+                            <span class="material-symbols-outlined">
+                                password
+                            </span>
+                            <p>**************</p>
+                        </div>
+                        <span class="material-symbols-outlined" id="edit_password">
+                            edit
+                        </span>
+                    </div>
+                </div>
+                <div class="delete_account">
+                    <button id="delete_account">
+                        Excluir empresa
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="all_users">
+            <h2>Funcionários da empresa</h2>
+            <div class="users">
+                <div class="user" idUser="1">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="2">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="3">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="4">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="5">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="6">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="7">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user" idUser="8">
+                    <div class="photo_info">
+                        <div class="photo">
+                            <img src="assets/profile/default_avatar.webp">
+                        </div>
+                        <div class="user_info">
+                            <p>João Medeiros Fernandes</p>
+                            <span>Suporte técnico na Intelbras</span>
+                        </div>
+                    </div>
+                    <div class="user_email">
+                        joaomedeiros@intelbras.com
+                    </div>
+                    <div class="user_controls">
+                        <div class="edit_user_button">
+                            <span class="material-symbols-outlined">
+                                person_edit
+                            </span>
+                        </div>
+                        <div class="delete_user_button">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="register_new" id="create_user_button_empresa">
+        <span class="material-symbols-outlined">
+            person_add
+        </span>
+    </div>
+    <div class="out_delete_account out_edit" id="out_delete_account"></div>
+    <div class="delete_account_modal modal_edit" id="delete_account_modal">
+        <div class="delete_account_headers edit_headers">
+            <h3>Excluir conta</h3>
+            <span class="material-symbols-outlined" id="close_delete_account_button">
+                close
+            </span>
+        </div>
+        <div class="delete_account_content edit_content">
+            <p>Você tem certeza que deseja excluir a sua conta?</p>
+            <div class="delete_account_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_delete_account">
+                    Cancelar
+                </button>
+                <button class="confirm_button_delete">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_edit_name out_edit" id="out_edit_name"></div>
+    <div class="edit_name_modal modal_edit" id="edit_name_modal">
+        <div class="edit_name_headers edit_headers">
+            <h3>Editar nome</h3>
+            <span class="material-symbols-outlined" id="close_edit_name_button">
+                close
+            </span>
+        </div>
+        <div class="edit_name_content edit_content">
+            <div class="edit_name_field edit_field">
+                <label for="">Novo nome</label>
+                <input type="name">
+            </div>
+            <div class="edit_name_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_edit_name">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_edit_email out_edit" id="out_edit_email"></div>
+    <div class="edit_email_modal modal_edit" id="edit_email_modal">
+        <div class="edit_email_headers edit_headers">
+            <h3>Editar email</h3>
+            <span class="material-symbols-outlined" id="close_edit_email_button">
+                close
+            </span>
+        </div>
+        <div class="edit_email_content edit_content">
+            <div class="edit_email_field edit_field">
+                <label for="">Novo email</label>
+                <input type="email">
+            </div>
+            <div class="edit_email_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_edit">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_edit_password out_edit" id="out_edit_password"></div>
+    <div class="edit_password_modal modal_edit" id="edit_password_modal">
+        <div class="edit_password_headers edit_headers">
+            <h3>Editar Senha</h3>
+            <span class="material-symbols-outlined" id="close_edit_password_button">
+                close
+            </span>
+        </div>
+        <div class="edit_password_content edit_content">
+            <div class="edit_password_field edit_field">
+                <label for="">Senha atual</label>
+                <input type="password">
+                <span class="material-symbols-outlined password_icon" id="view_password_current">
+                    visibility
+                </span>
+            </div>
+            <div class="edit_password_field edit_field">
+                <label for="">Nova senha</label>
+                <input type="password">
+                <span class="material-symbols-outlined password_icon" id="view_password_new">
+                    visibility
+                </span>
+            </div>
+            <div class="edit_password_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_edit_password">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_edit_user out_edit" id="out_edit_user"></div>
+    <div class="edit_user_modal modal_edit" id="edit_user_modal">
+        <div class="edit_user_headers edit_headers">
+            <h3>Editar usuário</h3>
+            <span class="material-symbols-outlined" id="close_edit_user_button">
+                close
+            </span>
+        </div>
+        <div class="edit_user_content edit_content">
+            <div class="edit_user_field edit_field">
+                <label for="">Nome</label>
+                <input type="text" class="name_input">
+            </div>
+            <div class="edit_user_field edit_field">
+                <label for="">Email</label>
+                <input type="email" class="email_input">
+            </div>
+            <div class="edit_user_field edit_password_field edit_field">
+                <label for="">Nova senha</label>
+                <input type="password" class="password_input">
+                <span class="material-symbols-outlined user_icon" id="view_password_new_edit">
+                    visibility
+                </span>
+            </div>
+            <div class="edit_user_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_edit_user">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_delete_user_account out_edit" id="out_delete_user_account"></div>
+    <div class="delete_user_account_modal modal_edit" id="delete_user_account_modal">
+        <div class="delete_user_account_headers edit_headers">
+            <h3>Excluir conta</h3>
+            <span class="material-symbols-outlined" id="close_delete_user_account_button">
+                close
+            </span>
+        </div>
+        <div class="delete_user_account_content edit_content">
+            <p>Você tem certeza que deseja excluir a conta desse usuário?</p>
+            <div class="delete_user_account_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_delete_user_account">
+                    Cancelar
+                </button>
+                <button class="confirm_button_delete_user">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="out_create_user out_edit" id="out_create_user"></div>
+    <div class="create_user_modal modal_edit" id="create_user_modal">
+        <div class="create_user_headers edit_headers">
+            <h3>Criar usuário</h3>
+            <span class="material-symbols-outlined" id="close_create_user_button">
+                close
+            </span>
+        </div>
+        <div class="create_user_content edit_content">
+            <div class="create_user_field edit_field">
+                <label for="">Nome</label>
+                <input type="text" class="name_input">
+            </div>
+            <div class="create_user_field edit_field">
+                <label for="">Email</label>
+                <input type="email" class="email_input">
+            </div>
+            <div class="create_user_field edit_password_field edit_field">
+                <label for="">Senha</label>
+                <input type="password" class="password_input">
+                <span class="material-symbols-outlined user_icon" id="view_password_new_create">
+                    visibility
+                </span>
+            </div>
+            <div class="create_user_button edit_buttons">
+                <button class="cancel_button" id="cancel_button_create_user">
+                    Cancelar
+                </button>
+                <button class="confirm_button">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/edit_email.js"></script>
+<script src="js/edit_password.js"></script>
+<script src="js/edit_name.js"></script>
+<script src="js/delete_account.js"></script>
+<script src="js/edit_user_info.js"></script>
+<script src="js/delete_account_user_empresa.js"></script>
+<script src="js/criar_usuario_empresa.js"></script>
+
+</html>
