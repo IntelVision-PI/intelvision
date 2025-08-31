@@ -10,37 +10,35 @@ function autenticar(email, senha) {
 }
 
 function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivacao) {
-    
+
     let pegaid = `select id from empresa where codigo_ativacao = '${codigoAtivacao}';`
     return database.executar(pegaid)
-    .then(resultado => {
-        if(resultado === 0){
-            throw new Error("Erro de código")
-        }
+        .then(resultado => {
+            if (resultado.length != 0) {
+                const fkEmpresa = resultado[0].id
 
-        const fkEmpresa = resultado[0].id
 
-    
-    let instrucaoSql = 
-    `
-        INSERT INTO usuario 
-        (
-            nome, 
-            email, 
-            senha, 
-            fkempresa
-        ) 
-        VALUES 
-        (
-            '${nomeUsuario}', 
-            '${emailUsuario}', 
-            '${senhaUsuario}', 
-            '${fkEmpresa}'
-        );
-    `;
-    console.log("Executando a instrução SQL (cadastro de usuário): \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-    });
+                let instrucaoSql =
+                    `
+                        INSERT INTO usuario 
+                        (
+                            nome, 
+                            email, 
+                            senha, 
+                            fkempresa
+                        ) 
+                        VALUES 
+                        (
+                            '${nomeUsuario}', 
+                            '${emailUsuario}', 
+                            '${senhaUsuario}', 
+                            '${fkEmpresa}'
+                        );
+                `;
+                console.log("Executando a instrução SQL (cadastro de usuário): \n" + instrucaoSql);
+                return database.executar(instrucaoSql);
+            }
+        });
 }
 
 function atualizarCadastro(id, nome, email, senha){

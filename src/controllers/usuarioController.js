@@ -59,7 +59,10 @@ function cadastrarUsuario(req, res) {
     usuarioService.cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivacao)
         .then(
             function (resultado) {
-                res.json(resultado);
+                if(!resultado){
+                    return res.status(403).json({"message": "codigo invalido"})
+                }
+                res.json(resultado.data);
             }
         )
         .catch(
