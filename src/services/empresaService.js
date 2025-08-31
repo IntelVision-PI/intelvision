@@ -85,19 +85,7 @@ function atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha) {
     if (!idUsuario || !idEmpresa) {
         throw new Error("ID de usuário ou empresa inválido");
     }
-
-    if(!nome){
-        throw new Error("Nome inválido");
-    }
-
-    if (!email || !email.includes('@')) {
-        throw new Error("E-mail inválido!");
-    }
-
-    if (!senha || senha.length < 8) {
-        throw new Error("Senha inválida!");
-    }
-
+    
     return empresaModel.atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha);
 }
 

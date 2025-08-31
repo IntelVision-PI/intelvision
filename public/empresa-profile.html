@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
-<body onload="loadInfosEmpresa()">
+<body onload="loadInfosEmpresa(); getUsersEmpresa()">
     <nav>
         <ul class="first_links">
             <li>
@@ -103,216 +103,7 @@
         </div>
         <div class="all_users">
             <h2>Funcionários da empresa</h2>
-            <div class="users">
-                <div class="user" idUser="1">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="2">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="3">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="4">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="5">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="6">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="7">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="user" idUser="8">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                    <div class="user_controls">
-                        <div class="edit_user_button">
-                            <span class="material-symbols-outlined">
-                                person_edit
-                            </span>
-                        </div>
-                        <div class="delete_user_button">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="users" id="users_container"></div>
         </div>
     </div>
     <div class="register_new" id="create_user_button_empresa">
@@ -447,7 +238,7 @@
                 <button class="cancel_button" id="cancel_button_edit_user">
                     Cancelar
                 </button>
-                <button class="confirm_button">
+                <button class="confirm_button" id="submit_button_edit_user">
                     Confirmar
                 </button>
             </div>

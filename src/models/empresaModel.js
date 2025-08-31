@@ -81,9 +81,15 @@ async function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova) {
 }
 
 function atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha) {
-    var instrucaoSql = `
-        UPDATE usuario SET email = '${email}', nome='${nome}', senha='${senha}' where fkEmpresa=${idEmpresa} and id = ${idUsuario}
-    `;
+    if (senha) {
+        var instrucaoSql = `
+            UPDATE usuario SET email = '${email}', nome='${nome}', senha='${senha}' where fkEmpresa=${idEmpresa} and id = ${idUsuario}
+        `;
+    } else {
+        var instrucaoSql = `
+            UPDATE usuario SET email = '${email}', nome='${nome}' where fkEmpresa=${idEmpresa} and id = ${idUsuario}
+        `;
+    }
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
