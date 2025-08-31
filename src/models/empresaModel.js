@@ -47,9 +47,18 @@ function deleteEmpresa(idEmpresa){
     return database.executar(instrucaoSql);
 }
 
+function atualizarNomeEmpresa(idEmpresa, nome){
+    var instrucaoSql = `
+        UPDATE empresa SET nome = '${nome}' where id=${idEmpresa}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticarEmpresa,
     cadastrarUsuarioEmpresa,
     deleteUsuario,
-    deleteEmpresa
+    deleteEmpresa,
+    atualizarNomeEmpresa
 };

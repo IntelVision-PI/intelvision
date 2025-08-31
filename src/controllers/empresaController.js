@@ -74,7 +74,7 @@ function deleteUsuario(req, res) {
     empresaService.deleteUsuario(idUsuario, idEmpresa)
         .then(
             function (resultado) {
-                if(resultado.affectedRows == 0){
+                if (resultado.affectedRows == 0) {
                     return res.json({ "message": "usuário não encontrado" })
                 }
                 res.json(resultado);
@@ -92,13 +92,13 @@ function deleteUsuario(req, res) {
         );
 }
 
-function deleteEmpresa(req, res){
+function deleteEmpresa(req, res) {
     const idEmpresa = req.body.empresaID;
 
     empresaService.deleteEmpresa(idEmpresa)
         .then(
             function (resultado) {
-                if(resultado.affectedRows == 0){
+                if (resultado.affectedRows == 0) {
                     return res.json({ "message": "empresa não encontrada" })
                 }
                 res.json(resultado);
@@ -116,9 +116,35 @@ function deleteEmpresa(req, res){
         );
 }
 
+function atualizarNomeEmpresa(req, res) {
+    const nome = req.body.nome;
+    const id = req.body.idEmpresa;
+
+    empresaService.atualizarNomeEmpresa(id, nome)
+        .then(
+            function (resultado) {
+                if (resultado.affectedRows == 0) {
+                    return res.json({ "message": "empresa não encontrada" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao editar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
     deleteUsuario,
-    deleteEmpresa
+    deleteEmpresa,
+    atualizarNomeEmpresa
 }

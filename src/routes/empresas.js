@@ -18,4 +18,8 @@ router.delete("/deletar/empresa", function(req, res){
     empresaController.deleteEmpresa(req, res)
 })
 
+router.put("/atualizar/empresa/nome", function(req, res){
+    empresaController.atualizarNomeEmpresa(req, res)
+})
+
 module.exports = router;

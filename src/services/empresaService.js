@@ -12,7 +12,7 @@ function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa) {
     if (!senhaUsuario || senhaUsuario.length < 8) {
         throw new Error("Senha inválida!");
     }
-    
+
     if (!fkEmpresa) {
         throw new Error("fkEmpresa inválida!");
     }
@@ -20,7 +20,7 @@ function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa) {
     return empresaModel.cadastrarUsuarioEmpresa(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa);
 }
 
-function deleteUsuario(idUsuario, idEmpresa){
+function deleteUsuario(idUsuario, idEmpresa) {
     if (!idUsuario) {
         throw new Error("ID do usuário inválido");
     }
@@ -32,7 +32,7 @@ function deleteUsuario(idUsuario, idEmpresa){
     return empresaModel.deleteUsuario(idUsuario, idEmpresa);
 }
 
-function deleteEmpresa(idEmpresa){
+function deleteEmpresa(idEmpresa) {
     if (!idEmpresa) {
         throw new Error("ID da empresa inválido");
     }
@@ -40,8 +40,21 @@ function deleteEmpresa(idEmpresa){
     return empresaModel.deleteEmpresa(idEmpresa);
 }
 
+function atualizarNomeEmpresa(idEmpresa, nome) {
+    if (!idEmpresa) {
+        throw new Error("ID da empresa inválido");
+    }
+
+    if(!nome){
+        throw new Error("Nome inválido");
+    }
+
+    return empresaModel.atualizarNomeEmpresa(idEmpresa, nome);
+}
+
 module.exports = {
     cadastrarUsuario,
     deleteUsuario,
-    deleteEmpresa
+    deleteEmpresa,
+    atualizarNomeEmpresa
 }
