@@ -12,6 +12,8 @@ create table empresa(
 	id int not null primary key auto_increment,
     cnpj char(9) not null,
     nome varchar(50) not null,
+    email varchar(200) not null,
+    senha varchar(100) not null,
     codigo_ativacao varchar(45) not null,
     telefone varchar(20),
     razao_social varchar(100),
@@ -36,10 +38,10 @@ desc usuario;
 insert into endereco (cep, numero, complemento) 
 values 
 ('12345-678', 100, null);
-insert into empresa (cnpj, nome, codigo_ativacao, telefone, razao_social, fkEndereco) 
+insert into empresa (cnpj, nome, email, senha, codigo_ativacao, telefone, razao_social, fkEndereco) 
 values
-('123456789', 'Intelbras', 'ATV123', '(11) 95289-8922','INTELBRAS S.A. INDUSTRIA DE TELECOMUNICACAO ELETRONICA BRASILEIRA', 1);
+('123456789', 'Intelbras', 'intelbras@intelbras.com', '123456789','ATV123', '(11) 95289-8922','INTELBRAS S.A. INDUSTRIA DE TELECOMUNICACAO ELETRONICA BRASILEIRA', 1);
 
 
-select *from usuario;
+select * from usuario;
 select id from empresa where codigo_ativacao='ATV123';
