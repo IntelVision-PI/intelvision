@@ -2,8 +2,8 @@ let usuarioService = require("../services/usuarioService");
 let usuarioModel = require("../models/usuarioModel");
 
 function autenticar(req, res) {
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    var email = req.body.email;
+    var senha = req.body.senha;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -74,7 +74,59 @@ function cadastrarUsuario(req, res) {
         );
 }
 
+function atualizarCadastro(req, res){
+    let id=req.body.id;
+    let nome=req.body.nome;
+    let email=req.body.email;
+    let senha=req.body.senha;
+
+    usuarioModel.atualizarCadastro(id, nome, email, senha)
+        .then(
+            function(resultadoAtualizar){
+                res.json(resultadoAtualizar);
+                console.log("Atualização realizada com sucesso!")
+            }
+        )
+        .catch(
+            function(erro){
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao atualizar as informações! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function excluirUsuario(req, res) {
+    let id = req.body.id;
+
+    if (id == undefined) {
+        res.status(400).send("O id do usuário está indefinido");
+    } else {
+        usuarioModel.excluirUsuario(id)
+            .then(
+                function (resultadoExcluir) {
+                    res.json(resultadoExcluir);
+                    console.log("Usuário excluído com sucesso!");
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao excluir o usuário! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     autenticar,
-    cadastrarUsuario
+    cadastrarUsuario,
+    atualizarCadastro,
+    excluirUsuario
 }
