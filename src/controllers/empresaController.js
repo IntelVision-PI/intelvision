@@ -48,7 +48,7 @@ function cadastrarUsuario(req, res) {
     let emailUsuario = req.body.email;
     let senhaUsuario = req.body.senha;
     let fkEmpresa = req.body.fkEmpresa;
-    
+
     empresaService.cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa)
         .then(
             function (resultado) {
@@ -56,7 +56,7 @@ function cadastrarUsuario(req, res) {
             }
         )
         .catch(
-            function (erro) {   
+            function (erro) {
                 console.log(erro);
                 console.log(
                     "\nHouve um erro ao realizar o cadastro! Erro: ",
@@ -67,7 +67,33 @@ function cadastrarUsuario(req, res) {
         );
 }
 
+function deleteUsuario(req, res) {
+    const idUsuario = req.body.userID;
+    const idEmpresa = req.body.empresaID;
+
+    empresaService.deleteUsuario(idUsuario, idEmpresa)
+        .then(
+            function (resultado) {
+                if(resultado.affectedRows == 0){
+                    return res.json({ "message": "usuário não encontrado" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao deletar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
-    cadastrarUsuario
+    cadastrarUsuario,
+    deleteUsuario
 }

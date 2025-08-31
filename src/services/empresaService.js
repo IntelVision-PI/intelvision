@@ -20,6 +20,19 @@ function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa) {
     return empresaModel.cadastrarUsuarioEmpresa(nomeUsuario, emailUsuario, senhaUsuario, fkEmpresa);
 }
 
+function deleteUsuario(idUsuario, idEmpresa){
+    if (!idUsuario) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    if (!idEmpresa) {
+        throw new Error("ID da empresa inválido");
+    }
+
+    return empresaModel.deleteUsuario(idUsuario, idEmpresa);
+}
+
 module.exports = {
-    cadastrarUsuario
+    cadastrarUsuario,
+    deleteUsuario
 }

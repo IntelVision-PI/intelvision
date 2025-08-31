@@ -10,4 +10,8 @@ router.post("/autenticar", function (req, res) {
     empresaController.autenticar(req, res);
 });
 
+router.delete("/deletar/usuario", function(req, res){
+    empresaController.deleteUsuario(req, res);
+})
+
 module.exports = router;
