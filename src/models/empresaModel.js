@@ -39,7 +39,7 @@ function deleteUsuario(idUsuario, idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function deleteEmpresa(idEmpresa){
+function deleteEmpresa(idEmpresa) {
     var instrucaoSql = `
         DELETE FROM empresa where id=${idEmpresa}
     `;
@@ -47,7 +47,7 @@ function deleteEmpresa(idEmpresa){
     return database.executar(instrucaoSql);
 }
 
-function atualizarNomeEmpresa(idEmpresa, nome){
+function atualizarNomeEmpresa(idEmpresa, nome) {
     var instrucaoSql = `
         UPDATE empresa SET nome = '${nome}' where id=${idEmpresa}
     `;
@@ -55,12 +55,29 @@ function atualizarNomeEmpresa(idEmpresa, nome){
     return database.executar(instrucaoSql);
 }
 
-function atualizarEmailEmpresa(idEmpresa, email){
+function atualizarEmailEmpresa(idEmpresa, email) {
     var instrucaoSql = `
         UPDATE empresa SET email = '${email}' where id=${idEmpresa}
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
+}
+
+async function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova) {
+    var instrucaoSql = `
+        select 1 from empresa where id=${idEmpresa} and senha='${senhaAtual}'
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    const result = await database.executar(instrucaoSql);
+
+    if (result.length != 0) {
+        instrucaoSql = `
+            update empresa set senha = '${senhaNova}' where id = ${idEmpresa}
+        `;
+
+        return database.executar(instrucaoSql)
+    }
+    return result;
 }
 
 module.exports = {
@@ -69,5 +86,6 @@ module.exports = {
     deleteUsuario,
     deleteEmpresa,
     atualizarNomeEmpresa,
-    atualizarEmailEmpresa
+    atualizarEmailEmpresa,
+    atualizarSenhaEmpresa
 };

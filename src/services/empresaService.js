@@ -64,10 +64,28 @@ function atualizarEmailEmpresa(idEmpresa, email){
     return empresaModel.atualizarEmailEmpresa(idEmpresa, email);
 }
 
+function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova){
+    if (!idEmpresa) {
+        throw new Error("ID da empresa inválido");
+    }
+
+    if (!senhaAtual || senhaAtual.length < 8) {
+        throw new Error("Senha atual inválida!");
+    }
+
+    if (!senhaNova || senhaNova.length < 8) {
+        throw new Error("Senha nova inválida!");
+    }
+
+    return empresaModel.atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova);
+
+}
+
 module.exports = {
     cadastrarUsuario,
     deleteUsuario,
     deleteEmpresa,
     atualizarNomeEmpresa,
-    atualizarEmailEmpresa
+    atualizarEmailEmpresa,
+    atualizarSenhaEmpresa
 }
