@@ -38,7 +38,7 @@ const sendCreateUserEmpresa = () => {
             body: JSON.stringify({
                 "nome": name_input.value,
                 "email": email_input.value,
-                "senha": name_input.value,
+                "senha": password_input.value,
                 "fkEmpresa": sessionStorage.getItem('id'),
             }),
         }).then(response => {
