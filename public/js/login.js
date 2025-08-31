@@ -44,6 +44,7 @@ login_button_page.addEventListener('click', () => {
                             sessionStorage.setItem('nome', json.nome);
                             sessionStorage.setItem('email', json.email);
                             sessionStorage.setItem('id', json.id);
+                            sessionStorage.setItem('codEmpresa', json.codigo)
                             sessionStorage.setItem('type', "empresa");
     
                             window.location.href = "empresa-profile.html"

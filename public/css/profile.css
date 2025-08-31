@@ -16,9 +16,13 @@ body {
 .my_profile {
     background-color: #F4F4F4;
     border: #00863F 3px solid;
-    box-sizing: border-box;
     padding: 30px 60px;
     border-radius: 20px;
+    width: 350px;
+}
+
+.alter_infos {
+    width: 100%;
 }
 
 .profile_info {
@@ -208,7 +212,7 @@ body {
     opacity: 0;
 }
 
-.modal_edit{
+.modal_edit {
     transition: .25s;
     z-index: 11;
     padding: 20px;
@@ -239,24 +243,29 @@ body {
     gap: 10px;
 }
 
-.edit_field{
+.edit_field {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.edit_password_field{
+
+.edit_password_field {
     position: relative;
 }
-.edit_password_field span, .delete_account_field span{
+
+.edit_password_field span,
+.delete_account_field span {
     position: absolute;
     right: 20px;
     top: 50%;
     cursor: pointer;
 }
-.edit_content > div label{
+
+.edit_content>div label {
     margin-left: 20px;
 }
-.edit_content > div input {
+
+.edit_content>div input {
     border: #00863F 2px solid;
     background-color: #f4f4f4;
     font-size: 16px;
@@ -266,54 +275,67 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-.edit_headers{
+
+.edit_headers {
     display: flex;
     justify-content: space-between;
-    user-select: none;    
+    user-select: none;
 }
-.edit_headers span{
+
+.edit_headers span {
     cursor: pointer;
 }
-.edit_buttons{
+
+.edit_buttons {
     display: flex;
     gap: 10px;
     justify-content: end;
 }
-.edit_buttons button{
+
+.edit_buttons button {
     padding: 20px 30px;
     font-weight: 600;
     cursor: pointer;
     font-size: 14px;
     transition: .25s;
 }
-.confirm_button_delete, .confirm_button_delete_user{
+
+.confirm_button_delete,
+.confirm_button_delete_user {
     color: #fff;
     border: none;
     background-color: #E30B0B;
     border-radius: 100px;
 }
-.confirm_button_delete:hover, .confirm_button_delete_user:hover{
+
+.confirm_button_delete:hover,
+.confirm_button_delete_user:hover {
     background-color: #9f0b0b;
 }
-.confirm_button{
+
+.confirm_button {
     color: #fff;
     border: none;
     background-color: #00A335;
     border-radius: 100px;
 }
-.confirm_button:hover{
+
+.confirm_button:hover {
     background-color: #00863F;
 }
-.cancel_button{
+
+.cancel_button {
     color: #000;
     border: none;
     background-color: #cbcbcb;
     border-radius: 100px;
 }
-.cancel_button:hover{
+
+.cancel_button:hover {
     background-color: #a7a7a7;
 }
-.register_new{
+
+.register_new {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -327,20 +349,22 @@ body {
     border-radius: 10px;
     transition: 0.25s;
 }
-.register_new span{
+
+.register_new span {
     cursor: pointer;
 }
 
-.register_new:hover{
+.register_new:hover {
     background-color: #005829;
 }
 
-.user_controls{
+.user_controls {
     display: flex;
     gap: 10px;
     margin-right: 30px;
 }
-.user_controls div{
+
+.user_controls div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -349,19 +373,24 @@ body {
     border-radius: 5px;
     transition: 0.25s;
 }
-.user_controls .edit_user_button{
+
+.user_controls .edit_user_button {
     background-color: #00A335;
 }
-.user_controls .edit_user_button:hover{
+
+.user_controls .edit_user_button:hover {
     background-color: #00832c;
 }
-.user_controls .delete_user_button{
+
+.user_controls .delete_user_button {
     background-color: #E30B0B;
 }
-.user_controls .delete_user_button:hover{
+
+.user_controls .delete_user_button:hover {
     background-color: #b30909;
 }
-.user_controls span{
+
+.user_controls span {
     cursor: pointer;
 }
 
@@ -375,12 +404,31 @@ body {
         margin: 0;
         margin-top: 10px;
     }
+
+    .user_controls {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 1000px) {
     .users_container {
         margin-top: 0;
         flex-direction: column;
+        align-items: center;
+    }
+
+    .user_controls {
+        margin-top: 0;
+    }
+
+    .all_users .user {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .all_users {
+        width: 100%;
     }
 
     body {
@@ -390,8 +438,17 @@ body {
 }
 
 @media (max-width: 860px) {
-    .modal_edit{
+    .modal_edit {
         width: 90vw;
+    }
+
+    .all_users .user {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user_controls {
+        margin-top: 20px;
     }
 }
 
@@ -415,8 +472,5 @@ body {
 
     .delete_account {
         width: 70%;
-    }
-    .user_controls{
-        margin-top: 20px;
     }
 }
