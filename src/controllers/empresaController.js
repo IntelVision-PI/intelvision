@@ -223,6 +223,25 @@ function atualizarUsuarioEmpresa(req, res) {
         );
 }
 
+function obterUsuarios(req, res) {
+    const idEmpresa = req.params.idEmpresa;
+
+    empresaModel.obterUsuarios(idEmpresa).then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao buscar! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
@@ -231,5 +250,6 @@ module.exports = {
     atualizarNomeEmpresa,
     atualizarEmailEmpresa,
     atualizarSenhaEmpresa,
-    atualizarUsuarioEmpresa
+    atualizarUsuarioEmpresa,
+    obterUsuarios
 }

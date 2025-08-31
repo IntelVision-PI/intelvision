@@ -80,9 +80,17 @@ async function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova) {
     return result;
 }
 
-function atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha){
+function atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha) {
     var instrucaoSql = `
         UPDATE usuario SET email = '${email}', nome='${nome}', senha='${senha}' where fkEmpresa=${idEmpresa} and id = ${idUsuario}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function obterUsuarios(idEmpresa) {
+    var instrucaoSql = `
+        select id, nome, email from usuario where fkEmpresa = ${idEmpresa}
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -96,5 +104,6 @@ module.exports = {
     atualizarNomeEmpresa,
     atualizarEmailEmpresa,
     atualizarSenhaEmpresa,
-    atualizarUsuarioEmpresa
+    atualizarUsuarioEmpresa,
+    obterUsuarios
 };

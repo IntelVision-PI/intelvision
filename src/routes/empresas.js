@@ -34,4 +34,8 @@ router.put('/atualizar/usuario', function(req, res){
     empresaController.atualizarUsuarioEmpresa(req, res)
 })
 
+router.get('/select/usuario/:idEmpresa', function(req, res){
+    empresaController.obterUsuarios(req, res)
+})
+
 module.exports = router;
