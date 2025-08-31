@@ -14,4 +14,8 @@ router.delete("/deletar/usuario", function(req, res){
     empresaController.deleteUsuario(req, res);
 })
 
+router.delete("/deletar/empresa", function(req, res){
+    empresaController.deleteEmpresa(req, res)
+})
+
 module.exports = router;

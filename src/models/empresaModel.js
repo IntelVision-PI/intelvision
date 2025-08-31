@@ -39,8 +39,17 @@ function deleteUsuario(idUsuario, idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function deleteEmpresa(idEmpresa){
+    var instrucaoSql = `
+        DELETE FROM empresa where id=${idEmpresa}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticarEmpresa,
     cadastrarUsuarioEmpresa,
-    deleteUsuario
+    deleteUsuario,
+    deleteEmpresa
 };

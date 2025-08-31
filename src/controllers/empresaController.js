@@ -92,8 +92,33 @@ function deleteUsuario(req, res) {
         );
 }
 
+function deleteEmpresa(req, res){
+    const idEmpresa = req.body.empresaID;
+
+    empresaService.deleteEmpresa(idEmpresa)
+        .then(
+            function (resultado) {
+                if(resultado.affectedRows == 0){
+                    return res.json({ "message": "empresa não encontrada" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao deletar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
-    deleteUsuario
+    deleteUsuario,
+    deleteEmpresa
 }

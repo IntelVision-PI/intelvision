@@ -32,7 +32,16 @@ function deleteUsuario(idUsuario, idEmpresa){
     return empresaModel.deleteUsuario(idUsuario, idEmpresa);
 }
 
+function deleteEmpresa(idEmpresa){
+    if (!idEmpresa) {
+        throw new Error("ID da empresa inválido");
+    }
+
+    return empresaModel.deleteEmpresa(idEmpresa);
+}
+
 module.exports = {
     cadastrarUsuario,
-    deleteUsuario
+    deleteUsuario,
+    deleteEmpresa
 }
