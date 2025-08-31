@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
-<body>
+<body onload="loadInfosEmpresa()">
     <nav>
         <ul class="first_links">
             <li>
@@ -56,8 +56,8 @@
                     </div>
                 </div>
                 <div class="text_infos">
-                    <h2>Intelbras</h2>
-                    <h3>Código: 59EF2GG</h3>
+                    <h2 id="nome_empresa"></h2>
+                    <h3 id="codigo_empresa"></h3>
                 </div>
                 <div class="alter_infos">
                     <div class="name">
@@ -65,7 +65,7 @@
                             <span class="material-symbols-outlined">
                                 enterprise
                             </span>
-                            <p>Intelbras</p>
+                            <p id="nome_empresa_edit"></p>
                         </div>
                         <span class="material-symbols-outlined" id="edit_name">
                             edit
@@ -76,7 +76,7 @@
                             <span class="material-symbols-outlined">
                                 mail
                             </span>
-                            <p>intelbras.sistema@intelbras.com</p>
+                            <p id="email_empresa_edit"></p>
                         </div>
                         <span class="material-symbols-outlined" id="edit_email">
                             edit
@@ -508,6 +508,7 @@
         </div>
     </div>
 </body>
+<script src="js/perfil_empresa.js"></script>
 <script src="js/edit_email.js"></script>
 <script src="js/edit_password.js"></script>
 <script src="js/edit_name.js"></script>
