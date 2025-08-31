@@ -30,4 +30,8 @@ router.put('/atualizar/empresa/senha', function(req, res){
     empresaController.atualizarSenhaEmpresa(req, res)
 })
 
+router.put('/atualizar/usuario', function(req, res){
+    empresaController.atualizarUsuarioEmpresa(req, res)
+})
+
 module.exports = router;

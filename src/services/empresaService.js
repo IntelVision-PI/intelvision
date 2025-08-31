@@ -45,26 +45,26 @@ function atualizarNomeEmpresa(idEmpresa, nome) {
         throw new Error("ID da empresa inválido");
     }
 
-    if(!nome){
+    if (!nome) {
         throw new Error("Nome inválido");
     }
 
     return empresaModel.atualizarNomeEmpresa(idEmpresa, nome);
 }
 
-function atualizarEmailEmpresa(idEmpresa, email){
+function atualizarEmailEmpresa(idEmpresa, email) {
     if (!idEmpresa) {
         throw new Error("ID da empresa inválido");
     }
 
-    if(!email || !email.includes("@")){
+    if (!email || !email.includes("@")) {
         throw new Error("Email inválido");
     }
 
     return empresaModel.atualizarEmailEmpresa(idEmpresa, email);
 }
 
-function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova){
+function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova) {
     if (!idEmpresa) {
         throw new Error("ID da empresa inválido");
     }
@@ -81,11 +81,32 @@ function atualizarSenhaEmpresa(idEmpresa, senhaAtual, senhaNova){
 
 }
 
+function atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha) {
+    if (!idUsuario || !idEmpresa) {
+        throw new Error("ID de usuário ou empresa inválido");
+    }
+
+    if(!nome){
+        throw new Error("Nome inválido");
+    }
+
+    if (!email || !email.includes('@')) {
+        throw new Error("E-mail inválido!");
+    }
+
+    if (!senha || senha.length < 8) {
+        throw new Error("Senha inválida!");
+    }
+
+    return empresaModel.atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha);
+}
+
 module.exports = {
     cadastrarUsuario,
     deleteUsuario,
     deleteEmpresa,
     atualizarNomeEmpresa,
     atualizarEmailEmpresa,
-    atualizarSenhaEmpresa
+    atualizarSenhaEmpresa,
+    atualizarUsuarioEmpresa
 }

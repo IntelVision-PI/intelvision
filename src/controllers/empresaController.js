@@ -174,11 +174,39 @@ function atualizarSenhaEmpresa(req, res) {
     empresaService.atualizarSenhaEmpresa(id, senhaAtual, senhaNova)
         .then(
             function (resultado) {
-                if(resultado.length == 0){
+                if (resultado.length == 0) {
                     return res.json({ "message": "senha inválida" })
                 }
                 if (resultado.affectedRows == 0) {
                     return res.json({ "message": "empresa não encontrada" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao editar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarUsuarioEmpresa(req, res) {
+    const idUsuario = req.body.idUsuario;
+    const idEmpresa = req.body.idEmpresa;
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const senha = req.body.senha;
+
+    empresaService.atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha)
+        .then(
+            function (resultado) {
+                if (resultado.affectedRows == 0) {
+                    return res.json({ "message": "usuário ou empresa não encontrada" })
                 }
                 res.json(resultado);
             }
@@ -202,5 +230,6 @@ module.exports = {
     deleteEmpresa,
     atualizarNomeEmpresa,
     atualizarEmailEmpresa,
-    atualizarSenhaEmpresa
+    atualizarSenhaEmpresa,
+    atualizarUsuarioEmpresa
 }
