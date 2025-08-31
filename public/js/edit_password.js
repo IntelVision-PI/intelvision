@@ -3,6 +3,7 @@ const out_edit_password_local = document.getElementById('out_edit_password');
 const close_edit_password_button_local = document.getElementById('close_edit_password_button');
 const edit_password_modal_local = document.getElementById('edit_password_modal');
 const cancel_button_editpassword_local = document.getElementById('cancel_button_edit_password');
+const submit_button_edit_password = document.getElementById('submit_button_edit_password');
 
 const close_password_modal = () => {
     out_edit_password_local.style.visibility = 'hidden';
@@ -32,6 +33,36 @@ const view_password = (local) => {
     }
 }
 
+const sendPasswordEdit = () => {
+    const senhaAtualLocal = document.querySelector('#current_password');
+    const senhaNovaLocal = document.querySelector('#new_password');
+    const senhaAtual = senhaAtualLocal.value;
+    const senhaNova = senhaNovaLocal.value;
+
+    fetch('empresas/atualizar/empresa/senha', {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "senhaAtual": senhaAtual,
+            "senhaNova": senhaNova,
+            "idEmpresa": sessionStorage.getItem('id')
+        }),
+    }).then(response => {
+        if (response.status == 200) {
+            window.location.reload();
+        } else if(response.status == 403){
+            senhaAtualLocal.style.borderColor = 'rgba(255, 0, 0, 1)';
+            senhaAtualLocal.parentElement.insertAdjacentHTML('afterend', '<span style="color: #f00; text-align: center; font-size: 12px">Senha inválida</span>')
+        } else if(response.status == 500){
+            senhaNovaLocal.style.borderColor = 'rgba(255, 0, 0, 1)';
+            senhaNovaLocal.parentElement.insertAdjacentHTML('afterend', '<span style="color: #f00; text-align: center; font-size: 12px">Insira uma senha com mais de 8 carácteres</span>')
+        }
+    })
+}
+
+
 const view_password_current = document.getElementById('view_password_current');
 const view_password_new = document.getElementById('view_password_new');
 
@@ -48,3 +79,4 @@ edit_password_local.addEventListener('click', open_password_modal)
 out_edit_password_local.addEventListener('click', close_password_modal)
 close_edit_password_button_local.addEventListener('click', close_password_modal)
 cancel_button_editpassword_local.addEventListener('click', close_password_modal)
+submit_button_edit_password.addEventListener('click', sendPasswordEdit)

@@ -175,10 +175,10 @@ function atualizarSenhaEmpresa(req, res) {
         .then(
             function (resultado) {
                 if (resultado.length == 0) {
-                    return res.json({ "message": "senha inválida" })
+                    return res.status(403).json({ "message": "senha inválida" })
                 }
                 if (resultado.affectedRows == 0) {
-                    return res.json({ "message": "empresa não encontrada" })
+                    return res.status(401).json({ "message": "empresa não encontrada" })
                 }
                 res.json(resultado);
             }
