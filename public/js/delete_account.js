@@ -23,23 +23,27 @@ const open_modal_delete = () => {
     delete_account_modal_local.style.opacity = 1;
 }
 
-const sendDeleteEmpresa = () => {
-    fetch('/empresas/deletar/empresa', {
-        method: 'DELETE',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "empresaID": sessionStorage.getItem('id'),
-        }),
-    }).then(response => {
-        if(response.status == 200){
-            sessionStorage.clear();
-            window.location.href = "login.html";
-        }else{
-            alert("Delete todos os usuários associados para concluir a exclusão da conta!")
-        }
-    })
+const sendDelete = () => {
+    if(sessionStorage.getItem('type') == 'empresa'){
+        fetch('/empresas/deletar/empresa', {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "empresaID": sessionStorage.getItem('id'),
+            }),
+        }).then(response => {
+            if(response.status == 200){
+                sessionStorage.clear();
+                window.location.href = "login.html";
+            }else{
+                alert("Delete todos os usuários associados para concluir a exclusão da conta!")
+            }
+        })
+    }else if(sessionStorage.getItem('type') == 'usuario'){
+        // logica para usuario
+    }
 }
 
 delete_account_local.addEventListener('click', open_modal_delete);
@@ -47,4 +51,4 @@ delete_account_local.addEventListener('click', open_modal_delete);
 out_delete_account_local.addEventListener('click', close_modal_delete);
 close_delete_account_button_local.addEventListener('click', close_modal_delete);
 cancel_button_delete_local.addEventListener('click', close_modal_delete);
-submit_button_delete_account.addEventListener('click', sendDeleteEmpresa);
+submit_button_delete_account.addEventListener('click', sendDelete);

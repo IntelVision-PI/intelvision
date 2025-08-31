@@ -34,32 +34,36 @@ const view_password = (local) => {
 }
 
 const sendPasswordEdit = () => {
-    const senhaAtualLocal = document.querySelector('#current_password');
-    const senhaNovaLocal = document.querySelector('#new_password');
-    const senhaAtual = senhaAtualLocal.value;
-    const senhaNova = senhaNovaLocal.value;
+    if(sessionStorage.getItem('type') == 'empresa'){
+        const senhaAtualLocal = document.querySelector('#current_password');
+        const senhaNovaLocal = document.querySelector('#new_password');
+        const senhaAtual = senhaAtualLocal.value;
+        const senhaNova = senhaNovaLocal.value;
 
-    fetch('empresas/atualizar/empresa/senha', {
-        method: 'PUT',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "senhaAtual": senhaAtual,
-            "senhaNova": senhaNova,
-            "idEmpresa": sessionStorage.getItem('id')
-        }),
-    }).then(response => {
-        if (response.status == 200) {
-            window.location.reload();
-        } else if(response.status == 403){
-            senhaAtualLocal.style.borderColor = 'rgba(255, 0, 0, 1)';
-            senhaAtualLocal.parentElement.insertAdjacentHTML('afterend', '<span style="color: #f00; text-align: center; font-size: 12px">Senha inválida</span>')
-        } else if(response.status == 500){
-            senhaNovaLocal.style.borderColor = 'rgba(255, 0, 0, 1)';
-            senhaNovaLocal.parentElement.insertAdjacentHTML('afterend', '<span style="color: #f00; text-align: center; font-size: 12px">Insira uma senha com mais de 8 carácteres</span>')
-        }
-    })
+        fetch('empresas/atualizar/empresa/senha', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "senhaAtual": senhaAtual,
+                "senhaNova": senhaNova,
+                "idEmpresa": sessionStorage.getItem('id')
+            }),
+        }).then(response => {
+            if (response.status == 200) {
+                window.location.reload();
+            } else if(response.status == 403){
+                senhaAtualLocal.style.borderColor = 'rgba(255, 0, 0, 1)';
+                senhaAtualLocal.parentElement.insertAdjacentHTML('afterend', '<span style="color: #f00; text-align: center; font-size: 12px">Senha inválida</span>')
+            } else if(response.status == 500){
+                senhaNovaLocal.style.borderColor = 'rgba(255, 0, 0, 1)';
+                senhaNovaLocal.parentElement.insertAdjacentHTML('afterend', '<span style="color: #f00; text-align: center; font-size: 12px">Insira uma senha com mais de 8 carácteres</span>')
+            }
+        })
+    }else if(sessionStorage.getItem('type') == 'usuario'){
+        // logica para usuario
+    }
 }
 
 
