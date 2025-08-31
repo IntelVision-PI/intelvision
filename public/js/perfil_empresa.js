@@ -39,7 +39,7 @@ function getUsersEmpresa() {
                                             person_edit
                                         </span>
                                     </div>
-                                    <div class="delete_user_button">
+                                    <div class="delete_user_button" onclick="onclickDeleteUser(this)">
                                         <span class="material-symbols-outlined">
                                             delete
                                         </span>
