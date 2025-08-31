@@ -55,10 +55,19 @@ function atualizarNomeEmpresa(idEmpresa, nome){
     return database.executar(instrucaoSql);
 }
 
+function atualizarEmailEmpresa(idEmpresa, email){
+    var instrucaoSql = `
+        UPDATE empresa SET email = '${email}' where id=${idEmpresa}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticarEmpresa,
     cadastrarUsuarioEmpresa,
     deleteUsuario,
     deleteEmpresa,
-    atualizarNomeEmpresa
+    atualizarNomeEmpresa,
+    atualizarEmailEmpresa
 };

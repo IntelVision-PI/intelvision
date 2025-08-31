@@ -52,9 +52,22 @@ function atualizarNomeEmpresa(idEmpresa, nome) {
     return empresaModel.atualizarNomeEmpresa(idEmpresa, nome);
 }
 
+function atualizarEmailEmpresa(idEmpresa, email){
+    if (!idEmpresa) {
+        throw new Error("ID da empresa inválido");
+    }
+
+    if(!email || !email.includes("@")){
+        throw new Error("Email inválido");
+    }
+
+    return empresaModel.atualizarEmailEmpresa(idEmpresa, email);
+}
+
 module.exports = {
     cadastrarUsuario,
     deleteUsuario,
     deleteEmpresa,
-    atualizarNomeEmpresa
+    atualizarNomeEmpresa,
+    atualizarEmailEmpresa
 }

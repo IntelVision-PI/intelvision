@@ -22,4 +22,8 @@ router.put("/atualizar/empresa/nome", function(req, res){
     empresaController.atualizarNomeEmpresa(req, res)
 })
 
+router.put("/atualizar/empresa/email", function(req, res){
+    empresaController.atualizarEmailEmpresa(req, res)
+})
+
 module.exports = router;

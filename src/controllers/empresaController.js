@@ -141,10 +141,36 @@ function atualizarNomeEmpresa(req, res) {
         );
 }
 
+function atualizarEmailEmpresa(req, res) {
+    const id = req.body.idEmpresa;
+    const email = req.body.email;
+
+    empresaService.atualizarEmailEmpresa(id, email)
+        .then(
+            function (resultado) {
+                if (resultado.affectedRows == 0) {
+                    return res.json({ "message": "empresa não encontrada" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao editar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
     deleteUsuario,
     deleteEmpresa,
-    atualizarNomeEmpresa
+    atualizarNomeEmpresa,
+    atualizarEmailEmpresa
 }
