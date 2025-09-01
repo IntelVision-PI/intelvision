@@ -56,6 +56,7 @@ login_button_page.addEventListener('click', () => {
                     sessionStorage.setItem('nome', json.nome);
                     sessionStorage.setItem('email', json.email);
                     sessionStorage.setItem('id', json.id);
+                    sessionStorage.setItem('fkEmpresa', json.empresaId);
                     sessionStorage.setItem('type', "usuario");
 
                     window.location.href = "user-profile.html"

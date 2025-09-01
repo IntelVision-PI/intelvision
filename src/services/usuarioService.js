@@ -12,7 +12,7 @@ function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivaca
     if (!senhaUsuario || senhaUsuario.length < 8) {
         throw new Error("Senha inválida!");
     }
-    
+
     if (!codigoAtivacao) {
         throw new Error("fkEmpresa inválida!");
     }
@@ -20,6 +20,24 @@ function cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivaca
     return usuarioModel.cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivacao);
 }
 
+function atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova) {
+
+    if (!idUsuario) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    if (!senhaAtual || senhaAtual.length < 8) {
+        throw new Error("Senha atual inválida!");
+    }
+
+    if (!senhaNova || senhaNova.length < 8) {
+        throw new Error("Senha nova inválida!");
+    }
+
+    return usuarioModel.atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova);
+}
+
 module.exports = {
-    cadastrarUsuario
+    cadastrarUsuario,
+    atualizaSenhaDoUsuario
 }
