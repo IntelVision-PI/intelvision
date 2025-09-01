@@ -37,7 +37,20 @@ function atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova) {
     return usuarioModel.atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova);
 }
 
+function atualizaNomeDoUsuario(id, nome) {
+    if (!id) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    if (!nome) {
+        throw new Error("Nome inválido");
+    }
+
+    return usuarioModel.atualizaNomeDoUsuario(id, nome);
+}
+
 module.exports = {
     cadastrarUsuario,
-    atualizaSenhaDoUsuario
+    atualizaSenhaDoUsuario,
+    atualizaNomeDoUsuario
 }
