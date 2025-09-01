@@ -24,7 +24,7 @@ const open_modal_name = () => {
 }
 
 const sendName = () => {
-    if(sessionStorage.getItem('type') == 'empresa'){
+    if (sessionStorage.getItem('type') == 'empresa') {
         const nome = document.querySelector('.edit_name_content .edit_name_field input').value;
 
         fetch('empresas/atualizar/empresa/nome', {
@@ -42,8 +42,24 @@ const sendName = () => {
                 window.location.reload();
             }
         })
-    }else if(sessionStorage.getItem('type') == 'usuario'){
-        // logica para usuario
+    } else if (sessionStorage.getItem('type') == 'usuario') {
+        const nome = document.querySelector('.edit_name_content .edit_name_field input').value;
+
+        fetch('/usuarios/atualizaNomeDoUsuario', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "nome": nome,
+                "id": sessionStorage.getItem('id')
+            }),
+        }).then(response => {
+            if (response.status == 200) {
+                sessionStorage.setItem('nome', nome);
+                window.location.reload();
+            }
+        })
     }
 }
 
