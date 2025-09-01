@@ -26,4 +26,8 @@ router.put('/atualizaSenhaDoUsuario', function(req, res){
     usuarioController.atualizaSenhaDoUsuario(req, res)
 })
 
+router.put("/atualizaNomeDoUsuario", function(req, res){
+    usuarioController.atualizaNomeDoUsuario(req, res)
+})
+
 module.exports = router;
