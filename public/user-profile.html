@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
-<body>
+<body onload="loadInfosEmpresa(); retornaTodosOsUsuariosDaEmpresa();">
     <nav>
         <ul class="first_links">
             <li>
@@ -56,8 +56,7 @@
                     </div>
                 </div>
                 <div class="text_infos">
-                    <h2>João Medeiros Fernandes</h2>
-                    <h3>Suporte técnico na Intelbras</h3>
+                <h2 id="nome_usuario"></h2>
                 </div>
                 <div class="alter_infos">
                     <div class="name">
@@ -65,7 +64,7 @@
                             <span class="material-symbols-outlined">
                                 person
                             </span>
-                            <p>João Medeiros Fernandes</p>
+                            <p id="nome_empresa_edit"></p>
                         </div>
                         <span class="material-symbols-outlined" id="edit_name">
                             edit
@@ -76,7 +75,7 @@
                             <span class="material-symbols-outlined">
                                 mail
                             </span>
-                            <p>joaomedeiros@intelbras.com</p>
+                            <p id="email_empresa_edit"></p>
                         </div>
                         <span class="material-symbols-outlined" id="edit_email">
                             edit
@@ -103,120 +102,7 @@
         </div>
         <div class="all_users">
             <h2>Outros usuários da empresa</h2>
-            <div class="users">
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-                <div class="user">
-                    <div class="photo_info">
-                        <div class="photo">
-                            <img src="assets/profile/default_avatar.webp">
-                        </div>
-                        <div class="user_info">
-                            <p>João Medeiros Fernandes</p>
-                            <span>Suporte técnico na Intelbras</span>
-                        </div>
-                    </div>
-                    <div class="user_email">
-                        joaomedeiros@intelbras.com
-                    </div>
-                </div>
-            </div>
+            <div class="users" id="users_container"></div>
         </div>
     </div>
     <div class="out_delete_account out_edit" id="out_delete_account"></div>
@@ -296,14 +182,14 @@
         <div class="edit_password_content edit_content">
             <div class="edit_password_field edit_field">
                 <label for="">Senha atual</label>
-                <input type="password">
+                <input type="password" id="current_password">
                 <span class="material-symbols-outlined password_icon" id="view_password_current">
                     visibility
                 </span>
             </div>
             <div class="edit_password_field edit_field">
                 <label for="">Nova senha</label>
-                <input type="password">
+                <input type="password" id="new_password">
                 <span class="material-symbols-outlined password_icon" id="view_password_new">
                     visibility
                 </span>
@@ -312,7 +198,7 @@
                 <button class="cancel_button" id="cancel_button_edit_password">
                     Cancelar
                 </button>
-                <button class="confirm_button">
+                <button class="confirm_button" id="submit_button_edit_password">
                     Confirmar
                 </button>
             </div>
@@ -323,5 +209,6 @@
 <script src="js/edit_password.js"></script>
 <script src="js/edit_name.js"></script>
 <script src="js/delete_account.js"></script>
+<script src="js/perfil_usuario.js"></script>
 
 </html>
