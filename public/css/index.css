@@ -56,8 +56,18 @@ body {
   color: green;
   background-color: white;
   border-radius: 50px;
-  padding: 15px;
+  padding: 10px;
 }
+
+
+@media (max-width: 1250px) {
+
+  .banner .container span {
+    padding: 7px;
+  }
+}
+
+/* Social */
 
 .social {
   background-color: white;
@@ -91,7 +101,7 @@ body {
 
 .social .container p {
   justify-self: center;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .social .container span {
@@ -106,7 +116,7 @@ body {
 
 .boxes img {
   width: 350px;
-  align-self: self-end;
+  align-self: center;
   padding-left: 100px;
 }
 
@@ -118,7 +128,8 @@ body {
 }
 
 .social p {
-  text-align: center;
+  text-align: justify;
+
 }
 
 .box {
@@ -127,8 +138,25 @@ body {
   align-items: center;
 }
 
+@media (max-width: 1200px) {
+  .social .container .img {
+    align-self: start;
+    justify-self: start;
+    align-content: start;
+  }
+}
+
+@media (max-width: 1320px){
+  .social .container img{
+        
+  }
+}
+
+/* Camera */
+
 .camera {
   display: flex;
+  background-position-x: center;
   background-image: linear-gradient(rgba(8, 146, 82, 0.352), rgba(14, 134, 78, 0.374)), url('../assets/img/Câmera\ real.png');
   background-size: cover;
   justify-content: right;
@@ -149,7 +177,15 @@ body {
   margin: 50px;
 }
 
-.vantagens .container .boxes .box{
+/* Vantagens */
+
+@media (max-width:1200px){
+  .vantagens .container .boxes{
+    flex-direction: column;
+  }
+}
+
+.vantagens .container .boxes .box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,7 +193,7 @@ body {
   border-radius: 20px;
 }
 
-.vantagens .container .boxes .box2{
+.vantagens .container .boxes .box2 {
   background-color: green;
   display: flex;
   flex-direction: column;
@@ -167,11 +203,11 @@ body {
   border-radius: 20px;
 }
 
-.vantagens p{
+.vantagens p {
   text-align: center;
 }
 
-.vantagens .container .boxes{
+.vantagens .container .boxes {
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -191,27 +227,27 @@ body {
   padding: 50px;
 }
 
-.boxes p{
+.boxes p {
   padding: 20px;
 }
 
-.p{
+.p {
   color: white;
 }
 
-.vantagens .container .box{
+.vantagens .container .box {
   height: 446px;
   width: 456px;
   margin: 50px;
 }
 
-.vantagens .container .box2{
+.vantagens .container .box2 {
   height: 446px;
   width: 456px;
   margin: 50px;
 }
 
-.vantagens h1{
+.vantagens h1 {
   font-size: 48px;
   margin-top: 150px;
   margin-left: 200px;
