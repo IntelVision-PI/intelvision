@@ -177,6 +177,31 @@ function atualizaSenhaDoUsuario(req, res) {
         );
 }
 
+function atualizaNomeDoUsuario(req, res) {
+    const id = req.body.id;
+    const nome = req.body.nome;
+
+    usuarioService.atualizaNomeDoUsuario(id, nome)
+        .then(
+            function (resultado) {
+                if (resultado.affectedRows == 0) {
+                    return res.json({ "message": "usuário não encontrada" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao editar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 
 module.exports = {
     autenticar,
@@ -184,5 +209,6 @@ module.exports = {
     atualizarCadastro,
     excluirUsuario,
     retornaTodosOsUsuariosDaEmpresa,
-    atualizaSenhaDoUsuario
+    atualizaSenhaDoUsuario,
+    atualizaNomeDoUsuario
 }
