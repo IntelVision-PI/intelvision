@@ -53,9 +53,34 @@ function excluirUsuario(id){
      return database.executar(excluir)
 }
 
+function retornaTodosOsUsuariosDaEmpresa(id, fkEmpresa) {
+    let retornarTodosOsUsuariosDaEmpresa = `SELECT id, nome, email FROM usuario WHERE id != ${id} && fkEmpresa = ${fkEmpresa}`;
+    console.log("Executando a instrução SQL (retornar todos os usuários da empresa): \n" + retornarTodosOsUsuariosDaEmpresa)
+    return database.executar(retornarTodosOsUsuariosDaEmpresa)
+}
+
+async function atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova) {
+    var instrucaoSql = `
+        SELECT 1 FROM usuario WHERE id = ${idUsuario} AND senha = '${senhaAtual}'
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    const result = await database.executar(instrucaoSql);
+
+    if (result.length != 0) {
+        instrucaoSql = `
+            UPDATE usuario SET senha = '${senhaNova}' WHERE id = ${idUsuario}
+        `;
+
+        return database.executar(instrucaoSql)
+    }
+    return result;
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
     atualizarCadastro,
-    excluirUsuario
+    excluirUsuario,
+    retornaTodosOsUsuariosDaEmpresa,
+    atualizaSenhaDoUsuario
 };
