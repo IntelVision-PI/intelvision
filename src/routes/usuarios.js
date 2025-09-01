@@ -18,4 +18,12 @@ router.delete("/excluirUsuario", function(req,res){
     usuarioController.excluirUsuario(req,res)
 })
 
+router.get("/retornaTodosOsUsuariosDaEmpresa/:empresaId/:usuarioId", function(req, res) {
+    usuarioController.retornaTodosOsUsuariosDaEmpresa(req, res);
+})
+
+router.put('/atualizaSenhaDoUsuario', function(req, res){
+    usuarioController.atualizaSenhaDoUsuario(req, res)
+})
+
 module.exports = router;
