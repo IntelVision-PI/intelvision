@@ -20,30 +20,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body onload="verificarSeUsuarioEstaLogado()">
      <nav>
         <ul class="first_links">
             <li>
-                <a href="#">Serviços</a>
+                <a href="servicos.html">Serviços</a>
             </li>
             <li>
-                <a href="#">Contato</a>
+                <a href="contato.html">Contato</a>
             </li>
             <li>
-                <a href="#">Sobre nós</a>
+                <a href="sobre-nos.html">Sobre nós</a>
             </li>
         </ul>
         <div class="logo">
             <h1>
-                IntelVision
+                <a href="index.html">IntelVision</a>
             </h1>
         </div>
         <ul class="buttons_account">
             <li>
-                <a href="#" class="login_button">Entrar</a>
+                <a href="login.html" class="login_button">Entrar</a>
             </li>
             <li>
-                <a href="#" class="register_button">Cadastro</a>
+                <a href="cadastro.html" class="register_button">Cadastro</a>
             </li>
         </ul>
         <div class="hamburguer_menu">
@@ -124,13 +124,13 @@
                             <a href="#">Home Page</a>
                         </li>
                         <li>
-                            <a href="#">Serviços</a>
+                            <a href="servicos.html">Serviços</a>
                         </li>
                         <li>
-                            <a href="#">Contato</a>
+                            <a href="contato.html">Contato</a>
                         </li>
                         <li>
-                            <a href="#">Sobre nós</a>
+                            <a href="sobre-nos.html">Sobre nós</a>
                         </li>
                         <li>
                             <a href="#">Login</a>
@@ -163,3 +163,4 @@
     </footer>
   </body>
 </html>
+<script src="js/verifyLogin.js"></script>
