@@ -12,30 +12,30 @@
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
-<body onload="loadInfosEmpresa(); getUsersEmpresa()">
+<body onload="loadInfosEmpresa(); getUsersEmpresa(); verificarSeUsuarioEstaLogado()">
     <nav>
         <ul class="first_links">
             <li>
-                <a href="#">Serviços</a>
+                <a href="servicos.html">Serviços</a>
             </li>
             <li>
-                <a href="#">Contato</a>
+                <a href="contato.html">Contato</a>
             </li>
             <li>
-                <a href="#">Sobre nós</a>
+                <a href="sobre-nos.html">Sobre nós</a>
             </li>
         </ul>
         <div class="logo">
             <h1>
-                IntelVision
+                <a href="index.html">IntelVision</a>
             </h1>
         </div>
         <ul class="buttons_account">
             <li>
-                <a href="#" class="login_button">Entrar</a>
+                <a href="login.html" class="login_button">Entrar</a>
             </li>
             <li>
-                <a href="#" class="register_button">Cadastro</a>
+                <a href="cadastro.html" class="register_button">Cadastro</a>
             </li>
         </ul>
         <div class="hamburguer_menu">
@@ -308,5 +308,6 @@
 <script src="js/edit_user_info.js"></script>
 <script src="js/delete_account_user_empresa.js"></script>
 <script src="js/criar_usuario_empresa.js"></script>
+<script src="js/verifyLogin.js"></script>
 
 </html>
