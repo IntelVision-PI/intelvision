@@ -18,3 +18,17 @@ const verificarSeUsuarioEstaLogado = () => {
         `;
     }
 }
+
+const paraPerfil = () => {
+    if(sessionStorage.getItem('type') == 'usuario'){
+        window.location.href = 'user-profile.html';
+    }else if(sessionStorage.getItem('type') == 'empresa'){
+        window.location.href = 'empresa-profile.html';
+    }
+}
+
+const paraLogin = () => {
+    if(!sessionStorage.getItem('type')){
+        window.location.href = 'login.html';
+    }
+}
