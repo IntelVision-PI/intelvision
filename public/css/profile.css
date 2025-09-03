@@ -394,6 +394,30 @@ body {
     cursor: pointer;
 }
 
+.name_logout{
+    position: relative;
+    width: 100%;
+}
+
+.logout{
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.logout span{
+    cursor: pointer;
+    padding: 10px;
+}
+
+.logout span:hover{
+    background-color: #9f0b0b;
+    color: #fff;
+    border-radius: 100px;
+}
+
 @media (max-width: 1285px) {
     .all_users .user {
         flex-direction: column;
