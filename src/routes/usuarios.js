@@ -30,4 +30,8 @@ router.put("/atualizaNomeDoUsuario", function(req, res){
     usuarioController.atualizaNomeDoUsuario(req, res)
 })
 
+router.put("/atualizaEmailDoUsuario", function(req, res){
+    usuarioController.atualizaEmailDoUsuario(req, res)
+})
+
 module.exports = router;
