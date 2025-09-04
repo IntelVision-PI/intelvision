@@ -49,8 +49,21 @@ function atualizaNomeDoUsuario(id, nome) {
     return usuarioModel.atualizaNomeDoUsuario(id, nome);
 }
 
+function atualizaEmailDoUsuario(id, email) {
+    if (!id) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    if (!email || !email.includes("@")) {
+        throw new Error("Email inválido");
+    }
+
+    return usuarioModel.atualizaEmailDoUsuario(id, email);
+}
+
 module.exports = {
     cadastrarUsuario,
     atualizaSenhaDoUsuario,
-    atualizaNomeDoUsuario
+    atualizaNomeDoUsuario,
+    atualizaEmailDoUsuario
 }
