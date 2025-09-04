@@ -24,17 +24,17 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body onload="verificarSeUsuarioEstaLogado()">
   <nav>
     <ul class="first_links">
       <li>
-        <a href="#">Serviços</a>
+        <a href="servicos.html">Serviços</a>
       </li>
       <li>
-        <a href="#">Contato</a>
+        <a href="contato.html">Contato</a>
       </li>
       <li>
-        <a href="#">Sobre nós</a>
+        <a href="sobre-nos.html">Sobre nós</a>
       </li>
     </ul>
     <div class="logo">
@@ -44,15 +44,14 @@
     </div>
     <ul class="buttons_account">
       <li>
-        <a href="#" class="login_button">Entrar</a>
+        <a href="login.html" class="login_button">Entrar</a>
       </li>
       <li>
-        <a href="#" class="register_button">Cadastro</a>
+        <a href="cadastro.html" class="register_button">Cadastro</a>
       </li>
     </ul>
     <div class="hamburguer_menu">
       <span class="material-symbols-outlined">
-        dehaze
       </span>
     </div>
   </nav>
@@ -64,31 +63,31 @@
 
   <div class="social">
     <div class="container">
-      <h1>Garanta mais disponibilidade com a <img class="img" src="assets/img/Câmera.png"
-          alt=""><span>IntelVision</span>
-        <h1 class="fonte">
-          <div class="boxes">
-            <div class="box">
-              <h2>Monitoramento de servidores</h2>
-              <p>O monitoramento de servidores que armazenam imagens de câmeras de segurança é um processo essencial
-                para garantir a disponibilidade, confiabilidade e segurança dos dados capturados pelos sistemas de
-                vigilância. Esses servidores são responsáveis por receber, processar e armazenar grandes volumes de
-                imagens e vídeos em tempo real, sendo fundamentais para empresas, instituições financeiras, órgãos
-                públicos e demais organizações que dependem da vigilância contínua.
-                <br> <br>
-                Nosso sistema acompanha indicadores críticos como uso de CPU, memória, espaço em disco e tráfego de
-                rede, assegurando que os servidores mantenham um desempenho estável mesmo diante de altas demandas. Além
-                disso, o monitoramento possibilita identificar falhas, quedas ou anomalias antes que se tornem problemas
-                graves, evitando a perda de imagens importantes ou a indisponibilidade do sistema de segurança.
-                <br> <br>
-                Com uma gestão proativa, é possível garantir que os servidores estejam sempre disponíveis, que as
-                imagens fiquem armazenadas de forma segura e que a infraestrutura de vigilância opere sem interrupções.
-                Dessa forma, o monitoramento não apenas protege dados sensíveis, mas também reforça a confiabilidade e a
-                continuidade das operações de segurança.
-              </p>
-            </div>
-            <img src="assets/img/homem no pc.png">
-          </div>
+      <h1>Garanta mais disponibilidade com a <div class="imgTextox"><img class="img" src="assets/img/Câmera.png"
+            alt=""><span>IntelVision</span> </div>
+      </h1 class="fonte">
+      <div class="boxes">
+        <div class="box">
+          <h2>Monitoramento de servidores</h2>
+          <p>O monitoramento de servidores que armazenam imagens de câmeras de segurança é um processo essencial
+            para garantir a disponibilidade, confiabilidade e segurança dos dados capturados pelos sistemas de
+            vigilância. Esses servidores são responsáveis por receber, processar e armazenar grandes volumes de
+            imagens e vídeos em tempo real, sendo fundamentais para empresas, instituições financeiras, órgãos
+            públicos e demais organizações que dependem da vigilância contínua.
+            <br> <br>
+            Nosso sistema acompanha indicadores críticos como uso de CPU, memória, espaço em disco e tráfego de
+            rede, assegurando que os servidores mantenham um desempenho estável mesmo diante de altas demandas. Além
+            disso, o monitoramento possibilita identificar falhas, quedas ou anomalias antes que se tornem problemas
+            graves, evitando a perda de imagens importantes ou a indisponibilidade do sistema de segurança.
+            <br> <br>
+            Com uma gestão proativa, é possível garantir que os servidores estejam sempre disponíveis, que as
+            imagens fiquem armazenadas de forma segura e que a infraestrutura de vigilância opere sem interrupções.
+            Dessa forma, o monitoramento não apenas protege dados sensíveis, mas também reforça a confiabilidade e a
+            continuidade das operações de segurança.
+          </p>
+        </div>
+        <img src="assets/img/homem no pc.png">
+      </div>
     </div>
   </div>
 
@@ -132,13 +131,13 @@
               <a href="#">Home Page</a>
             </li>
             <li>
-              <a href="#">Serviços</a>
+              <a href="servicos.html">Serviços</a>
             </li>
             <li>
-              <a href="#">Contato</a>
+              <a href="contato.html">Contato</a>
             </li>
             <li>
-              <a href="#">Sobre nós</a>
+              <a href="sobre-nos.html">Sobre nós</a>
             </li>
             <li>
               <a href="#">Login</a>
@@ -170,5 +169,6 @@
     <p>Todos os direitos reservados © Copyright - 2025 IntelVision®</p>
   </footer>
 </body>
+<script src="js/verifyLogin.js"></script>
 
 </html>
