@@ -34,4 +34,8 @@ router.put("/atualizaEmailDoUsuario", function(req, res){
     usuarioController.atualizaEmailDoUsuario(req, res)
 })
 
+router.delete("/removerUsuario", function(req, res){
+    usuarioController.removerUsuario(req, res)
+})
+
 module.exports = router;
