@@ -92,6 +92,14 @@ function atualizaEmailDoUsuario(id, email) {
     return database.executar(instrucaoSql);
 }
 
+function removerUsuario(id) {
+    var instrucaoSql = `
+        DELETE FROM usuario WHERE id = ${id}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
@@ -100,5 +108,6 @@ module.exports = {
     retornaTodosOsUsuariosDaEmpresa,
     atualizaSenhaDoUsuario,
     atualizaNomeDoUsuario,
-    atualizaEmailDoUsuario
+    atualizaEmailDoUsuario,
+    removerUsuario
 };
