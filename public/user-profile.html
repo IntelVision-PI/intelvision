@@ -126,7 +126,7 @@
                 <button class="cancel_button" id="cancel_button_delete_account">
                     Cancelar
                 </button>
-                <button class="confirm_button_delete">
+                <button class="confirm_button_delete" onclick="removerUsuario()">
                     Confirmar
                 </button>
             </div>
@@ -149,7 +149,7 @@
                 <button class="cancel_button" id="cancel_button_edit_name">
                     Cancelar
                 </button>
-                <button class="confirm_button">
+                <button class="confirm_button" id="submit_button_edit_name">
                     Confirmar
                 </button>
             </div>
@@ -172,7 +172,7 @@
                 <button class="cancel_button" id="cancel_button_edit">
                     Cancelar
                 </button>
-                <button class="confirm_button">
+                <button class="confirm_button" id="submit_button_edit_email">
                     Confirmar
                 </button>
             </div>
@@ -217,7 +217,26 @@
 <script src="js/edit_name.js"></script>
 <script src="js/delete_account.js"></script>
 <script src="js/perfil_usuario.js"></script>
+<script>
+    function removerUsuario() {
+        fetch('/usuarios/removerUsuario', {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "id": sessionStorage.getItem('id'),
+            }),
+        }).then(response => {
+            if (response.status == 200) {
+                sessionStorage.clear();
+                window.location.href = "login.html";
+            } else {
+                alert("Erro!")
+            }
+        })
+    }
+</script>
 <script src="js/verifyLogin.js"></script>
 <script src="js/logout.js"></script>
-
 </html>

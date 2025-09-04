@@ -24,7 +24,7 @@ const open_modal = () => {
 }
 
 const sendEmail = () => {
-    if(sessionStorage.getItem('type') == 'empresa'){
+    if (sessionStorage.getItem('type') == 'empresa') {
         const email = document.querySelector('.edit_email_content .edit_email_field input').value;
 
         fetch('empresas/atualizar/empresa/email', {
@@ -42,8 +42,24 @@ const sendEmail = () => {
                 window.location.reload();
             }
         })
-    }else if(sessionStorage.getItem('type') == 'usuario'){
-        // logica para usuario
+    } else if (sessionStorage.getItem('type') == 'usuario') {
+        const email = document.querySelector('.edit_email_content .edit_email_field input').value;
+
+        fetch('usuarios/atualizaEmailDoUsuario', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "email": email,
+                "id": sessionStorage.getItem('id')
+            }),
+        }).then(response => {
+            if (response.status == 200) {
+                sessionStorage.setItem('email', email);
+                window.location.reload();
+            }
+        })
     }
 }
 

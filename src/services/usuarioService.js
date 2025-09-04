@@ -37,7 +37,42 @@ function atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova) {
     return usuarioModel.atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova);
 }
 
+function atualizaNomeDoUsuario(id, nome) {
+    if (!id) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    if (!nome) {
+        throw new Error("Nome inválido");
+    }
+
+    return usuarioModel.atualizaNomeDoUsuario(id, nome);
+}
+
+function atualizaEmailDoUsuario(id, email) {
+    if (!id) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    if (!email || !email.includes("@")) {
+        throw new Error("Email inválido");
+    }
+
+    return usuarioModel.atualizaEmailDoUsuario(id, email);
+}
+
+function removerUsuario(id) {
+    if (!id) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    return usuarioModel.removerUsuario(id);
+}
+
 module.exports = {
     cadastrarUsuario,
-    atualizaSenhaDoUsuario
+    atualizaSenhaDoUsuario,
+    atualizaNomeDoUsuario,
+    atualizaEmailDoUsuario,
+    removerUsuario
 }

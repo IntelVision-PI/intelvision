@@ -76,11 +76,38 @@ async function atualizaSenhaDoUsuario(idUsuario, senhaAtual, senhaNova) {
     return result;
 }
 
+function atualizaNomeDoUsuario(id, nome) {
+    var instrucaoSql = `
+        UPDATE usuario SET nome = '${nome}' where id=${id}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizaEmailDoUsuario(id, email) {
+    var instrucaoSql = `
+        UPDATE usuario SET email = '${email}' WHERE id = ${id}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function removerUsuario(id) {
+    var instrucaoSql = `
+        DELETE FROM usuario WHERE id = ${id}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     cadastrarUsuario,
     atualizarCadastro,
     excluirUsuario,
     retornaTodosOsUsuariosDaEmpresa,
-    atualizaSenhaDoUsuario
+    atualizaSenhaDoUsuario,
+    atualizaNomeDoUsuario,
+    atualizaEmailDoUsuario,
+    removerUsuario
 };
