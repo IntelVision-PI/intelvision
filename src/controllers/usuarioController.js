@@ -227,6 +227,30 @@ function atualizaEmailDoUsuario(req, res) {
         );
 }
 
+function removerUsuario(req, res) {
+    const id = req.body.id;
+
+    usuarioService.removerUsuario(id)
+        .then(
+            function (resultado) {
+                if (resultado.affectedRows == 0) {
+                    return res.json({ "message": "usuário não encontrada" })
+                }
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao deletar! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+
 
 module.exports = {
     autenticar,
@@ -236,5 +260,6 @@ module.exports = {
     retornaTodosOsUsuariosDaEmpresa,
     atualizaSenhaDoUsuario,
     atualizaNomeDoUsuario,
-    atualizaEmailDoUsuario
+    atualizaEmailDoUsuario,
+    removerUsuario
 }
