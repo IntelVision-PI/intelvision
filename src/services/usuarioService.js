@@ -61,9 +61,18 @@ function atualizaEmailDoUsuario(id, email) {
     return usuarioModel.atualizaEmailDoUsuario(id, email);
 }
 
+function removerUsuario(id) {
+    if (!id) {
+        throw new Error("ID do usuário inválido");
+    }
+
+    return usuarioModel.removerUsuario(id);
+}
+
 module.exports = {
     cadastrarUsuario,
     atualizaSenhaDoUsuario,
     atualizaNomeDoUsuario,
-    atualizaEmailDoUsuario
+    atualizaEmailDoUsuario,
+    removerUsuario
 }
