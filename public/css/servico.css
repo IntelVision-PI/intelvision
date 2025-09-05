@@ -61,10 +61,10 @@ nav {
 
 .monitoramento-titulo .detalhe {
     flex: 1;
-    height: 15px;
+    height: 10px;
     background: linear-gradient(to right, #0f8741, #02ab42);
     border-radius: 4px;
-    margin-top: 65px;
+    margin-top: 1px;
     margin-right: 200px;
 }
 
@@ -215,6 +215,7 @@ nav {
     justify-content: center;
     align-items: center;
     text-align: left;
+    font-size: 18px;
 }
 
 .beneficio-descricao h3 {
