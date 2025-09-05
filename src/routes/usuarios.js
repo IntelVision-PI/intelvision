@@ -18,7 +18,7 @@ router.delete("/excluirUsuario", function(req,res){
     usuarioController.excluirUsuario(req,res)
 })
 
-router.get("/retornaTodosOsUsuariosDaEmpresa/:empresaId/:usuarioId", function(req, res) {
+router.get("/retornaTodosOsUsuariosDaEmpresa/:usuarioId/:empresaId", function(req, res) {
     usuarioController.retornaTodosOsUsuariosDaEmpresa(req, res);
 })
 
