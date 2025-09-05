@@ -254,7 +254,6 @@ nav {
 .software-titulo {
     grid-column: 1 / span 2;
     text-align: center;
-    font-size: 3rem;
     font-weight: bold;
     display: flex;
     justify-content: left;
@@ -323,88 +322,213 @@ nav {
     margin: 0;
 }
 
-footer {
-    height: 500px;
-    background-color: #00863F;
-    border-top: #00A335 10px solid;
-    border-bottom: #00A335 10px solid;
-    padding: 0 10vw;
-    color: #fff;
+@media(max-width:1366) {
+    .imagem-servicos {
+        height: 850px;
+    }
+
+    .descricao {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 30px;
+    }
 }
 
-footer .p {
-    font-family: Inter;
-}
 
-.footer_container {
-    height: 93%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10vw;
-}
+@media (max-width:1280px) {
+    .imagem-servicos {
+        height: 850px;
+    }
 
-.logo_footer p {
-    font-family: 'alro-400';
-    font-size: 60px;
-    color: #fff;
-}
+    .descricao {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 30px;
+    }
 
-.navigation_footer_container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: Inter;
-}
+    .descricao-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.navigation_footer h3 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
+    .monitormaneto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.navigation_footer ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+    .monitormaneto-titulo {
+        display: flex;
+        align-items: center;
+        margin-left: 50px;
+    }
 
-.horario_footer ul,
-.redes_footer ul {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+    .monitoramento-titulo .titulo {
+        font-family: 'alro-400';
+        font-size: 60px;
+        color: #0f8741;
+        margin-left: 100px;
+    }
 
-.horario_footer li,
-.redes_footer li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+    .monitoramento-titulo .detalhe {
+        flex: 1;
+        height: 8px;
+        background: linear-gradient(to right, #0f8741, #02ab42);
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-right: 100px;
+    }
 
-.horario_footer li span,
-.redes_footer li span,
-.fa-brands {
-    font-size: 40px;
-}
 
-footer>p {
-    text-align: center;
-}
+    .monitoramento-servidores {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
 
-.copyright {
-    font-family: 'Inter', sans-serif;
-    font-size: 25px;
-}
+    .monitoramento-servidores .img-monitoramento {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0;
+    }
 
-.navigation_footer_container img,
-.horario_footer img,
-.redes_footer img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-right: 10px;
-    vertical-align: middle;
-    display: inline-block;
+    .monitoramento-servidores .texto {
+        max-width: 900px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .monitoramento-servidores .texto h2 {
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-left: 0;
+    }
+
+    .monitoramento-servidores .texto p {
+        text-align: justify;
+        margin-bottom: 15px;
+        font-size: 16px;
+        margin-right: 0;
+        font-size: 20px;
+    }
+
+    .monitoramento-servidores .texto h2,
+    .monitoramento-servidores .texto p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .monitoramento-servidores .img-monitoramento img {
+        width: 100%;
+        height: auto;
+        margin-top: 0;
+        margin-right: 0;
+        width: 500px;
+    }
+
+    .beneficios h2 {
+        display: flex;
+        margin-left: 30px;
+        font-size: 30px;
+    }
+
+    .beneficios-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .beneficio-card {
+        position: relative;
+        border-radius: 12px;
+        height: 450px;
+        width: 400px;
+        justify-content: flex-end;
+    }
+
+    .software {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40px;
+        height: 1500px;
+        gap: 40px 60px;
+        padding: 30px;
+    }
+
+    .software-titulo {
+        grid-column: span 2;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .software>div {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .software img {
+        width: 90px;
+        height: auto;
+        border: 2px solid white;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .software h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .software p {
+        font-size: 15px;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .processador,
+    .armazenamento {
+        margin-left: 150px;
+    }
+
+    .ram,
+    .rede {
+        margin-left: 90px;
+    }
+
+    .processador-img,
+    .armazenamento-img,
+    .ram-img,
+    .rede-img {
+        min-width: 150px;
+        min-height: 150px;
+    }
+
+    .processador-img img,
+    .armazenamento-img img,
+    .ram-img img,
+    .rede-img img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .processador-titulo h3,
+    .armazenamento-titulo h3,
+    .ram-titulo h3,
+    .rede-titulo h3 {
+        font-size: 25px;
+    }
 }
