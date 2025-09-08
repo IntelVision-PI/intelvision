@@ -290,7 +290,6 @@ nav {
     justify-content: center;
     border: 3px solid #fff;
     border-radius: 12px;
-    background: transparent;
 }
 
 .processador-img img,
@@ -322,7 +321,7 @@ nav {
     margin: 0;
 }
 
-@media(max-width:1366) {
+@media(max-width:1544px) {
     .imagem-servicos {
         height: 850px;
     }
@@ -333,27 +332,6 @@ nav {
         justify-content: center;
         text-align: center;
         font-size: 30px;
-    }
-}
-
-
-@media (max-width:1280px) {
-    .imagem-servicos {
-        height: 850px;
-    }
-
-    .descricao {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: 30px;
-    }
-
-    .descricao-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .monitormaneto {
@@ -363,42 +341,30 @@ nav {
     }
 
     .monitormaneto-titulo {
-        display: flex;
-        align-items: center;
         margin-left: 50px;
     }
 
     .monitoramento-titulo .titulo {
-        font-family: 'alro-400';
         font-size: 60px;
-        color: #0f8741;
         margin-left: 100px;
     }
 
     .monitoramento-titulo .detalhe {
-        flex: 1;
         height: 8px;
-        background: linear-gradient(to right, #0f8741, #02ab42);
-        border-radius: 4px;
         margin-top: 10px;
         margin-right: 100px;
     }
 
 
     .monitoramento-servidores {
-        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 100%;
         padding: 20px;
         box-sizing: border-box;
     }
 
     .monitoramento-servidores .img-monitoramento {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         margin-right: 0;
     }
 
@@ -416,11 +382,8 @@ nav {
     }
 
     .monitoramento-servidores .texto p {
-        text-align: justify;
         margin-bottom: 15px;
-        font-size: 16px;
         margin-right: 0;
-        font-size: 20px;
     }
 
     .monitoramento-servidores .texto h2,
@@ -431,14 +394,11 @@ nav {
 
     .monitoramento-servidores .img-monitoramento img {
         width: 100%;
-        height: auto;
         margin-top: 0;
         margin-right: 0;
-        width: 500px;
     }
 
     .beneficios h2 {
-        display: flex;
         margin-left: 30px;
         font-size: 30px;
     }
@@ -452,83 +412,375 @@ nav {
     }
 
     .beneficio-card {
-        position: relative;
         border-radius: 12px;
-        height: 450px;
         width: 400px;
-        justify-content: flex-end;
     }
 
     .software {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 40px;
-        height: 1500px;
-        gap: 40px 60px;
-        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 40px 0;
+        width: 100%;
+        height: auto;
     }
 
     .software-titulo {
-        grid-column: span 2;
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 40px;
+        margin-left: 30px;
+        font-size: 35px;
     }
+
 
     .software>div {
         display: flex;
+        flex-direction: column;
         align-items: center;
+        text-align: center;
         gap: 20px;
     }
 
-    .software img {
-        width: 90px;
-        height: auto;
-        border: 2px solid white;
-        border-radius: 8px;
-        padding: 15px;
+    .processador,
+    .armazenamento,
+    .ram,
+    .rede {
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
     }
 
-    .software h3 {
-        font-size: 20px;
-        margin-bottom: 10px;
+    .processador-descricao p,
+    .armazenamento-descricao p,
+    .ram-descricao p,
+    .rede-descricao p {
+        text-align: justify;
+        max-width: 1000px;
+    }
+}
+
+
+@media (max-width:1024px) {
+    .nosso-servico h2 {
+        flex-direction: column;
     }
 
-    .software p {
-        font-size: 15px;
-        line-height: 1.5;
+    .descricao-logo {
+        gap: 0;
+    }
+
+    .descricao {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .monitoramento {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 5%;
+    }
+
+    .monitoramento-titulo .titulo {
+        font-size: 60px;
+        margin-left: 0;
+    }
+
+    .monitoramento-titulo .detalhe {
+        margin-right: 0;
+    }
+
+    .monitoramento-servidores {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .monitoramento-servidores .texto p {
+        margin-left: 0;
+    }
+
+    .monitoramento-servidores .img-monitoramento img {
+        max-width: 400px;
+        margin-top: 20px;
+    }
+
+    .beneficios-row {
+        gap: 30px;
+    }
+
+    .beneficio-card {
+        height: 450px;
+        width: 400px;
+    }
+
+    .processador-descricao p,
+    .armazenamento-descricao p,
+    .ram-descricao p,
+    .rede-descricao p {
+        max-width: 800px;
+    }
+
+    .logo_footer img {
+        width: 200px;
+    }
+
+    .logo_footer p {
+        font-size: 40px;
+    }
+
+    .navigation_footer_container,
+    .horario_footer {
+        gap: 20px;
+    }
+}
+
+@media(max-width:768px) {
+    .imagem-servicos {
+        height: 900px;
+    }
+
+    .descricao-logo img {
+        width: 300px;
+    }
+
+    .descricao {
+        font-size: 25px;
+    }
+
+    .monitoramento {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+
+    .monitoramento-titulo {
+        gap: 16px;
+    }
+
+    .monitoramento-titulo .titulo {
+        font-size: 50px;
+    }
+
+    .monitoramento-titulo .detalhe {
+        flex: 1;
+        height: 8px;
         margin: 0;
     }
 
-    .processador,
-    .armazenamento {
-        margin-left: 150px;
+    .monitoramento-servidores {
+        display: grid;
+        gap: 24px;
+        margin: 0;
     }
 
+    .monitoramento-servidores .texto h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .monitoramento-servidores .texto p {
+        margin-left: 0;
+    }
+
+    .monitoramento-servidores .img-monitoramento img {
+        width: 900px;
+        height: auto;
+    }
+
+    .beneficios-row {
+        gap: 20px;
+    }
+
+    .beneficio-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .software-titulo {
+        font-size: 30px;
+    }
+
+    .processador,
+    .armazenamento,
     .ram,
     .rede {
-        margin-left: 90px;
+        max-width: 600px;
+    }
+
+    .logo_footer img {
+        width: 150px;
+    }
+
+    .logo_footer p {
+        font-size: 30px;
+    }
+
+    .navigation_footer h3 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width:480px) {
+    .imagem-servicos {
+        width: 100%;
+        height: 750px;
+    }
+
+    .descricao-logo img {
+        width: 200px;
+    }
+
+    .descricao {
+        font-size: 20px;
+    }
+
+    .monitoramento-titulo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .monitoramento-titulo .titulo {
+        font-size: 30px;
+    }
+
+    .monitoramento-titulo .detalhe {
+        display: none;
+    }
+
+    .monitoramento-servidores .texto h2 {
+        font-size: 23px;
+    }
+
+    .monitoramento-servidores .texto p {
+        font-size: 15px;
+    }
+
+    .monitoramento-servidores .img-monitoramento img {
+        max-width: 350px;
+
+    }
+
+    .beneficios h2 {
+        font-size: 25px;
+    }
+
+    .beneficios-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .beneficio-card {
+        max-width: 400px;
+        height: 300px;
+    }
+
+    .beneficio-descricao p {
+        font-size: 10px;
+    }
+
+    .software-titulo {
+        font-size: 25px;
+    }
+
+    .processador,
+    .armazenamento,
+    .ram,
+    .rede {
+        max-width: 300px;
+    }
+
+    .processador p,
+    .armazenamento p,
+    .ram p,
+    .rede p {
+        font-size: 18px;
     }
 
     .processador-img,
-    .armazenamento-img,
     .ram-img,
+    .armazenamento-img,
     .rede-img {
-        min-width: 150px;
-        min-height: 150px;
+        border: 2px;
     }
 
-    .processador-img img,
-    .armazenamento-img img,
-    .ram-img img,
-    .rede-img img {
-        width: 150px;
-        height: 150px;
+    .logo_footer img {
+        width: 90px;
+    }
+
+    .logo_footer p {
+        font-size: 20px;
+    }
+
+    .navigation_footer {
+        display: none;
+    }
+}
+
+@media(max-width:320px) {
+
+    .descricao {
+        display: none;
+    }
+
+    .monitoramento-titulo .titulo {
+        font-size: 25px;
+    }
+
+    .monitoramento-servidores .texto h2 {
+        font-size: 20px;
+    }
+
+    .monitoramento-servidores .img-monitoramento img {
+        max-width: 200px;
+
+    }
+
+    .software-titulo {
+        font-size: 20px;
     }
 
     .processador-titulo h3,
-    .armazenamento-titulo h3,
     .ram-titulo h3,
+    .armazenamento-titulo h3,
     .rede-titulo h3 {
-        font-size: 25px;
+        font-size: 20px;
+    }
+
+    .processador,
+    .armazenamento,
+    .ram,
+    .rede {
+        max-width: 250px;
+    }
+
+    .processador p,
+    .armazenamento p,
+    .ram p,
+    .rede p {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    footer {
+        height: 400px;
+    }
+
+    footer p {
+        font-size: 13px;
+    }
+
+    .logo_footer img {
+        display: none;
+    }
+
+
+    .logo_footer p {
+        display: none;
+    }
+
+    .navigation_footer {
+        display: none;
     }
 }
