@@ -1,9 +1,5 @@
 footer{
-    height: 500px;
     background-color: #00863F;
-    border-top: #00A335 10px solid;
-    border-bottom: #00A335 10px solid;
-    padding: 0 10vw;
     color: #fff;
 }
 
@@ -13,31 +9,45 @@ footer{
     align-items: center;
     justify-content: space-between;
     gap: 10vw;
+    padding: 1vw 10vw;
+}
+
+.logo_footer {
+    text-align: center;
 }
 
 .logo_footer p{
     font-family: 'alro-700', sans-serif;
-    font-size: 60px;
+    font-size: 30px;
     color: #fff;
 }
 
-.navigation_footer_container{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.logo_footer img {
+    width: 130px;
 }
 
-.navigation_footer h3{
-    font-size: 36px;
-    margin-bottom: 10px;
+.redes_footer ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
 }
+
+.navigation_footer_container{
+    display: flex;
+    align-items: center;
+}
+
+.navigation_footer {
+    text-align: center;
+}
+
 .navigation_footer ul{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
-.horario_footer ul, .redes_footer ul{
+
+.horario_footer ul{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -47,10 +57,33 @@ footer{
     align-items: center;
     gap: 10px;
 }
+
 .horario_footer li span, .redes_footer li span, .fa-brands{
     font-size: 32px;
 }
 
-footer > p{
+.direitos_footer {
+    background-color: #002723;
     text-align: center;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+@media screen and (max-width: 1024px){
+    .footer_container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .logo_footer img {
+        width: 100px;
+    }
+
+    .navigation_footer ul {
+        flex-direction: column;
+        width: 260px;
+    }
 }
