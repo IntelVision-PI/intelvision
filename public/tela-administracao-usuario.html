@@ -123,12 +123,7 @@
                 <input type="text" id="ipt_representante" class="ipt_procura"
                   oninput="buscarRepresentante(ipt_representante.value)" placeholder="Nome do Representante">
               </div>
-              <div class="div-ipt-procura">
-                <label for="">Filtrar por Hospital</label>
-                <select name="" id="select_hospital" onchange="selecionarHospital()" class="ipt_procura">
-                  <option value="todos">Todos</option>
-                </select>
-              </div>
+              
               <div class="div-ipt-procura">
                 <label for="">Filtrar por atividade:</label>
                 <select name="" id="select_atividade" onchange="selecionarAtividade()" class="ipt_procura">
@@ -148,6 +143,12 @@
                       <th class="colunaEmail">E-mail</th>
                       <th class="colunaTipoAcesso">Editar</th>
                       <th class="colunaStatus">Status</th>
+                    </tr>
+                    <tr>
+                      <td class="colunaRepresentante">Lucas Hideaki</td>
+                      <td class="colunaEmail">lucas.tsuzuku@sptech.school</td>
+                      <td class="colunaTipoAcesso"><button>Editar</button></td>
+                      <td class="colunaAcesso"><button>Ativo</button></td>
                     </tr>
                   </thead>
                   <tbody id="tbody_usuarios">
@@ -211,11 +212,7 @@
   //   contas_hospital.style.display = 'none'
   // }
   
-  let usuarios = [
-    { id: 1, nome: 'Hospital 1', representante: 'Carlos Eduardo', email: 'joao@exemplo.com', tipoAcesso: 'Admin', acesso: 'Ativo' },
-    { id: 2, nome: 'Hospital 2', representante: 'Eduardo Carlos', email: 'maria@exasdasdasdasdemplo.com', tipoAcesso: 'Admin', acesso: 'Ativo' },
-    { id: 3, nome: 'Hospital 3', representante: 'Eduardo Eduardo', email: 'carlos@exemplo.com', tipoAcesso: 'Admin', acesso: 'Inativo' }
-  ];
+  let usuarios = [];
   let hospitais = [];
   let usuarioSelecionado = null; // Id usuário
 
