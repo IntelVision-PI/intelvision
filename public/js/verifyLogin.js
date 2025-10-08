@@ -12,7 +12,7 @@ const verificarSeUsuarioEstaLogado = () => {
         localButtons.innerHTML = `
             <li>
                 <div class="nav_photo">
-                    <a href="user-profile"><img src="assets/profile/default_avatar.webp"></a>
+                    <a href="user-profile.html"><img src="assets/profile/default_avatar.webp"></a>
                 </div>
             </li>
         `;
