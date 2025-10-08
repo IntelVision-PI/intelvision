@@ -1,17 +1,133 @@
-body{
+body {
     background-image: url("../assets/login/background.svg");
     background-repeat: no-repeat;
     background-position: -70% 50%;
     background-size: 70%;
 }
-.login_container{
+
+/* NAVEGAÇÃO */
+nav {
+    width: 80vw;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    border-radius: 50px;
+    position: relative;
+    box-sizing: border-box;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 10vh;
+    -webkit-box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.15);
+}
+
+.hamburguer_menu {
+    display: none;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a {
+    font-family: "Roboto", sans-serif;
+    padding: 20px;
+    border-radius: 100px;
+    transition: .25s;
+}
+
+.first_links a:hover {
+    background-color: #E2E9ED;
+}
+
+.logo h1 {
+    font-family: 'alro-400', sans-serif;
+    font-size: 40px;
+    color: #00863F;
+}
+
+.login_button,
+.register_button {
+    color: #fff;
+}
+
+.login_button {
+    background-color: #00863F;
+}
+
+.register_button {
+    background-color: #00A335;
+}
+
+.buttons_account {
+    gap: 27px;
+}
+
+.buttons_account li a {
+    padding: 15px 50px;
+}
+
+.login_button:hover,
+.register_button:hover {
+    background-color: #005a2a;
+}
+
+@media (max-width: 1250px) {
+    .logo {
+        position: static;
+        transform: translate(0, 0);
+        top: 0;
+        left: 0;
+    }
+
+    nav {
+        padding: 29px 50px;
+    }
+}
+
+@media (max-width: 1150px) {
+    nav {
+        width: 100vw;
+        border-radius: 0;
+        top: 56px;
+        border: none;
+        border-bottom: #00863F 3px solid;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .first_links,
+    .buttons_account {
+        display: none;
+    }
+
+    .hamburguer_menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hamburguer_menu span {
+        font-size: 50px;
+        color: #00863F;
+    }
+}
+
+/* FIM NAVEGAÇÃO */
+
+.login_container {
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     height: 100dvh;
 }
-.login_button_page{
+
+.login_button_page {
     border-radius: 100px;
     padding: 10px 10px 10px 30px;
     box-sizing: border-box;
@@ -23,7 +139,8 @@ body{
     color: #fff;
     font-weight: 600;
 }
-.login_button_page .icon_circle{
+
+.login_button_page .icon_circle {
     width: 40px;
     height: 40px;
     display: flex;
@@ -34,38 +151,46 @@ body{
     background-color: #00A335;
     color: #fff;
 }
-.form .buttons{
+
+.form .buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
 }
-.form .buttons p a{
+
+.form .buttons p a {
     font-weight: 600;
     color: #00863F;
 }
-.login_wrapper h1{
+
+.login_wrapper h1 {
     font-size: 44px;
     color: rgba(43, 43, 43);
 }
-.login_wrapper h2{
+
+.login_wrapper h2 {
     font-size: 16px;
     font-weight: 400;
     color: rgba(43, 43, 43, 0.5);
     margin-bottom: 30px;
 }
-.login_container{
+
+.login_container {
     padding-right: 10vw;
 }
-.form{
+
+.form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.form .field{
+
+.form .field {
     position: relative;
 }
-.form .field label{
+
+.form .field label {
     position: absolute;
     z-index: 10;
     top: 35%;
@@ -74,7 +199,8 @@ body{
     color: rgba(43, 43, 43, 0.5);
     transition: .25s;
 }
-.form .field .input_icon{
+
+.form .field .input_icon {
     position: absolute;
     z-index: 10;
     top: 30%;
@@ -82,7 +208,8 @@ body{
     color: rgba(43, 43, 43, 0.5);
     user-select: none;
 }
-.form .field .password_icon{
+
+.form .field .password_icon {
     position: absolute;
     z-index: 10;
     top: 30%;
@@ -92,10 +219,12 @@ body{
     transition: .1s;
     user-select: none;
 }
-.form .field .password_icon:hover{
+
+.form .field .password_icon:hover {
     color: rgba(43, 43, 43, 0.8);
 }
-.form .field input{
+
+.form .field input {
     border: #00863F 2px solid;
     background-color: #f4f4f4;
     font-size: 16px;
@@ -105,25 +234,29 @@ body{
     width: 100%;
     box-sizing: border-box;
 }
-.form .field input:focus + label, .field input:not(:placeholder-shown) + label{
+
+.form .field input:focus+label,
+.field input:not(:placeholder-shown)+label {
     top: 10%;
     font-size: 10px;
 }
 
 @media (max-width: 1130px) {
-    body{
+    body {
         background-image: none;
     }
-    .login_container{
+
+    .login_container {
         justify-content: center;
     }
-    .login_container{
+
+    .login_container {
         padding: 0;
     }
 }
 
 @media (max-width: 600px) {
-    .login_wrapper{
+    .login_wrapper {
         width: 80vw;
     }
 }
