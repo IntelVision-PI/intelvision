@@ -1,0 +1,102 @@
+/* pagina mural */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* pagina graficos */
+
+.dash {
+    width: 85%;
+    position: relative;
+    top: 0;
+    left: 15%;
+    background-color: #EBEEEE;
+    height: 100vh;
+    overflow: auto;
+}
+
+header {
+    position: fixed;
+    z-index: 10;
+    width: 85%;
+    left: 15%;
+    height: 70px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.nome-dash {
+    display: flex;
+    align-items: center;
+}
+
+.nome-dash i {
+    margin: 0 20px;
+    font-size: 40px;
+}
+
+.nome-dash h3 {
+    font-size: 25px;
+}
+
+.janela {
+    display: flex;
+}
+
+.header-left a {
+    text-decoration: none;
+}
+
+.header-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100vh;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.header-left h1 {
+    text-align: center;
+    color: #00863F;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-family: alro-400;
+}
+
+.btn-nav {
+    padding: 10px 0;
+}
+
+.btn-nav a,
+.btn-logout {
+    display: flex;
+    align-items: center;
+}
+
+.btn-nav i {
+    width: 20px;
+    font-size: 20px;
+    margin: 0 20px;
+}
+
+.ativo {
+    background-color: #87C984;
+    border-left: 5px solid #00863F;
+    color: #00863F;
+}
+
+.btn-nav h3,
+.btn-logout h3 {
+    padding: 0;
+    margin: 0;
+}
