@@ -10,12 +10,12 @@ nav {
 
 .inicio {
     background-image: 
-    linear-gradient(rgba(0, 134, 63, 0.3), rgba(0, 134, 63, 0.3)),
-    url("../assets/sobre/background/inicio.png");
+    /* linear-gradient(rgba(89, 90, 89, 0.3), rgba(0, 134, 63, 0.3)), */
+    url("../assets/sobre/background/foto.jpg");
     height: 100dvh;
     background-size: cover;
     background-position: center;
-    filter: blur(3px);
+    filter: brightness(30%);
 }
 
 .membros {
@@ -99,13 +99,14 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     gap: 1.25rem;
 }
 
 .faculdade h3 {
     font-family: Inter;
     font-size: 1.9rem;
+   
 }
 
 .faculdade-descricao {
@@ -121,31 +122,83 @@ nav {
     width: 50%;
 }
 
+.avaliacoes-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #f5f5f5;
+}
+
 .avaliacoes {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2%;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .avaliacoes h3 {
-    font-family: Inter;
-    font-size: 1.9rem;
+  font-family: Inter, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #111;
 }
 
-.avaliacoes-descricao {
-    width: 75dvw;
-    display: flex;
-    justify-content: center;
+.avaliacoes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card-avaliacao {
+  background: #fff;
+  border: 1.5px solid #008000;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-avaliacao:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.foto-avaliador {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.card-avaliacao h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.estrelas {
+  color: #ffb400;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.card-avaliacao p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .avaliacoes-container {
+    flex-direction: column;
     align-items: center;
-    gap: 2%;
-    font-family: Inter;
+  }
 }
 
-.avaliacoes img {
-    width: 50%;
-}
 
 footer{
     height: 500px;
