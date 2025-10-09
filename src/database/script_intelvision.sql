@@ -22,3 +22,30 @@ create table usuario(
     fkEmpresa int not null,
     foreign key (fkEmpresa) references empresa(id)
 );
+
+create table servidor(
+	id int not null primary key auto_increment,
+    nome varchar(45),
+    sistema_operacional varchar(45),
+    macaddress varchar(17),
+    tipo varchar(45),
+    fkEmpresa int not null,
+    foreign key (fkEmpresa) references empresa(id)
+);
+
+create table componente(
+	id int not null primary key auto_increment,
+    nome varchar(45),
+    unidade_medida varchar(45)
+);
+
+create table parametro(
+	id int not null primary key auto_increment,
+    fkComponente int not null,
+    fkServidor int not null,
+    alerta_min double,
+    alerta_max double,
+    foreign key (fkServidor) references servidor(id),
+    foreign key (fkComponente) references componente(id)
+);
+
