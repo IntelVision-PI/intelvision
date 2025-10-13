@@ -25,11 +25,19 @@ body {
 .bannerContato {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/banner.png');
+  background-image: url('../assets/banner_pc.jpg');
   background-size: cover;
   background-position: center;
   background-color: rgba(0, 255, 0, 0.1); 
   background-blend-mode: overlay;
+  display: flex;
+}
+
+.bannerContato-tittle{
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .banner .container {
@@ -50,12 +58,12 @@ body {
 }
 
 .social {
-  background-color: #e5e5e5;
+  background-color: white;
   display: flex;
 }
 
 .socialContato {
-  background-color: #e5e5e5;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,11 +91,11 @@ body {
 }
 .entrarEmContato {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: green;
+    background-color: white;
     padding: 50px;
-    color: white;
+    color: black;
     gap: 50px;
 }
 
@@ -109,6 +117,10 @@ body {
 .formulario-contato {
     flex: 1;
     max-width: 400px;
+    color: gray;
+    border: 1px solid green;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .campo-formulario {
@@ -120,7 +132,6 @@ body {
 .campo-formulario label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: white;
 }
 
 .campo-formulario input,
@@ -128,9 +139,8 @@ body {
     padding: 10px;
     font-size: 16px;
     border: none;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid green;
     background: transparent;
-    color: white;
     outline: none;
     resize: none;
 }
@@ -139,8 +149,8 @@ body {
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    background-color: white;
-    color: green;
+    background-color: green;
+    color: white;
     font-weight: bold;
     cursor: pointer;
 }
@@ -151,10 +161,10 @@ body {
 
 
 .localizacao {
-    background-color: #f0f0f0;
+    background-color: white;
     height: 550px;
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr; 
     align-items: center;
     padding: 40px;
     gap: 30px;
@@ -174,6 +184,7 @@ body {
 
 .nomeEmpresa{
     font-family: alro-400;
+    color: green;
 }
 
 
