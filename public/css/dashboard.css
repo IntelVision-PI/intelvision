@@ -50,6 +50,15 @@ header {
   align-items: center;
 }
 
+.cabecalho-dash {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px 20px;
+}
+
 .nome-dash {
   display: flex;
   align-items: center;
@@ -62,6 +71,13 @@ header {
 
 .nome-dash h3 {
   font-size: 25px;
+}
+
+.icone-usuario i {
+  font-size: 30px;
+  cursor: pointer;
+  align-items: end;
+  padding-right: 30px;
 }
 
 .janela {
@@ -237,3 +253,108 @@ td {
 thead {
   border: 2px solid #2a9d8f;
 }
+
+/* KPIs */
+.kpi-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 90%;
+  margin-top: 40px;
+}
+
+.kpi {
+  flex: 1;
+  min-width: 200px;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-top: 6px solid transparent;
+}
+
+.kpi h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.kpi p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #444;
+}
+
+.kpi1 { border-top-color: #f2b400; }
+.kpi2 { border-top-color: #00bcd4; }
+.kpi3 { border-top-color: #ff5252; }
+.kpi4 { border-top-color: #8bc34a; }
+
+/* Tabela de falhas */
+.falhas-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  width: 90%;
+  margin-top: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.falhas-container h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.falhas-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.falhas-table th {
+  background-color: var(--lightiest-primary-color);
+  color: #000;
+  text-align: left;
+  padding: 10px;
+}
+
+.falhas-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.servidor-select {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+.servidor-select:hover {
+  background-color: #45a049;
+}
+
+
+/* Gráfico */
+.chart-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 50px;
+  width: 90%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.chart-container h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
