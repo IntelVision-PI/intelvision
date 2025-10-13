@@ -19,6 +19,8 @@ create table usuario(
     nome varchar(200) not null,
     email varchar(200),
     senha varchar(20),
+    perfil enum('empresaAdmin', 'empresaComum') not null,
+    atividade tinyint not null,
     fkEmpresa int not null,
     foreign key (fkEmpresa) references empresa(id)
 );

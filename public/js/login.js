@@ -64,9 +64,18 @@ login_button_page.addEventListener("click", () => {
           sessionStorage.setItem("email", json.email);
           sessionStorage.setItem("id", json.id);
           sessionStorage.setItem("fkEmpresa", json.empresaId);
-          sessionStorage.setItem("type", "usuario");
+          //sessionStorage.setItem("type", "usuario");
+          sessionStorage.setItem("perfil", json.perfil);
+          sessionStorage.setItem("atividade", json.atividade);
 
-          window.location.href = "mainPage.html";
+          if (sessionStorage.atividade == 0) {
+            password.insertAdjacentHTML(
+              "afterend",
+              '<span style="color: #f00; text-align: center; font-size: 12px">Usuário está inativo.</span>'
+            );
+          } else {
+            window.location.href = "mainPage.html";
+          }
         });
       }
     });
