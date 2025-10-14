@@ -57,9 +57,16 @@ function cadastrarUsuario(req, res) {
   let emailUsuario = req.body.email;
   let senhaUsuario = req.body.senha;
   let codigoAtivacao = req.body.codigoAtivacao;
+  let tipoUsuario = req.body.tipoUsuario;
 
   usuarioService
-    .cadastrarUsuario(nomeUsuario, emailUsuario, senhaUsuario, codigoAtivacao)
+    .cadastrarUsuario(
+      nomeUsuario,
+      emailUsuario,
+      senhaUsuario,
+      codigoAtivacao,
+      tipoUsuario
+    )
     .then(function (resultado) {
       if (!resultado) {
         return res.status(403).json({ message: "codigo invalido" });

@@ -17,7 +17,8 @@ function cadastrarUsuario(
   nomeUsuario,
   emailUsuario,
   senhaUsuario,
-  codigoAtivacao
+  codigoAtivacao,
+  tipoUsuario
 ) {
   let pegaid = `select id from empresa where codigo_ativacao = '${codigoAtivacao}';`;
   return database.executar(pegaid).then((resultado) => {
@@ -30,14 +31,18 @@ function cadastrarUsuario(
                             nome, 
                             email, 
                             senha, 
-                            fkempresa
+                            fkempresa,
+                            perfil,
+                            atividade
                         ) 
                         VALUES 
                         (
                             '${nomeUsuario}', 
                             '${emailUsuario}', 
                             '${senhaUsuario}', 
-                            '${fkEmpresa}'
+                            '${fkEmpresa}',
+                            '${tipoUsuario}',
+                            1
                         );
                 `;
       console.log(
