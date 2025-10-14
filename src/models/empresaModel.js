@@ -106,7 +106,7 @@ function atualizarUsuarioEmpresa(idUsuario, idEmpresa, nome, email, senha) {
 
 function obterUsuarios(idEmpresa) {
   var instrucaoSql = `
-        select id, nome, email from usuario where fkEmpresa = ${idEmpresa}
+        select id, nome, email,perfil,atividade from usuario where fkEmpresa = ${idEmpresa}
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
