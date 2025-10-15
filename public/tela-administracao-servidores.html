@@ -1,418 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+  <head>
+    <link
+      rel="shortcut icon"
+      href="../assets/icon/favicon2.ico"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="./assets/img/Câmera.png" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administração - Servidores</title>
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close"
+    />
+    <!-- <link rel="stylesheet" href="./css/tela-administracao.css"> -->
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/tela-administracao.css">
-  <link rel="icon" href="./assets/img/Câmera.png" />  
-  <title>Dashboard - Contas</title>
-  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-  
-</head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-<body onload="puxarDados()">
-  <div class="div-pai">
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Cabeçalho -->
+    <!--FONT AWESOME-->
+    <script
+      src="https://kit.fontawesome.com/9f7414eb10.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body onload="puxarDadosServidor()">
     <header>
-      <div class="header-container">
-        <div class="div-hamburguer">
-          <a class="navbar-mob" onclick="mostrarNavbar()">
-          <i id="icone" class="fa-solid fa-bars"></i>
-        </a>
-        <nav class="navbar" id="navbar">
-          <a href="./mainPage.html">Dashboard</a>
-          <a href="./mainPage.html">Servidores</a>
-          <a href="./contas.html">Disco</a>
-          <a href="./tela-administracao-usuario.html">Administração - Usuários</a>
-          <a href="./tela-administracao-usuario.html">Administração - Servidores</a>
-          </a>
-        </nav>
-      </div>
-        <img src="./assets/img/Câmera.png" alt="" style="height: 75%;">
-        <h2>Administração de Servidores</h2>
-        <div class="div-pai-perfil">
-          <div class="div-linha"></div>
-          <div class="div-todo-perfil">
-            <div class="div-filho-perfil">
-              <img src="./assets/img/Câmera.png" alt="imagem de perfil" class="img-perfil" />
-              <span>V</span>
-              <!-- <img src="../assets/imgs/seta-para-baixo-braca.png" alt="ver opções" class="img-seta" /> -->
-            </div>
-            <div class="div-opcoes">
-              <div class="div-opcao-sair">
-                <a href="../index.html"><span>Sair</span></a>
-              </div>
-            </div>
-          </div>
+      <div class="cabecalho-dash">
+        <div class="nome-dash">
+          <i class="fa-solid fa-user-gear"></i>
+          <h3>Administração - Servidores</h3>
         </div>
       </div>
     </header>
+    <div class="janela">
+      <div class="header-left">
+        <h1>IntelVision</h1>
 
-    <!-- Sidebar -->
-    <div class="container">
-      <div class="div-sidebar">
-        <div class="div-img">
-          <img src="./assets/img/Câmera.png" alt="Logomarca" />
+        <div class="btn-nav">
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h3>Dashboard</h3>
+          </a>
         </div>
-        <div class="div-botoes">
-          <a href="mainPage.html">
-            <div class="div-btComImg ">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone da main page" />
-              <div class="txt-bt">Dashboard</div>
-            </div>
-          </a>
 
-          <a href="mainPage.html">
-            <div class="div-btComImg">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone de Hospitais" />
-              <div class="txt-bt">Servidores</div>
-            </div>
+        <div class="btn-nav">
+          <a href="">
+            <i class="fa-solid fa-server"></i>
+            <h3>Servidores</h3>
           </a>
+        </div>
 
-          <a href="contas.html">
-            <div class="div-btComImg">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone das contas registradas" />
-              <div class="txt-bt">Disco</div>
-            </div>
+        <div class="btn-nav">
+          <a href="./tela-administracao-usuario.html">
+            <i class="fa-solid fa-user-gear"></i>
+            <h3>Adm - Usuários</h3>
           </a>
+        </div>
 
-          <a href="contas.html">
-            <div class="div-btComImg div-btEscolhido">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone das contas registradas" />
-              <div class="txt-bt">Administração V</div>
-            </div>
+        <div class="btn-nav ativo">
+          <a href="./tela-administracao-servidores.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h3>Adm - Servidores</h3>
           </a>
-          <a href="contas.html">
-            <div class="div-btComImg ">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone das contas registradas" />
-              <div class="txt-bt">Usuários</div>
-            </div>
-          </a>
-          <a href="contas.html">
-            <div class="div-btComImg div-btEscolhido">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone das contas registradas" />
-              <div class="txt-bt">Servidores</div>
-            </div>
-          </a>
+        </div>
 
-          <a href="contas.html">
-            <div class="div-btComImg">
-              <img src="./assets/img/Câmera.png" alt="Imagem do ícone das contas registradas" />
-              <div class="txt-bt">Sair</div>
-            </div>
+        <div class="btn-nav btn-logout" onclick="limparSessao()">
+          <a href="./index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <h3>Sair</h3>
           </a>
-
         </div>
       </div>
-      <div class="conteudo-principal">
-        <div class="div-flex">
-          <div class="div-block">
-            <div class="div-links-contas">
-              <a href="../cadastro.html">
-                <!-- <div class="div-botao"> -->
-                  <h3>Cadastrar servidores</h3>
-                <!-- </div> -->
-              </a>
+
+      <div class="dash">
+        <div class="dash__conteudo">
+          <div class="div-links-contas">
+            <a href="">
+              <!-- <div class="div-botao"> -->
+              <h3>Adicionar Servidores</h3>
+              <!-- </div> -->
+            </a>
+          </div>
+          <div class="div-procura">
+            <div class="div-ipt-procura">
+              <label for="">Procure pelo nome:</label>
+              <input
+                type="text"
+                id="ipt_representante"
+                class="ipt_procura"
+                oninput="buscarRepresentante(ipt_representante.value)"
+                placeholder="Nome do servidor"
+              />
             </div>
-
-            <div class="div-procura">
-              <div class="div-ipt-procura">
-                <label for="">Procure pela Identificação:</label>
-                <input type="text" id="ipt_representante" class="ipt_procura"
-                  oninput="buscarRepresentante(ipt_representante.value)" placeholder="Identificação Servidor">
-              </div>
-              
-              <div class="div-ipt-procura">
-                <label for="">Filtrar por atividade:</label>
-                <select name="" id="select_atividade" onchange="selecionarAtividade()" class="ipt_procura">
-                  <option value="Ambos">Ambos</option>
-                  <option value="ativo">Ativo</option>
-                  <option value="inativo">Inativo</option>
-                </select>
-              </div>
-            </div>
-
-
-              <div class="mostrarUsuarios">
-                <table>
-                  <thead>
-                    <tr class="nomeColuna">
-                      <th class="colunaNomeServidor">Identificação</th>
-                      <th class="colunaSistemaOperacional">Sistema Operacional</th>
-                      <th class="colunaMAC">Endereço MAC</th>
-                      <th class="colunaTipo">Tipo</th>
-                    </tr>
-                    
-                  </thead>
-                  <tbody id="tbody_usuarios">
-                    
-                  </tbody>
-                </table>
-              </div>
+            <div class="div-ipt-procura">
+              <label for="">Filtrar por tipo:</label>
+              <select
+                name=""
+                id="select_atividade"
+                onchange="selecionarAtividade()"
+                class="ipt_procura"
+              >
+                <option value="Ambos">Armazenamento</option>
+                <option value="1">Processamento</option>
+                <option value="0">Web</option>
+              </select>
             </div>
           </div>
 
+          <div class="mostrarUsuarios">
+            <table>
+              <thead>
+                <tr class="nomeColuna">
+                  <th class="colunaNomeServidor">Identificação</th>
+                  <th class="colunaSistemaOperacional">Sistema Operacional</th>
+                  <th class="colunaMAC">Endereço MAC</th>
+                  <th class="colunaTipo">Tipo</th>
+                </tr>
+              </thead>
+              <tbody id="tbody_servidores"></tbody>
+            </table>
+          </div>
         </div>
-
-      </div>
-</body>
-
-</html>
-
-<script>
-
-  function mostrarNavbar() {
-    const larguraTela = window.innerWidth;
-    var menu = document.getElementById("navbar");
-    var icone = document.getElementById("icone");
-
-    if (larguraTela < 1342) {
-      if (getComputedStyle(menu).display == 'none') {
-        menu.style.display = "flex";
-        icone.classList.remove("fa-bars");
-        icone.classList.add("fa-times");
-      } else {
-        menu.style.display = "none";
-        icone.classList.remove("fa-times");
-        icone.classList.add("fa-bars");
-      }
-    }
-  }
-</script>
-
-
-<script>
-  
-  let usuarios = [];
-  let hospitais = [];
-  let usuarioSelecionado = null; // Id usuário
-
-  function mostrarNavbar() {
-    const larguraTela = window.innerWidth;
-    var menu = document.getElementById("navbar");
-    var icone = document.getElementById("icone");
-
-    if (larguraTela < 1342) {
-      if (getComputedStyle(menu).display == 'none') {
-        menu.style.display = "flex";
-        icone.classList.remove("fa-bars");
-        icone.classList.add("fa-times");
-      } else {
-        menu.style.display = "none";
-        icone.classList.remove("fa-times");
-        icone.classList.add("fa-bars");
-      }
-    }
-  }
-
-  function deletarr(id) {
-    usuarioSelecionado = id;
-    var divAlerta = document.getElementById("divAlerta");
-    divAlerta.style.display = "flex";
-  }
-
-  function fecharAlerta() {
-    var divAlerta = document.getElementById("divAlerta");
-    divAlerta.style.display = "none";
-  }
-
-  function deletar(id) {
-    if (!id){
-      return;
-    } 
-
-    console.log("Me chamou deletar(id)", id);
-    fetch(`/contas/deleteConta/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(() => {
-        puxarDados();
-        fecharAlerta();
-      })
-      .catch(err => console.error(err));
-  }
-
-  function puxarDados() {
-    /* Essa função puxa os dados de usuários do banco de dados */
-    console.log("Me chamou puxar(Dados)");
-    const idEmpresa = Number(sessionStorage.fkEmpresa);
-    console.log(idEmpresa)
-
-    fetch(`/empresas/select/servidor/${idEmpresa}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error("Erro na resposta da API");
-        }
-        return res.json();
-      })
-      .then(data => {
-        listar(data)
-      })
-  }
-
-  
-  function alterarAcesso(index) {
-    const usuario = usuarios[index];
-    const novoStatus = usuario.statusUser.toLowerCase() === "ativo" ? "inativo" : "ativo";
-
-    fetch(`/contas/alterarAcesso/${usuario.id_usuario}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ statusUser: novoStatus })
-    })
-      .then(res => res.json())
-      .then(() => {
-        usuarios[index].statusUser = novoStatus;
-        listar(usuarios);
-      })
-      .catch(err => console.error(err));
-  }
-
-  function listar(data) {
-    console.log("Me chamou listar(data)");
-    console.log(data);
-    usuarios = data;
-    const tbody = document.getElementById('tbody_usuarios');
-    tbody.innerHTML = '';
-
-    for (let i = 0; i < data.length; i++) {
-      const usuario = data[i];
-      const tr = document.createElement('tr');
-
-      tr.innerHTML = `
-          <td class="colunaNomeServidor">${usuario.nome}</td>
-          <td class="colunaSistemaOperacional">${usuario.sistema_operacional}</td>
-          <td class="colunaMAC">${usuario.macaddress}</td>
-          <td class="colunaTipo">${usuario.tipo}</td>
-         
-      `;
-
-      if (usuario.statusUser == "inativo") {
-        tr.style.backgroundColor = 'yellow';
-      } else {
-        if (i % 2 == 0) {
-          tr.style.backgroundColor = '#B7E4C7';
-        } else {
-          tr.style.backgroundColor = 'transparent';
-        }
-      }
-      tbody.appendChild(tr);
-    }
-    preencherSelectHospital();
-  }
-
-  function buscarRepresentante(representante) {
-    console.log("Me chamou buscarRepresentante");
-
-    if (representante == '') {
-      puxarDados();
-      return
-    }
-
-    console.log(usuarios);
-    let dadosFiltroRepresentante = [];
-    for (let i = 0; i < usuarios.length; i++) {
-      if (usuarios[i].nome.replace(" ", "").toLowerCase().includes(representante.replace(" ", "").toLowerCase())) {
-        dadosFiltroRepresentante.push(usuarios[i])
-      }
-    }
-    console.log("Dados filtrados por representante: ")
-    console.log(dadosFiltroRepresentante)
-
-    const tbody = document.getElementById('tbody_usuarios');
-    tbody.innerHTML = '';
-
-    for (let i = 0; i < dadosFiltroRepresentante.length; i++) {
-      const usuario = dadosFiltroRepresentante[i];
-      const tr = document.createElement('tr');
-
-      tr.innerHTML = `
-          <td class="colunaRepresentante">${usuario.nome}</td>
-          <td class="colunaEmail">${usuario.email}</td>
-          <td class="colunaTipoAcesso"><button>Editar</button></td>
-          <td class="colunaAcesso">
-              <button
-              style="cursor: pointer; padding: 3px">
-              ativo
+        <!-- Essa parte é a div que aparece ao clicar no botão de editar -->
+        <div class="out_edit_user out_edit" id="out_edit_user"></div>
+        <div class="edit_user_modal modal_edit" id="edit_user_modal">
+          <div class="edit_user_headers edit_headers">
+            <h3>Editar Usuário</h3>
+            <span class="material-symbols-outlined" id="close_edit_user_button">
+              close
+            </span>
+          </div>
+          <div class="edit_usuario_content edit_content">
+            <div class="edit_status_field edit_field">
+              <label for="">Status do usuário</label>
+              <div class="edit_status_field__radio">
+                <label for="rdi_usuarioAtivado">Ativado</label>
+                <input
+                  type="radio"
+                  id="rdi_usuarioAtivado"
+                  name="statusUsuario"
+                  value="1"
+                  checked="true"
+                />
+              </div>
+              <div class="edit_status_field__radio">
+                <label for="rdi_usuarioDesativado">Desativado</label>
+                <input
+                  type="radio"
+                  id="rdi_usuarioDesativado"
+                  name="statusUsuario"
+                  value="0"
+                />
+              </div>
+            </div>
+            <div class="edit_usuario_button edit_buttons">
+              <button class="cancel_button" id="cancel_button_edit_user">
+                Cancelar
               </button>
-          </td>
-      `;
-
-      if (usuario.statusUser == "inativo") {
-        tr.style.backgroundColor = 'yellow';
-      } else {
-        if (i % 2 == 0) {
-          tr.style.backgroundColor = '#B7E4C7';
-        } else {
-          tr.style.backgroundColor = 'transparent';
-        }
-      }
-      tbody.appendChild(tr);
-    }
-  }
-
-
-  function selecionarAtividade() {
-    console.log("Me chamou selecionarAtividade")
-    let atividadeSelecionado = select_atividade.value
-
-    if (atividadeSelecionado == "Ambos") {
-      puxarDados()
-      return
-    }
-
-    const tbody = document.getElementById('tbody_usuarios');
-    tbody.innerHTML = '';
-
-    for (let i = 0; i < usuarios.length; i++) {
-      const usuario = usuarios[i];
-      const tr = document.createElement('tr');
-
-      if (usuario.statusUser == atividadeSelecionado) {
-        tr.innerHTML = `
-          <td class="colunaUsuario">${usuario.nomeHospital == null ? "Fly" : usuario.nomeHospital}</td>
-          <td class="colunaRepresentante">${usuario.nome}</td>
-          <td class="colunaEmail">${usuario.email}</td>
-          <td class="colunaTipoAcesso">${usuario.perfil}</td>
-          <td class="colunaAcesso">
               <button
-              style="cursor: pointer; padding: 3px"
-              onclick="alterarAcesso(${i})">
-              ${usuario.statusUser.charAt(0).toUpperCase() + usuario.statusUser.slice(1)}</button>
-          </td>
-         <td class="colunaDelete">
-          <button onclick="deletarr(${usuario.id_usuario})" 
-                  style="background: transparent; border: none; cursor: pointer;">
-              <img src="../assets/imgs/lixeira.png" alt="Deletar" style="width: 20px; height: 20px;">
-          </button>
-        </td>
-      `;
-
-        if (usuario.statusUser == "inativo") {
-          tr.style.backgroundColor = 'yellow';
-        } else {
-          if (i % 2 == 0) {
-            tr.style.backgroundColor = '#B7E4C7';
-          } else {
-            tr.style.backgroundColor = 'transparent';
-          }
-        }
-        tbody.appendChild(tr);
-      }
-    }
-  }
-
-</script>
+                class="confirm_button"
+                id="submit_button_edit_user"
+                onclick="sendStatus(idModalSelecionado)"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="js/tela_administracao.js"></script>
