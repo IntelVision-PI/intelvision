@@ -115,6 +115,14 @@ function removerUsuario(id) {
   return database.executar(instrucaoSql);
 }
 
+function alterarAtividade(id, novoStatus) {
+  var instrucaoSql = `
+        UPDATE usuario SET atividade = ${novoStatus} WHERE id = ${id}
+    `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   autenticar,
   cadastrarUsuario,
@@ -125,4 +133,5 @@ module.exports = {
   atualizaNomeDoUsuario,
   atualizaEmailDoUsuario,
   removerUsuario,
+  alterarAtividade,
 };

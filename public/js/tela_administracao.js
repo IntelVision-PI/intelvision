@@ -94,24 +94,6 @@ function puxarDados() {
     });
 }
 
-function alterarAcesso(index) {
-  const usuario = usuarios[index];
-  const novoStatus =
-    usuario.statusUser.toLowerCase() === "ativo" ? "inativo" : "ativo";
-
-  fetch(`/contas/alterarAcesso/${usuario.id_usuario}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ statusUser: novoStatus }),
-  })
-    .then((res) => res.json())
-    .then(() => {
-      usuarios[index].statusUser = novoStatus;
-      listar(usuarios);
-    })
-    .catch((err) => console.error(err));
-}
-
 function listar(data) {
   console.log("Me chamou listar(data)");
   console.log(data);
@@ -130,8 +112,8 @@ function listar(data) {
                   usuario.perfil == "empresaAdmin" ? "Administrador" : "Comum"
                 }</td>
                 <td class="colunaTipoAcesso">
-                  <span>
-                    <i class="fa-solid fa-user-pen"></i>
+                  <span onclick="open_modal_user(${usuario.id})">
+                    <i class="fa-solid fa-pen-to-square"></i>
                   </span>
                 </td>
                 <td class="colunaAcesso">${
@@ -190,8 +172,8 @@ function buscarRepresentante(representante) {
                   usuario.perfil == "empresaAdmin" ? "Administrador" : "Comum"
                 }</td>
                 <td class="colunaTipoAcesso">
-                  <span>
-                    <i class="fa-solid fa-user-pen"></i>
+                  <span onclick="open_modal_user(${usuario.id})">
+                    <i class="fa-solid fa-pen-to-square"></i>
                   </span>
                 </td>
                 <td class="colunaAcesso">${
@@ -237,8 +219,8 @@ function selecionarAtividade() {
                   usuario.perfil == "empresaAdmin" ? "Administrador" : "Comum"
                 }</td>
                 <td class="colunaTipoAcesso">
-                  <span>
-                    <i class="fa-solid fa-user-pen"></i>
+                  <span onclick="open_modal_user(${usuario.id})">
+                    <i class="fa-solid fa-pen-to-square"></i>
                   </span>
                 </td>
                 <td class="colunaAcesso">${
@@ -259,3 +241,67 @@ function selecionarAtividade() {
     }
   }
 }
+
+/* Parte de editar usuario */
+
+/* let edit_user_local = document.getElementsByClassName("edit_user"); */
+let idModalSelecionado;
+let out_edit_user_local = document.getElementById("out_edit_user");
+let close_edit_user_button_local = document.getElementById(
+  "close_edit_user_button"
+);
+let edit_user_modal_local = document.getElementById("edit_user_modal");
+let cancel_button_edit_local_user = document.getElementById(
+  "cancel_button_edit_user"
+);
+let submit_button_edit_user_local = document.getElementById(
+  "submit_button_edit_user"
+);
+
+const close_modal_user = () => {
+  out_edit_user_local.style.visibility = "hidden";
+  edit_user_modal_local.style.visibility = "hidden";
+  out_edit_user_local.style.pointerEvents = "none";
+  edit_user_modal_local.style.pointerEvents = "none";
+  out_edit_user_local.style.opacity = 0;
+  edit_user_modal_local.style.opacity = 0;
+};
+
+const open_modal_user = (numero) => {
+  idModalSelecionado = Number(numero);
+  console.log("id do modal selecionado: " + idModalSelecionado);
+  out_edit_user_local.style.visibility = "visible";
+  edit_user_modal_local.style.visibility = "visible";
+  out_edit_user_local.style.pointerEvents = "auto";
+  edit_user_modal_local.style.pointerEvents = "auto";
+  out_edit_user_local.style.opacity = 1;
+  edit_user_modal_local.style.opacity = 1;
+};
+
+function sendStatus(idUsuario) {
+  const statusSelecionado = Number(
+    document.querySelector('input[name="statusUsuario"]:checked').value
+  );
+  console.log("ID do usuario: " + idUsuario);
+  fetch(`/usuarios/alterarAtividade/${idUsuario}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ statusUser: statusSelecionado }),
+  })
+    .then((res) => res.json())
+    .then(() => {
+      alert(`Atividade do usuário foi alterada com sucesso !`);
+      close_modal_user();
+      puxarDados();
+    })
+    .catch((err) => console.error(err));
+}
+
+/* edit_user_local.addEventListener("click", open_modal_user); */
+out_edit_user_local.addEventListener("click", close_modal_user);
+close_edit_user_button_local.addEventListener("click", close_modal_user);
+cancel_button_edit_local_user.addEventListener("click", close_modal_user);
+/* submit_button_edit_user_local.addEventListener(
+  "click",
+  sendStatus(idModalSelecionado)
+); */

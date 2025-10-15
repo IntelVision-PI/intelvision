@@ -205,6 +205,25 @@ function atualizaEmailDoUsuario(req, res) {
     });
 }
 
+function alterarAtividade(req, res) {
+  const id = Number(req.params.idUsuario);
+  const novoStatus = Number(req.body.statusUser);
+
+  usuarioModel
+    .alterarAtividade(id, novoStatus)
+    .then(function (resultado) {
+      if (resultado.affectedRows == 0) {
+        return res.json({ message: "usuário não encontrada" });
+      }
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("\nHouve um erro ao editar! Erro: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function removerUsuario(req, res) {
   const id = req.body.id;
 
@@ -233,4 +252,5 @@ module.exports = {
   atualizaNomeDoUsuario,
   atualizaEmailDoUsuario,
   removerUsuario,
+  alterarAtividade,
 };
