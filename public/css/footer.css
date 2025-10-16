@@ -64,6 +64,9 @@ footer{
 
 .direitos_footer {
     background-color: #002723;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     padding: 5px;
     font-size: 14px;
