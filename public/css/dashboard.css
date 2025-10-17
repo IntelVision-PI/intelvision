@@ -408,6 +408,14 @@ thead {
   cursor: pointer;
 }
 
+.colunaConfiguracaoServidor span:hover {
+  cursor: pointer;
+}
+
+.colunaListaUsuariosServidor span:hover {
+  cursor: pointer;
+}
+
 /* KPIs */
 .kpi-container {
   display: flex;
