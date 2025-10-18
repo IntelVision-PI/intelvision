@@ -95,6 +95,7 @@
               <!-- </div> -->
             </a>
           </div>
+
           <div class="div-procura">
             <div class="div-ipt-procura">
               <label for="">Procure pelo nome:</label>
@@ -155,13 +156,13 @@
             </span>
           </div>
           <div class="edit_configuracaoServidor_content edit_content">
-            <div class="edit_configuracaoServido_field edit_field">
+            <div class="edit_configuracaoServidor_field edit_field">
               <label for="">Configurações do servidor SRV001</label>
-              <div class="edit_configuracaoServido_field__box">
-                <div id="edit_configuracaoServido_field__box__imagem">
+              <div class="edit_configuracaoServidor_field__box">
+                <div id="edit_configuracaoServidor_field__box__imagem">
                   <img src="./assets/img/servidores/servidorDemo.png" alt="" />
                 </div>
-                <div id="edit_configuracaoServido_field__box__informacao">
+                <div id="edit_configuracaoServidor_field__box__informacao">
                   <table>
                     <thead>
                       <tr class="nomeColuna">
@@ -214,7 +215,83 @@
                       </tr>
                       <tr>
                         <td class="">Lista Aplicativos</td>
-                        <td class=""><button>Ver Lista</button></td>
+                        <td class="">
+                          <button
+                            onclick="open_modal_configuracaoServidorAplicativos(1)"
+                          >
+                            Ver Lista
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="out_edit_configuracaoServidorAplicativos out_edit"
+          id="out_edit_configuracaoServidorAplicativos"
+        ></div>
+        <div
+          class="edit_configuracaoServidorAplicativos_modal modal_edit"
+          id="edit_configuracaoServidorAplicativos_modal"
+        >
+          <div
+            class="edit_configuracaoServidorAplicativos_headers edit_headers"
+          >
+            <h3>Informações dos aplicativos</h3>
+            <span
+              class="material-symbols-outlined"
+              id="close_edit_configuracaoServidorAplicativos_button"
+            >
+              close
+            </span>
+          </div>
+          <div
+            class="edit_configuracaoServidorAplicativos_content edit_content"
+          >
+            <div class="edit_configuracaoServidorAplicativos_field edit_field">
+              <label for=""
+                >Configurações dos aplicativos servidor SRV001</label
+              >
+              <div class="edit_configuracaoServidorAplicativos_field__box">
+                <div
+                  id="edit_configuracaoServidorAplicativos_field__box__imagem"
+                >
+                  <img src="./assets/img/aplicacoes.png" alt="" />
+                </div>
+                <div
+                  id="edit_configuracaoServidorAplicativos_field__box__informacao"
+                >
+                  <table>
+                    <thead>
+                      <tr class="nomeColuna">
+                        <th class="">Aplicativo</th>
+                        <th class="">Editor</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody_servidoresAplicativos">
+                      <tr>
+                        <td class="colunaAplicativo">7 Zip</td>
+                        <td class="colunaEditor">Igor Pavlov</td>
+                      </tr>
+                      <tr>
+                        <td class="colunaAplicativo">Amazon Kindle</td>
+                        <td class="colunaEditor">Amazon</td>
+                      </tr>
+                      <tr>
+                        <td class="colunaAplicativo">Adobe Acrobat</td>
+                        <td class="colunaEditor">Adobe</td>
+                      </tr>
+                      <tr>
+                        <td class="colunaAplicativo">Google Chrome</td>
+                        <td class="colunaEditor">Google</td>
+                      </tr>
+                      <tr>
+                        <td class="colunaAplicativo">Telegram Desktop</td>
+                        <td class="colunaEditor">Telegram</td>
                       </tr>
                     </tbody>
                   </table>

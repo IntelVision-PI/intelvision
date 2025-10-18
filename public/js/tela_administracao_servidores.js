@@ -132,7 +132,6 @@ const open_modal_configuracaoServidor = (numero) => {
   edit_configuracaoServidor_modal_local.style.opacity = 1;
 };
 
-/* edit_configuracaoServidor_local.addEventListener("click", open_modal_configuracaoServidor); */
 out_edit_configuracaoServidor_local.addEventListener(
   "click",
   close_modal_configuracaoServidor
@@ -140,4 +139,44 @@ out_edit_configuracaoServidor_local.addEventListener(
 close_edit_configuracaoServidor_button_local.addEventListener(
   "click",
   close_modal_configuracaoServidor
+);
+
+/* Parte de editar servidor - Aplicativos */
+
+let out_edit_configuracaoServidorAplicativos_local = document.getElementById(
+  "out_edit_configuracaoServidorAplicativos"
+);
+let close_edit_configuracaoServidorAplicativos_button_local =
+  document.getElementById("close_edit_configuracaoServidorAplicativos_button");
+let edit_configuracaoServidorAplicativos_modal_local = document.getElementById(
+  "edit_configuracaoServidorAplicativos_modal"
+);
+
+const close_modal_configuracaoServidorAplicativos = () => {
+  out_edit_configuracaoServidorAplicativos_local.style.visibility = "hidden";
+  edit_configuracaoServidorAplicativos_modal_local.style.visibility = "hidden";
+  out_edit_configuracaoServidorAplicativos_local.style.pointerEvents = "none";
+  edit_configuracaoServidorAplicativos_modal_local.style.pointerEvents = "none";
+  out_edit_configuracaoServidorAplicativos_local.style.opacity = 0;
+  edit_configuracaoServidorAplicativos_modal_local.style.opacity = 0;
+};
+
+const open_modal_configuracaoServidorAplicativos = (numero) => {
+  idModalSelecionado = Number(numero);
+  console.log("id do modal selecionado: " + idModalSelecionado);
+  out_edit_configuracaoServidorAplicativos_local.style.visibility = "visible";
+  edit_configuracaoServidorAplicativos_modal_local.style.visibility = "visible";
+  out_edit_configuracaoServidorAplicativos_local.style.pointerEvents = "auto";
+  edit_configuracaoServidorAplicativos_modal_local.style.pointerEvents = "auto";
+  out_edit_configuracaoServidorAplicativos_local.style.opacity = 1;
+  edit_configuracaoServidorAplicativos_modal_local.style.opacity = 1;
+};
+
+out_edit_configuracaoServidorAplicativos_local.addEventListener(
+  "click",
+  close_modal_configuracaoServidorAplicativos
+);
+close_edit_configuracaoServidorAplicativos_button_local.addEventListener(
+  "click",
+  close_modal_configuracaoServidorAplicativos
 );

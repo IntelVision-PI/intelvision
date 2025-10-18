@@ -421,20 +421,44 @@ thead {
   width: 90%;
 }
 
-.edit_configuracaoServido_field__box {
+.edit_configuracaoServidor_field__box {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
 }
 
-#edit_configuracaoServido_field__box__imagem {
+#edit_configuracaoServidor_field__box__imagem {
   width: 40%;
 }
 
-#edit_configuracaoServido_field__box__informacao {
+#edit_configuracaoServidor_field__box__informacao {
   width: 60%;
   padding-right: 5%;
+}
+
+/* Parte tela-administracao-servidores.html - lista aplicativos */
+
+.edit_configuracaoServidorAplicativos_modal {
+  z-index: 12;
+  width: 90%;
+}
+
+.edit_configuracaoServidorAplicativos_field__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#edit_configuracaoServidorAplicativos_field__box__imagem {
+  width: 40%;
+}
+
+#edit_configuracaoServidorAplicativos_field__box__informacao {
+  width: 50%;
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
 /* KPIs */
