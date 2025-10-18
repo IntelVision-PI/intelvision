@@ -1,209 +1,220 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <link
+      rel="shortcut icon"
+      href="../assets/icon/favicon2.ico"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelVision | Dashboards</title>
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
 
-<head>
-  <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon" />
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IntelVision | Dashboards</title>
-  <link rel="stylesheet" href="./css/dashboard.css" />
-  <link rel="stylesheet" href="./css/global.css" />
-  <script src="../js/sessao.js"></script>
-  <script src="./../js/alerta.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- scripts do Chart.js - 2022-1 -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--FONT AWESOME-->
+    <script
+      src="https://kit.fontawesome.com/9f7414eb10.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-  <!--FONT AWESOME-->
-  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <header>
-    <div class="cabecalho-dash">
-      <div class="nome-dash">
-        <i class="fa-solid fa-chart-simple"></i>
-        <h3>Dashboard</h3>
-      </div>
-
-      <div class="icone-usuario">
-        <i class="fa-solid fa-user"></i>
-        <img src="../public/assets/cadastro/iconeUser.jpg" alt="">
-      </div>
-    </div>
-  </header>
-
-  <div class="janela">
-    <div class="header-left">
-      <h1>IntelVision</h1>
-
-      <div class="btn-nav ativo">
-        <a href="./mainPage.html">
+  <body>
+    <header>
+      <div class="cabecalho-dash">
+        <div class="nome-dash">
           <i class="fa-solid fa-chart-simple"></i>
           <h3>Dashboard</h3>
-        </a>
+        </div>
+
+        <div class="icone-usuario">
+          <i class="fa-solid fa-user"></i>
+          <img src="../public/assets/cadastro/iconeUser.jpg" alt="" />
+        </div>
+      </div>
+    </header>
+
+    <div class="janela">
+      <div class="header-left">
+        <h1>IntelVision</h1>
+
+        <div class="btn-nav ativo">
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h3>Dashboard</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav">
+          <a href="servidores.html">
+            <i class="fa-solid fa-server"></i>
+            <h3>Servidores</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav">
+          <a href="./tela-administracao-usuario.html">
+            <i class="fa-solid fa-user-gear"></i>
+            <h3>Adm - Usuários</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav">
+          <a href="./tela-administracao-servidores.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h3>Adm - Servidores</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav btn-logout" onclick="limparSessao()">
+          <a href="./index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <h3>Sair</h3>
+          </a>
+        </div>
       </div>
 
-      <div class="btn-nav">
-        <a href="servidores.html">
-          <i class="fa-solid fa-server"></i>
-          <h3>Servidores</h3>
-        </a>
-      </div>
+      <div class="dash">
+        <div class="dash__conteudo">
+          <!-- KPIs -->
+          <div class="kpi-container">
+            <div class="kpi kpi1">
+              <h2>Ocorrências de Rede</h2>
+              <p>12</p>
+            </div>
+            <div class="kpi kpi2">
+              <h2>Volume de Disco</h2>
+              <p>78%</p>
+            </div>
+            <div class="kpi kpi3">
+              <h2>Volume de CPU</h2>
+              <p>64%</p>
+            </div>
+            <div class="kpi kpi4">
+              <h2>Volume de RAM</h2>
+              <p>83%</p>
+            </div>
+          </div>
 
-      <div class="btn-nav">
-        <a href="./tela-administracao-usuario.html">
-          <i class="fa-solid fa-user-gear"></i>
-          <h3>Adm - Usuários</h3>
-        </a>
-      </div>
+          <!-- Tabela de falhas -->
+          <div class="falhas-container">
+            <h3>Situação das falhas de requisições</h3>
+            <table class="falhas-table">
+              <thead>
+                <tr>
+                  <th>
+                    <select name="" class="servidor-select">
+                      <option value="" disabled selected>Servidor</option>
+                    </select>
+                  </th>
 
-      <div class="btn-nav">
-        <a href="./tela-administracao-servidores.html">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
-          <h3>Adm - Servidores</h3>
-        </a>
-      </div>
+                  <th>
+                    <select name="" class="servidor-select">
+                      <option value="" disabled selected>Data/Hora</option>
+                    </select>
+                  </th>
 
-      <div class="btn-nav btn-logout" onclick="limparSessao()">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <h3>Sair</h3>
+                  <th>
+                    <select name="" class="servidor-select">
+                      <option value="" disabled selected>Requisições</option>
+                    </select>
+                  </th>
+                  <th>
+                    <select name="" class="servidor-select">
+                      <option value="" disabled selected>Motivo falha</option>
+                    </select>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="4" style="text-align: center; color: #777">
+                    Nenhum registro disponível
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Gráfico -->
+          <div class="chart-container">
+            <h3>Servidores com mais requisições</h3>
+            <canvas id="serverChart"></canvas>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
 
-    <div class="dash">
+    <script>
+      // -- Script dos gráficos  --
+      const ctx = document.getElementById("serverChart");
 
-      <div class="dash__conteudo">
-
-        <!-- KPIs -->
-        <div class="kpi-container">
-          <div class="kpi kpi1">
-            <h2>Ocorrências de Rede</h2>
-            <p>12</p>
-          </div>
-          <div class="kpi kpi2">
-            <h2>Volume de Disco</h2>
-            <p>78%</p>
-          </div>
-          <div class="kpi kpi3">
-            <h2>Volume de CPU</h2>
-            <p>64%</p>
-          </div>
-          <div class="kpi kpi4">
-            <h2>Volume de RAM</h2>
-            <p>83%</p>
-          </div>
-        </div>
-
-        <!-- Tabela de falhas -->
-        <div class="falhas-container">
-          <h3>Situação das falhas de requisições</h3>
-          <table class="falhas-table">
-            <thead>
-              <tr>
-                <th><select name="" class="servidor-select">
-                <option value="" disabled selected>Servidor</option>
-                </select>
-                </th>
-
-                <th><select name="" class="servidor-select">
-                <option value="" disabled selected>Data/Hora</option>
-                </select>
-                </th>
-
-                <th><select name="" class="servidor-select">
-                <option value="" disabled selected>Requisições</option>
-                </select>
-
-                </th>
-                <th><select name="" class="servidor-select">
-                <option value="" disabled selected>Motivo falha</option>
-                </select>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="4" style="text-align:center; color:#777;">Nenhum registro disponível</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Gráfico -->
-        <div class="chart-container">
-          <h3>Servidores com mais requisições</h3>
-          <canvas id="serverChart"></canvas>
-        </div>
-
-      </div>
-
-
-
-    </div>
-
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
-
-  <script>
-
-    // -- Script dos gráficos  --
-    const ctx = document.getElementById('serverChart');
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Servidor 1', 'Servidor 2', 'Servidor 3', 'Servidor 4', 'Servidor 5'],
-        datasets: [{
-          label: 'Requisições',
-          data: [4500000, 900000, 2000000, 3000000, 3500000],
-          backgroundColor: '#28a745',
-          borderColor: '#145a32',
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          annotation: {
-            annotations: {
-              linha3M: {
-                type: 'line',
-                yMin: 3000000,
-                yMax: 3000000,
-                borderColor: 'red',
-                borderWidth: 2,
-                label: {
-                  enabled: true,
-                  position: 'end',
-                  backgroundColor: 'rgba(255,0,0,0.2)',
-                  color: 'red'
-                }
-              }
-            }
-          }
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Servidor 1",
+            "Servidor 2",
+            "Servidor 3",
+            "Servidor 4",
+            "Servidor 5",
+          ],
+          datasets: [
+            {
+              label: "Requisições",
+              data: [4500000, 900000, 2000000, 3000000, 3500000],
+              backgroundColor: "#28a745",
+              borderColor: "#145a32",
+              borderWidth: 2,
+            },
+          ],
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: { display: true, text: 'Número de Requisições' }
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            annotation: {
+              annotations: {
+                linha3M: {
+                  type: "line",
+                  yMin: 3000000,
+                  yMax: 3000000,
+                  borderColor: "red",
+                  borderWidth: 2,
+                  label: {
+                    enabled: true,
+                    position: "end",
+                    backgroundColor: "rgba(255,0,0,0.2)",
+                    color: "red",
+                  },
+                },
+              },
+            },
           },
-          x: {
-            title: { display: true, text: 'Servidores' }
-          }
-        }
-      }
-    });
-  </script>
-
-
-</body>
-
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: "Número de Requisições" },
+            },
+            x: {
+              title: { display: true, text: "Servidores" },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

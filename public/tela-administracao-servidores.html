@@ -41,7 +41,7 @@
     <header>
       <div class="cabecalho-dash">
         <div class="nome-dash">
-          <i class="fa-solid fa-user-gear"></i>
+          <i class="fa-solid fa-screwdriver-wrench"></i>
           <h3>Administração - Servidores</h3>
         </div>
       </div>
@@ -114,9 +114,10 @@
                 onchange="selecionarAtividade()"
                 class="ipt_procura"
               >
-                <option value="Ambos">Armazenamento</option>
-                <option value="1">Processamento</option>
-                <option value="0">Web</option>
+                <option value="Todos">Todos</option>
+                <option value="Armazenamento">Armazenamento</option>
+                <option value="Processamento">Processamento</option>
+                <option value="Web">Web</option>
               </select>
             </div>
           </div>
@@ -127,10 +128,8 @@
                 <tr class="nomeColuna">
                   <th class="colunaNomeServidor">Nome</th>
                   <th class="colunaTipoServidor">Tipo</th>
-                  <th class="colunaConfiguracaoServidor">Configuração</th>
-                  <th class="colunaListaUsuariosServidor">
-                    Lista Usuários com permissão
-                  </th>
+                  <th class="colunaStatusServidor">Status</th>
+                  <th class="colunaConfiguracaoServidor">Configurações</th>
                 </tr>
               </thead>
               <tbody id="tbody_servidores"></tbody>
@@ -138,48 +137,89 @@
           </div>
         </div>
         <!-- Essa parte é a div que aparece ao clicar no botão de editar -->
-        <div class="out_edit_user out_edit" id="out_edit_user"></div>
-        <div class="edit_user_modal modal_edit" id="edit_user_modal">
-          <div class="edit_user_headers edit_headers">
-            <h3>Editar Usuário</h3>
-            <span class="material-symbols-outlined" id="close_edit_user_button">
+        <div
+          class="out_edit_configuracaoServidor out_edit"
+          id="out_edit_configuracaoServidor"
+        ></div>
+        <div
+          class="edit_configuracaoServidor_modal modal_edit"
+          id="edit_configuracaoServidor_modal"
+        >
+          <div class="edit_configuracaoServidor_headers edit_headers">
+            <h3>Informações do servidor</h3>
+            <span
+              class="material-symbols-outlined"
+              id="close_edit_configuracaoServidor_button"
+            >
               close
             </span>
           </div>
-          <div class="edit_usuario_content edit_content">
-            <div class="edit_status_field edit_field">
-              <label for="">Status do usuário</label>
-              <div class="edit_status_field__radio">
-                <label for="rdi_usuarioAtivado">Ativado</label>
-                <input
-                  type="radio"
-                  id="rdi_usuarioAtivado"
-                  name="statusUsuario"
-                  value="1"
-                  checked="true"
-                />
+          <div class="edit_configuracaoServidor_content edit_content">
+            <div class="edit_configuracaoServido_field edit_field">
+              <label for="">Configurações do servidor SRV001</label>
+              <div class="edit_configuracaoServido_field__box">
+                <div id="edit_configuracaoServido_field__box__imagem">
+                  <img src="./assets/img/servidores/servidorDemo.png" alt="" />
+                </div>
+                <div id="edit_configuracaoServido_field__box__informacao">
+                  <table>
+                    <thead>
+                      <tr class="nomeColuna">
+                        <th class="">Componente</th>
+                        <th class="">Valor</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody_servidores">
+                      <tr>
+                        <td class="">Nome</td>
+                        <td class="">SRV001</td>
+                      </tr>
+                      <tr>
+                        <td class="">Modelo</td>
+                        <td class="">Dell XEON</td>
+                      </tr>
+                      <tr>
+                        <td class="">Service Tag</td>
+                        <td class="">123ABC</td>
+                      </tr>
+                      <tr>
+                        <td class="">Status</td>
+                        <td class="">Ativo</td>
+                      </tr>
+                      <tr>
+                        <td class="">IP</td>
+                        <td class="">192.168.0.105</td>
+                      </tr>
+                      <tr>
+                        <td class="">Endereço MAC</td>
+                        <td class="">
+                          1777:de75:297d:a467:146a:122c:c97e:0122
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="">CPU</td>
+                        <td class="">Intel Xeon 6756P-B</td>
+                      </tr>
+                      <tr>
+                        <td class="">RAM</td>
+                        <td class="">DDR4 64GB 6000MHz</td>
+                      </tr>
+                      <tr>
+                        <td class="">Disco 1</td>
+                        <td class="">1TB SSD</td>
+                      </tr>
+                      <tr>
+                        <td class="">Disco 2</td>
+                        <td class="">2TB HD</td>
+                      </tr>
+                      <tr>
+                        <td class="">Lista Aplicativos</td>
+                        <td class=""><button>Ver Lista</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <div class="edit_status_field__radio">
-                <label for="rdi_usuarioDesativado">Desativado</label>
-                <input
-                  type="radio"
-                  id="rdi_usuarioDesativado"
-                  name="statusUsuario"
-                  value="0"
-                />
-              </div>
-            </div>
-            <div class="edit_usuario_button edit_buttons">
-              <button class="cancel_button" id="cancel_button_edit_user">
-                Cancelar
-              </button>
-              <button
-                class="confirm_button"
-                id="submit_button_edit_user"
-                onclick="sendStatus(idModalSelecionado)"
-              >
-                Confirmar
-              </button>
             </div>
           </div>
         </div>
@@ -187,5 +227,4 @@
     </div>
   </body>
 </html>
-<script src="js/tela_administracao.js"></script>
 <script src="js/tela_administracao_servidores.js"></script>

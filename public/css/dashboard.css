@@ -416,6 +416,27 @@ thead {
   cursor: pointer;
 }
 
+/* Parte tela-administracao-servidores.html */
+.edit_configuracaoServidor_modal {
+  width: 90%;
+}
+
+.edit_configuracaoServido_field__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#edit_configuracaoServido_field__box__imagem {
+  width: 40%;
+}
+
+#edit_configuracaoServido_field__box__informacao {
+  width: 60%;
+  padding-right: 5%;
+}
+
 /* KPIs */
 .kpi-container {
   display: flex;
