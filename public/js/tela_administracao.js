@@ -270,6 +270,15 @@ const close_modal_user = () => {
 const open_modal_user = (numero) => {
   idModalSelecionado = Number(numero);
   console.log("id do modal selecionado: " + idModalSelecionado);
+  let tituloModal = document.getElementById("tituloModalUsuario");
+  let usuarioSelecionado;
+  for (i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].id == idModalSelecionado) {
+      usuarioSelecionado = usuarios[i].nome;
+      break;
+    }
+  }
+  tituloModal.innerHTML = `Editar usuário ${usuarioSelecionado}`;
   out_edit_user_local.style.visibility = "visible";
   edit_user_modal_local.style.visibility = "visible";
   out_edit_user_local.style.pointerEvents = "auto";

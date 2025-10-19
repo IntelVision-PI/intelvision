@@ -232,6 +232,7 @@ table {
   z-index: 0;
   width: 100%;
   border-collapse: collapse;
+  text-align: center;
 }
 
 table .colunaDelete {
@@ -240,12 +241,13 @@ table .colunaDelete {
 
 td,
 th {
-  text-align: left;
+  text-align: center;
   padding: 10px;
 }
 
 td {
   border-bottom: 1px solid #008080;
+  text-align: center;
 }
 
 .colunaDelete {
