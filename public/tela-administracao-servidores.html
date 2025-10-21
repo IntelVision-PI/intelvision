@@ -103,7 +103,7 @@
                 type="text"
                 id="ipt_representante"
                 class="ipt_procura"
-                oninput="buscarRepresentante(ipt_representante.value)"
+                oninput="buscarNomeServidor(ipt_representante.value)"
                 placeholder="Nome do servidor"
               />
             </div>
@@ -111,8 +111,8 @@
               <label for="">Filtrar por tipo:</label>
               <select
                 name=""
-                id="select_atividade"
-                onchange="selecionarAtividade()"
+                id="select_tipo"
+                onchange="selecionarTipo()"
                 class="ipt_procura"
               >
                 <option value="Todos">Todos</option>
@@ -147,7 +147,7 @@
           id="edit_configuracaoServidor_modal"
         >
           <div class="edit_configuracaoServidor_headers edit_headers">
-            <h3>Informações do servidor</h3>
+            <h3>Servidor</h3>
             <span
               class="material-symbols-outlined"
               id="close_edit_configuracaoServidor_button"
@@ -173,11 +173,11 @@
                     <tbody id="tbody_servidores">
                       <tr>
                         <td class="">Nome</td>
-                        <td class="">SRV001</td>
+                        <td class="">servidor6.GUIF8SK4U2</td>
                       </tr>
                       <tr>
                         <td class="">Modelo</td>
-                        <td class="">Dell XEON</td>
+                        <td class="">AV-CSCX16T</td>
                       </tr>
                       <tr>
                         <td class="">Service Tag</td>
@@ -188,22 +188,20 @@
                         <td class="">Ativo</td>
                       </tr>
                       <tr>
-                        <td class="">IP</td>
+                        <td class="">IPV4</td>
                         <td class="">192.168.0.105</td>
                       </tr>
                       <tr>
                         <td class="">Endereço MAC</td>
-                        <td class="">
-                          1777:de75:297d:a467:146a:122c:c97e:0122
-                        </td>
+                        <td class="">C7-CA-52-AD-05-01</td>
                       </tr>
                       <tr>
                         <td class="">CPU</td>
-                        <td class="">Intel Xeon 6756P-B</td>
+                        <td class="">Intel Core i5</td>
                       </tr>
                       <tr>
                         <td class="">RAM</td>
-                        <td class="">DDR4 64GB 6000MHz</td>
+                        <td class="">64GB DDR4 6000MHz</td>
                       </tr>
                       <tr>
                         <td class="">Disco 1</td>
@@ -211,7 +209,7 @@
                       </tr>
                       <tr>
                         <td class="">Disco 2</td>
-                        <td class="">2TB HD</td>
+                        <td class="">64TB HD</td>
                       </tr>
                       <tr>
                         <td class="">Lista Aplicativos</td>
@@ -273,6 +271,12 @@
                       </tr>
                     </thead>
                     <tbody id="tbody_servidoresAplicativos">
+                      <tr>
+                        <td class="colunaAplicativo">
+                          ConteraWS® Web Services
+                        </td>
+                        <td class="colunaEditor">ConteraCMR</td>
+                      </tr>
                       <tr>
                         <td class="colunaAplicativo">7 Zip</td>
                         <td class="colunaEditor">Igor Pavlov</td>
