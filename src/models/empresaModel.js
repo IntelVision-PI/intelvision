@@ -114,7 +114,7 @@ function obterUsuarios(idEmpresa) {
 
 function obterServidores(idEmpresa) {
   var instrucaoSql = `
-        select id, nome, sistema_operacional, macaddress, tipo from servidor where fkEmpresa = ${idEmpresa}
+    select id, nome, sistema_operacional, macaddress, tipo from servidor where fkEmpresa = ${idEmpresa}
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

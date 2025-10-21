@@ -193,7 +193,7 @@ function obterUsuarios(req, res) {
     })
     .catch(function (erro) {
       console.log(erro);
-      console.log("\nHouve um erro ao buscar! Erro: ", erro.sqlMessage);
+      console.log("\n (Function: obterUsuarios) Houve um erro ao buscar! Erro: ", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
 }
@@ -208,7 +208,7 @@ function obterServidores(req, res) {
     })
     .catch(function (erro) {
       console.log(erro);
-      console.log("\nHouve um erro ao buscar! Erro: ", erro.sqlMessage);
+      console.log("\n (Function: obterServidores) Houve um erro ao buscar! Erro: ", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
 }
