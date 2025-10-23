@@ -27,7 +27,7 @@ function puxarDadosServidor() {
   const idEmpresa = Number(sessionStorage.fkEmpresa);
   console.log(idEmpresa);
 
-  fetch(`/empresas/select/servidor/${idEmpresa}`, {
+  fetch(`/servidores/select/servidor/${idEmpresa}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

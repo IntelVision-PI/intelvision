@@ -198,20 +198,7 @@ function obterUsuarios(req, res) {
     });
 }
 
-function obterServidores(req, res) {
-  const idEmpresa = req.params.idEmpresa;
 
-  empresaModel
-    .obterServidores(idEmpresa)
-    .then(function (resultado) {
-      res.json(resultado);
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log("\n (Function: obterServidores) Houve um erro ao buscar! Erro: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
-    });
-}
 
 module.exports = {
   autenticar,
@@ -223,5 +210,4 @@ module.exports = {
   atualizarSenhaEmpresa,
   atualizarUsuarioEmpresa,
   obterUsuarios,
-  obterServidores,
 };
