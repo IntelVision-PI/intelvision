@@ -55,7 +55,7 @@ login_button_page.addEventListener("click", () => {
               /* Comentei essa parte porque não vamos usar por enquanto */
               //sessionStorage.setItem("type", "empresa");
 
-              window.location.href = "mainPage.html";
+              window.location.href = "servidores.html";
             });
           }
         });
@@ -76,7 +76,7 @@ login_button_page.addEventListener("click", () => {
               '<span style="color: #f00; text-align: center; font-size: 12px">Usuário está inativo.</span>'
             );
           } else {
-            window.location.href = "mainPage.html";
+            window.location.href = "servidores.html";
           }
         });
       }
