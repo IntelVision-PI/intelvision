@@ -652,7 +652,6 @@ thead {
   font-size: 14px;
 }
 
-
 @media (max-width: 375px) {
   .btn-nav h3 {
     font-size: 7px;
@@ -662,12 +661,12 @@ thead {
     text-overflow: ellipsis;
   }
 
-  .btn-nav a{
+  .btn-nav a {
     display: block;
   }
 
   .btn-nav {
-    display: flex; 
+    display: flex;
     margin-right: 3px;
   }
 
@@ -688,9 +687,8 @@ thead {
   }
 }
 
-
 @media (max-width: 1075px) {
- .btn-nav a{
+  .btn-nav a {
     display: block;
     text-align: center;
   }
@@ -701,11 +699,10 @@ thead {
     white-space: normal;
     word-wrap: break-word;
   }
-  
 }
 
 @media (max-width: 715px) {
-    .header-left h1 {
+  .header-left h1 {
     display: none;
   }
 }

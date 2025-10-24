@@ -20,7 +20,7 @@
     <script src="./js/alerta.js"></script>
   </head>
 
-  <body onload="validarSessaoAdministrador()">
+  <body onload="validarSessaoAdministrador(), puxarDadosServidor()">
     <header>
       <div class="cabecalho-dash">
         <div class="nome-dash">
@@ -84,75 +84,7 @@
 
             <!-- Carrossel de servidores (feito pelo chat, será atualizado logo)-->
             <div class="carousel">
-              <div class="carousel-track">
-                <!-- Servidor 1 -->
-                <div class="kpi" style="border-top-color: #dc3545">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <!-- Servidor 2 -->
-                <div class="kpi" style="border-top-color: #dc3545">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <!-- Servidor 3 -->
-                <div class="kpi" style="border-top-color: #ffc107">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <!-- Servidor 4 -->
-                <div class="kpi" style="border-top-color: #198754">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <div class="kpi" style="border-top-color: #198754">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <div class="kpi" style="border-top-color: #198754">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <div class="kpi" style="border-top-color: #198754">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <div class="kpi" style="border-top-color: #198754">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-                <div class="kpi" style="border-top-color: #198754">
-                  <h4>Servidor: xxxxx</h4>
-                  <p>CPU: xx%</p>
-                  <p>RAM: xx%</p>
-                  <p>Disco: xx%</p>
-                  <p>Rede: xx%</p>
-                </div>
-              </div>
+              <div class="carousel-track" id="trilhaCarrosselServidores"></div>
 
               <!-- Botões de navegação -->
               <button class="prev">
@@ -161,6 +93,22 @@
               <button class="next">
                 <i class="fa-solid fa-chevron-right"></i>
               </button>
+            </div>
+          </div>
+
+          <!-- KPIs -->
+          <div class="kpi-container">
+            <div class="kpi kpi1">
+              <h2>Quantidade Servidores em Estado Crítico</h2>
+              <p>12</p>
+            </div>
+            <div class="kpi kpi2">
+              <h2>Quantidade Servidores em Estado de Alerta</h2>
+              <p>78%</p>
+            </div>
+            <div class="kpi kpi3">
+              <h2>Ocorrências de rede</h2>
+              <p>64</p>
             </div>
           </div>
 
@@ -325,5 +273,6 @@
         track.style.transform = `translateX(-${currentIndex * kpiWidth}px)`;
       });
     </script>
+    <script src="./js/situacaoServidores.js"></script>
   </body>
 </html>
