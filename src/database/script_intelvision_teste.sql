@@ -29,6 +29,14 @@ insert into servidor (fkEmpresa,nome,sistema_operacional,macaddress,tipo) values
 (3,'SRV002', 'windows server', '12:52:AF:12:98:AB',"Processamento"),
 (3,'SRV003', 'ubuntu', '12:53:AF:12:98:AB',"Web");
 
+insert into servidor  (fkEmpresa,nome,sistema_operacional,macaddress,tipo) values
+(1, 'servidor12.GABSERVIREDES', 'ubuntu', '00:1A:2B:3C:4D:12', 'Web'),
+(2, 'servidor5.GUIEWVLXC', 'windows server', '00:1A:2B:3C:4D:05', 'Armazenamento'),
+(3, 'servidor19.LETSS05HWDF', 'ubuntu', '00:1A:2B:3C:4D:19', 'Processamento'),
+(1, 'servidor42.LUCHT33RSTA', 'windows server', '00:1A:2B:3C:4D:42', 'Web'),
+(2, 'servidor6.NICOLASF8SK4U2', 'ubuntu', '00:1A:2B:3C:4D:06', 'Armazenamento'),
+(3, 'servidor77.VINICIUSTJAS12', 'windows server', '00:1A:2B:3C:4D:77', 'Processamento');
+
 insert into componente (nome,unidade_medida) values
 ("CPU","GHz"),
 ("RAM","GB"),
