@@ -52,9 +52,10 @@ login_button_page.addEventListener("click", () => {
               sessionStorage.setItem("email", json.email);
               sessionStorage.setItem("id", json.id);
               sessionStorage.setItem("codEmpresa", json.codigo);
-              sessionStorage.setItem("type", "empresa");
+              /* Comentei essa parte porque não vamos usar por enquanto */
+              //sessionStorage.setItem("type", "empresa");
 
-              window.location.href = "mainPage.html";
+              window.location.href = "servidores.html";
             });
           }
         });
@@ -64,6 +65,7 @@ login_button_page.addEventListener("click", () => {
           sessionStorage.setItem("email", json.email);
           sessionStorage.setItem("id", json.id);
           sessionStorage.setItem("fkEmpresa", json.empresaId);
+          /* Comentei essa parte porque não vamos usar por enquanto */
           //sessionStorage.setItem("type", "usuario");
           sessionStorage.setItem("perfil", json.perfil);
           sessionStorage.setItem("atividade", json.atividade);
@@ -74,7 +76,7 @@ login_button_page.addEventListener("click", () => {
               '<span style="color: #f00; text-align: center; font-size: 12px">Usuário está inativo.</span>'
             );
           } else {
-            window.location.href = "mainPage.html";
+            window.location.href = "servidores.html";
           }
         });
       }

@@ -193,25 +193,12 @@ function obterUsuarios(req, res) {
     })
     .catch(function (erro) {
       console.log(erro);
-      console.log("\nHouve um erro ao buscar! Erro: ", erro.sqlMessage);
+      console.log("\n (Function: obterUsuarios) Houve um erro ao buscar! Erro: ", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
 }
 
-function obterServidores(req, res) {
-  const idEmpresa = req.params.idEmpresa;
 
-  empresaModel
-    .obterServidores(idEmpresa)
-    .then(function (resultado) {
-      res.json(resultado);
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log("\nHouve um erro ao buscar! Erro: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
-    });
-}
 
 module.exports = {
   autenticar,
@@ -223,5 +210,4 @@ module.exports = {
   atualizarSenhaEmpresa,
   atualizarUsuarioEmpresa,
   obterUsuarios,
-  obterServidores,
 };

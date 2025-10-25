@@ -38,8 +38,5 @@ router.get("/select/usuario/:idEmpresa", function (req, res) {
   empresaController.obterUsuarios(req, res);
 });
 
-router.get("/select/servidor/:idEmpresa", function (req, res) {
-  empresaController.obterServidores(req, res);
-});
 
 module.exports = router;

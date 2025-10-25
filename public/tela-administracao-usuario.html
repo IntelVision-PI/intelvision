@@ -18,8 +18,8 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close"
     />
     <!-- <link rel="stylesheet" href="./css/tela-administracao.css"> -->
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -37,7 +37,7 @@
     ></script>
   </head>
 
-  <body onload="puxarDados()">
+  <body onload="puxarDados(), validarSessaoAdministrador()">
     <header>
       <div class="cabecalho-dash">
         <div class="nome-dash">
@@ -51,27 +51,27 @@
         <h1>IntelVision</h1>
 
         <div class="btn-nav">
-          <a href="./mainPage.html">
+          <a href="servidores.html">
             <i class="fa-solid fa-chart-simple"></i>
             <h3>Dashboard</h3>
           </a>
         </div>
 
         <div class="btn-nav">
-          <a href="">
-            <i class="fa-solid fa-server"></i>
-            <h3>Servidores</h3>
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>Análise de dados</h3>
           </a>
         </div>
 
-        <div class="btn-nav ativo">
+        <div class="btn-nav ativo" id="btn-nav-admin-usuarios">
           <a href="./tela-administracao-usuario.html">
             <i class="fa-solid fa-user-gear"></i>
             <h3>Adm - Usuários</h3>
           </a>
         </div>
 
-        <div class="btn-nav">
+        <div class="btn-nav" id="btn-nav-admin-servidores">
           <a href="./tela-administracao-servidores.html">
             <i class="fa-solid fa-screwdriver-wrench"></i>
             <h3>Adm - Servidores</h3>
@@ -140,7 +140,7 @@
         <div class="out_edit_user out_edit" id="out_edit_user"></div>
         <div class="edit_user_modal modal_edit" id="edit_user_modal">
           <div class="edit_user_headers edit_headers">
-            <h3>Editar Usuário</h3>
+            <h3 id="tituloModalUsuario">Editar usuário</h3>
             <span class="material-symbols-outlined" id="close_edit_user_button">
               close
             </span>

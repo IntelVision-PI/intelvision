@@ -232,6 +232,7 @@ table {
   z-index: 0;
   width: 100%;
   border-collapse: collapse;
+  text-align: center;
 }
 
 table .colunaDelete {
@@ -240,12 +241,13 @@ table .colunaDelete {
 
 td,
 th {
-  text-align: left;
+  text-align: center;
   padding: 10px;
 }
 
 td {
   border-bottom: 1px solid #008080;
+  text-align: center;
 }
 
 .colunaDelete {
@@ -408,6 +410,59 @@ thead {
   cursor: pointer;
 }
 
+.colunaConfiguracaoServidor span:hover {
+  cursor: pointer;
+}
+
+.colunaListaUsuariosServidor span:hover {
+  cursor: pointer;
+}
+
+/* Parte tela-administracao-servidores.html */
+.edit_configuracaoServidor_modal {
+  width: 90%;
+}
+
+.edit_configuracaoServidor_field__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#edit_configuracaoServidor_field__box__imagem {
+  width: 40%;
+}
+
+#edit_configuracaoServidor_field__box__informacao {
+  width: 60%;
+  padding-right: 5%;
+}
+
+/* Parte tela-administracao-servidores.html - lista aplicativos */
+
+.edit_configuracaoServidorAplicativos_modal {
+  z-index: 12;
+  width: 90%;
+}
+
+.edit_configuracaoServidorAplicativos_field__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#edit_configuracaoServidorAplicativos_field__box__imagem {
+  width: 40%;
+}
+
+#edit_configuracaoServidorAplicativos_field__box__informacao {
+  width: 50%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
 /* KPIs */
 .kpi-container {
   display: flex;
@@ -459,9 +514,12 @@ thead {
   background-color: white;
   border-radius: 10px;
   padding: 25px;
+  min-height: 200px;
   width: 90%;
   margin-top: 40px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .falhas-container h3 {
@@ -592,4 +650,59 @@ thead {
   align-items: center;
   margin-bottom: 5px;
   font-size: 14px;
+}
+
+@media (max-width: 375px) {
+  .btn-nav h3 {
+    font-size: 7px;
+    text-align: center;
+    white-space: nowrap; /* Impede quebra de linha */
+    overflow: hidden; /* Esconde o texto que ultrapassa o limite */
+    text-overflow: ellipsis;
+  }
+
+  .btn-nav a {
+    display: block;
+  }
+
+  .btn-nav {
+    display: flex;
+    margin-right: 3px;
+  }
+
+  .header-left h1 {
+    display: none;
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: row;
+    height: 12vh;
+    width: 100%;
+  }
+
+  .ativo {
+    border-left: none;
+    border-bottom: 5px solid #00863f;
+  }
+}
+
+@media (max-width: 1075px) {
+  .btn-nav a {
+    display: block;
+    text-align: center;
+  }
+
+  .btn-nav h3 {
+    font-size: 15px;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
+@media (max-width: 715px) {
+  .header-left h1 {
+    display: none;
+  }
 }

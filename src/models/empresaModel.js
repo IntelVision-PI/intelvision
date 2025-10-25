@@ -112,13 +112,6 @@ function obterUsuarios(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
-function obterServidores(idEmpresa) {
-  var instrucaoSql = `
-        select id, nome, sistema_operacional, macaddress, tipo from servidor where fkEmpresa = ${idEmpresa}
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql);
-}
 
 module.exports = {
   autenticarEmpresa,
@@ -130,5 +123,4 @@ module.exports = {
   atualizarSenhaEmpresa,
   atualizarUsuarioEmpresa,
   obterUsuarios,
-  obterServidores,
 };

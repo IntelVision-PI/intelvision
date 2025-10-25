@@ -185,6 +185,7 @@ submitCadastroButton.addEventListener("click", () => {
             '<span style="color: #f00; text-align: center; font-size: 12px">Código inválido</span>'
           );
         } else {
+          alert("Usuário criado com sucesso! Voltando para tela de login...");
           window.location.href = "login.html";
         }
       });

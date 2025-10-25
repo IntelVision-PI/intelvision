@@ -1,286 +1,278 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IntelVision | Servidores</title>
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/dashboard.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-</head>
+    <script
+      src="https://kit.fontawesome.com/9f7414eb10.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/alerta.js"></script>
+  </head>
 
-<body>
-    <!-- Cabeçalho -->
+  <body onload="validarSessaoAdministrador(), puxarDadosServidor()">
     <header>
-        <div class="cabecalho-dash">
-            <div class="nome-dash">
-                <i class="fa-solid fa-server"></i>
-                <h3>Servidores</h3>
-            </div>
-            <div class="icone-usuario">
-                <i class="fa-solid fa-user"></i>
-                <img src="../public/assets/cadastro/iconeUser.jpg" alt="">
-            </div>
+      <div class="cabecalho-dash">
+        <div class="nome-dash">
+          <i class="fa-solid fa-chart-simple"></i>
+          <h3>Dashboard</h3>
         </div>
+
+        <div class="icone-usuario">
+          <i class="fa-solid fa-user"></i>
+          <img src="../public/assets/cadastro/iconeUser.jpg" alt="" />
+        </div>
+      </div>
     </header>
 
-    <!-- Menu lateral -->
     <div class="janela">
-        <div class="header-left">
-            <h1>IntelVision</h1>
-            <div class="btn-nav">
-                <a href="./mainPage.html">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <h3>Dashboard</h3>
-                </a>
-            </div>
-            <div class="btn-nav ativo">
-                <a href="">
-                    <i class="fa-solid fa-server"></i>
-                    <h3>Servidores</h3>
-                </a>
-            </div>
-            <div class="btn-nav btn-logout" onclick="limparSessao()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <h3>Sair</h3>
-            </div>
+      <div class="header-left">
+        <h1>IntelVision</h1>
+
+        <div class="btn-nav ativo">
+          <a href="servidores.html">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h3>Dashboard</h3>
+          </a>
         </div>
 
-        <!-- Conteúdo da página -->
-        <div class="dash">
-            <div class="dash__conteudo">
-                <!-- Situação dos Servidores -->
-                <div class="situacao-servidores">
-                    <h3>Situação dos servidores</h3>
-
-                    <!-- Carrossel de servidores (feito pelo chat, será atualizado logo)-->
-                    <div class="carousel">
-                        <div class="carousel-track">
-                            <!-- Servidor 1 -->
-                            <div class="kpi" style="border-top-color: #dc3545;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <!-- Servidor 2 -->
-                            <div class="kpi" style="border-top-color: #dc3545;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <!-- Servidor 3 -->
-                            <div class="kpi" style="border-top-color: #ffc107;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <!-- Servidor 4 -->
-                            <div class="kpi" style="border-top-color: #198754;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <div class="kpi" style="border-top-color: #198754;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <div class="kpi" style="border-top-color: #198754;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <div class="kpi" style="border-top-color: #198754;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <div class="kpi" style="border-top-color: #198754;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                            <div class="kpi" style="border-top-color: #198754;">
-                                <h4>Servidor: xxxxx</h4>
-                                <p>CPU: xx%</p>
-                                <p>RAM: xx%</p>
-                                <p>Disco: xx%</p>
-                                <p>Rede: xx%</p>
-                            </div>
-                        </div>
-
-                        <!-- Botões de navegação -->
-                        <button class="prev"><i class="fa-solid fa-chevron-left"></i></button>
-                        <button class="next"><i class="fa-solid fa-chevron-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Gráfico de requisições por dia -->
-                <div class="chart-container">
-                    <h3>Requisições por dia da semana</h3>
-                    <canvas id="requisicoesDia"></canvas>
-                </div>
-
-                <!-- Gráfico de requisições por hora -->
-                <div class="chart-container">
-                    <h3>Requisições por hora</h3>
-                    <canvas id="requisicoesHora"></canvas>
-                </div>
-
-                <!-- Gráficos de Disco e RAM -->
-                <div class="chart-container" style="display: flex; justify-content: space-around;">
-                    <div style="width: 45%;">
-                        <h3>Disco - composição do uso</h3>
-                        <canvas id="discoUso"></canvas>
-                    </div>
-                    <div style="width: 45%;">
-                        <h3>RAM - composição do uso</h3>
-                        <canvas id="ramUso"></canvas>
-                    </div>
-                </div>
-            </div>
+        <div class="btn-nav">
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>Análise de dados</h3>
+          </a>
         </div>
+
+        <div class="btn-nav" id="btn-nav-admin-usuarios">
+          <a href="./tela-administracao-usuario.html">
+            <i class="fa-solid fa-user-gear"></i>
+            <h3>Adm - Usuários</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav" id="btn-nav-admin-servidores">
+          <a href="./tela-administracao-servidores.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h3>Adm - Servidores</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav btn-logout" onclick="limparSessao()">
+          <a href="./index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <h3>Sair</h3>
+          </a>
+        </div>
+      </div>
+
+      <!-- Conteúdo da página -->
+      <div class="dash">
+        <div class="dash__conteudo">
+          <!-- Situação dos Servidores -->
+          <div class="situacao-servidores">
+            <h3>Situação dos servidores</h3>
+
+            <!-- Carrossel de servidores (feito pelo chat, será atualizado logo)-->
+            <div class="carousel">
+              <div class="carousel-track" id="trilhaCarrosselServidores"></div>
+
+              <!-- Botões de navegação -->
+              <button class="prev">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- KPIs -->
+          <div class="kpi-container">
+            <div class="kpi kpi1">
+              <h2>Quantidade Servidores em Estado Crítico</h2>
+              <p>12</p>
+            </div>
+            <div class="kpi kpi2">
+              <h2>Quantidade Servidores em Estado de Alerta</h2>
+              <p>78%</p>
+            </div>
+            <div class="kpi kpi3">
+              <h2>Ocorrências de rede</h2>
+              <p>64</p>
+            </div>
+          </div>
+
+          <!-- Gráfico de requisições por dia -->
+          <div class="chart-container">
+            <h3>Requisições por dia da semana</h3>
+            <canvas id="requisicoesDia"></canvas>
+          </div>
+
+          <!-- Gráfico de requisições por hora -->
+          <div class="chart-container">
+            <h3>Requisições por hora</h3>
+            <canvas id="requisicoesHora"></canvas>
+          </div>
+
+          <!-- Gráficos de Disco e RAM -->
+          <div
+            class="chart-container"
+            style="display: flex; justify-content: space-around"
+          >
+            <div style="width: 45%">
+              <h3>Disco - composição do uso</h3>
+              <canvas id="discoUso"></canvas>
+            </div>
+            <div style="width: 45%">
+              <h3>RAM - composição do uso</h3>
+              <canvas id="ramUso"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Gráfico de Requisições por dia
-        const ctxDia = document.getElementById('requisicoesDia');
-        new Chart(ctxDia, {
-            type: 'bar',
-            data: {
-                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-                datasets: [{
-                    label: 'Requisições',
-                    data: [100000, 80000, 120000, 150000, 90000, 70000, 200000],
-                    backgroundColor: '#28a745',
-                    borderColor: '#145a32',
-                    borderWidth: 2
-                }]
+      // Gráfico de Requisições por dia
+      const ctxDia = document.getElementById("requisicoesDia");
+      new Chart(ctxDia, {
+        type: "bar",
+        data: {
+          labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+          datasets: [
+            {
+              label: "Requisições",
+              data: [100000, 80000, 120000, 150000, 90000, 70000, 200000],
+              backgroundColor: "#28a745",
+              borderColor: "#145a32",
+              borderWidth: 2,
             },
-            options: { responsive: true, plugins: { legend: { display: false } } }
-        });
+          ],
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } },
+      });
 
-        // Gráfico de Requisições por hora
-        const ctxHora = document.getElementById('requisicoesHora');
-        new Chart(ctxHora, {
-            type: 'line',
-            data: {
-                labels: ['00-04', '04-08', '08-12', '12-16', '16-20', '20-24'],
-                datasets: [{
-                    label: 'Requisições',
-                    data: [5000, 10000, 8000, 15000, 12000, 20000],
-                    backgroundColor: 'rgba(40,167,69,0.2)',
-                    borderColor: '#28a745',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }]
+      // Gráfico de Requisições por hora
+      const ctxHora = document.getElementById("requisicoesHora");
+      new Chart(ctxHora, {
+        type: "line",
+        data: {
+          labels: ["00-04", "04-08", "08-12", "12-16", "16-20", "20-24"],
+          datasets: [
+            {
+              label: "Requisições",
+              data: [5000, 10000, 8000, 15000, 12000, 20000],
+              backgroundColor: "rgba(40,167,69,0.2)",
+              borderColor: "#28a745",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
             },
-            options: { responsive: true, plugins: { legend: { display: false } } }
-        });
+          ],
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } },
+      });
 
-
-        // Gráfico do Disco
-        const ctxDisco = document.getElementById('discoUso');
-        new Chart(ctxDisco, {
-            type: 'doughnut',
-            data: {
-                labels: ['Em uso', 'Livre', 'Em cache'],
-                datasets: [{
-                    data: [60, 30, 10],
-                    backgroundColor: ['#d3d3d3', '#28a745', '#87c984'] // <--- Livre cinza
-                }]
+      // Gráfico do Disco
+      const ctxDisco = document.getElementById("discoUso");
+      new Chart(ctxDisco, {
+        type: "doughnut",
+        data: {
+          labels: ["Em uso", "Livre", "Em cache"],
+          datasets: [
+            {
+              data: [60, 30, 10],
+              backgroundColor: ["#d3d3d3", "#28a745", "#87c984"], // <--- Livre cinza
             },
-            options: { responsive: true }
-        });
+          ],
+        },
+        options: { responsive: true },
+      });
 
-        // Gráfico da RAM
-        const ctxRam = document.getElementById('ramUso');
-        new Chart(ctxRam, {
-            type: 'doughnut',
-            data: {
-                labels: ['Em uso', 'Livre', 'Em cache'],
-                datasets: [{
-                    data: [70, 20, 10],
-                    backgroundColor: ['#d3d3d3', '#28a745', '#87c984'] // <--- Livre cinza
-                }]
+      // Gráfico da RAM
+      const ctxRam = document.getElementById("ramUso");
+      new Chart(ctxRam, {
+        type: "doughnut",
+        data: {
+          labels: ["Em uso", "Livre", "Em cache"],
+          datasets: [
+            {
+              data: [70, 20, 10],
+              backgroundColor: ["#d3d3d3", "#28a745", "#87c984"], // <--- Livre cinza
             },
-            options: { responsive: true }
-        });
-
-
+          ],
+        },
+        options: { responsive: true },
+      });
     </script>
     <script>
+      // feito pelo chat para visualizacao, logo sera trocado
 
-        // feito pelo chat para visualizacao, logo sera trocado
+      const track = document.querySelector(".carousel-track");
+      const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      const kpis = Array.from(track.children);
+      const kpiMargin = 20; // margin horizontal (10px de cada lado)
+      let kpiWidth = kpis[0].getBoundingClientRect().width + kpiMargin;
+      let currentIndex = 0;
 
-        const track = document.querySelector('.carousel-track');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
-        const kpis = Array.from(track.children);
-        const kpiMargin = 20; // margin horizontal (10px de cada lado)
-        let kpiWidth = kpis[0].getBoundingClientRect().width + kpiMargin;
-        let currentIndex = 0;
+      // clonar primeiro e último para looping infinito
+      const firstClone = kpis[0].cloneNode(true);
+      const lastClone = kpis[kpis.length - 1].cloneNode(true);
+      track.appendChild(firstClone);
+      track.insertBefore(lastClone, kpis[0]);
 
-        // clonar primeiro e último para looping infinito
-        const firstClone = kpis[0].cloneNode(true);
-        const lastClone = kpis[kpis.length - 1].cloneNode(true);
-        track.appendChild(firstClone);
-        track.insertBefore(lastClone, kpis[0]);
+      const allKpis = Array.from(track.children);
+      currentIndex = 1; // começa no primeiro original
+      track.style.transform = `translateX(-${currentIndex * kpiWidth}px)`;
 
-        const allKpis = Array.from(track.children);
-        currentIndex = 1; // começa no primeiro original
+      function moveToIndex(index) {
+        track.style.transition = "transform 0.5s ease";
+        track.style.transform = `translateX(-${index * kpiWidth}px)`;
+        currentIndex = index;
+
+        // depois da transição, ajustar se estamos nos clones
+        track.addEventListener(
+          "transitionend",
+          () => {
+            if (allKpis[currentIndex] === firstClone) {
+              track.style.transition = "none";
+              currentIndex = 1;
+              track.style.transform = `translateX(-${
+                currentIndex * kpiWidth
+              }px)`;
+            }
+            if (allKpis[currentIndex] === lastClone) {
+              track.style.transition = "none";
+              currentIndex = allKpis.length - 2;
+              track.style.transform = `translateX(-${
+                currentIndex * kpiWidth
+              }px)`;
+            }
+          },
+          { once: true }
+        );
+      }
+
+      prevBtn.addEventListener("click", () => moveToIndex(currentIndex - 1));
+      nextBtn.addEventListener("click", () => moveToIndex(currentIndex + 1));
+
+      window.addEventListener("resize", () => {
+        kpiWidth = allKpis[0].getBoundingClientRect().width + kpiMargin;
+        track.style.transition = "none";
         track.style.transform = `translateX(-${currentIndex * kpiWidth}px)`;
-
-        function moveToIndex(index) {
-            track.style.transition = 'transform 0.5s ease';
-            track.style.transform = `translateX(-${index * kpiWidth}px)`;
-            currentIndex = index;
-
-            // depois da transição, ajustar se estamos nos clones
-            track.addEventListener('transitionend', () => {
-                if (allKpis[currentIndex] === firstClone) {
-                    track.style.transition = 'none';
-                    currentIndex = 1;
-                    track.style.transform = `translateX(-${currentIndex * kpiWidth}px)`;
-                }
-                if (allKpis[currentIndex] === lastClone) {
-                    track.style.transition = 'none';
-                    currentIndex = allKpis.length - 2;
-                    track.style.transform = `translateX(-${currentIndex * kpiWidth}px)`;
-                }
-            }, { once: true });
-        }
-
-        prevBtn.addEventListener('click', () => moveToIndex(currentIndex - 1));
-        nextBtn.addEventListener('click', () => moveToIndex(currentIndex + 1));
-
-        window.addEventListener('resize', () => {
-            kpiWidth = allKpis[0].getBoundingClientRect().width + kpiMargin;
-            track.style.transition = 'none';
-            track.style.transform = `translateX(-${currentIndex * kpiWidth}px)`;
-        });
+      });
     </script>
-</body>
-
+    <script src="./js/situacaoServidores.js"></script>
+  </body>
 </html>
