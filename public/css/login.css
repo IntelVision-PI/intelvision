@@ -8,13 +8,18 @@ body {
 
 
 /* FIM NAVEGAÇÃO */
+.logo h1 {
+    margin: 50px;
+    color: #fff;
+    font-size: 40px;
+}
 
 .login_container {
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    height: 100dvh;
+    height: 65dvh;
 }
 
 .login_button_page {
