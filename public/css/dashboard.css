@@ -496,6 +496,16 @@ thead {
   color: #444;
 }
 
+.kpiCritico {
+  border-top-color: #ff5252 !important;
+}
+.kpiAlerta {
+  border-top-color: #f2b400 !important;
+}
+.kpiOk {
+  border-top-color: #8bc34a !important;
+}
+
 .kpi1 {
   border-top-color: #f2b400;
 }
