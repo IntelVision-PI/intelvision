@@ -4,12 +4,13 @@ body {
   background-position: 140% 80%;
   background-size: 60%;
 }
+
 .cadastro_container {
   font-family: "Inter", sans-serif;
   display: flex;
   align-items: center;
   height: 100dvh;
-  padding-top: 120px;
+  padding-top: 10px;
   box-sizing: border-box;
 }
 .cadastro_button_page {
