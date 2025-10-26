@@ -49,7 +49,10 @@ function puxarDadosServidor() {
 }
 
 function preencherCarrossel(data) {
+  var tipoServidor = fitro_tipo_servidor.value;
+  var situacaoServidor = fitro_situacao_servidor.value;
   const trilhaCarrossel = document.getElementById("trilhaCarrosselServidores");
+  trilhaCarrossel.innerHTML = "";
   for (let i = 0; i < data.length; i++) {
     const servidor = data[i];
     const cardServidor = document.createElement("div");
@@ -57,30 +60,58 @@ function preencherCarrossel(data) {
     for (let j = 0; j < registroServidoresUltimo.length; j++) {
       let nomeServidorIteracao = registroServidoresUltimo[j].user.split(".")[0];
       console.log(nomeServidorIteracao);
-      if (nomeServidorIteracao == servidor.nome) {
+      if (
+        nomeServidorIteracao == servidor.nome &&
+        (tipoServidor.toLowerCase() == servidor.tipo.toLowerCase() ||
+          tipoServidor == "Todos")
+      ) {
         if (
-          registroServidoresUltimo[j].cpu > 85 ||
-          registroServidoresUltimo[j].ram > 85 ||
-          registroServidoresUltimo[j].disco > 85
+          (situacaoServidor == "critico" || situacaoServidor == "Todos") &&
+          (registroServidoresUltimo[j].cpu > 85 ||
+            registroServidoresUltimo[j].ram > 85 ||
+            registroServidoresUltimo[j].disco > 85)
         ) {
           cardServidor.classList = "kpi kpiCritico";
-        } else if (
-          registroServidoresUltimo[j].cpu > 75 ||
-          registroServidoresUltimo[j].ram > 75 ||
-          registroServidoresUltimo[j].disco > 75
-        ) {
-          cardServidor.classList = "kpi kpiAlerta";
-        } else {
-          cardServidor.classList = "kpi kpiOk";
-        }
-
-        cardServidor.innerHTML = `
-        <h4>Servidor: ${servidor.nome}</h4>
-        <h4>Servidor: ${servidor.tipo}</h4>
+          cardServidor.innerHTML = `
+            <h4>Servidor: ${servidor.nome}</h4>
+            <h4>Servidor: ${servidor.tipo}</h4>
             <p>CPU: ${registroServidoresUltimo[j].cpu}%</p>
             <p>RAM: ${registroServidoresUltimo[j].ram}%</p>
             <p>Disco: ${registroServidoresUltimo[j].disco}%</p>
-      `;
+            `;
+        } else if (
+          (situacaoServidor == "alerta" || situacaoServidor == "Todos") &&
+          ((registroServidoresUltimo[j].cpu > 75 &&
+            registroServidoresUltimo[j].cpu <= 85) ||
+            (registroServidoresUltimo[j].ram > 75 &&
+              registroServidoresUltimo[j].ram <= 85) ||
+            (registroServidoresUltimo[j].disco > 75 &&
+              registroServidoresUltimo[j].cpu <= 85))
+        ) {
+          cardServidor.classList = "kpi kpiAlerta";
+          cardServidor.innerHTML = `
+            <h4>Servidor: ${servidor.nome}</h4>
+            <h4>Servidor: ${servidor.tipo}</h4>
+            <p>CPU: ${registroServidoresUltimo[j].cpu}%</p>
+            <p>RAM: ${registroServidoresUltimo[j].ram}%</p>
+            <p>Disco: ${registroServidoresUltimo[j].disco}%</p>
+            `;
+        } else if (
+          (situacaoServidor == "ok" || situacaoServidor == "Todos") &&
+          registroServidoresUltimo[j].cpu < 75 &&
+          registroServidoresUltimo[j].ram < 75 &&
+          registroServidoresUltimo[j].disco < 75
+        ) {
+          cardServidor.classList = "kpi kpiOk";
+          cardServidor.innerHTML = `
+            <h4>Servidor: ${servidor.nome}</h4>
+            <h4>Servidor: ${servidor.tipo}</h4>
+            <p>CPU: ${registroServidoresUltimo[j].cpu}%</p>
+            <p>RAM: ${registroServidoresUltimo[j].ram}%</p>
+            <p>Disco: ${registroServidoresUltimo[j].disco}%</p>
+            `;
+        }
+
         break;
       }
     }
@@ -88,3 +119,12 @@ function preencherCarrossel(data) {
     trilhaCarrossel.appendChild(cardServidor);
   }
 }
+
+/* Pegar data e hora */
+function atualizarDataHora() {
+  const agora = new Date();
+  const dataHoraFormatada = agora.toLocaleString("pt-BR"); // horario e data brasileiros
+  document.getElementById("dataHora").textContent = dataHoraFormatada;
+}
+
+atualizarDataHora();

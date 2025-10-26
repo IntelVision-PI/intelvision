@@ -716,3 +716,10 @@ thead {
     display: none;
   }
 }
+
+/* pagina dashboards - parte filtro*/
+
+.filtro_servidores {
+  padding: 1%;
+  text-align: center;
+}
