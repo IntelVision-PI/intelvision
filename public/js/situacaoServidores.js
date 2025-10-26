@@ -86,7 +86,10 @@ function preencherCarrossel(data) {
             (registroServidoresUltimo[j].ram > 75 &&
               registroServidoresUltimo[j].ram <= 85) ||
             (registroServidoresUltimo[j].disco > 75 &&
-              registroServidoresUltimo[j].cpu <= 85))
+              registroServidoresUltimo[j].cpu <= 85)) &&
+          registroServidoresUltimo[j].cpu <= 85 &&
+          registroServidoresUltimo[j].ram <= 85 &&
+          registroServidoresUltimo[j].disco <= 85
         ) {
           cardServidor.classList = "kpi kpiAlerta";
           cardServidor.innerHTML = `
