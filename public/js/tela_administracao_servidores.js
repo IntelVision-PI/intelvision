@@ -55,6 +55,7 @@ function listarServidores(data) {
     const servidor = data[i];
     const tr = document.createElement("tr");
 
+    // <td class="colunaStatusServidor">${servidor.atividade}</td>
     tr.innerHTML = `
           <td class="colunaNomeServidor">${servidor.nome}</td>
           <td class="colunaTipoServidor">${servidor.tipo}</td>

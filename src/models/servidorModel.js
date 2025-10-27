@@ -8,8 +8,6 @@ function cadastrarServidor(
   tipoServidor,
   modelo,
   serviceTag,
-  atividade,
-  quantDisco,
   fkEmpresa
 ) {
   let instrucaoSql = `
@@ -21,8 +19,6 @@ function cadastrarServidor(
             tipo,
             modelo,
             service_tag,
-            atividade,
-            quantDisco,
             fkempresa
         ) 
         VALUES 
@@ -33,8 +29,6 @@ function cadastrarServidor(
             '${tipoServidor}', 
             '${modelo}', 
             '${serviceTag}', 
-            '${atividade}', 
-            '${quantDisco}', 
             '${fkEmpresa}'
         );
     `;
@@ -42,27 +36,39 @@ function cadastrarServidor(
     "Executando a instrução SQL (cadastro de servidor): \n" + instrucaoSql
   );
 
-  // let instrucaoSql =  `
-  //     INSERT INTO componente (nome, unidade_medida, descricao, fkServidor)
-  //     VALUES ('${c.nome}', '${c.unidade_medida}', '${c.descricao}', ${idServidor});
-  //`;
+  return database.executar(instrucaoSql);
 
-
-  // return database.executar(instrucaoSql)
-  //   .then(resultado => {
-  //     const idServidor = resultado.insertId; // pega o ID do servidor recém-criado
-  //     console.log("Servidor cadastrado com ID:", idServidor);
-
-  //     let insertsComponentes = componentes.map(c => `
-  //       INSERT INTO componente (nome, unidade_medida, descricao, fkServidor)
-  //       VALUES ('${c.nome}', '${c.unidade_medida}', '${c.descricao}', ${idServidor});
-  //     `);
-
-  //     const promessas = insertsComponentes.map(sql => database.executar(sql));
-
-  //     return Promise.all(promessas);
-  //   });
 }
+
+function cadastrarComponentes (
+  nomeComponente,
+  unidade_medida
+) {
+  let instrucaoSql = `
+    INSERT INTO componente (nome, unidade_medida) 
+        VALUES('${nomeComponente}','${unidade_medida}');
+    `;
+  console.log(
+    "Executando a instrução SQL (cadastro dos componentes do servidor): \n" + instrucaoSql
+  );
+
+  return database.executar(instrucaoSql);
+}
+
+
+function cadastrarParametro(fkServidor, fkComponente, alerta_min, alerta_max) {
+  let instrucaoSql = `
+    INSERT INTO parametro (fkServidor, fkComponente, alerta_min, alerta_max)
+    VALUES (${fkServidor}, ${fkComponente}, ${alerta_min}, ${alerta_max});
+  `;
+
+  console.log(
+    "Executando a instrução SQL (cadastro de parâmetro do servidor): \n" + instrucaoSql
+  );
+
+  return database.executar(instrucaoSql);
+}
+
 
 function obterServidores(idEmpresa) {
   var instrucaoSql = `
@@ -75,5 +81,7 @@ function obterServidores(idEmpresa) {
 
 module.exports = {
   cadastrarServidor,
-  obterServidores
+  obterServidores,
+  cadastrarComponentes,
+  cadastrarParametro
 };
