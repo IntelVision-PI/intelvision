@@ -1,8 +1,5 @@
--- drop database intelvision;
-create database intelvision;
+create database if not exists intelvision;
 use intelvision;
--- Script para criação do banco de dados Intelvision
-
 create table empresa(
 	id int not null primary key auto_increment,
     cnpj char(9) not null,
@@ -50,4 +47,3 @@ create table parametro(
     foreign key (fkServidor) references servidor(id),
     foreign key (fkComponente) references componente(id)
 );
-

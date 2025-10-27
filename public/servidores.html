@@ -46,12 +46,12 @@
           </a>
         </div>
 
-        <div class="btn-nav">
+        <!-- <div class="btn-nav">
           <a href="./mainPage.html">
             <i class="fa-solid fa-magnifying-glass-chart"></i>
             <h3>Análise de dados</h3>
           </a>
-        </div>
+        </div> -->
 
         <div class="btn-nav" id="btn-nav-admin-usuarios">
           <a href="./tela-administracao-usuario.html">
@@ -79,24 +79,25 @@
       <div class="dash">
         <div class="dash__conteudo">
           <!-- KPIs -->
-          <div class="kpi-container">
-            <div class="kpi kpi1">
-              <h2>Última Atualização:</h2>
-              <span id="dataHora"></span>
-            </div>
+          <div class="dash-atualizacao">
+            <h4>Última Atualização:</h4>
+            <span id="dataHora"></span>
           </div>
           <div class="kpi-container">
             <div class="kpi kpi1">
-              <h2>Quantidade Servidores em Estado Crítico</h2>
-              <p>12</p>
+              <h4>Servidores de armazenamento em alerta ou crítico</h4>
+              <p>5</p>
+              <span>Total de 10 servidores</span>
             </div>
             <div class="kpi kpi2">
-              <h2>Quantidade Servidores em Estado de Alerta</h2>
-              <p>78%</p>
+              <h4>Servidores WEB em alerta ou crítico</h4>
+              <p>3</p>
+              <span>Total de 5 servidores</span>
             </div>
             <div class="kpi kpi3">
-              <h2>Ocorrências de rede</h2>
-              <p>64</p>
+              <h4>Servidores de processamento em alerta ou crítico</h4>
+              <p>9</p>
+              <span>Total de 15 servidores</span>
             </div>
           </div>
           <!-- Filtro Servidores -->
@@ -153,25 +154,20 @@
             <canvas id="requisicoesDia"></canvas>
           </div>
 
-          <!-- Gráfico de requisições por hora -->
+          <!-- Gráficos de requisições por hora -->
           <div class="chart-container">
             <h3>Requisições por hora</h3>
             <canvas id="requisicoesHora"></canvas>
           </div>
+          
+          <div class="chart-container">
+            <h3>Uso da CPU (%) por hora</h3>
+            <canvas id="cpuUso"></canvas>
+          </div>
 
-          <!-- Gráficos de Disco e RAM -->
-          <div
-            class="chart-container"
-            style="display: flex; justify-content: space-around"
-          >
-            <div style="width: 45%">
-              <h3>Disco - composição do uso</h3>
-              <canvas id="discoUso"></canvas>
-            </div>
-            <div style="width: 45%">
-              <h3>RAM - composição do uso</h3>
-              <canvas id="ramUso"></canvas>
-            </div>
+          <div class="chart-container">
+            <h3>Uso da RAM (%) por hora</h3>
+            <canvas id="ramUso"></canvas>
           </div>
         </div>
       </div>
@@ -217,38 +213,60 @@
         },
         options: { responsive: true, plugins: { legend: { display: false } } },
       });
-
-      // Gráfico do Disco
-      const ctxDisco = document.getElementById("discoUso");
-      new Chart(ctxDisco, {
-        type: "doughnut",
+// Gráfico de Uso da CPU
+      const ctxCPU = document.getElementById("cpuUso");
+      new Chart(ctxCPU, {
+        type: "line",
         data: {
-          labels: ["Em uso", "Livre", "Em cache"],
+          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
           datasets: [
             {
-              data: [60, 30, 10],
-              backgroundColor: ["#d3d3d3", "#28a745", "#87c984"], // <--- Livre cinza
+              label: "Uso da CPU (%)",
+              data: [35, 50, 70, 90, 65, 45, 55],
+              backgroundColor: "rgba(255, 82, 82, 0.2)",
+              borderColor: "#ff5252",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
             },
           ],
         },
-        options: { responsive: true },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100, title: { display: true, text: "%" } },
+          },
+        },
       });
 
-      // Gráfico da RAM
-      const ctxRam = document.getElementById("ramUso");
-      new Chart(ctxRam, {
-        type: "doughnut",
+      // Gráfico de Uso da RAM
+      const ctxRAM = document.getElementById("ramUso");
+      new Chart(ctxRAM, {
+        type: "line",
         data: {
-          labels: ["Em uso", "Livre", "Em cache"],
+          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
           datasets: [
             {
-              data: [70, 20, 10],
-              backgroundColor: ["#d3d3d3", "#28a745", "#87c984"], // <--- Livre cinza
+              label: "Uso da RAM (%)",
+              data: [60, 55, 65, 85, 75, 70, 60],
+              backgroundColor: "rgba(0, 188, 212, 0.2)",
+              borderColor: "#00bcd4",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
             },
           ],
         },
-        options: { responsive: true },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100, title: { display: true, text: "%" } },
+          },
+        },
       });
+   
     </script>
     <script>
       // feito pelo chat para visualizacao, logo sera trocado

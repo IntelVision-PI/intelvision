@@ -61,7 +61,7 @@ function preencherCarrossel(data) {
       let nomeServidorIteracao = registroServidoresUltimo[j].user.split(".")[0];
       console.log(nomeServidorIteracao);
       if (
-        nomeServidorIteracao == servidor.nome &&
+        nomeServidorIteracao == servidor.nome.split(".")[0] &&
         (tipoServidor.toLowerCase() == servidor.tipo.toLowerCase() ||
           tipoServidor == "Todos")
       ) {
