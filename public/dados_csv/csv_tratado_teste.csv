@@ -1,49 +1,867 @@
-user;timestamp;cpu;cpu_count;ram;disco;qtd_processos;bytes_recv;package_recv;bytes_sent;package_sent;status_cpu;status_ram;status_disco;proc1_name;proc1_cpu_pct;proc2_name;proc2_cpu_pct;proc3_name;proc3_cpu_pct
-servidor6.nicolasf8sk4u2;2025-10-07 09:27:37;26.0;4;45.7;79.4;243;343004441;343004441;5518549;30999;OK;OK;SEM_PARAMETRO;python.exe;7.33;dwm.exe;2.25;svchost.exe;0.23
-servidor6.nicolasf8sk4u2;2025-10-07 09:28:01;29.3;4;44.5;79.4;239;344595308;344595308;5582817;31427;OK;OK;SEM_PARAMETRO;MsMpEng.exe;24.98;python.exe;7.05;svchost.exe;0.55
-servidor6.nicolasf8sk4u2;2025-10-07 09:28:13;37.0;4;44.7;79.4;237;344597811;344597811;5586991;31450;OK;OK;SEM_PARAMETRO;MsMpEng.exe;23.27;python.exe;7.25;chrome.exe;5.75
-servidor6.nicolasf8sk4u2;2025-10-07 09:28:25;59.9;4;47.9;79.4;240;351153111;351153271;6208588;33098;OK;OK;SEM_PARAMETRO;chrome.exe;13.9;python.exe;7.05;chrome.exe;4.42
-servidor6.nicolasf8sk4u2;2025-10-07 09:28:37;41.8;4;47.6;79.4;239;354617238;354627486;6938727;34252;OK;OK;SEM_PARAMETRO;chrome.exe;8.15;python.exe;6.85;dwm.exe;6.58
-servidor6.nicolasf8sk4u2;2025-10-07 09:28:49;60.1;4;46.0;79.4;236;362730894;362730894;7652679;35953;OK;OK;SEM_PARAMETRO;chrome.exe;17.05;chrome.exe;13.85;chrome.exe;13.28
-servidor6.nicolasf8sk4u2;2025-10-07 09:29:00;41.1;4;45.2;79.4;233;362875840;362875840;7819223;36116;OK;OK;SEM_PARAMETRO;sqlservr.exe;9.55;python.exe;6.83;chrome.exe;1.1
-servidor6.nicolasf8sk4u2;2025-10-07 09:29:12;54.7;4;45.2;79.4;236;363069626;363069626;7848893;36185;OK;OK;SEM_PARAMETRO;explorer.exe;19.23;chrome.exe;10.05;python.exe;6.53
-servidor6.nicolasf8sk4u2;2025-10-07 09:29:24;40.3;4;45.1;79.4;232;363142346;363142432;7993006;36311;OK;OK;SEM_PARAMETRO;chrome.exe;19.23;python.exe;6.58;dwm.exe;6.5
-servidor6.nicolasf8sk4u2;2025-10-07 09:29:36;37.6;4;45.5;79.4;233;363195114;363195114;8063443;36466;OK;OK;SEM_PARAMETRO;chrome.exe;7.6;python.exe;7.05;dwm.exe;5.95
-servidor6.nicolasf8sk4u2;2025-10-07 09:29:48;53.9;4;46.4;79.4;233;364813775;364817651;8443675;37269;OK;OK;SEM_PARAMETRO;chrome.exe;10.75;python.exe;7.3;chrome.exe;6.08
-servidor6.nicolasf8sk4u2;2025-10-07 09:30:00;45.2;4;47.8;79.4;234;367001301;367003179;8701867;38131;OK;OK;SEM_PARAMETRO;chrome.exe;13.22;chrome.exe;9.85;chrome.exe;8.38
-servidor6.nicolasf8sk4u2;2025-10-07 09:30:12;49.5;4;46.5;79.4;234;367481178;367481178;8770532;38395;OK;OK;SEM_PARAMETRO;python.exe;6.22;dwm.exe;1.98;SynTPEnh.exe;1.4
-servidor6.nicolasf8sk4u2;2025-10-07 09:30:24;45.9;4;48.3;79.4;236;367723910;367723984;8891236;38589;OK;OK;SEM_PARAMETRO;chrome.exe;36.92;python.exe;5.6;chrome.exe;3.12
-servidor6.nicolasf8sk4u2;2025-10-07 09:30:36;46.3;4;46.8;79.4;234;367938374;367938993;9637278;39236;OK;OK;SEM_PARAMETRO;chrome.exe;8.43;chrome.exe;8.07;python.exe;6.42
-servidor6.nicolasf8sk4u2;2025-10-07 09:30:48;46.8;4;46.9;79.4;233;368144928;368144928;9755909;39425;OK;OK;SEM_PARAMETRO;chrome.exe;9.2;python.exe;6.17;MsMpEng.exe;1.4
-servidor6.nicolasf8sk4u2;2025-10-07 09:30:59;31.3;4;46.8;79.4;234;368153877;368153877;9771065;39458;OK;OK;SEM_PARAMETRO;dwm.exe;10.07;python.exe;5.95;chrome.exe;5.38
-servidor6.nicolasf8sk4u2;2025-10-07 09:31:11;7.9;4;46.9;79.4;233;368164207;368164207;9787737;39495;ABAIXO;OK;SEM_PARAMETRO;sqlservr.exe;13.15;python.exe;5.75;dwm.exe;4.2
-servidor6.nicolasf8sk4u2;2025-10-07 09:31:23;54.5;4;49.2;79.4;234;368226533;368226533;9939641;39673;OK;OK;SEM_PARAMETRO;chrome.exe;21.57;chrome.exe;13.4;dwm.exe;9.25
-servidor6.nicolasf8sk4u2;2025-10-07 09:31:35;33.1;4;48.8;79.4;233;368236720;368236720;9961602;39736;OK;OK;SEM_PARAMETRO;dwm.exe;7.2;chrome.exe;6.95;python.exe;6.03
-servidor6.nicolasf8sk4u2;2025-10-07 09:31:47;30.1;4;48.8;79.4;233;368286049;368286049;9988732;39857;OK;OK;SEM_PARAMETRO;python.exe;5.88;chrome.exe;2.62;chrome.exe;0.88
-servidor6.nicolasf8sk4u2;2025-10-07 09:31:58;23.3;4;48.5;79.4;232;368309621;368309706;10014537;39942;OK;OK;SEM_PARAMETRO;python.exe;6.28;chrome.exe;5.95;chrome.exe;1.15
-servidor6.nicolasf8sk4u2;2025-10-07 09:32:10;64.8;4;50.4;79.4;234;368447903;368448013;10325169;40336;OK;OK;SEM_PARAMETRO;chrome.exe;19.57;dwm.exe;18.77;chrome.exe;18.75
-servidor6.nicolasf8sk4u2;2025-10-07 09:32:22;44.2;4;48.5;79.4;231;368487851;368487851;10374312;40436;OK;OK;SEM_PARAMETRO;MsMpEng.exe;8.78;python.exe;5.8;explorer.exe;3.45
-servidor6.nicolasf8sk4u2;2025-10-07 09:32:34;48.8;4;49.4;79.4;235;368973939;368974013;10500192;40770;OK;OK;SEM_PARAMETRO;MsMpEng.exe;10.45;EXCEL.EXE;8.53;python.exe;7.17
-servidor6.nicolasf8sk4u2;2025-10-07 09:32:45;34.0;4;49.4;79.5;235;369328770;369328770;10711450;41142;OK;OK;SEM_PARAMETRO;python.exe;6.9;EXCEL.EXE;5.8;dwm.exe;2.52
-servidor6.nicolasf8sk4u2;2025-10-07 09:32:57;58.1;4;48.3;79.5;233;369364252;369366836;10754668;41276;OK;OK;SEM_PARAMETRO;chrome.exe;13.82;chrome.exe;8.07;chrome.exe;7.12
-servidor6.nicolasf8sk4u2;2025-10-07 09:33:09;39.6;4;48.6;79.5;235;369406290;369406290;10815916;41367;OK;OK;SEM_PARAMETRO;python.exe;6.28;dwm.exe;1.95;chrome.exe;1.38
-servidor6.nicolasf8sk4u2;2025-10-07 09:33:21;49.6;4;50.8;79.5;235;370681764;370682274;12269224;42213;OK;OK;SEM_PARAMETRO;python.exe;7.05;dwm.exe;2.75;chrome.exe;2.6
-servidor6.nicolasf8sk4u2;2025-10-07 09:33:33;15.4;4;49.9;79.5;235;371255558;371255558;12622493;42550;ABAIXO;OK;SEM_PARAMETRO;python.exe;6.3;sihost.exe;0.28;svchost.exe;0.28
-servidor6.nicolasf8sk4u2;2025-10-07 09:33:44;49.1;4;49.0;79.5;236;385675744;385675744;12771424;43894;OK;OK;SEM_PARAMETRO;MsMpEng.exe;46.75;SDXHelper.exe;11.4;python.exe;7.42
-servidor6.nicolasf8sk4u2;2025-10-07 09:33:56;21.5;4;48.9;79.5;235;385702850;385702850;12818954;43971;OK;OK;SEM_PARAMETRO;python.exe;6.25;chrome.exe;1.62;chrome.exe;1.38
-servidor6.nicolasf8sk4u2;2025-10-07 09:34:08;10.4;4;48.1;79.5;234;385723085;385723085;12839968;44041;ABAIXO;OK;SEM_PARAMETRO;python.exe;5.7;svchost.exe;0.28;svchost.exe;0.28
-servidor6.nicolasf8sk4u2;2025-10-07 09:34:20;3.0;4;48.1;79.5;234;385733907;385733907;12865861;44092;ABAIXO;OK;SEM_PARAMETRO;python.exe;6.08;svchost.exe;0.3;;0.0
-servidor6.nicolasf8sk4u2;2025-10-07 09:34:31;21.9;4;47.9;79.5;232;385737811;385737811;12892392;44129;OK;OK;SEM_PARAMETRO;sqlservr.exe;12.62;python.exe;5.45;SgrmBroker.exe;1.15
-servidor6.nicolasf8sk4u2;2025-10-07 09:34:43;16.7;4;47.8;79.5;232;385762847;385762847;12913712;44189;ABAIXO;OK;SEM_PARAMETRO;python.exe;5.17;chrome.exe;3.15;dwm.exe;1.43
-servidor6.nicolasf8sk4u2;2025-10-07 09:34:55;9.3;4;47.7;79.5;232;385772900;385772900;12927487;44245;ABAIXO;OK;SEM_PARAMETRO;python.exe;5.88;svchost.exe;0.3;99Store.exe;0.3
-servidor6.nicolasf8sk4u2;2025-10-07 09:35:06;4.3;4;47.5;79.5;232;385806285;385806285;12954525;44325;ABAIXO;OK;SEM_PARAMETRO;python.exe;5.3;svchost.exe;0.57;;0.0
-servidor6.nicolasf8sk4u2;2025-10-07 09:35:18;20.4;4;47.5;79.5;232;385811447;385811447;12962175;44361;OK;OK;SEM_PARAMETRO;chrome.exe;9.07;python.exe;6.08;dwm.exe;3.4
-servidor6.nicolasf8sk4u2;2025-10-07 09:35:30;13.5;4;47.7;79.5;234;385904042;385904042;12998210;44453;ABAIXO;OK;SEM_PARAMETRO;python.exe;6.28;chrome.exe;3.7;dwm.exe;1.7
-servidor6.nicolasf8sk4u2;2025-10-07 09:35:41;26.2;4;47.7;79.5;233;385946738;385946738;13034413;44537;OK;OK;SEM_PARAMETRO;python.exe;5.95;chrome.exe;4.83;dwm.exe;3.67
-servidor6.nicolasf8sk4u2;2025-10-07 09:35:53;25.4;4;47.6;79.5;233;385963111;385963111;13046938;44592;OK;OK;SEM_PARAMETRO;chrome.exe;10.6;chrome.exe;9.22;chrome.exe;6.47
-SRV006.nicolasf8sk4u2;2025-10-07 09:36:05;17.9;4;47.6;79.5;233;385990566;385990566;13073848;44664;ABAIXO;OK;SEM_PARAMETRO;python.exe;5.8;MsMpEng.exe;1.75;99Store.exe;1.15
-SRV005.nicolasf8sk4u2;2025-10-07 09:36:17;18.1;4;47.6;79.5;233;385993668;385993668;13078962;44686;ABAIXO;OK;SEM_PARAMETRO;python.exe;6.2;dwm.exe;4.25;chrome.exe;3.98
-SRV004.nicolasf8sk4u2;2025-10-07 09:36:28;27.3;4;47.5;79.5;232;386006895;386006895;13096333;44733;OK;OK;SEM_PARAMETRO;python.exe;5.72;chrome.exe;4.28;dwm.exe;1.43
-SRV003.nicolasf8sk4u2;2025-10-07 09:36:40;24.7;4;48.0;85.5;232;386046629;386046629;13137029;44825;OK;OK;SEM_PARAMETRO;sqlservr.exe;14.32;chrome.exe;13.03;chrome.exe;6.58
-SRV002.nicolasf8sk4u2;2025-10-07 09:36:52;42.2;4;47.7;25.5;231;386176072;386176072;13235047;45029;OK;OK;SEM_PARAMETRO;python.exe;5.67;dwm.exe;2.5;chrome.exe;2.25
-SRV001.nicolasf8sk4u2;2025-10-07 09:37:04;42.4;4;48.1;79.5;234;387534243;387534243;13284244;45371;OK;OK;SEM_PARAMETRO;Code.exe;15.28;Code.exe;13.05;Code.exe;9.97
+user;timestamp;cpu;cpu_count;ram;disco;qtd_processos;bytes_recv;package_recv;bytes_sent;package_sent;proc1_name;proc1_cpu_pct;proc2_name;proc2_cpu_pct;proc3_name;proc3_cpu_pct;proc4_name;proc4_cpu_pct;proc5_name;proc5_cpu_pct
+servidor12.GABSERVIREDES;2025-10-06 20:06:10;21.3;12;89.5;85.9;315;129436582;129436582;4136460;19067;System;6.62;python.exe;3.93;WmiPrvSE.exe;1.56;svchost.exe;1.09;MsMpEng.exe;0.55
+servidor12.GABSERVIREDES;2025-10-06 20:06:24;38.2;12;94.3;85.9;318;129460826;129460826;4149110;19124;idea64.exe;23.3;MsMpEng.exe;11.49;python.exe;4.7;System;3.83;WmiPrvSE.exe;2.48
+servidor12.GABSERVIREDES;2025-10-06 20:06:44;52;12;90.7;85.9;320;129793898;130030506;4166542;19286;idea64.exe;46.59;MsMpEng.exe;10.15;System;8.82;python.exe;4.48;WmiPrvSE.exe;2.58
+servidor12.GABSERVIREDES;2025-10-06 20:06:58;22.6;12;85.9;85.9;321;130311576;130311576;4175322;19358;python.exe;3.89;WmiPrvSE.exe;1.62;idea64.exe;1.08;svchost.exe;0.95;System;0.33
+servidor12.GABSERVIREDES;2025-10-06 20:07:11;7;12;86.3;85.9;321;130326325;130326325;4182073;19400;python.exe;3.7;WmiPrvSE.exe;1.41;svchost.exe;1.13;System;0.58;idea64.exe;0.4
+servidor12.GABSERVIREDES;2025-10-06 20:07:24;7.9;12;86.5;85.9;321;130327785;130327785;4184004;19427;python.exe;3.81;WmiPrvSE.exe;1.48;svchost.exe;1.41;idea64.exe;0.41;System;0.39
+servidor12.GABSERVIREDES;2025-10-06 20:07:36;6.6;12;87.3;85.9;321;130328356;130328356;4184600;19435;python.exe;3.98;WmiPrvSE.exe;1.41;svchost.exe;1.34;System;0.34;idea64.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:07:49;10;12;86.8;85.9;323;130345868;130345868;4191746;19492;System;5.52;python.exe;3.52;WmiPrvSE.exe;1.3;svchost.exe;1.24;idea64.exe;1.06
+servidor12.GABSERVIREDES;2025-10-06 20:08:02;6.9;12;86.2;85.9;323;130354236;130354236;4198327;19515;python.exe;3.77;WmiPrvSE.exe;1.89;svchost.exe;1.69;System;0.89;Figma.exe;0.21
+servidor12.GABSERVIREDES;2025-10-06 20:08:15;6.6;12;86.4;85.9;322;130356910;130356910;4198784;19521;python.exe;3.98;WmiPrvSE.exe;1.51;svchost.exe;1.03;idea64.exe;0.34;svchost.exe;0.21
+servidor12.GABSERVIREDES;2025-10-06 20:08:28;7.5;12;86.5;85.9;322;130359106;130359106;4199482;19530;python.exe;3.82;svchost.exe;1.52;WmiPrvSE.exe;1.24;idea64.exe;0.41;System;0.34
+servidor12.GABSERVIREDES;2025-10-06 20:08:41;6.4;12;86.5;85.9;321;130366705;130366705;4200078;19538;python.exe;3.76;WmiPrvSE.exe;2.05;svchost.exe;1.1;System;0.41;idea64.exe;0.27
+servidor12.GABSERVIREDES;2025-10-06 20:08:53;8.7;12;87.1;85.9;320;130431423;130431423;4240436;19614;python.exe;4.06;msedge.exe;3.12;WmiPrvSE.exe;1.86;msedge.exe;1.86;svchost.exe;1.23
+servidor12.GABSERVIREDES;2025-10-06 20:09:06;7.2;12;87.7;85.9;320;130434673;130434673;4241490;19626;python.exe;3.77;WmiPrvSE.exe;1.8;svchost.exe;1.18;System;0.35;svchost.exe;0.21
+servidor12.GABSERVIREDES;2025-10-06 20:09:19;7.1;12;87.3;85.9;319;130520194;130520194;4249531;19665;python.exe;3.61;WmiPrvSE.exe;1.93;MemCompression;1.68;svchost.exe;1.5;idea64.exe;0.67
+servidor12.GABSERVIREDES;2025-10-06 20:09:32;8.3;12;87.2;85.9;319;131709265;131709265;4270859;19833;python.exe;3.77;WmiPrvSE.exe;1.73;svchost.exe;1.11;System;0.21;svchost.exe;0.14
+servidor12.GABSERVIREDES;2025-10-06 20:09:45;6.4;12;87.4;85.9;319;131718467;131718467;4273587;19848;python.exe;3.82;WmiPrvSE.exe;1.81;svchost.exe;1.11;System;0.42;idea64.exe;0.21
+servidor12.GABSERVIREDES;2025-10-06 20:09:57;7.2;12;87.6;85.9;319;131723897;131723897;4281499;19890;python.exe;3.88;svchost.exe;1.68;WmiPrvSE.exe;1.25;idea64.exe;0.49;System;0.27
+servidor12.GABSERVIREDES;2025-10-06 20:10:10;6.2;12;87.5;85.9;319;131724592;131724592;4282089;19897;python.exe;3.7;WmiPrvSE.exe;1.52;svchost.exe;1.51;idea64.exe;0.34;System;0.21
+servidor12.GABSERVIREDES;2025-10-06 20:10:23;6.9;12;87.5;85.9;318;131724986;131724986;4282534;19903;python.exe;3.74;WmiPrvSE.exe;1.82;svchost.exe;1.35;System;1.02;idea64.exe;0.67
+servidor12.GABSERVIREDES;2025-10-06 20:10:36;9.9;12;89;85.9;323;131754015;131754015;4290004;19944;python.exe;3.59;System;1.65;svchost.exe;1.63;MoUsoCoreWorker.exe;1.53;WmiPrvSE.exe;1.46
+servidor12.GABSERVIREDES;2025-10-06 20:10:49;10.4;12;86.4;85.9;325;131810978;131810978;4318356;19991;svchost.exe;7.23;python.exe;3.96;WmiPrvSE.exe;1.7;svchost.exe;1.28;System;0.96
+servidor12.GABSERVIREDES;2025-10-06 20:11:02;9.2;12;83.6;85.9;324;131829238;131829238;4325177;20030;python.exe;3.75;WmiPrvSE.exe;2.08;svchost.exe;1.34;idea64.exe;0.2;System;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:11:15;6.5;12;83.7;85.9;324;131829468;131829468;4325252;20031;python.exe;3.93;WmiPrvSE.exe;1.64;svchost.exe;1.37;System;0.34;csrss.exe;0.07
+servidor12.GABSERVIREDES;2025-10-06 20:11:28;7.4;12;83.9;85.9;322;131830603;131830603;4326108;20042;System;4.33;python.exe;3.92;WmiPrvSE.exe;1.49;svchost.exe;0.81;svchost.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:11:41;15.7;12;86.7;85.9;321;131846037;131846037;4334294;20088;idea64.exe;7.22;python.exe;3.63;WmiPrvSE.exe;1.79;System;1.57;svchost.exe;1.21
+servidor12.GABSERVIREDES;2025-10-06 20:11:54;10;12;88;85.9;321;132022247;132022247;4357256;20180;python.exe;3.63;WmiPrvSE.exe;1.74;svchost.exe;1.66;System;0.58;dwm.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:12:50;10;12;90.2;85.9;318;133473238;133473510;4451381;20576;idea64.exe;11.21;System;4.76;python.exe;4.57;MsMpEng.exe;2.99;svchost.exe;2.84
+servidor12.GABSERVIREDES;2025-10-06 20:13:04;20.9;12;89.4;85.9;320;133584202;133584202;4529731;20734;python.exe;4.61;System;4.41;WmiPrvSE.exe;1.87;dwm.exe;1.53;Code.exe;1.47
+servidor12.GABSERVIREDES;2025-10-06 20:13:18;11.1;12;89.5;85.9;316;133610553;133610553;4549776;20801;python.exe;3.71;WmiPrvSE.exe;1.44;svchost.exe;1.09;idea64.exe;0.96;System;0.44
+servidor12.GABSERVIREDES;2025-10-06 20:13:31;7.4;12;89;85.9;316;133627668;133627668;4559913;20830;python.exe;3.89;WmiPrvSE.exe;2.27;svchost.exe;0.97;System;0.6;idea64.exe;0.27
+servidor12.GABSERVIREDES;2025-10-06 20:13:44;7.3;12;88.9;85.9;316;133643488;133643488;4569899;20860;python.exe;3.82;WmiPrvSE.exe;2.48;svchost.exe;1.74;System;0.21;mysqld.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:13:57;7.8;12;88.3;85.9;316;133664557;133664557;4594892;20911;python.exe;3.76;WmiPrvSE.exe;2.34;svchost.exe;1.67;System;0.27;svchost.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:14:10;7.9;12;88.4;85.9;316;133685822;133685822;4603216;20950;python.exe;3.8;WmiPrvSE.exe;1.45;svchost.exe;1.11;System;0.4;svchost.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:14:22;7.2;12;88.7;85.9;316;133777741;133777741;4618531;21004;python.exe;3.55;WmiPrvSE.exe;1.44;svchost.exe;1.38;System;0.2;svchost.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:14:36;9.3;12;88.5;85.9;316;133792978;133792978;4628521;21030;python.exe;3.28;WmiPrvSE.exe;2.13;Code.exe;1.67;svchost.exe;1.59;Code.exe;1.11
+servidor12.GABSERVIREDES;2025-10-06 20:14:49;14.6;12;89.6;85.9;316;133821631;133821631;4646220;21090;python.exe;3.96;explorer.exe;2.22;WmiPrvSE.exe;1.88;idea64.exe;1.67;svchost.exe;1.65
+servidor12.GABSERVIREDES;2025-10-06 20:15:02;11;12;89.7;85.9;316;133840888;133840888;4656335;21122;python.exe;3.92;svchost.exe;1.56;WmiPrvSE.exe;1.3;idea64.exe;1.18;System;1.03
+servidor12.GABSERVIREDES;2025-10-06 20:15:16;34.1;12;91.9;85.9;316;133861793;133861793;4671804;21173;idea64.exe;5.5;python.exe;3.48;WmiPrvSE.exe;1.5;System;0.92;svchost.exe;0.82
+servidor12.GABSERVIREDES;2025-10-06 20:15:29;7.9;12;91.4;85.9;317;133882861;133882861;4684242;21232;python.exe;3.61;WmiPrvSE.exe;2.51;svchost.exe;1.49;idea64.exe;0.75;System;0.35
+servidor12.GABSERVIREDES;2025-10-06 20:15:42;7.2;12;91.3;85.9;317;133915407;133915407;4698367;21275;python.exe;3.77;WmiPrvSE.exe;2.24;svchost.exe;1.91;System;0.41;svchost.exe;0.13
+servidor12.GABSERVIREDES;2025-10-06 20:15:54;12.3;12;92.7;85.9;321;133934850;133934850;4709730;21322;python.exe;3.83;WmiPrvSE.exe;1.54;svchost.exe;0.8;System;0.72;idea64.exe;0.46
+servidor12.GABSERVIREDES;2025-10-06 20:16:07;10.1;12;87.9;85.9;321;133952114;133952114;4719521;21350;python.exe;3.99;WmiPrvSE.exe;2.96;svchost.exe;1.71;System;0.61;uihost.exe;0.33
+servidor12.GABSERVIREDES;2025-10-06 20:16:20;10.6;12;87.7;85.9;321;133971719;133971719;4730582;21405;python.exe;3.62;idea64.exe;3.32;svchost.exe;1.91;Lenovo.Modern.ImController.PluginHost.Device.exe;1.84;WmiPrvSE.exe;1.58
+servidor12.GABSERVIREDES;2025-10-06 20:16:33;8.6;12;87.3;85.9;321;133996857;133996857;4743241;21456;python.exe;3.91;WmiPrvSE.exe;1.24;svchost.exe;1.1;System;0.33;MMSSHOST.exe;0.14
+servidor12.GABSERVIREDES;2025-10-06 20:16:46;7.2;12;87.3;85.9;321;134016339;134016339;4753075;21482;python.exe;3.79;WmiPrvSE.exe;2.4;svchost.exe;1.02;idea64.exe;0.79;chrome.exe;0.65
+servidor12.GABSERVIREDES;2025-10-06 20:16:59;8.6;12;86.8;85.9;319;134039507;134039507;4780733;21549;python.exe;3.62;WmiPrvSE.exe;2.25;svchost.exe;1.93;System;0.34;idea64.exe;0.27
+servidor12.GABSERVIREDES;2025-10-06 20:17:12;7.3;12;87;85.9;319;134040311;134040311;4783624;21558;python.exe;3.72;svchost.exe;1.94;WmiPrvSE.exe;1.33;idea64.exe;0.42;System;0.41
+servidor12.GABSERVIREDES;2025-10-06 20:17:24;7.5;12;87;85.9;319;134043185;134043185;4788104;21586;python.exe;3.83;WmiPrvSE.exe;1.32;svchost.exe;1.05;System;0.34;idea64.exe;0.14
+servidor12.GABSERVIREDES;2025-10-06 20:17:37;12.5;12;87.6;85.9;319;134045241;134045241;4791475;21602;idea64.exe;4.94;python.exe;3.83;WmiPrvSE.exe;2.18;svchost.exe;1.89;System;0.58
+servidor5.GUIEWVLXC;2025-10-05 11:16:28;53.1;4;72.1;3.6;242;4877370400;4877370400;2922422661;4565261;LeagueClientUxRender.exe;15.15;python.exe;8;LeagueClientUxRender.exe;5.35;Code.exe;2.25;audiodg.exe;1.75
+servidor5.GUIEWVLXC;2025-10-05 11:16:41;44;4;73.4;3.6;243;4879188359;4879188359;2922608672;4565783;LeagueClientUxRender.exe;34.77;LeagueClientUxRender.exe;14.22;python.exe;7.9;LeagueClient.exe;5;LeagueClientUxRender.exe;3.73
+servidor5.GUIEWVLXC;2025-10-05 11:16:53;44.5;4;73.5;3.6;245;4879411432;4879411432;2922690738;4565932;python.exe;8.75;chrome.exe;4.5;LeagueClientUxRender.exe;4.5;LeagueClientUxRender.exe;3.25;chrome.exe;3
+servidor5.GUIEWVLXC;2025-10-05 11:17:05;23;4;73.2;3.6;244;4879440396;4879440396;2922711468;4565994;LeagueClientUxRender.exe;14.03;python.exe;8.43;LeagueClientUxRender.exe;5.1;chrome.exe;2.05;dwm.exe;1.68
+servidor5.GUIEWVLXC;2025-10-05 11:17:17;22;4;72.9;3.6;244;4879472259;4879472259;2922722504;4566040;python.exe;7.9;LeagueClientUxRender.exe;4.9;LeagueClientUxRender.exe;3.33;chrome.exe;3.05;audiodg.exe;1.27
+servidor5.GUIEWVLXC;2025-10-05 11:17:29;24.5;4;73.2;3.6;243;4879480862;4879480862;2922730462;4566079;python.exe;7.8;LeagueClientUxRender.exe;5.2;LeagueClientUxRender.exe;3.35;dwm.exe;1.82;chrome.exe;1.55
+servidor5.GUIEWVLXC;2025-10-05 11:17:41;20.8;4;73.1;3.6;243;4879499661;4879499661;2922733429;4566106;python.exe;8.07;LeagueClientUxRender.exe;3.9;LeagueClientUxRender.exe;3.67;System;0.8;dwm.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:17:53;24.4;4;73.2;3.6;242;4879515225;4879515225;2922763917;4566152;LeagueClientUxRender.exe;12.5;python.exe;8.15;LeagueClientUxRender.exe;4.55;LeagueClientUx.exe;2.3;dwm.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:18:05;27.9;4;73.2;3.6;242;4879555859;4879555859;2922777286;4566224;python.exe;7.38;LeagueClientUxRender.exe;7.1;RiotClientServices.exe;7.03;LeagueClientUxRender.exe;6.38;chrome.exe;1.32
+servidor5.GUIEWVLXC;2025-10-05 11:18:17;30.5;4;73.6;3.6;242;4879600188;4879600188;2922825512;4566301;python.exe;7.62;LeagueClientUxRender.exe;3.38;LeagueClientUxRender.exe;2.1;dwm.exe;1.55;chrome.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:18:29;25;4;73.7;3.6;242;4881780352;4881780352;2922856427;4566559;LeagueClientUxRender.exe;14.4;python.exe;7.58;LeagueClientUxRender.exe;7.58;LeagueClient.exe;2.3;MsMpEng.exe;1.3
+servidor5.GUIEWVLXC;2025-10-05 11:18:41;33;4;73.7;3.6;242;4883469184;4883469184;2922870978;4566769;LeagueClientUxRender.exe;12.25;python.exe;7.55;LeagueClientUxRender.exe;5.47;chrome.exe;2.6;LeagueClient.exe;1.55
+servidor5.GUIEWVLXC;2025-10-05 11:18:53;28.6;4;73.7;3.6;240;4883644113;4883644113;2922889469;4566873;python.exe;7.6;LeagueClientUxRender.exe;6.45;LeagueClientUxRender.exe;3;LeagueClient.exe;1.88;System;1.07
+servidor5.GUIEWVLXC;2025-10-05 11:19:05;26.6;4;73.7;3.6;240;4883818368;4883818368;2922906328;4566968;python.exe;7.17;LeagueClientUxRender.exe;4.78;LeagueClientUxRender.exe;2.62;chrome.exe;2.4;dwm.exe;1.32
+servidor5.GUIEWVLXC;2025-10-05 11:19:17;20.5;4;73.3;3.6;240;4883896344;4883896344;2922908432;4567001;python.exe;7.45;LeagueClientUxRender.exe;7.38;LeagueClientUxRender.exe;4;chrome.exe;1.32;dwm.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:19:29;20.8;4;72.8;3.6;240;4884013897;4884013897;2922919913;4567057;python.exe;8;LeagueClientUxRender.exe;8;LeagueClient.exe;1.55;LeagueClientUxRender.exe;1.3;LeagueClientUx.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:19:41;19.4;4;73.1;3.6;240;4884061985;4884061985;2922935587;4567123;LeagueClientUxRender.exe;15.88;python.exe;7.92;LeagueClient.exe;5.3;LeagueClientUx.exe;3.6;MsMpEng.exe;2.2
+servidor5.GUIEWVLXC;2025-10-05 11:19:53;48.6;4;74.4;3.6;240;4884213795;4884213795;2923005548;4567598;League of Legends.exe;16.32;python.exe;7.72;Discord.exe;5;System;3.45;Discord.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:20:05;31.9;4;76.5;3.6;245;4894234270;4894234270;2923298537;4569311;Discord.exe;22.3;Discord.exe;18.27;python.exe;7.92;League of Legends.exe;5.62;chrome.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:20:17;21.5;4;77.1;3.6;244;4894746972;4894746972;2923397297;4569835;python.exe;8.07;League of Legends.exe;7.62;chrome.exe;0.78;chrome.exe;0.78;chrome.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:20:29;21.2;4;76.8;3.6;244;4894891197;4894891197;2923445212;4570283;League of Legends.exe;10.15;python.exe;7.8;chrome.exe;1.3;System;0.8;Discord.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:20:41;18.6;4;76.6;3.6;244;4894920231;4894920231;2923469847;4570591;League of Legends.exe;12.5;python.exe;7.97;chrome.exe;1.07;chrome.exe;0.8;chrome.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:20:53;20.3;4;76.8;3.6;244;4894958579;4894958579;2923498270;4570882;python.exe;7.72;League of Legends.exe;6.33;vgc.exe;3.67;RiotClientServices.exe;2.38;chrome.exe;1.32
+servidor5.GUIEWVLXC;2025-10-05 11:21:05;19.1;4;76.6;3.6;244;4895016744;4895016744;2923547253;4571225;python.exe;7.8;League of Legends.exe;6.17;chrome.exe;1.07;chrome.exe;1.07;chrome.exe;0.55
+servidor5.GUIEWVLXC;2025-10-05 11:21:17;17.1;4;76.6;3.6;244;4895050440;4895050440;2923568794;4571531;python.exe;8;League of Legends.exe;7.5;RuntimeBroker.exe;1;chrome.exe;1;chrome.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:21:29;18.8;4;76.2;3.6;241;4895078348;4895078348;2923589023;4571817;League of Legends.exe;12.5;python.exe;7.45;chrome.exe;1.6;dwm.exe;1.07;System;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:21:41;15.7;4;76.1;3.6;241;4895118356;4895118356;2923611680;4572122;python.exe;7.97;League of Legends.exe;6.45;chrome.exe;0.8;chrome.exe;0.8;MsMpEng.exe;0.55
+servidor5.GUIEWVLXC;2025-10-05 11:21:53;20.8;4;76.5;3.6;240;4895204328;4895204328;2923655861;4572582;League of Legends.exe;14.47;python.exe;7.8;chrome.exe;2.88;Discord.exe;0.78;System;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:22:05;24.9;4;76.5;3.6;240;4895301524;4895301524;2923720703;4573031;League of Legends.exe;13.53;python.exe;8;LeagueClient.exe;4.33;System;1.02;MsMpEng.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:22:17;38;4;77;3.6;240;4895433249;4895433310;2923811365;4573546;League of Legends.exe;23.98;python.exe;7.15;dwm.exe;1.77;Discord.exe;1.02;chrome.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:22:29;33.3;4;77;3.6;239;4895545987;4895546101;2923865729;4574181;League of Legends.exe;17.1;python.exe;7.9;chrome.exe;1.77;System;1.55;dwm.exe;1.27
+servidor5.GUIEWVLXC;2025-10-05 11:22:41;28;4;77.1;3.6;239;4895659473;4895659473;2923927704;4574763;League of Legends.exe;14.47;python.exe;7.62;chrome.exe;1.57;chrome.exe;1.3;dwm.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:22:53;28.5;4;77.1;3.6;239;4895709849;4895710088;2923957161;4575162;League of Legends.exe;16.93;python.exe;7.83;chrome.exe;1.77;System;1.27;Discord.exe;1.27
+servidor5.GUIEWVLXC;2025-10-05 11:23:05;32.8;4;77.4;3.6;239;4895805701;4895805701;2924008562;4575743;League of Legends.exe;20.4;python.exe;7.4;Discord.exe;3.27;RiotClientServices.exe;2.3;chrome.exe;2.27
+servidor5.GUIEWVLXC;2025-10-05 11:23:17;34.5;4;77.3;3.6;239;4895936106;4895936106;2924056982;4576345;League of Legends.exe;15.72;python.exe;8.25;dwm.exe;1.85;chrome.exe;1.3;System;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:23:29;34.8;4;77.3;3.6;238;4896108114;4896108114;2924108395;4576970;League of Legends.exe;17.1;python.exe;7.47;System;1.52;dwm.exe;1.27;Discord.exe;1.27
+servidor5.GUIEWVLXC;2025-10-05 11:23:41;31.8;4;76.8;3.6;238;4896223419;4896223419;2924153378;4577568;League of Legends.exe;15.82;python.exe;8.5;dwm.exe;2.08;MsMpEng.exe;1.3;Discord.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:23:53;33.7;4;76.8;3.6;237;4896324176;4896324176;2924214891;4578162;League of Legends.exe;21.48;python.exe;8.85;EpicGamesLauncher.exe;6.58;System;1.77;chrome.exe;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:24:05;30.5;4;76.9;3.6;237;4896443164;4896443164;2924267964;4578804;League of Legends.exe;17.27;python.exe;7.9;chrome.exe;1.02;System;0.78;dwm.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:24:17;28.2;4;76.8;3.6;237;4896516048;4896516048;2924314376;4579447;League of Legends.exe;17.1;python.exe;8.43;chrome.exe;1.27;chrome.exe;0.75;svchost.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:24:29;29.9;4;76.3;3.6;237;4896590360;4896590360;2924359397;4580069;League of Legends.exe;15.43;python.exe;7.97;Discord.exe;0.8;chrome.exe;0.8;System;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:24:41;26.5;4;76.3;3.6;237;4896638546;4896638546;2924391930;4580519;League of Legends.exe;22.62;python.exe;7.72;System;0.8;chrome.exe;0.8;chrome.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:24:53;30.6;4;76.4;3.6;238;4896727096;4896727096;2924435878;4581083;League of Legends.exe;17.68;python.exe;7.9;Discord.exe;2.27;dwm.exe;1.27;Discord.exe;1.27
+servidor5.GUIEWVLXC;2025-10-05 11:25:05;29.5;4;76.4;3.6;238;4896856960;4896856960;2924494678;4581787;League of Legends.exe;17.1;python.exe;7.3;chrome.exe;0.8;System;0.53;chrome.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:25:17;26.3;4;76.4;3.6;238;4896944492;4896944492;2924533142;4582304;League of Legends.exe;13.15;python.exe;7.9;System;2.83;chrome.exe;0.8;audiodg.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:25:29;36.7;4;76.5;3.6;238;4897064571;4897064857;2924610686;4582869;League of Legends.exe;26.02;python.exe;7.47;RiotClientServices.exe;2.62;chrome.exe;2.05;Discord.exe;2.02
+servidor5.GUIEWVLXC;2025-10-05 11:25:41;32.2;4;76.3;3.6;238;4897196876;4897196876;2924669820;4583495;League of Legends.exe;19.35;python.exe;6.95;RiotClientServices.exe;2.7;Discord.exe;2.27;audiodg.exe;1.55
+servidor5.GUIEWVLXC;2025-10-05 11:25:53;32.7;4;76.3;3.6;238;4897310378;4897310642;2924719266;4584122;League of Legends.exe;17.85;python.exe;7.47;RiotClientServices.exe;3;Discord.exe;1.02;dwm.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:26:05;36.8;4;76.5;3.6;238;4897448649;4897448649;2924766058;4584755;League of Legends.exe;26.48;python.exe;8.18;dwm.exe;1.52;Discord.exe;1;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:26:17;30.7;4;76.3;3.6;238;4897620493;4897620493;2924817524;4585464;League of Legends.exe;18.75;python.exe;8.07;System;3.33;chrome.exe;1.3;Discord.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:26:29;29;4;76.4;3.6;237;4897704855;4897704855;2924857801;4586016;League of Legends.exe;17.6;python.exe;7.15;Discord.exe;1.52;System;1.3;Discord.exe;1.27
+servidor5.GUIEWVLXC;2025-10-05 11:26:41;32.2;4;76.4;3.6;237;4897858837;4897858837;2924905795;4586669;League of Legends.exe;20.27;python.exe;7.1;chrome.exe;1.32;dwm.exe;0.8;System;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:26:53;30.5;4;76.7;3.6;237;4898044579;4898044579;2924966738;4587384;League of Legends.exe;26.8;vgc.exe;14.55;python.exe;7.9;dwm.exe;0.53;Discord.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:27:05;31.3;4;76.5;3.6;237;4898145275;4898145275;2925156368;4587954;League of Legends.exe;20.27;python.exe;7.7;dwm.exe;2.1;svchost.exe;0.8;chrome.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:27:17;34.3;4;76.5;3.6;237;4898252365;4898252365;2925195215;4588479;League of Legends.exe;22.98;python.exe;7.15;System;3.38;dwm.exe;1.8;Discord.exe;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:27:29;35.3;4;76.4;3.6;237;4898390823;4898390917;2925247726;4589137;League of Legends.exe;17.8;python.exe;7.3;MemCompression;2.08;Discord.exe;1.55;Discord.exe;1.3
+servidor5.GUIEWVLXC;2025-10-05 11:27:41;37.4;4;76.5;3.6;237;4898524262;4898524262;2925295946;4589769;League of Legends.exe;22.7;python.exe;8.07;RiotClientServices.exe;4.08;Discord.exe;2.3;Discord.exe;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:27:53;36.5;4;76.5;3.6;237;4898667176;4898667176;2925352854;4590453;League of Legends.exe;26;python.exe;8.25;Discord.exe;5;dwm.exe;3.27;chrome.exe;1.75
+servidor5.GUIEWVLXC;2025-10-05 11:28:05;37.3;4;76.5;3.6;237;4899094136;4899094136;2925431609;4591268;League of Legends.exe;20.57;python.exe;8.07;RiotClientServices.exe;4.33;dwm.exe;2.3;chrome.exe;2.1
+servidor5.GUIEWVLXC;2025-10-05 11:28:18;39.3;4;72.4;3.6;236;4899208163;4899208163;2925492086;4591850;chrome.exe;12.25;MsMpEng.exe;11;System;7.67;python.exe;7.67;League of Legends.exe;5.42
+servidor5.GUIEWVLXC;2025-10-05 11:28:30;73.4;4;73;3.6;243;4899487342;4899487342;2925670348;4592246;LeagueClientUxRender.exe;14.03;python.exe;7.65;LeagueClientUxRender.exe;3.58;chrome.exe;2.55;chrome.exe;2.33
+servidor5.GUIEWVLXC;2025-10-05 11:28:42;50.6;4;74.8;3.6;243;4906531320;4906531320;2927893830;4593984;LeagueClientUxRender.exe;8.93;python.exe;8.47;chrome.exe;4.9;LeagueClientUxRender.exe;4.28;chrome.exe;4.25
+servidor5.GUIEWVLXC;2025-10-05 11:28:54;75.1;4;77.3;3.6;243;4914469449;4914469449;2929814428;4595314;LeagueClientUxRender.exe;16.07;LeagueClient.exe;11.72;chrome.exe;9.35;python.exe;8.32;LeagueClientUxRender.exe;3
+servidor5.GUIEWVLXC;2025-10-05 11:29:06;24.7;4;75.9;3.6;243;4914635554;4914635554;2929971006;4595445;LeagueClientUxRender.exe;7.3;python.exe;7.3;LeagueClientUxRender.exe;6.2;RiotClientServices.exe;2.58;chrome.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:29:18;23;4;75.5;3.6;243;4914655499;4914655499;2929984034;4595566;python.exe;7.45;System;3.88;LeagueClientUxRender.exe;3.73;LeagueClientUxRender.exe;3.65;chrome.exe;1.85
+servidor5.GUIEWVLXC;2025-10-05 11:29:30;34.6;4;72.3;3.6;243;4914690078;4914690078;2930011155;4595659;MemCompression;30.48;LeagueClientUxRender.exe;13.07;python.exe;7.9;LeagueClientUxRender.exe;5.55;System;3.75
+servidor5.GUIEWVLXC;2025-10-05 11:29:43;36.8;4;69.5;3.6;247;4914776890;4914776890;2930036966;4595772;python.exe;7.9;LeagueClientUxRender.exe;6.12;LeagueClientUxRender.exe;3.02;chrome.exe;1.27;chrome.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:29:55;42.8;4;70.2;3.6;246;4915735830;4915735830;2930302944;4596526;chrome.exe;15.18;chrome.exe;7.6;python.exe;7.6;chrome.exe;6.7;LeagueClientUxRender.exe;5.92
+servidor5.GUIEWVLXC;2025-10-05 11:30:07;41.3;4;70.2;3.6;246;4916233859;4916233859;2930405567;4596876;LeagueClientUxRender.exe;25.5;LeagueClientUxRender.exe;7.83;python.exe;7.58;LeagueClient.exe;1.27;dwm.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:30:19;30.6;4;70.2;3.6;246;4916445165;4916445165;2930445327;4597026;LeagueClientUxRender.exe;9.57;chrome.exe;7.17;python.exe;7.17;LeagueClientUxRender.exe;3.45;System;2.92
+servidor5.GUIEWVLXC;2025-10-05 11:30:31;25.8;4;70.2;3.6;246;4916557556;4916557556;2930467690;4597119;LeagueClientUxRender.exe;11.5;python.exe;7.55;LeagueClientUxRender.exe;3.38;dwm.exe;2.5;chrome.exe;2.08
+servidor5.GUIEWVLXC;2025-10-05 11:30:43;25.4;4;69.9;3.6;246;4916627988;4916627988;2930479729;4597204;LeagueClientUxRender.exe;12.88;python.exe;7.45;LeagueClientUxRender.exe;4.53;chrome.exe;1.6;audiodg.exe;1.07
+servidor5.GUIEWVLXC;2025-10-05 11:30:55;25.3;4;65.1;3.6;246;4916676964;4916676964;2930507313;4597327;python.exe;8.5;MsMpEng.exe;6.88;System;4.12;chrome.exe;1.25;chrome.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:31:07;45.4;4;71;3.6;243;4916865286;4916865355;2930616369;4597884;Discord.exe;7.97;python.exe;7.53;League of Legends.exe;6.65;RiotClientServices.exe;2.9;dwm.exe;1.85
+servidor5.GUIEWVLXC;2025-10-05 11:31:19;32.6;4;71.6;3.6;251;4916945177;4916945177;2930662595;4598293;League of Legends.exe;9.75;python.exe;7.8;System;3.17;dwm.exe;1.77;chrome.exe;1.32
+servidor5.GUIEWVLXC;2025-10-05 11:31:31;27.3;4;71.7;3.6;251;4916997430;4916997430;2930711089;4598650;League of Legends.exe;10.1;python.exe;7.17;dwm.exe;2.9;chrome.exe;1.6;chrome.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:31:43;24.3;4;71.6;3.6;251;4917064153;4917064153;2930754828;4599004;League of Legends.exe;13.55;python.exe;7.22;dwm.exe;2.1;chrome.exe;1.55;chrome.exe;1.02
+servidor13.DDFISA23;2025-10-05 11:31:55;32;4;71.8;3.6;253;4917103866;4917103866;2930782858;4599338;aws.exe;13.62;python.exe;8.57;League of Legends.exe;7.33;dwm.exe;1.55;chrome.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:32:07;39.5;4;71.6;3.6;253;4917202907;4917202976;2930836873;4599737;chrome.exe;11.97;League of Legends.exe;8.95;python.exe;7.9;aws.exe;3.95;dwm.exe;2.35
+servidor5.GUIEWVLXC;2025-10-05 11:32:19;49.3;4;72.5;3.6;246;4921518489;4921518489;2932226131;4600976;chrome.exe;11.68;League of Legends.exe;8.25;python.exe;7.38;AMDRSServ.exe;4.47;System;3.67
+servidor5.GUIEWVLXC;2025-10-05 11:32:31;30.2;4;74;3.6;252;4927267199;4927267199;2932607668;4601923;League of Legends.exe;13.95;python.exe;7.9;System;0.28;svchost.exe;0.28;RadeonSoftware.exe;0.28
+servidor5.GUIEWVLXC;2025-10-05 11:32:43;32;4;75.2;3.6;253;4932065563;4932065563;2932897756;4603032;chrome.exe;11.3;League of Legends.exe;8.68;python.exe;8.15;System;0.8;Discord.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:32:55;21.6;4;74.5;3.6;253;4932101833;4932101833;2932928639;4603359;vgc.exe;12.38;League of Legends.exe;9.72;python.exe;7.9;System;1.05;Discord.exe;0.8
+servidor5.GUIEWVLXC;2025-10-05 11:33:07;20.1;4;74;3.6;253;4932184879;4932184879;2932987133;4603777;League of Legends.exe;9.62;RiotClientServices.exe;8.15;python.exe;8.15;System;0.53;dwm.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:33:19;28.3;4;74.4;3.6;253;4932325368;4932325368;2933030738;4604300;League of Legends.exe;27.5;python.exe;8.43;Discord.exe;0.5;Discord.exe;0.5;System;0.25
+servidor5.GUIEWVLXC;2025-10-05 11:33:31;32.4;4;74;3.6;250;4932373826;4932373826;2933061807;4604700;League of Legends.exe;18.88;python.exe;7.9;System;1.73;dwm.exe;0.75;csrss.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:33:43;28.8;4;74.1;3.6;250;4932480461;4932480461;2933103612;4605264;League of Legends.exe;21.73;python.exe;8.68;System;1;svchost.exe;0.25;chrome.exe;0.25
+servidor5.GUIEWVLXC;2025-10-05 11:33:55;33;4;74.1;3.6;249;4932609475;4932609536;2933157224;4605882;League of Legends.exe;19.25;python.exe;8;Discord.exe;1.25;System;0.75;dwm.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:34:08;32.1;4;74.1;3.6;248;4932677224;4932677224;2933194977;4606348;League of Legends.exe;25;python.exe;7.65;Discord.exe;0.78;System;0.5;Discord.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:34:20;34.2;4;74.2;3.6;248;4932836168;4932836168;2933258252;4607036;League of Legends.exe;20.5;python.exe;8;Discord.exe;2.25;Discord.exe;1.25;System;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:34:32;40.9;4;70.9;3.6;248;4932949252;4932949639;2933313976;4607678;MemCompression;33.08;League of Legends.exe;18.38;python.exe;7.17;System;4.9;dwm.exe;2.73
+servidor5.GUIEWVLXC;2025-10-05 11:34:44;33.3;4;69.7;3.6;248;4933137222;4933137283;2933368948;4608412;League of Legends.exe;26.27;python.exe;7.47;Discord.exe;0.78;System;0.53;svchost.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:34:56;32.4;4;69.8;3.6;246;4933263035;4933263035;2933415326;4609043;League of Legends.exe;22.18;python.exe;8.43;System;1.02;audiodg.exe;1.02;Discord.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:35:08;32;4;69.8;3.6;246;4933342801;4933343257;2933463837;4609642;League of Legends.exe;19.75;python.exe;8.75;System;0.5;MsMpEng.exe;0.5;Discord.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:35:20;31.1;4;69.9;3.6;246;4933467139;4933467139;2933541964;4610320;League of Legends.exe;19.5;python.exe;8.5;System;2.17;csrss.exe;1.2;Discord.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:35:32;35.7;4;70.3;3.6;246;4933558637;4933558637;2933591301;4610923;League of Legends.exe;23.48;python.exe;7.9;dwm.exe;1.77;System;0.5;atieclxx.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:35:44;34.5;4;70.1;3.6;246;4933702521;4933702521;2933645524;4611578;League of Legends.exe;27.82;python.exe;8;System;0.5;audiodg.exe;0.5;dwm.exe;0.25
+servidor5.GUIEWVLXC;2025-10-05 11:35:56;37.2;4;70.1;3.6;245;4933861927;4933862204;2933707797;4612266;League of Legends.exe;27.98;python.exe;7.92;System;1.75;Discord.exe;1.25;Discord.exe;1.25
+servidor14.JASUDJC;2025-10-05 11:36:08;36.3;4;70.2;3.6;245;4934072320;4934072320;2933771190;4613011;League of Legends.exe;23.98;python.exe;8.25;System;1.55;audiodg.exe;0.78;dwm.exe;0.25
+servidor5.GUIEWVLXC;2025-10-05 11:36:20;32.1;4;70.1;3.6;250;4934136540;4934136540;2933802844;4613440;League of Legends.exe;22.73;python.exe;7.83;System;3.17;dwm.exe;1;Discord.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:36:33;33;4;70.1;3.6;244;4934238904;4934238904;2933842396;4613976;League of Legends.exe;21.73;python.exe;7.58;System;1.27;dwm.exe;1;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:36:45;33.8;4;70;3.6;243;4934364249;4934364249;2933890076;4614607;League of Legends.exe;20.68;python.exe;7.65;svchost.exe;2.02;Discord.exe;2.02;Discord.exe;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:36:57;33.3;4;70.1;3.6;243;4934477397;4934477397;2933939144;4615220;League of Legends.exe;27.3;python.exe;7.08;dwm.exe;0.78;Discord.exe;0.75;Discord.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:37:09;33.7;4;70;3.6;243;4934659927;4934659988;2933997753;4615979;League of Legends.exe;28.62;python.exe;7.72;Discord.exe;1.27;Discord.exe;0.78;dwm.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:37:21;30.8;4;70.1;3.6;243;4934772730;4934772730;2934046490;4616580;League of Legends.exe;25.5;python.exe;8.5;System;3.05;svchost.exe;0.78;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:37:33;35.9;4;70.1;3.6;244;4934871139;4934871139;2934097565;4617176;League of Legends.exe;24.75;python.exe;7.9;dwm.exe;1.52;audiodg.exe;1.52;System;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:37:45;37.3;4;70.1;3.6;244;4935074416;4935075016;2934271268;4617950;League of Legends.exe;30.2;python.exe;8.18;dwm.exe;3.48;Discord.exe;1.25;System;1
+servidor5.GUIEWVLXC;2025-10-05 11:37:57;38.5;4;70.2;3.6;244;4935284628;4935284689;2934325117;4618685;League of Legends.exe;29.8;python.exe;7.58;dwm.exe;2.23;System;1.25;Discord.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:38:09;34.5;4;70.2;3.6;244;4935386975;4935386975;2934366907;4619183;League of Legends.exe;20.9;python.exe;7.65;dwm.exe;3.05;Discord.exe;2.05;Discord.exe;2.05
+servidor5.GUIEWVLXC;2025-10-05 11:38:21;41.3;4;70.2;3.6;244;4935599716;4935599716;2934425687;4619869;League of Legends.exe;24.5;python.exe;8.07;EpicGamesLauncher.exe;5.8;System;2.73;dwm.exe;2.73
+servidor5.GUIEWVLXC;2025-10-05 11:38:33;36.6;4;70.2;3.6;242;4935725049;4935725342;2934468070;4620418;League of Legends.exe;27.27;python.exe;7.08;dwm.exe;2.25;Discord.exe;2;Discord.exe;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:38:45;37.8;4;70.2;3.6;242;4935870741;4935870741;2934517233;4621051;League of Legends.exe;22.18;python.exe;8;Discord.exe;1.02;Discord.exe;1.02;dwm.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:38:57;34.3;4;70.2;3.6;242;4935982165;4935982165;2934573458;4621612;League of Legends.exe;21.77;python.exe;7.75;RiotClientServices.exe;3;dwm.exe;2.5;Discord.exe;2.23
+servidor5.GUIEWVLXC;2025-10-05 11:39:09;33.7;4;70.2;3.6;242;4936163136;4936163341;2934630635;4622364;League of Legends.exe;23.45;python.exe;7.8;dwm.exe;1.8;System;0.78;Discord.exe;0.78
+servidor15.SJRF6DS;2025-10-05 11:39:21;36.5;4;70.2;3.6;242;4936274485;4936274485;2934687941;4622984;League of Legends.exe;30.8;python.exe;6.83;System;3.58;dwm.exe;1.52;Discord.exe;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:39:34;39;4;69.1;3.6;242;4936466092;4936466092;2934745118;4623721;League of Legends.exe;23.5;python.exe;8.25;dwm.exe;2.27;System;1;Discord.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:39:46;40.4;4;69.1;3.6;242;4936714002;4936714605;2934805267;4624509;League of Legends.exe;29.15;python.exe;7.6;dwm.exe;2;System;1.27;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:39:58;36.7;4;69.2;3.6;242;4936815794;4936815794;2934845520;4625056;League of Legends.exe;19.57;python.exe;7.47;dwm.exe;1.55;System;0.78;Discord.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:40:10;31.5;4;69.2;3.6;242;4936878971;4936878971;2934883225;4625460;League of Legends.exe;27.07;python.exe;7.03;dwm.exe;1.3;Discord.exe;1.05;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:40:22;39;4;69.3;3.6;242;4937071853;4937071853;2934951046;4626175;League of Legends.exe;25;python.exe;7.65;System;4.65;audiodg.exe;2.55;dwm.exe;2.48
+servidor5.GUIEWVLXC;2025-10-05 11:40:34;40.4;4;69.6;3.6;242;4937205240;4937205513;2935029695;4626857;League of Legends.exe;29.55;python.exe;7.08;dwm.exe;3;Discord.exe;1.02;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:40:46;38.9;4;69.1;3.6;242;4937378597;4937378597;2935083441;4627537;League of Legends.exe;22.65;python.exe;8.07;AggregatorHost.exe;2.88;dwm.exe;1.55;System;1.52
+servidor5.GUIEWVLXC;2025-10-05 11:40:58;32.8;4;69;3.6;241;4937446915;4937446915;2935122438;4628072;League of Legends.exe;30.43;python.exe;8.25;Discord.exe;4;Discord.exe;0.95;dwm.exe;0.72
+servidor5.GUIEWVLXC;2025-10-05 11:41:10;40.4;4;69.1;3.6;241;4937644695;4937644695;2935178811;4628806;League of Legends.exe;32.17;python.exe;8.43;System;1.77;dwm.exe;1.5;steam.exe;0.72
+servidor5.GUIEWVLXC;2025-10-05 11:41:22;41.8;4;69.1;3.6;241;4937867347;4937867347;2935237426;4629564;League of Legends.exe;24.5;python.exe;7.58;System;2.83;dwm.exe;2.58;Discord.exe;2.02
+servidor5.GUIEWVLXC;2025-10-05 11:41:34;32.7;4;69.1;3.6;241;4938014403;4938014403;2935321470;4630096;League of Legends.exe;24.23;python.exe;7.47;dwm.exe;1.02;System;0.78;Discord.exe;0.78
+servidor16.FFGWC09;2025-10-05 11:41:46;35.1;4;69.1;3.6;241;4938161371;4938161371;2935383572;4630723;League of Legends.exe;30.4;python.exe;7.72;dwm.exe;1.3;Discord.exe;1.02;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:41:58;34.8;4;69.2;3.6;241;4938346585;4938346585;2935447693;4631482;League of Legends.exe;24.75;python.exe;7.4;audiodg.exe;1.3;dwm.exe;0.8;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:42:10;34.6;4;69.2;3.6;241;4938513837;4938513898;2935499112;4632139;League of Legends.exe;24.23;python.exe;7.22;dwm.exe;0.78;System;0.53;chrome.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:42:22;34.6;4;69.2;3.6;242;4938629798;4938629798;2935558007;4632750;League of Legends.exe;27.07;python.exe;6.95;System;2.3;dwm.exe;1.02;Discord.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:42:34;39.5;4;69.2;3.6;242;4938825765;4938825765;2935611628;4633451;League of Legends.exe;38.45;python.exe;8.43;dwm.exe;1.95;System;1.23;Discord.exe;0.95
+servidor5.GUIEWVLXC;2025-10-05 11:42:47;43;4;69.3;3.6;242;4939154575;4939154575;2935760197;4634400;League of Legends.exe;32.75;python.exe;7.5;dwm.exe;1.45;System;1.23;Discord.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:42:59;40.1;4;69.3;3.6;242;4939324507;4939324507;2935810250;4635083;League of Legends.exe;23.5;python.exe;9;dwm.exe;1.77;System;1.02;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:43:11;38.9;4;69.3;3.6;242;4939468781;4939468781;2935875004;4635672;League of Legends.exe;31.8;python.exe;8.97;dwm.exe;1.73;Discord.exe;1.23;System;0.97
+servidor5.GUIEWVLXC;2025-10-05 11:43:23;37.5;4;69.5;3.6;243;4939706752;4939706752;2935941694;4636401;League of Legends.exe;25.75;python.exe;7.33;System;4.9;dwm.exe;2.7;Discord.exe;2.48
+servidor5.GUIEWVLXC;2025-10-05 11:43:35;36.7;4;69.5;3.6;243;4939926776;4939926776;2936159148;4637347;League of Legends.exe;25.25;python.exe;7.08;dwm.exe;3.5;Discord.exe;1;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:43:47;34.5;4;69.6;3.6;243;4940075376;4940075376;2936244707;4638080;League of Legends.exe;24.5;python.exe;8.07;EpicGamesLauncher.exe;5.05;dwm.exe;1.77;System;1
+servidor5.GUIEWVLXC;2025-10-05 11:43:59;34.5;4;69.6;3.6;243;4940190286;4940190286;2936292458;4638666;League of Legends.exe;27.93;python.exe;7.85;dwm.exe;1.77;System;1.02;Discord.exe;0.72
+servidor5.GUIEWVLXC;2025-10-05 11:44:11;39.5;4;69.5;3.6;243;4940388286;4940388286;2936346182;4639397;League of Legends.exe;32.83;python.exe;7.08;csrss.exe;2.33;System;1.18;dwm.exe;0.95
+servidor5.GUIEWVLXC;2025-10-05 11:44:24;41.8;4;69.6;3.6;243;4940625670;4940625731;2936402824;4640165;League of Legends.exe;32.5;python.exe;8.75;System;2.75;dwm.exe;0.75;chrome.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:44:36;43.2;4;69.5;3.6;243;4940870824;4940870950;2936458660;4640924;League of Legends.exe;29.5;python.exe;8.25;dwm.exe;1.5;System;1.25;Discord.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:44:48;33.1;4;69.5;3.6;243;4940972424;4940972735;2936498913;4641475;League of Legends.exe;26.57;python.exe;7.9;audiodg.exe;3.12;dwm.exe;1.3;svchost.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:45:00;36.9;4;69.6;3.6;243;4941170892;4941170892;2936564923;4642229;League of Legends.exe;24;python.exe;7.83;svchost.exe;2.5;dwm.exe;1.48;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:45:12;37.4;4;69.6;3.6;243;4941359192;4941359192;2936619831;4642974;League of Legends.exe;22.15;python.exe;6.95;dwm.exe;1.77;Discord.exe;1.3;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:45:24;35.2;4;69.7;3.6;243;4941548067;4941548067;2936685010;4643688;League of Legends.exe;22.35;python.exe;7.9;System;3.12;dwm.exe;2.35;Discord.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:45:36;34;4;69.6;3.6;243;4941641537;4941641537;2936733903;4644312;League of Legends.exe;24.75;python.exe;8.75;csrss.exe;3.15;dwm.exe;2.17;audiodg.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:45:48;32.6;4;69.7;3.6;243;4941722505;4941722566;2936776823;4644884;League of Legends.exe;24.25;python.exe;8.07;System;0.75;dwm.exe;0.75;svchost.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:46:00;32;4;69.7;3.6;242;4941792912;4941792912;2936816270;4645428;League of Legends.exe;24.48;python.exe;8;dwm.exe;1.02;services.exe;0.78;System;0.25
+servidor5.GUIEWVLXC;2025-10-05 11:46:12;34.8;4;69.6;3.6;242;4941887430;4941887430;2936855922;4645958;League of Legends.exe;24.25;python.exe;7.67;dwm.exe;2.55;Discord.exe;0.75;System;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:46:24;41;4;69.7;3.6;242;4942074854;4942074854;2936929670;4646681;League of Legends.exe;42.08;chrome.exe;11.9;python.exe;8.18;System;3.52;dwm.exe;1.5
+servidor5.GUIEWVLXC;2025-10-05 11:46:36;43.7;4;69.9;3.6;242;4942256958;4942256958;2936986640;4647343;League of Legends.exe;22.65;python.exe;7.03;dwm.exe;0.78;audiodg.exe;0.53;System;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:46:48;32.5;4;69.8;3.6;242;4942310771;4942310771;2937016348;4647731;League of Legends.exe;20.88;python.exe;8.25;dwm.exe;1.55;Discord.exe;1.3;Discord.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:47:00;35.3;4;69.8;3.6;242;4942482742;4942482742;2937075644;4648453;League of Legends.exe;23.18;python.exe;7.55;dwm.exe;1.82;System;0.78;svchost.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:47:12;34.8;4;69.8;3.6;242;4942573459;4942573459;2937115015;4648993;League of Legends.exe;31.25;python.exe;7.3;System;1.52;dwm.exe;1.52;Discord.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:47:24;35.9;4;69.8;3.6;243;4942683246;4942683246;2937158807;4649573;League of Legends.exe;30.1;python.exe;7.83;System;3.23;dwm.exe;0.75;Discord.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:47:36;42;4;69.8;3.6;243;4942927567;4942928655;2937228225;4650394;League of Legends.exe;35.75;python.exe;7.92;dwm.exe;1.95;Discord.exe;1;System;0.97
+servidor5.GUIEWVLXC;2025-10-05 11:47:49;42.1;4;69.8;3.6;243;4943146113;4943146113;2937282570;4651110;League of Legends.exe;21.57;python.exe;8.07;dwm.exe;1.8;Discord.exe;1.3;csrss.exe;0.78
+servidor17.SDCSD56;2025-10-05 11:48:01;37.3;4;69.8;3.6;243;4943223747;4943223747;2937325449;4651570;League of Legends.exe;30.62;python.exe;8.07;dwm.exe;1.5;audiodg.exe;0.97;Discord.exe;0.72
+servidor5.GUIEWVLXC;2025-10-05 11:48:13;44.2;4;69.9;3.6;243;4943443541;4943443541;2937390663;4652314;League of Legends.exe;25;python.exe;8.43;RiotClientServices.exe;2.23;System;1.98;dwm.exe;1.98
+servidor5.GUIEWVLXC;2025-10-05 11:48:25;37.7;4;69.9;3.6;243;4943655231;4943655231;2937445332;4652967;League of Legends.exe;26;python.exe;7.67;RiotClientServices.exe;4.38;dwm.exe;2.67;System;2.2
+servidor5.GUIEWVLXC;2025-10-05 11:48:37;37.7;4;69.9;3.6;243;4943814832;4943815163;2937496856;4653653;League of Legends.exe;29.55;python.exe;7.83;dwm.exe;2.27;System;1;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:48:49;34.8;4;69.9;3.6;243;4943917137;4943917137;2937542612;4654228;League of Legends.exe;23.73;python.exe;7.3;audiodg.exe;1.55;dwm.exe;1.52;Discord.exe;1.05
+servidor5.GUIEWVLXC;2025-10-05 11:49:01;36.8;4;69.5;3.6;243;4944016104;4944016165;2937585971;4654817;League of Legends.exe;24.75;python.exe;7.58;System;1;dwm.exe;1;svchost.exe;0.5
+servidor5.GUIEWVLXC;2025-10-05 11:49:13;35.6;4;69.5;3.6;243;4944164953;4944164953;2937637394;4655475;League of Legends.exe;26.25;python.exe;7.75;RiotClientServices.exe;2.98;dwm.exe;2.48;System;0.97
+servidor5.GUIEWVLXC;2025-10-05 11:49:25;41.9;4;69.5;3.6;243;4944374275;4944374275;2937695274;4656205;League of Legends.exe;30.38;python.exe;8.72;System;2.7;Discord.exe;2.45;audiodg.exe;1.73
+servidor5.GUIEWVLXC;2025-10-05 11:49:37;37.2;4;69;3.6;243;4944452048;4944452048;2937742059;4656651;League of Legends.exe;24.75;python.exe;7.83;Discord.exe;1.52;Discord.exe;1.27;System;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:49:49;36;4;69;3.6;243;4944602425;4944602425;2937790031;4657281;League of Legends.exe;22.27;python.exe;7.5;dwm.exe;1.52;Discord.exe;0.5;System;0.25
+servidor5.GUIEWVLXC;2025-10-05 11:50:02;33.5;4;69;3.6;243;4944674484;4944674484;2937830013;4657735;League of Legends.exe;28.1;python.exe;7.55;System;1.77;dwm.exe;1.02;svchost.exe;0.53
+servidor5.GUIEWVLXC;2025-10-05 11:50:14;36.4;4;69;3.6;243;4944837971;4944837971;2937877813;4658383;League of Legends.exe;29.3;Discord.exe;7.45;python.exe;6.97;Discord.exe;1.93;Discord.exe;1.9
+servidor5.GUIEWVLXC;2025-10-05 11:50:26;35.7;4;69.1;3.6;243;4944935490;4944935490;2937931424;4658922;League of Legends.exe;25.75;python.exe;7.58;System;3.1;dwm.exe;2.05;Discord.exe;2.02
+servidor5.GUIEWVLXC;2025-10-05 11:50:38;35.6;4;69.1;3.6;243;4945090102;4945090348;2937986998;4659624;League of Legends.exe;25.25;python.exe;7.55;Discord.exe;1.05;dwm.exe;1;Discord.exe;0.78
+servidor5.GUIEWVLXC;2025-10-05 11:50:50;34.2;4;69.1;3.6;242;4945176598;4945176598;2938026491;4660139;League of Legends.exe;24.5;python.exe;7.75;dwm.exe;1.77;Discord.exe;1.75;Discord.exe;1.5
+servidor5.GUIEWVLXC;2025-10-05 11:51:02;38.7;4;69;3.6;241;4945321973;4945323842;2938090780;4660788;League of Legends.exe;33.08;python.exe;7.83;csrss.exe;2.75;dwm.exe;1.25;Discord.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:51:14;44.4;4;69.1;3.6;241;4945570444;4945570444;2938149985;4661580;League of Legends.exe;28.38;python.exe;8.43;dwm.exe;1.7;audiodg.exe;1.45;Discord.exe;0.97
+servidor5.GUIEWVLXC;2025-10-05 11:51:26;38.2;4;69.1;3.6;241;4945753283;4945753283;2938205278;4662271;League of Legends.exe;19.2;python.exe;7.9;System;3.1;dwm.exe;2.08;svchost.exe;0.25
+servidor18.SDCVDE67;2025-10-05 11:51:38;33.2;4;69.1;3.6;241;4945824111;4945824111;2938235850;4662677;League of Legends.exe;31.15;python.exe;7.85;dwm.exe;3.52;System;1;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:51:50;38.3;4;69.1;3.6;241;4945962173;4945962173;2938290508;4663375;League of Legends.exe;27.3;python.exe;7.15;dwm.exe;3;System;2.25;Discord.exe;1.77
+servidor5.GUIEWVLXC;2025-10-05 11:52:02;35.8;4;69.1;3.6;241;4946053330;4946053330;2938327851;4663852;League of Legends.exe;26.77;python.exe;7.58;dwm.exe;1.27;Discord.exe;1;Discord.exe;0.75
+servidor5.GUIEWVLXC;2025-10-05 11:52:14;43.3;4;69.7;3.6;241;4946314232;4946314232;2938458473;4664585;League of Legends.exe;26.25;python.exe;8.43;Discord.exe;1.73;dwm.exe;1.25;Discord.exe;1
+servidor5.GUIEWVLXC;2025-10-05 11:52:27;41.5;4;69.4;3.6;242;4946505767;4946505767;2938536639;4665318;League of Legends.exe;31.5;python.exe;7.7;System;3.75;MsMpEng.exe;2.65;dwm.exe;2.42
+servidor5.GUIEWVLXC;2025-10-05 11:52:39;37.4;4;69.4;3.6;242;4946628336;4946628336;2938581301;4665883;League of Legends.exe;26.27;python.exe;7.47;dwm.exe;1.48;System;1.25;Discord.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:52:51;35.7;4;69.5;3.6;242;4946722431;4946722492;2938620326;4666400;League of Legends.exe;22.12;python.exe;7.8;audiodg.exe;1.55;System;1.3;dwm.exe;1.02
+servidor5.GUIEWVLXC;2025-10-05 11:53:03;38.5;4;62.5;3.6;249;4946854686;4946854686;2938745303;4666864;LeagueClientUxRender.exe;9.03;python.exe;7.7;System;4.38;MsMpEng.exe;4.38;LeagueClient.exe;1.88
+servidor19.LETSS05HWDF;2025-10-06 18:54:23;68.9;2;82.9;6.9;227;141216694;141216694;78379202;82124;conhost.exe;27.55;Code.exe;22.8;python.exe;10.45;Code.exe;7.6;MsMpEng.exe;3.35
+servidor19.LETSS05HWDF;2025-10-06 18:54:11;95.9;2;83;6.9;227;141212118;141212118;78368949;82091;conhost.exe;47.4;python.exe;13.8;System;2.9;MsMpEng.exe;2.45;chrome.exe;1.05
+servidor19.LETSS05HWDF;2025-10-06 18:54:35;61.8;2;82.5;6.9;225;141218085;141218085;78388580;82135;conhost.exe;49.75;python.exe;13.25;chrome.exe;1.1;svchost.exe;0.55;chrome.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 18:54:47;80.6;2;82.8;6.9;221;141227681;141227681;78397750;82188;conhost.exe;26.8;python.exe;13.9;chrome.exe;13.35;chrome.exe;1.55;OneDrive.exe;0.5
+servidor19.LETSS05HWDF;2025-10-06 18:54:59;87.8;2;82.7;6.9;218;141246239;141246239;78452913;82289;conhost.exe;28.6;python.exe;11.9;chrome.exe;7.6;chrome.exe;5.7;Code.exe;5.7
+servidor19.LETSS05HWDF;2025-10-06 18:55:12;81.1;2;73.5;6.9;213;141397252;141397252;78692730;82703;conhost.exe;34.7;python.exe;14.3;chrome.exe;13.6;chrome.exe;8.8;System;2.5
+servidor19.SADCX66;2025-10-06 18:55:23;69.4;2;71.9;6.9;207;141422004;141422004;78711139;82764;conhost.exe;50.1;python.exe;11.95;System;0;;0;Registry;0
+servidor19.LETSS05HWDF;2025-10-06 18:55:35;62.3;2;71.7;6.9;207;141424475;141424475;78717160;82782;conhost.exe;49.5;chrome.exe;13.65;python.exe;11.95;Code.exe;1.15;svchost.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 18:55:47;61.5;2;68.2;6.9;206;141432176;141432176;78723302;82808;conhost.exe;49.65;python.exe;12;Code.exe;1.15;svchost.exe;0.55;System;0
+servidor19.LETSS05HWDF;2025-10-06 18:55:59;60.9;2;67.7;6.9;205;141434705;141434705;78726949;82830;conhost.exe;47.55;python.exe;12.6;svchost.exe;8;System;1.7;;0
+servidor19.LETSS05HWDF;2025-10-06 18:56:10;59.4;2;67.7;6.9;205;141437602;141437602;78729916;82840;conhost.exe;49.65;python.exe;11.4;System;0.55;svchost.exe;0.55;svchost.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 18:56:22;59.6;2;67.7;6.9;205;141513636;141513636;78736781;82867;conhost.exe;49.6;python.exe;12.55;System;0;;0;Registry;0
+servidor19.LETSS05HWDF;2025-10-06 18:56:34;65.7;2;67.7;6.9;205;141533010;141533010;78742703;82879;conhost.exe;50.15;python.exe;12.55;chrome.exe;0.55;System;0;;0
+servidor19.LETSS05HWDF;2025-10-06 18:56:45;63.8;2;67.9;6.9;205;141533010;141533010;78743071;82883;conhost.exe;48.75;python.exe;13.45;chrome.exe;1.7;chrome.exe;1.1;System;0.55
+servidor19.LETSS05HWDF;2025-10-06 18:56:57;59;2;67.9;6.9;206;141533010;141533010;78743807;82891;conhost.exe;49.2;python.exe;12.3;svchost.exe;1.1;svchost.exe;0.55;System;0
+servidor19.LETSS05HWDF;2025-10-06 18:57:09;59.5;2;67.9;6.9;206;141533010;141533010;78743807;82891;conhost.exe;49.8;python.exe;13.45;svchost.exe;0.55;System;0;;0
+servidor19.LETSS05HWDF;2025-10-06 18:57:21;59.7;2;67.9;6.9;206;141533010;141533010;78743807;82891;conhost.exe;49.55;python.exe;12.8;svchost.exe;1.1;System;0.55;Code.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 18:57:33;60;2;67.8;6.9;206;141533010;141533010;78743807;82891;conhost.exe;50.4;python.exe;12.85;System;1.1;Code.exe;0.55;;0
+servidor19.LETSS05HWDF;2025-10-06 18:57:44;58.7;2;67.7;6.9;206;141533010;141533010;78743807;82891;conhost.exe;50.45;python.exe;13.45;System;0;;0;Registry;0
+servidor19.LETSS05HWDF;2025-10-06 18:57:56;58.5;2;67.8;6.9;205;141533010;141533010;78743807;82891;conhost.exe;49.3;python.exe;12.9;System;0;;0;Registry;0
+servidor19.LETSS05HWDF;2025-10-06 18:58:08;61.1;2;67.7;6.9;205;141533010;141533010;78743807;82891;conhost.exe;49.75;python.exe;13;System;0;;0;Registry;0
+servidor20.ASWE776;2025-10-06 18:58:20;58.9;2;67.7;6.9;205;141533010;141533010;78743807;82891;conhost.exe;50.35;python.exe;13;System;0;;0;Registry;0
+servidor19.LETSS05HWDF;2025-10-06 18:58:31;58.4;2;67.6;6.9;205;141533010;141533010;78743807;82891;conhost.exe;49.7;python.exe;12.55;System;0;;0;Registry;0
+servidor19.LETSS05HWDF;2025-10-06 18:58:43;61.2;2;67.6;6.9;205;141533010;141533010;78743807;82891;conhost.exe;49.95;python.exe;12.05;svchost.exe;0.55;System;0;;0
+servidor19.LETSS05HWDF;2025-10-06 18:58:55;58.6;2;67.4;6.9;205;141533010;141533010;78743807;82891;conhost.exe;49.5;python.exe;11.5;svchost.exe;1.15;jetbrains-toolbox.exe;0.6;System;0
+servidor19.LETSS05HWDF;2025-10-06 18:59:06;59.7;2;67.6;6.9;204;141533010;141533010;78743807;82891;conhost.exe;50;python.exe;12.05;Code.exe;1.15;svchost.exe;0.55;chrome.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 18:59:18;73;2;68.7;6.9;207;141533010;141533010;78743807;82891;conhost.exe;38.15;python.exe;11.6;System;3.2;MsMpEng.exe;2.9;svchost.exe;2.5
+servidor19.LETSS05HWDF;2025-10-06 18:59:30;62.9;2;69.1;6.9;208;141533010;141533010;78743807;82891;conhost.exe;49.2;python.exe;13.65;System;1.1;svchost.exe;0.55;;0
+servidor19.LETSS05HWDF;2025-10-06 18:59:42;57.4;2;68.5;6.9;208;141533010;141533010;78743807;82891;conhost.exe;49.75;python.exe;13.65;svchost.exe;1.1;Code.exe;0.55;System;0
+servidor19.LETSS05HWDF;2025-10-06 19:01:22;4.8;2;70.6;6.9;206;141533010;141533010;78744075;82894;conhost.exe;31.15;Code.exe;13.6;MoUsoCoreWorker.exe;10;python.exe;10;StartMenuExperienceHost.exe;3.55
+servidor19.LETSS05HWDF;2025-10-06 19:01:34;82.3;2;69.3;6.9;206;141533010;141533010;78744477;82896;conhost.exe;25.95;Code.exe;20.75;Code.exe;9.5;Code.exe;8.8;python.exe;8.3
+servidor19.LETSS05HWDF;2025-10-06 19:01:53;88.9;2;73.4;6.9;210;141533010;141533010;78744611;82898;chrome.exe;26.1;chrome.exe;26;chrome.exe;14.5;chrome.exe;6;ctfmon.exe;5.6
+servidor19.LETSS05HWDF;2025-10-06 19:02:12;93;2;74.5;6.9;217;141533010;141533010;78744745;82898;conhost.exe;36.35;Code.exe;10.25;Code.exe;9.3;python.exe;7.45;Code.exe;6.4
+servidor19.LETSS05HWDF;2025-10-06 19:02:24;92.2;2;73.8;6.9;215;141533010;141533010;78747098;82921;conhost.exe;39.55;python.exe;10.35;dwm.exe;7.6;MsMpEng.exe;2;sppsvc.exe;2
+servidor19.LETSS05HWDF;2025-10-06 19:02:36;85.9;2;75.3;6.9;217;141535109;141535109;78757027;83007;conhost.exe;39.85;python.exe;14.45;sppsvc.exe;11.4;svchost.exe;4;MsMpEng.exe;3.05
+servidor19.LETSS05HWDF;2025-10-06 19:02:48;65.1;2;74.5;6.9;217;141535215;141535215;78768567;83125;conhost.exe;48.25;python.exe;16.1;jetbrains-toolbox.exe;0.5;dwm.exe;0.5;svchost.exe;0.5
+servidor19.LETSS05HWDF;2025-10-06 19:03:00;67.9;2;74.1;6.9;216;141535215;141535215;78770218;83142;conhost.exe;47.85;python.exe;15.1;chrome.exe;2.1;dwm.exe;1.55;svchost.exe;1.05
+servidor19.LETSS05HWDF;2025-10-06 19:03:12;62.9;2;74;6.9;216;141535215;141535215;78770218;83142;conhost.exe;49.3;python.exe;15.75;chrome.exe;0.5;chrome.exe;0.5;System;0
+servidor19.LETSS05HWDF;2025-10-06 19:03:24;62;2;74;6.9;216;141535215;141535215;78770218;83142;conhost.exe;48.9;python.exe;16.15;System;0.5;svchost.exe;0.5;;0
+servidor19.LETSS05HWDF;2025-10-06 19:03:36;64.6;2;73.4;6.9;214;141535215;141535215;78770304;83143;conhost.exe;49.55;python.exe;14.9;dwm.exe;1.05;svchost.exe;0.55;chrome.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 19:03:48;61.7;2;72.9;6.9;213;141535215;141535215;78770304;83143;conhost.exe;48.45;python.exe;14.4;svchost.exe;1.05;dwm.exe;1.05;chrome.exe;1.05
+servidor19.LETSS05HWDF;2025-10-06 19:04:00;61.4;2;72.8;6.9;212;141535215;141535215;78770304;83143;conhost.exe;49.65;python.exe;14.95;svchost.exe;1.05;svchost.exe;0.55;svchost.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 19:04:12;71;2;73.1;6.9;216;141572826;141572826;78821797;83296;conhost.exe;40.15;python.exe;15.7;sppsvc.exe;14.05;chrome.exe;1.95;dwm.exe;1.45
+servidor19.LETSS05HWDF;2025-10-06 19:04:25;78;2;72.6;6.9;217;141724253;141724253;78996619;83769;conhost.exe;45.45;python.exe;15;chrome.exe;2;backgroundTaskHost.exe;2;explorer.exe;1.5
+servidor19.LETSS05HWDF;2025-10-06 19:04:37;89;2;74.2;6.9;218;141822637;141822637;79061914;83926;conhost.exe;43.3;python.exe;13.4;dwm.exe;7.75;chrome.exe;1.55;System;1
+servidor19.LETSS05HWDF;2025-10-06 19:04:49;67.1;2;73;6.9;218;141860371;141860371;79145257;84037;conhost.exe;47.15;python.exe;15.2;svchost.exe;0.5;dwm.exe;0.5;svchost.exe;0.5
+servidor19.LETSS05HWDF;2025-10-06 19:05:01;70.3;2;72.7;6.9;216;141860371;141860371;79145625;84041;conhost.exe;46.05;python.exe;14;svchost.exe;1.5;svchost.exe;1;svchost.exe;0.5
+servidor19.LETSS05HWDF;2025-10-06 19:05:14;84.6;2;75.2;6.9;219;141860371;141860371;79150584;84090;chrome.exe;26.35;conhost.exe;25.3;chrome.exe;13.5;python.exe;9.35;chrome.exe;8.5
+servidor19.LETSS05HWDF;2025-10-06 19:05:27;83.2;2;69.8;6.9;213;141864786;141864786;79163457;84181;conhost.exe;46.85;python.exe;13.45;Code.exe;4.4;Code.exe;2.15;chrome.exe;1.6
+servidor19.LETSS05HWDF;2025-10-06 19:05:38;68.5;2;69.2;6.9;212;141938303;141938303;79254152;84509;conhost.exe;43.8;python.exe;10.2;System;1.6;svchost.exe;1.05;dwm.exe;1
+servidor19.LETSS05HWDF;2025-10-06 19:05:51;69;2;69.3;6.9;211;141992460;141992526;79335582;84785;conhost.exe;45.65;python.exe;11.55;dwm.exe;2.6;sppsvc.exe;2.5;System;1.55
+servidor19.LETSS05HWDF;2025-10-06 19:06:03;69.6;2;69.2;6.9;209;142059048;142059048;79393308;84896;conhost.exe;46.05;python.exe;11.9;dwm.exe;3.8;System;0.55;OneDrive.exe;0.55
+servidor19.LETSS05HWDF;2025-10-06 19:06:15;63.8;2;69.2;6.9;208;142082520;142082520;79439610;84973;conhost.exe;46.75;python.exe;11.95;dwm.exe;2.7;OneDrive.exe;1.1;System;0.55
+servidor19.LETSS05HWDF;2025-10-06 19:06:26;66.1;2;69;6.9;207;142220387;142220387;79492850;85091;conhost.exe;47.4;python.exe;13.1;dwm.exe;4.9;svchost.exe;1.1;jetbrains-toolbox.exe;1.1
+servidor19.LETSS05HWDF;2025-10-06 19:06:38;69.9;2;68.8;6.9;207;142249627;142249627;79562218;85186;conhost.exe;46.5;dwm.exe;29;python.exe;12.6;System;1.65;OneDrive.exe;1.65
+servidor19.LETSS05HWDF;2025-10-06 19:06:50;64.4;2;68.7;6.9;207;142254822;142254822;79566863;85201;conhost.exe;46.35;python.exe;10.5;System;1.65;dwm.exe;1.65;mysqld.exe;1.1
+servidor42.LUCHT33RSTA;2025-10-04 21:49:24;30.1;8;49.5;40.6;283;527276520;527276520;208650550;288083;chrome.exe;8.05;python.exe;4.89;chrome.exe;2.69;dwm.exe;2.12;chrome.exe;1.3
+servidor42.LUCHT33RSTA;2025-10-04 21:49:37;20.4;8;49.3;40.6;283;527305265;527305265;208653965;288111;python.exe;4.61;explorer.exe;2.29;dwm.exe;1.46;chrome.exe;1.09;chrome.exe;0.99
+servidor42.LUCHT33RSTA;2025-10-04 21:49:49;27.6;8;50;40.6;285;527434888;527434888;208715775;288283;python.exe;4.08;explorer.exe;1.56;dwm.exe;1.44;chrome.exe;0.72;System;0.49
+servidor42.LUCHT33RSTA;2025-10-04 21:50:01;17.9;8;50.1;40.6;285;527457800;527457800;208719587;288315;explorer.exe;6.01;python.exe;4.65;firefox.exe;1.54;chrome.exe;1.2;chrome.exe;1.2
+servidor42.LUCHT33RSTA;2025-10-04 21:50:14;21.2;8;51.1;40.6;286;527509254;527509254;208731244;288369;python.exe;4.9;chrome.exe;2.4;dwm.exe;2.29;vlc.exe;1.6;System;1.41
+servidor42.LUCHT33RSTA;2025-10-04 21:50:26;24.3;8;50.2;40.6;286;527545630;527545630;208753601;288425;dwm.exe;5.51;python.exe;5.25;explorer.exe;3.74;Code.exe;2.02;Code.exe;1.79
+servidor42.LUCHT33RSTA;2025-10-04 21:50:38;22.3;8;51.7;40.6;285;527563492;527563492;208756924;288451;python.exe;5.03;vlc.exe;4.8;explorer.exe;3.54;chrome.exe;1.68;dwm.exe;1.56
+servidor42.LUCHT33RSTA;2025-10-04 21:50:51;25.4;8;52.2;40.6;291;527596977;527596977;208767966;288488;explorer.exe;5.26;python.exe;4.83;MsMpEng.exe;2.52;vlc.exe;1.71;dwm.exe;1.41
+servidor42.LUCHT33RSTA;2025-10-04 21:51:04;37.5;8;54.7;40.6;298;527641069;527641069;208785020;288583;python.exe;5.35;chrome.exe;2.75;dwm.exe;2.24;vlc.exe;2.01;System;1.05
+servidor42.LUCHT33RSTA;2025-10-04 21:51:16;22.6;8;54.7;40.6;298;527678598;527678598;208797892;288642;python.exe;5.78;Photos.exe;5.41;dwm.exe;3.12;chrome.exe;1.95;System;0.94
+servidor42.LUCHT33RSTA;2025-10-04 21:51:29;21.6;8;54.6;40.6;298;527715043;527715103;208806501;288682;Photos.exe;6.2;python.exe;5.16;dwm.exe;2.06;chrome.exe;1.31;firefox.exe;0.76
+servidor42.LUCHT33RSTA;2025-10-04 21:51:42;26.1;8;54.7;40.6;298;527750688;527750688;208819727;288734;chrome.exe;11.24;python.exe;5.65;chrome.exe;2.89;dwm.exe;2.2;Photos.exe;1.8
+servidor42.LUCHT33RSTA;2025-10-04 21:51:54;25.7;8;55;40.6;295;527857389;527857389;208842609;288832;python.exe;5.03;chrome.exe;3.6;Photos.exe;2.74;chrome.exe;1.66;dwm.exe;1.1
+servidor42.LUCHT33RSTA;2025-10-04 21:52:07;25.5;8;55.1;40.6;296;529111917;529111917;208929852;289147;chrome.exe;24.71;python.exe;5.92;chrome.exe;3.04;chrome.exe;2.98;dwm.exe;1.94
+servidor42.LUCHT33RSTA;2025-10-04 21:52:20;25.4;8;55.4;40.6;299;530738035;530738035;209033402;289491;chrome.exe;14.5;python.exe;5.04;chrome.exe;3.9;Photos.exe;2.09;chrome.exe;1.84
+servidor42.LUCHT33RSTA;2025-10-04 21:52:33;29.9;8;56.4;40.6;299;534680422;534680422;209300145;290399;chrome.exe;16.5;python.exe;5.42;chrome.exe;3.67;chrome.exe;3.59;MemCompression;3.41
+servidor42.LUCHT33RSTA;2025-10-04 21:52:46;45.4;8;58.6;40.6;297;589916930;589916930;209998400;295611;chrome.exe;15.88;python.exe;5.91;dwm.exe;4.15;chrome.exe;3.15;chrome.exe;2.73
+servidor42.LUCHT33RSTA;2025-10-04 21:52:59;41.8;8;58.4;40.6;298;623146767;623146767;210330751;298705;chrome.exe;13.44;chrome.exe;7.95;Photos.exe;7.14;python.exe;6.45;dwm.exe;5.88
+servidor42.LUCHT33RSTA;2025-10-04 21:53:13;40.5;8;58.5;40.6;299;682014495;682014495;210924291;304043;python.exe;5.47;chrome.exe;5.46;chrome.exe;4.03;chrome.exe;3.49;dwm.exe;3.26
+servidor42.LUCHT33RSTA;2025-10-04 21:53:27;47.2;8;59.6;40.6;298;724057629;724508711;211621290;308520;chrome.exe;25.62;chrome.exe;9.49;python.exe;5.25;chrome.exe;5.05;chrome.exe;4.08
+servidor42.LUCHT33RSTA;2025-10-04 21:53:42;78.5;8;61.6;40.6;298;831519952;832035442;212630207;317994;chrome.exe;10.54;chrome.exe;8.74;chrome.exe;6.45;python.exe;5.51;dwm.exe;4
+servidor42.LUCHT33RSTA;2025-10-04 21:53:57;77.9;8;62.1;40.6;298;988536158;988536591;213951462;331187;chrome.exe;7.81;chrome.exe;6.21;python.exe;5.75;System;4.17;chrome.exe;3.12
+servidor42.LUCHT33RSTA;2025-10-04 21:54:11;64.5;8;62.1;40.6;299;1041118064;1041118064;214406938;335611;chrome.exe;9.72;chrome.exe;7.91;chrome.exe;7.35;python.exe;5.74;chrome.exe;3.42
+servidor42.LUCHT33RSTA;2025-10-04 21:54:25;46.7;8;61.9;40.6;299;1124338665;1124338665;215102484;342634;chrome.exe;9.71;chrome.exe;9.35;chrome.exe;6.64;python.exe;5.94;chrome.exe;4.11
+servidor42.LUCHT33RSTA;2025-10-04 21:54:40;63;8;62.6;40.6;303;1157422158;1157422732;215495319;345702;chrome.exe;11.03;chrome.exe;7.09;chrome.exe;6;python.exe;5.83;chrome.exe;3.83
+servidor42.LUCHT33RSTA;2025-10-04 21:54:59;95.3;8;63.9;40.6;303;1361266085;1361585601;217717033;364410;chrome.exe;16.14;chrome.exe;12.86;chrome.exe;9.24;chrome.exe;8.51;chrome.exe;6.84
+servidor42.LUCHT33RSTA;2025-10-04 21:55:17;89;8;64.5;40.6;306;1502848392;1502848392;219339855;377791;chrome.exe;8.36;chrome.exe;8.29;dwm.exe;7.05;chrome.exe;6.31;python.exe;6.15
+servidor42.LUCHT33RSTA;2025-10-04 21:55:31;56.2;8;64.7;40.6;306;1563288121;1563288121;219888478;383046;explorer.exe;7.66;chrome.exe;6.91;python.exe;6.28;chrome.exe;5.41;System;4.71
+servidor42.LUCHT33RSTA;2025-10-04 21:55:46;53.5;8;64.4;40.6;305;1645839074;1645839074;220640157;390297;chrome.exe;10.46;python.exe;6.58;chrome.exe;6.1;System;3.55;chrome.exe;3.26
+servidor42.LUCHT33RSTA;2025-10-04 21:56:00;52.6;8;56.9;40.6;302;1701057349;1701104349;221150115;395145;chrome.exe;23.71;chrome.exe;7.64;chrome.exe;5.46;python.exe;4.62;dwm.exe;4.58
+servidor42.LUCHT33RSTA;2025-10-04 21:56:13;38.2;8;58;40.6;302;1758783953;1758783953;221659912;400060;WhatsApp.exe;7.06;python.exe;5.15;chrome.exe;3.69;dwm.exe;3.16;chrome.exe;1.48
+servidor42.LUCHT33RSTA;2025-10-04 21:56:26;31.1;8;58;40.6;302;1804880275;1804880275;222059574;403957;chrome.exe;5.92;python.exe;5.74;chrome.exe;5.21;System;3.23;chrome.exe;2.7
+servidor42.LUCHT33RSTA;2025-10-04 21:56:39;16.2;8;58;40.6;302;1804908585;1804908585;222065924;404028;chrome.exe;5.6;python.exe;5.19;dwm.exe;1.64;chrome.exe;1.2;chrome.exe;0.33
+servidor42.LUCHT33RSTA;2025-10-04 21:56:51;20.8;8;57.6;40.6;300;1852278377;1852278377;222463080;407922;python.exe;5.1;chrome.exe;2.34;dwm.exe;2.21;Dell.TechHub.Instrumentation.SubAgent.exe;1.11;chrome.exe;1.1
+servidor42.LUCHT33RSTA;2025-10-04 21:57:04;29.9;8;52.9;40.6;291;1853272322;1853272406;222735149;408648;chrome.exe;5.92;chrome.exe;4.91;python.exe;4.9;dwm.exe;4.1;chrome.exe;1.96
+servidor42.LUCHT33RSTA;2025-10-04 21:57:16;41.3;8;52.4;40.6;282;1853687779;1853694844;223004292;409200;WINWORD.EXE;17;python.exe;4.64;dwm.exe;2.65;MsMpEng.exe;2.55;chrome.exe;2.55
+servidor42.LUCHT33RSTA;2025-10-04 21:57:29;34.9;8;53.4;40.6;287;1853885279;1853885279;223343637;409445;chrome.exe;4.97;python.exe;4.62;dwm.exe;1.57;chrome.exe;1.35;System;0.9
+servidor42.LUCHT33RSTA;2025-10-04 21:57:41;16.8;8;53.2;40.6;286;1853917628;1853917628;223363578;409488;python.exe;4.72;chrome.exe;4.05;dwm.exe;1.74;chrome.exe;1.5;System;0.57
+servidor42.LUCHT33RSTA;2025-10-04 21:57:54;25.6;8;53.2;40.6;286;1854169182;1854169182;223707829;409798;python.exe;5.06;chrome.exe;3.59;dwm.exe;2.59;chrome.exe;1.51;Code.exe;1.25
+servidor42.LUCHT33RSTA;2025-10-04 21:58:07;32.2;8;53.5;40.6;286;1854315480;1854315480;223835500;409996;chrome.exe;21.79;python.exe;5.09;chrome.exe;4.61;dwm.exe;4.09;chrome.exe;3.38
+servidor42.LUCHT33RSTA;2025-10-04 21:58:20;40.5;8;54.2;40.6;285;1917564971;1917564971;224523765;415732;python.exe;4.78;svchost.exe;3.19;chrome.exe;2.08;chrome.exe;2.08;dwm.exe;1.73
+servidor42.LUCHT33RSTA;2025-10-04 21:58:32;26.1;8;54.6;40.6;284;1957003448;1957003448;224878896;419163;chrome.exe;11.74;python.exe;5.6;chrome.exe;3.69;dwm.exe;2.41;chrome.exe;1.93
+servidor42.LUCHT33RSTA;2025-10-04 21:58:45;28.5;8;52.9;40.6;284;1962623984;1962624072;224961282;419714;python.exe;4.5;chrome.exe;3.62;dwm.exe;2.34;chrome.exe;0.94;svchost.exe;0.35
+servidor42.LUCHT33RSTA;2025-10-04 21:58:57;28.3;8;53.1;40.6;284;1963892828;1963892828;225043976;420024;python.exe;4.7;chrome.exe;3.11;dwm.exe;2.27;msedgewebview2.exe;1.9;chrome.exe;1.06
+servidor42.LUCHT33RSTA;2025-10-04 21:59:10;17.7;8;52.4;40.6;284;1965087538;1965087538;225095625;420318;python.exe;4.64;chrome.exe;3.85;dwm.exe;3.11;Code.exe;1.73;chrome.exe;1.61
+servidor42.LUCHT33RSTA;2025-10-04 21:59:22;27.6;8;50.9;40.6;276;1967277602;1967277602;225249682;420822;chrome.exe;17.15;python.exe;4.42;dwm.exe;3.91;chrome.exe;3.23;chrome.exe;2.6
+servidor42.LUCHT33RSTA;2025-10-04 21:59:34;18.5;8;50.6;40.6;275;1968737041;1968737041;225283597;421021;python.exe;4.42;dwm.exe;2.23;chrome.exe;1.64;chrome.exe;1.12;chrome.exe;1.11
+servidor42.LUCHT33RSTA;2025-10-04 21:59:46;14.9;8;50.7;40.6;277;1969635832;1969635832;225326564;421198;python.exe;4.56;chrome.exe;2.16;dwm.exe;1.8;chrome.exe;1.55;System;0.94
+servidor42.LUCHT33RSTA;2025-10-04 21:59:59;15.3;8;50.3;40.6;274;1971260347;1971260347;225359529;421402;python.exe;5.16;dwm.exe;3.73;chrome.exe;2.99;chrome.exe;2.91;chrome.exe;2.9
+servidor42.LUCHT33RSTA;2025-10-04 22:00:11;38.8;8;52.8;40.6;280;1973639667;1973639667;225404815;421778;python.exe;4.72;MsMpEng.exe;4.17;rsession-utf8.exe;2.41;chrome.exe;2.23;System;1.25
+servidor42.LUCHT33RSTA;2025-10-04 22:00:23;12.7;8;52.6;40.6;278;1974273771;1974273771;225418475;421867;python.exe;4;chrome.exe;2.39;dwm.exe;1.25;System;0.86;bash.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:00:35;14.8;8;52.7;40.6;278;1974282433;1974282809;225426257;421888;python.exe;4.19;WINWORD.EXE;2.84;chrome.exe;2.48;dwm.exe;1.94;System;0.25
+servidor42.LUCHT33RSTA;2025-10-04 22:00:47;13.9;8;52.9;40.6;280;1974312705;1974312705;225439676;421943;python.exe;4.04;dwm.exe;2.01;chrome.exe;2.01;System;0.38;Code.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:01:00;12;8;52.9;40.6;279;1974325143;1974325143;225446144;421992;python.exe;4.15;chrome.exe;2.84;WINWORD.EXE;2.46;dwm.exe;2.09;svchost.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:01:12;13.2;8;52.7;40.6;279;1974347545;1974347545;225464477;422072;python.exe;4.45;chrome.exe;2.29;dwm.exe;1.66;WINWORD.EXE;1.27;System;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:01:24;10.9;8;52.6;40.6;278;1974358788;1974358788;225469148;422089;python.exe;4.09;chrome.exe;2.16;dwm.exe;1.77;System;0.25;svchost.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 22:01:36;10.7;8;52.7;40.6;278;1974368440;1974368440;225484262;422138;python.exe;4.59;dwm.exe;2.08;WINWORD.EXE;1.84;chrome.exe;1.84;MsMpEng.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 22:01:48;16.9;8;53.1;40.6;277;1974403730;1974403730;225496281;422192;chrome.exe;20.98;python.exe;5.1;chrome.exe;3.76;dwm.exe;2.1;System;0.8
+servidor42.LUCHT33RSTA;2025-10-04 22:02:01;29.3;8;53.3;40.6;277;1977549387;1977549387;225641809;422716;chrome.exe;7.04;python.exe;4.85;dwm.exe;2.73;chrome.exe;2.02;System;1.9
+servidor42.LUCHT33RSTA;2025-10-04 22:02:14;28.4;8;53.4;40.6;276;1981636772;1981636772;225730763;423160;chrome.exe;20.41;python.exe;5.15;chrome.exe;4.34;dwm.exe;3.34;chrome.exe;1.82
+servidor42.LUCHT33RSTA;2025-10-04 22:02:26;19.9;8;53.3;40.6;276;1981675480;1981675480;225759092;423213;chrome.exe;5.96;python.exe;4.67;dwm.exe;2.39;chrome.exe;1.09;svchost.exe;0.36
+servidor42.LUCHT33RSTA;2025-10-04 22:02:38;25.5;8;53.7;40.6;277;1984033703;1984033703;225898996;423655;chrome.exe;4.04;python.exe;3.99;dwm.exe;1.65;chrome.exe;0.64;svchost.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:02:50;14.8;8;53.8;40.6;277;1985246569;1985246569;225972530;423896;chrome.exe;4.3;python.exe;4.14;dwm.exe;1.52;System;0.62;audiodg.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:03:02;16.1;8;53.7;40.6;277;1987249149;1987249149;226009106;424135;chrome.exe;4.96;python.exe;4.38;dwm.exe;2.08;chrome.exe;1.14;bash.exe;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:03:15;19.9;8;53;40.6;277;1988909874;1988909874;226078090;424434;chrome.exe;5.19;python.exe;4.41;MemCompression;3.66;dwm.exe;1.55;System;0.96
+servidor42.LUCHT33RSTA;2025-10-04 22:03:27;22.9;8;53.6;40.6;277;1990203430;1990203430;226116290;424636;chrome.exe;12.72;python.exe;4.81;dwm.exe;3.27;chrome.exe;2.16;chrome.exe;1.98
+servidor42.LUCHT33RSTA;2025-10-04 22:03:39;15.6;8;53.4;40.6;276;1991664314;1991664314;226174559;424835;python.exe;4.34;WINWORD.EXE;2.21;chrome.exe;2.21;dwm.exe;1.96;chrome.exe;0.74
+servidor42.LUCHT33RSTA;2025-10-04 22:03:52;24.7;8;53.5;40.6;276;1992935044;1992935044;226205006;425014;python.exe;4.86;dwm.exe;2.25;WINWORD.EXE;1.9;chrome.exe;1.06;chrome.exe;0.95
+servidor42.LUCHT33RSTA;2025-10-04 22:04:06;53.8;8;55.7;40.6;286;1993457021;1993457107;226465127;425949;Spotify.exe;11.22;Spotify.exe;7.61;MsMpEng.exe;7.24;dwm.exe;6.61;python.exe;4.8
+servidor42.LUCHT33RSTA;2025-10-04 22:04:18;35;8;56.1;40.6;286;1998056559;1998056559;226831623;427485;python.exe;4.74;WINWORD.EXE;2.49;dwm.exe;2.01;chrome.exe;1.07;chrome.exe;0.71
+servidor42.LUCHT33RSTA;2025-10-04 22:04:31;13.2;8;56.1;40.6;286;1998072863;1998072863;226860781;427586;chrome.exe;5.21;python.exe;4.59;dwm.exe;2.31;WINWORD.EXE;1.74;chrome.exe;0.81
+servidor42.LUCHT33RSTA;2025-10-04 22:04:43;14;8;55.8;40.6;285;1998102485;1998102485;226889488;427689;python.exe;4.61;dwm.exe;2.01;chrome.exe;1.54;chrome.exe;1.09;MsMpEng.exe;0.47
+servidor42.LUCHT33RSTA;2025-10-04 22:04:55;13.6;8;55.8;40.6;286;1998133758;1998133758;226922533;427832;python.exe;4.64;chrome.exe;3.26;dwm.exe;2.33;chrome.exe;1.4;svchost.exe;0.7
+servidor42.LUCHT33RSTA;2025-10-04 22:05:07;12.1;8;55.7;40.6;284;1998172508;1998172508;226952982;427959;python.exe;4.72;dwm.exe;2.64;chrome.exe;1.69;chrome.exe;1.31;System;0.94
+servidor42.LUCHT33RSTA;2025-10-04 22:05:20;12.4;8;55.7;40.6;284;1998201814;1998201814;226987027;428076;python.exe;4.53;chrome.exe;2.54;dwm.exe;1.93;chrome.exe;0.96;System;0.82
+servidor42.LUCHT33RSTA;2025-10-04 22:05:32;14.9;8;55.8;40.6;284;1998224440;1998224956;227019748;428146;python.exe;5.44;dwm.exe;4;explorer.exe;3.51;chrome.exe;2.29;chrome.exe;1.02
+servidor42.LUCHT33RSTA;2025-10-04 22:05:44;23.4;8;57.1;40.6;290;1998282259;1998282259;227056713;428256;python.exe;4.71;dwm.exe;3.25;chrome.exe;2.76;chrome.exe;1.81;chrome.exe;1.32
+servidor42.LUCHT33RSTA;2025-10-04 22:05:57;23.1;8;57.9;40.6;293;1998297951;1998297951;227081271;428314;VirtualBoxVM.exe;13.39;python.exe;4.75;chrome.exe;2.91;dwm.exe;1.21;System;0.47
+servidor42.LUCHT33RSTA;2025-10-04 22:06:09;25.8;8;59.6;40.6;293;1998327282;1998327282;227139216;428420;VirtualBoxVM.exe;13.66;python.exe;4.88;chrome.exe;2.05;MemCompression;2;dwm.exe;1.44
+servidor42.LUCHT33RSTA;2025-10-04 22:06:21;25.7;8;61.6;40.6;293;1998358462;1998358462;227187558;428544;VirtualBoxVM.exe;14.44;python.exe;5.26;dwm.exe;2.73;WINWORD.EXE;1.31;chrome.exe;1.1
+servidor42.LUCHT33RSTA;2025-10-04 22:06:34;25;8;63.3;40.6;293;1998394769;1998394982;227249486;428682;VirtualBoxVM.exe;13.44;python.exe;4.85;chrome.exe;2.71;WINWORD.EXE;2;dwm.exe;1.3
+servidor42.LUCHT33RSTA;2025-10-04 22:06:46;25.3;8;64.3;40.6;291;1998747979;1998747979;227288614;428783;VirtualBoxVM.exe;11.26;python.exe;4.45;chrome.exe;2.9;dwm.exe;2.4;csrss.exe;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:06:58;24.6;8;65.2;40.6;291;1998766269;1998766269;227294586;428813;VirtualBoxVM.exe;12.46;python.exe;4.71;chrome.exe;3.09;dwm.exe;2.61;Code.exe;2.05
+servidor42.LUCHT33RSTA;2025-10-04 22:07:11;42.5;8;66.2;40.6;290;1999933814;1999933814;227499630;429462;chrome.exe;11.84;VirtualBoxVM.exe;9.36;python.exe;5.62;dwm.exe;2.44;chrome.exe;1.57
+servidor42.LUCHT33RSTA;2025-10-04 22:07:23;31.2;8;66.1;40.6;290;2005764474;2005764474;227713429;430385;chrome.exe;18.93;VirtualBoxVM.exe;7.88;python.exe;4.17;WINWORD.EXE;3.11;dwm.exe;1.85
+servidor42.LUCHT33RSTA;2025-10-04 22:07:36;28.3;8;65.3;40.6;290;2005808345;2005808345;227770877;430501;VirtualBoxVM.exe;9.32;chrome.exe;4.75;python.exe;4.54;WINWORD.EXE;1.94;dwm.exe;1.7
+servidor42.LUCHT33RSTA;2025-10-04 22:07:48;27.4;8;65.5;40.6;290;2005849291;2005849291;227882675;430677;chrome.exe;14.89;VirtualBoxVM.exe;8.6;python.exe;4.8;dwm.exe;1.75;chrome.exe;1.5
+servidor42.LUCHT33RSTA;2025-10-04 22:08:00;18.8;8;65.4;40.6;291;2006684598;2006684598;227908840;430842;VirtualBoxVM.exe;9.44;python.exe;4.47;chrome.exe;0.96;dwm.exe;0.95;svchost.exe;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:08:12;19;8;65.1;40.6;291;2007820002;2007820002;227944789;431059;VirtualBoxVM.exe;9.03;python.exe;4.29;dwm.exe;1.59;chrome.exe;1.57;chrome.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:08:24;24.2;8;64.2;40.6;291;2008714698;2008714698;227991530;431247;VirtualBoxVM.exe;8.09;python.exe;4.4;chrome.exe;3.15;dwm.exe;1.2;chrome.exe;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:08:37;18.7;8;64.2;40.6;291;2009383423;2009383423;228050301;431389;VirtualBoxVM.exe;7.3;python.exe;4.78;chrome.exe;3.36;WINWORD.EXE;3.23;dwm.exe;1.8
+servidor42.LUCHT33RSTA;2025-10-04 22:08:49;18;8;64.2;40.6;291;2010429766;2010429766;228124269;431592;VirtualBoxVM.exe;8.24;python.exe;4.38;chrome.exe;1.85;dwm.exe;1.48;chrome.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:09:01;22.5;8;64.2;40.6;290;2011132116;2011132584;228199223;431767;VirtualBoxVM.exe;6.81;python.exe;4.34;chrome.exe;1.71;dwm.exe;1.34;chrome.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:09:13;16.4;8;64.1;40.6;290;2011163997;2011163997;228230505;431880;VirtualBoxVM.exe;7.53;python.exe;4.29;chrome.exe;2.85;dwm.exe;1.49;chrome.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:09:25;24.3;8;64.1;40.6;290;2011255633;2011255633;228266487;431947;VirtualBoxVM.exe;9.43;python.exe;4.05;dwm.exe;2.44;chrome.exe;2.21;Code.exe;1.29
+servidor42.LUCHT33RSTA;2025-10-04 22:09:38;34.3;8;64.5;40.6;292;2011361002;2011361002;228300428;432048;VirtualBoxVM.exe;8.64;python.exe;4.33;dwm.exe;2.52;explorer.exe;1.45;chrome.exe;1.21
+servidor42.LUCHT33RSTA;2025-10-04 22:09:50;20.8;8;64.5;40.6;292;2011400990;2011400990;228307202;432100;VirtualBoxVM.exe;7.72;python.exe;5;explorer.exe;3.17;dwm.exe;1.25;bash.exe;0.56
+servidor42.LUCHT33RSTA;2025-10-04 22:10:03;25.2;8;65.8;40.6;293;2011417673;2011417673;228314308;432134;VirtualBoxVM.exe;7.46;python.exe;5.74;dwm.exe;3.84;vlc.exe;1.98;System;0.8
+servidor42.LUCHT33RSTA;2025-10-04 22:10:15;18.9;8;65.8;40.6;297;2011444695;2011444695;228330511;432204;VirtualBoxVM.exe;7.8;python.exe;4.95;explorer.exe;0.91;dwm.exe;0.79;chrome.exe;0.55
+servidor42.LUCHT33RSTA;2025-10-04 22:10:28;21.9;8;65.9;40.6;291;2011467463;2011467627;228334981;432232;VirtualBoxVM.exe;6.7;python.exe;4.95;dwm.exe;1.39;System;0.35;Code.exe;0.35
+servidor42.LUCHT33RSTA;2025-10-04 22:10:40;28.3;8;66.1;40.6;292;2013331331;2013331331;228469233;432689;VirtualBoxVM.exe;6.96;python.exe;5.29;explorer.exe;2.12;dwm.exe;1.8;chrome.exe;1.11
+servidor42.LUCHT33RSTA;2025-10-04 22:10:53;38.5;8;66.2;40.6;295;2016318118;2016318333;228592638;433153;chrome.exe;12.76;VirtualBoxVM.exe;9.75;python.exe;4.84;dwm.exe;4.58;chrome.exe;2.75
+servidor42.LUCHT33RSTA;2025-10-04 22:11:06;41.6;8;67;40.6;295;2018751930;2018751930;228706641;433585;VirtualBoxVM.exe;8.39;python.exe;5.08;chrome.exe;2.27;dwm.exe;1.82;services.exe;1.05
+servidor42.LUCHT33RSTA;2025-10-04 22:11:18;22.8;8;66.8;40.6;295;2019984025;2019984025;228757277;433824;VirtualBoxVM.exe;7.35;python.exe;5.11;chrome.exe;3.71;dwm.exe;1.6;chrome.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:11:32;34.5;8;67.2;40.6;296;2021888440;2021888440;228796170;434094;VirtualBoxVM.exe;9.86;python.exe;5.53;chrome.exe;4.6;chrome.exe;4.38;dwm.exe;4.16
+servidor42.LUCHT33RSTA;2025-10-04 22:11:44;27.2;8;66.9;40.6;295;2070745378;2070745378;228949818;435884;VirtualBoxVM.exe;16.16;python.exe;5.03;dwm.exe;2.34;System;2.12;explorer.exe;1.46
+servidor42.LUCHT33RSTA;2025-10-04 22:11:57;29.6;8;67.8;40.6;294;2072198504;2072198504;228989473;436136;VirtualBoxVM.exe;12.6;python.exe;5.34;dwm.exe;1.68;explorer.exe;1.23;System;0.66
+servidor42.LUCHT33RSTA;2025-10-04 22:12:09;25;8;68.6;40.6;294;2096744003;2096744003;229080484;437215;VirtualBoxVM.exe;11.64;python.exe;4.85;chrome.exe;1.93;dwm.exe;0.79;MsMpEng.exe;0.56
+servidor42.LUCHT33RSTA;2025-10-04 22:12:22;16.7;8;68.5;40.6;294;2097476543;2097476543;229104310;437353;VirtualBoxVM.exe;7.42;python.exe;4.88;dwm.exe;0.46;vlc.exe;0.46;logi_lamparray_service.exe;0.35
+servidor42.LUCHT33RSTA;2025-10-04 22:12:35;37.4;8;70.7;40.6;293;2106652489;2106652489;229536744;438931;chrome.exe;16.96;VirtualBoxVM.exe;8.75;python.exe;6.11;chrome.exe;3.9;dwm.exe;3.67
+servidor42.LUCHT33RSTA;2025-10-04 22:12:48;43.3;8;71.3;40.6;293;2116641056;2116734080;229702952;439974;chrome.exe;9.14;VirtualBoxVM.exe;8.46;python.exe;5.4;dwm.exe;3.77;chrome.exe;2.77
+servidor42.LUCHT33RSTA;2025-10-04 22:13:01;48.4;8;72.4;40.6;293;2120818707;2120818707;229891329;440695;chrome.exe;11.24;explorer.exe;10.19;VirtualBoxVM.exe;8.11;python.exe;5.33;chrome.exe;4.72
+servidor42.LUCHT33RSTA;2025-10-04 22:13:15;64.5;8;73.6;40.6;293;2159248159;2159248159;230625355;444900;chrome.exe;36.1;VirtualBoxVM.exe;7.38;python.exe;5.11;chrome.exe;4.11;chrome.exe;3.15
+servidor42.LUCHT33RSTA;2025-10-04 22:13:38;98.4;8;79.7;40.6;294;2229926380;2229926380;231289109;451057;chrome.exe;65.67;dwm.exe;5.76;chrome.exe;5.51;chrome.exe;3.31;python.exe;2.71
+servidor42.LUCHT33RSTA;2025-10-04 22:14:11;100;8;73.3;40.6;293;2327649978;2327649978;232438885;460229;chrome.exe;32.24;VirtualBoxVM.exe;7.06;dwm.exe;4.19;chrome.exe;4.12;System;3.75
+servidor42.LUCHT33RSTA;2025-10-04 22:14:24;39.7;8;67.6;40.6;291;2329614286;2329614871;232563197;460761;VirtualBoxVM.exe;6.53;python.exe;5.05;chrome.exe;3.88;vlc.exe;1.4;dwm.exe;1
+servidor42.LUCHT33RSTA;2025-10-04 22:14:37;44.4;8;66.1;40.6;291;2330447663;2330447663;232741617;461295;VirtualBoxVM.exe;9.43;Spotify.exe;8.22;python.exe;5.75;Spotify.exe;3.83;dwm.exe;3.76
+servidor42.LUCHT33RSTA;2025-10-04 22:14:50;36;8;65.9;40.6;290;2330665570;2330665570;232814795;461556;VirtualBoxVM.exe;8.24;Spotify.exe;7.1;python.exe;5.61;Spotify.exe;3.94;dwm.exe;3.49
+servidor42.LUCHT33RSTA;2025-10-04 22:15:03;32.5;8;64;40.6;293;2334599292;2334599292;233047223;462338;VirtualBoxVM.exe;7.9;python.exe;5.83;Spotify.exe;4.92;Spotify.exe;3.77;dwm.exe;3.42
+servidor42.LUCHT33RSTA;2025-10-04 22:15:15;30.9;8;64.2;40.6;287;2336664673;2336664673;233161751;462755;VirtualBoxVM.exe;7.83;python.exe;5.59;Spotify.exe;3.76;Spotify.exe;3.58;dwm.exe;2.86
+servidor42.LUCHT33RSTA;2025-10-04 22:15:28;38.9;8;64.3;40.6;287;2341022113;2341022113;233245579;463183;VirtualBoxVM.exe;8.38;python.exe;5.06;Spotify.exe;3.76;dwm.exe;3.09;Spotify.exe;1.9
+servidor42.LUCHT33RSTA;2025-10-04 22:15:40;28.9;8;64.3;40.6;287;2343917582;2343959120;233320820;463472;VirtualBoxVM.exe;8.09;Spotify.exe;5.41;python.exe;5.26;dwm.exe;2.46;Spotify.exe;1.79
+servidor42.LUCHT33RSTA;2025-10-04 22:15:53;29.8;8;64.8;40.6;290;2344543613;2344543613;233384705;463666;VirtualBoxVM.exe;7.54;python.exe;5.62;Spotify.exe;3.74;dwm.exe;1.88;Spotify.exe;1.04
+servidor42.LUCHT33RSTA;2025-10-04 22:16:06;45;8;65.1;40.6;293;2344598341;2344598341;233412952;463787;Spotify.exe;10.97;VirtualBoxVM.exe;10.94;python.exe;6.05;Spotify.exe;5.28;dwm.exe;3.75
+servidor42.LUCHT33RSTA;2025-10-04 22:16:19;31.2;8;65.3;40.6;292;2348976598;2348976598;233505182;464188;VirtualBoxVM.exe;12.51;Spotify.exe;9.01;Spotify.exe;8.97;python.exe;5.03;dwm.exe;2.45
+servidor42.LUCHT33RSTA;2025-10-04 22:16:31;30.1;8;64.8;40.6;292;2348988197;2348988197;233526484;464237;VirtualBoxVM.exe;13.39;python.exe;4.86;dwm.exe;3.29;Spotify.exe;1.27;Spotify.exe;1.25
+servidor42.LUCHT33RSTA;2025-10-04 22:16:44;27;8;65.1;40.6;292;2349021068;2349021068;233537092;464272;VirtualBoxVM.exe;13.97;python.exe;5.38;dwm.exe;3.21;Spotify.exe;1.43;Spotify.exe;1.35
+servidor42.LUCHT33RSTA;2025-10-04 22:16:56;26.9;8;64.9;40.6;291;2349144556;2349144556;233588166;464365;VirtualBoxVM.exe;13.55;python.exe;4.8;dwm.exe;1.62;csrss.exe;0.57;WINWORD.EXE;0.57
+servidor42.LUCHT33RSTA;2025-10-04 22:17:09;23;8;64.8;40.6;292;2349166332;2349166332;233609947;464447;VirtualBoxVM.exe;12.91;python.exe;5.2;dwm.exe;1.91;WINWORD.EXE;1.91;bash.exe;0.56
+servidor42.LUCHT33RSTA;2025-10-04 22:17:21;24.1;8;64.6;40.6;289;2349195707;2349195707;233670743;464587;VirtualBoxVM.exe;14.25;python.exe;4.89;dwm.exe;1.89;WINWORD.EXE;1.89;System;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:17:34;34.8;8;63.4;40.6;290;2349227090;2349227090;233732850;464688;explorer.exe;21;VirtualBoxVM.exe;14.11;dwm.exe;6.56;python.exe;5.29;WINWORD.EXE;3.85
+servidor42.LUCHT33RSTA;2025-10-04 22:17:46;19;8;51.5;40.6;285;2349267125;2349267125;233762493;464780;python.exe;4.19;WINWORD.EXE;1.26;System;0.75;svchost.exe;0.25;rsession-utf8.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 22:17:59;16.1;8;51.6;40.6;286;2349303239;2349303239;233839485;464887;python.exe;4.19;svchost.exe;1.07;svchost.exe;0.96;dwm.exe;0.86;WINWORD.EXE;0.86
+servidor42.LUCHT33RSTA;2025-10-04 22:18:11;10.3;8;51.5;40.6;286;2349347962;2349347962;233971686;465038;python.exe;4.33;dwm.exe;0.88;MsMpEng.exe;0.75;Spotify.exe;0.75;svchost.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:18:23;11.2;8;51.4;40.6;285;2349410980;2349410980;233992993;465129;Spotify.exe;5.1;python.exe;4.5;WINWORD.EXE;1.1;Code.exe;0.85;dwm.exe;0.72
+servidor42.LUCHT33RSTA;2025-10-04 22:18:35;10.5;8;51.4;40.6;285;2349534167;2349534167;234016275;465240;python.exe;4.06;WINWORD.EXE;3.1;dwm.exe;0.99;Spotify.exe;0.99;explorer.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:18:47;13.7;8;51.8;40.6;287;2349611949;2349611949;234040465;465310;python.exe;4.1;MsMpEng.exe;1.46;dwm.exe;0.97;FileCoAuth.exe;0.85;StartMenuExperienceHost.exe;0.71
+servidor42.LUCHT33RSTA;2025-10-04 22:18:59;25.5;8;53.1;40.6;290;2349685306;2349685306;234105349;465498;python.exe;4.8;WindowsCamera.exe;4.78;svchost.exe;2.35;MsMpEng.exe;1.38;RuntimeBroker.exe;1.35
+servidor42.LUCHT33RSTA;2025-10-04 22:19:12;22.9;8;53.6;40.6;291;2349713563;2349713563;234112058;465549;python.exe;5.53;WindowsCamera.exe;4.81;dwm.exe;3.46;svchost.exe;3.08;svchost.exe;1.73
+servidor42.LUCHT33RSTA;2025-10-04 22:19:24;17.1;8;54;40.6;291;2349749623;2349749623;234147524;465669;python.exe;4.66;Spotify.exe;4.4;svchost.exe;2.54;WindowsCamera.exe;2.36;dwm.exe;1.8
+servidor42.LUCHT33RSTA;2025-10-04 22:19:37;18.6;8;54.5;40.6;291;2357775736;2357776576;234241457;466312;python.exe;5.49;dwm.exe;4.99;WindowsCamera.exe;4.49;explorer.exe;2.52;ApplicationFrameHost.exe;1.7
+servidor42.LUCHT33RSTA;2025-10-04 22:19:50;22.4;8;55;40.6;291;2357805700;2357805700;234256997;466419;python.exe;5.15;WindowsCamera.exe;2.77;dwm.exe;2.67;audiodg.exe;2.02;Spotify.exe;1.61
+servidor42.LUCHT33RSTA;2025-10-04 22:20:02;21.6;8;53.7;40.6;291;2357840124;2357840124;234284644;466509;python.exe;5;dwm.exe;2.86;explorer.exe;1.77;WindowsCamera.exe;1.76;audiodg.exe;1.76
+servidor42.LUCHT33RSTA;2025-10-04 22:20:15;16.1;8;53.5;40.6;291;2357904974;2357904974;234337840;466660;python.exe;4.91;WindowsCamera.exe;2.06;audiodg.exe;1.26;System;1.14;WINWORD.EXE;0.8
+servidor42.LUCHT33RSTA;2025-10-04 22:20:27;12.5;8;53.4;40.6;291;2357934583;2357934583;234409670;466758;python.exe;4.99;WINWORD.EXE;1.73;audiodg.exe;1.73;WindowsCamera.exe;1.26;System;0.9
+servidor42.LUCHT33RSTA;2025-10-04 22:20:39;13;8;53.4;40.6;291;2357967149;2357967149;234535254;466872;python.exe;4.85;WindowsCamera.exe;2.16;WINWORD.EXE;2.16;audiodg.exe;1.14;dwm.exe;0.91
+servidor42.LUCHT33RSTA;2025-10-04 22:20:52;15.6;8;53.8;40.6;294;2358066014;2358066014;234865507;467262;python.exe;4.99;WindowsCamera.exe;1.6;WINWORD.EXE;1.49;audiodg.exe;1.38;dwm.exe;1.02
+servidor42.LUCHT33RSTA;2025-10-04 22:21:04;17.8;8;53.7;40.6;293;2358093670;2358093670;234875043;467314;python.exe;4.69;Spotify.exe;2.39;WindowsCamera.exe;1.76;audiodg.exe;1.66;Code.exe;1.45
+servidor42.LUCHT33RSTA;2025-10-04 22:21:17;18.5;8;53.8;40.6;293;2358115719;2358115719;234894567;467415;python.exe;5.34;WINWORD.EXE;3.4;dwm.exe;2.2;audiodg.exe;1.48;WindowsCamera.exe;1.1
+servidor42.LUCHT33RSTA;2025-10-04 22:21:29;13.3;8;53.6;40.6;293;2358134255;2358134255;234899480;467450;python.exe;4.86;WindowsCamera.exe;1.75;audiodg.exe;1.18;svchost.exe;0.82;dwm.exe;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:21:42;12.5;8;53.6;40.6;293;2358158563;2358158563;234911237;467507;python.exe;4.94;WINWORD.EXE;2.17;WindowsCamera.exe;2.16;audiodg.exe;1.26;Spotify.exe;0.91
+servidor42.LUCHT33RSTA;2025-10-04 22:21:54;11.8;8;53.4;40.6;291;2358175732;2358175732;234937484;467568;python.exe;4.79;WindowsCamera.exe;2.1;audiodg.exe;1.52;dwm.exe;0.59;System;0.46
+servidor42.LUCHT33RSTA;2025-10-04 22:22:06;14.3;8;53.7;40.6;289;2358211506;2358211506;234972761;467652;python.exe;4.96;services.exe;2.23;WindowsCamera.exe;2.08;audiodg.exe;1.39;Code.exe;1.14
+servidor42.LUCHT33RSTA;2025-10-04 22:22:19;13.3;8;53.1;40.6;287;2358237029;2358237029;234977475;467683;python.exe;4.74;Code.exe;1.49;audiodg.exe;1.49;WindowsCamera.exe;1.38;System;1.27
+servidor42.LUCHT33RSTA;2025-10-04 22:22:31;13.9;8;53.1;40.6;287;2358250903;2358250903;234983839;467729;python.exe;4.71;WindowsCamera.exe;2.38;dwm.exe;1.24;audiodg.exe;1.24;System;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:22:44;13.2;8;53;40.6;287;2358272133;2358272133;234987705;467752;python.exe;4.9;WINWORD.EXE;2.35;WindowsCamera.exe;2.25;dwm.exe;1.69;audiodg.exe;1.57
+servidor42.LUCHT33RSTA;2025-10-04 22:22:56;14;8;53.1;40.6;287;2358286410;2358286410;234993413;467797;python.exe;4.85;Spotify.exe;3.71;WINWORD.EXE;2.19;WindowsCamera.exe;2.09;dwm.exe;1.54
+servidor42.LUCHT33RSTA;2025-10-04 22:23:09;16.5;8;53.1;40.6;287;2364251580;2364251580;235104375;468443;python.exe;5.16;WindowsCamera.exe;3.35;WINWORD.EXE;2.45;dwm.exe;1.5;audiodg.exe;1.16
+servidor42.LUCHT33RSTA;2025-10-04 22:23:21;26.8;8;53.9;40.6;287;2364416431;2364416431;235157579;468685;Spotify.exe;16.35;python.exe;5.96;dwm.exe;4.49;Spotify.exe;3.21;WindowsCamera.exe;2.66
+servidor42.LUCHT33RSTA;2025-10-04 22:23:34;21.4;8;53.1;40.6;288;2364516209;2364516209;235210751;468796;python.exe;4.56;WindowsCamera.exe;2.2;System;1.65;WINWORD.EXE;0.93;audiodg.exe;0.93
+servidor42.LUCHT33RSTA;2025-10-04 22:23:46;12;8;53.1;40.6;288;2364528169;2364528169;235221597;468838;python.exe;4.61;WindowsCamera.exe;2.31;audiodg.exe;1.64;System;0.93;dwm.exe;0.81
+servidor42.LUCHT33RSTA;2025-10-04 22:23:59;12.1;8;53.1;40.6;288;2364558841;2364558841;235243795;468897;python.exe;4.86;WindowsCamera.exe;2.58;WINWORD.EXE;1.64;audiodg.exe;1.29;System;0.69
+servidor42.LUCHT33RSTA;2025-10-04 22:24:11;13.4;8;53.1;40.6;288;2364619213;2364619500;235318689;469033;python.exe;4.97;WindowsCamera.exe;2.45;WINWORD.EXE;2.23;audiodg.exe;1.4;dwm.exe;1.29
+servidor42.LUCHT33RSTA;2025-10-04 22:24:23;13.3;8;52.9;40.6;287;2364686267;2364686267;235357208;469098;python.exe;4.69;WindowsCamera.exe;2.49;audiodg.exe;1.43;svchost.exe;0.71;System;0.7
+servidor42.LUCHT33RSTA;2025-10-04 22:24:36;11.3;8;52.9;40.6;287;2364721765;2364721765;235377955;469173;python.exe;4.76;WindowsCamera.exe;1.65;audiodg.exe;1.41;dwm.exe;0.82;svchost.exe;0.82
+servidor42.LUCHT33RSTA;2025-10-04 22:24:48;12.8;8;52.9;40.6;287;2364739690;2364739690;235432993;469237;python.exe;4.38;WindowsCamera.exe;2.73;audiodg.exe;1.66;dwm.exe;0.71;WINWORD.EXE;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:25:00;12.5;8;52.9;40.6;286;2364761228;2364761228;235490729;469309;python.exe;4.49;WindowsCamera.exe;2.98;audiodg.exe;1.79;System;0.59;svchost.exe;0.47
+servidor42.LUCHT33RSTA;2025-10-04 22:25:12;13;8;52.9;40.6;286;2364795023;2364795023;235517281;469381;python.exe;4.5;WindowsCamera.exe;1.9;audiodg.exe;1.31;Spotify.exe;0.95;svchost.exe;0.71
+servidor42.LUCHT33RSTA;2025-10-04 22:25:25;13.2;8;53;40.6;286;2364806823;2364807190;235547742;469458;python.exe;4.74;WindowsCamera.exe;3.6;audiodg.exe;1.39;WINWORD.EXE;1.15;dwm.exe;0.7
+servidor42.LUCHT33RSTA;2025-10-04 22:25:37;11.7;8;52.9;40.6;286;2364830020;2364830605;235596983;469519;python.exe;4.34;WindowsCamera.exe;1.65;dwm.exe;1.41;svchost.exe;1.18;audiodg.exe;1.18
+servidor42.LUCHT33RSTA;2025-10-04 22:25:49;14.1;8;53.3;40.6;289;2364879299;2364879299;235703188;469625;python.exe;4.64;WINWORD.EXE;2.29;WindowsCamera.exe;2.17;dwm.exe;1.49;audiodg.exe;1.26
+servidor42.LUCHT33RSTA;2025-10-04 22:26:02;15.9;8;53.5;40.6;288;2364896804;2364896804;235744770;469680;python.exe;5.01;WindowsCamera.exe;1.88;Code.exe;1.73;audiodg.exe;1.62;dwm.exe;0.94
+servidor42.LUCHT33RSTA;2025-10-04 22:26:14;16.5;8;53.2;40.6;288;2364920362;2364920362;235768886;469726;python.exe;4.86;WINWORD.EXE;2.6;WindowsCamera.exe;2.49;audiodg.exe;1.36;chrome.exe;1.14
+servidor42.LUCHT33RSTA;2025-10-04 22:26:26;13.5;8;53.3;40.6;288;2364971258;2364971258;235956229;469997;python.exe;4.91;WindowsCamera.exe;2.24;audiodg.exe;1.54;Spotify.exe;1.19;svchost.exe;1.15
+servidor42.LUCHT33RSTA;2025-10-04 22:26:39;13.5;8;53.3;40.6;288;2365021791;2365022078;236129553;470193;python.exe;4.79;WINWORD.EXE;2.29;WindowsCamera.exe;1.27;audiodg.exe;1.04;dwm.exe;0.81
+servidor42.LUCHT33RSTA;2025-10-04 22:26:51;12.6;8;53.2;40.6;287;2365050557;2365050557;236249964;470294;python.exe;4.99;WindowsCamera.exe;2.1;dwm.exe;1.51;WINWORD.EXE;1.4;audiodg.exe;1.27
+servidor42.LUCHT33RSTA;2025-10-04 22:27:03;11.8;8;53.2;40.6;287;2365077748;2365077748;236338213;470359;python.exe;4.51;audiodg.exe;2.39;WindowsCamera.exe;1.2;svchost.exe;0.71;dwm.exe;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:27:16;12.6;8;53;40.6;285;2365100455;2365100455;236425664;470451;python.exe;4.83;WINWORD.EXE;3.24;audiodg.exe;1.74;WindowsCamera.exe;1.39;dwm.exe;1.04
+servidor42.LUCHT33RSTA;2025-10-04 22:27:28;13.3;8;52.9;40.6;285;2365127234;2365127234;236633418;470606;python.exe;4.69;WINWORD.EXE;2.24;WindowsCamera.exe;2;audiodg.exe;1.18;dwm.exe;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:27:40;10.8;8;52.9;40.6;285;2365160284;2365160284;236810098;470695;python.exe;4.58;WindowsCamera.exe;1.54;WINWORD.EXE;1.4;audiodg.exe;1.29;System;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:27:53;19;8;53;40.6;285;2365187303;2365187303;236981285;470785;python.exe;4.62;WINWORD.EXE;2.96;WindowsCamera.exe;2.84;audiodg.exe;1.3;dwm.exe;1.06
+servidor42.LUCHT33RSTA;2025-10-04 22:28:05;13.7;8;53;40.6;285;2365211967;2365211967;237113645;470891;python.exe;4.71;WindowsCamera.exe;2.79;WINWORD.EXE;2.65;audiodg.exe;1.85;System;1.4
+servidor42.LUCHT33RSTA;2025-10-04 22:28:17;13.5;8;53;40.6;285;2365252962;2365252962;237368717;471008;python.exe;4.72;WindowsCamera.exe;1.79;WINWORD.EXE;1.31;audiodg.exe;1.31;svchost.exe;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:28:30;13.2;8;53;40.6;285;2365266043;2365266043;237385043;471039;WINWORD.EXE;5.38;python.exe;4.78;WindowsCamera.exe;2.67;audiodg.exe;1.79;dwm.exe;1.11
+servidor42.LUCHT33RSTA;2025-10-04 22:28:42;17.2;8;53.1;40.6;285;2365349678;2365349678;237395215;471094;WINWORD.EXE;5.91;python.exe;4.58;WindowsCamera.exe;2.09;dwm.exe;1.98;audiodg.exe;1.4
+servidor42.LUCHT33RSTA;2025-10-04 22:28:54;17.2;8;53.1;40.6;285;2365372503;2365372503;237401722;471150;python.exe;4.96;WINWORD.EXE;2.24;dwm.exe;2.23;WindowsCamera.exe;2.12;audiodg.exe;1.12
+servidor42.LUCHT33RSTA;2025-10-04 22:29:07;15.2;8;53;40.6;285;2365395188;2365395188;237417044;471237;python.exe;4.55;services.exe;1.79;WindowsCamera.exe;1.09;audiodg.exe;0.96;System;0.84
+servidor42.LUCHT33RSTA;2025-10-04 22:29:19;14.2;8;51.1;40.6;285;2365426419;2365426419;237430174;471295;python.exe;5.15;WINWORD.EXE;3.11;WindowsCamera.exe;2.06;dwm.exe;1.49;audiodg.exe;1.15
+servidor42.LUCHT33RSTA;2025-10-04 22:29:31;12;8;51.1;40.6;285;2365449475;2365449475;237442649;471341;python.exe;4.8;WindowsCamera.exe;1.77;System;1.4;audiodg.exe;1.2;Spotify.exe;0.72
+servidor42.LUCHT33RSTA;2025-10-04 22:29:44;15.7;8;51.3;40.6;284;2365463318;2365463318;237449896;471380;python.exe;5.7;audiodg.exe;2.29;WindowsCamera.exe;2.2;svchost.exe;0.89;Spotify.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:29:57;14;8;51.3;40.6;284;2365488439;2365488439;237454371;471407;python.exe;6.05;WindowsCamera.exe;2.73;audiodg.exe;2.24;svchost.exe;0.78;dwm.exe;0.59
+servidor42.LUCHT33RSTA;2025-10-04 22:30:09;16;8;51.4;40.6;284;2365564325;2365564325;237510328;471614;python.exe;4.86;Spotify.exe;4.65;WindowsCamera.exe;2.15;svchost.exe;1.49;audiodg.exe;1.44
+servidor42.LUCHT33RSTA;2025-10-04 22:30:22;15.9;8;51.6;40.6;284;2365604252;2365604252;237550478;471696;python.exe;5;WindowsCamera.exe;1.94;audiodg.exe;1.16;System;1.02;Code.exe;1.01
+servidor42.LUCHT33RSTA;2025-10-04 22:30:34;17.2;8;51.7;40.6;284;2365633489;2365633489;237561698;471738;python.exe;5.2;dwm.exe;2.9;WindowsCamera.exe;2.34;explorer.exe;2;audiodg.exe;1.35
+servidor42.LUCHT33RSTA;2025-10-04 22:30:47;18.2;8;52.4;40.6;287;2365673621;2365673621;237590326;471821;python.exe;4.75;Code.exe;1.65;WINWORD.EXE;1.19;Code.exe;1.07;WindowsCamera.exe;0.95
+servidor42.LUCHT33RSTA;2025-10-04 22:30:59;17.4;8;52.9;40.6;287;2365710153;2365710153;237603330;471866;python.exe;4.84;dwm.exe;4.79;WindowsCamera.exe;2.45;WINWORD.EXE;2.41;explorer.exe;1.64
+servidor42.LUCHT33RSTA;2025-10-04 22:31:11;25.2;8;52.5;40.6;290;2365732794;2365732794;237611508;471929;WINWORD.EXE;13.71;explorer.exe;12.21;dwm.exe;5.44;python.exe;4.83;WindowsCamera.exe;1.88
+servidor42.LUCHT33RSTA;2025-10-04 22:31:24;22.3;8;52.5;40.6;289;2365753984;2365753984;237626335;471988;python.exe;4.41;WindowsCamera.exe;1.34;audiodg.exe;1.34;System;0.61;dwm.exe;0.36
+servidor42.LUCHT33RSTA;2025-10-04 22:31:36;10.1;8;52.4;40.6;289;2365804245;2365804245;237630986;472018;python.exe;4.42;WindowsCamera.exe;1.61;Spotify.exe;1.11;audiodg.exe;0.99;svchost.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:31:48;12.3;8;52.3;40.6;288;2365876921;2365876921;237645228;472065;python.exe;4.4;WINWORD.EXE;3.95;WindowsCamera.exe;2.39;dwm.exe;2.16;audiodg.exe;1.24
+servidor42.LUCHT33RSTA;2025-10-04 22:32:01;13.8;8;52.4;40.6;288;2365889510;2365889510;237651398;472102;python.exe;4.78;WindowsCamera.exe;2.06;dwm.exe;1.57;WINWORD.EXE;1.46;audiodg.exe;1.21
+servidor42.LUCHT33RSTA;2025-10-04 22:32:13;10.2;8;52.1;40.6;286;2365903188;2365903188;237662934;472167;python.exe;4.22;WindowsCamera.exe;1.35;audiodg.exe;0.99;dwm.exe;0.61;WINWORD.EXE;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:32:25;14.1;8;52.1;40.6;286;2365926198;2365926198;237666875;472190;python.exe;4.81;WINWORD.EXE;2.79;dwm.exe;2.05;WindowsCamera.exe;1.93;audiodg.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:32:38;18.8;8;52.8;40.6;287;2365982246;2365982246;237712434;472296;SDXHelper.exe;5.42;python.exe;4.81;WINWORD.EXE;2.1;dwm.exe;1.89;System;1.41
+servidor42.LUCHT33RSTA;2025-10-04 22:32:50;19.2;8;52.8;40.6;287;2366035698;2366035698;237761186;472473;python.exe;4.97;WINWORD.EXE;3.83;dwm.exe;1.31;audiodg.exe;1.31;WindowsCamera.exe;1.2
+servidor42.LUCHT33RSTA;2025-10-04 22:33:02;14.5;8;52.8;40.6;288;2366060465;2366060896;237767700;472502;python.exe;4.54;WindowsCamera.exe;2.73;dwm.exe;2.01;audiodg.exe;1.31;WINWORD.EXE;1.07
+servidor42.LUCHT33RSTA;2025-10-04 22:33:15;15.5;8;52.8;40.6;287;2366075153;2366075153;237773802;472545;python.exe;5.31;dwm.exe;3.14;WINWORD.EXE;2.83;WindowsCamera.exe;2.21;audiodg.exe;1.41
+servidor42.LUCHT33RSTA;2025-10-04 22:33:27;13.3;8;52.9;40.6;287;2366094138;2366094138;237787849;472593;python.exe;4.55;audiodg.exe;1.34;WindowsCamera.exe;1.09;System;0.49;dwm.exe;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:33:39;12;8;52.9;40.6;286;2366186905;2366186905;237827799;472690;python.exe;4.51;WindowsCamera.exe;1.96;audiodg.exe;1.11;dwm.exe;0.49;svchost.exe;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:33:52;13.2;8;53.1;40.6;286;2366209597;2366209597;237843302;472743;python.exe;5.28;explorer.exe;2.8;dwm.exe;2.17;WindowsCamera.exe;2.17;audiodg.exe;1.54
+servidor42.LUCHT33RSTA;2025-10-04 22:34:04;14.3;8;53;40.6;286;2366232970;2366232970;237855560;472810;python.exe;4.74;dwm.exe;1.7;WindowsCamera.exe;1.34;audiodg.exe;0.85;Code.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:34:16;16.3;8;52.1;40.6;286;2366259354;2366259354;237870371;472877;MemCompression;6.03;python.exe;4.69;WindowsCamera.exe;1.96;audiodg.exe;1.36;System;1.2
+servidor42.LUCHT33RSTA;2025-10-04 22:34:28;13.7;8;52;40.6;286;2366274671;2366274671;237875257;472907;python.exe;4.96;Code.exe;2.49;dwm.exe;2.01;Code.exe;1.95;WindowsCamera.exe;1.3
+servidor42.LUCHT33RSTA;2025-10-04 22:34:41;15.1;8;52;40.6;286;2366304599;2366304599;237888033;472960;python.exe;4.46;audiodg.exe;1.5;WindowsCamera.exe;0.75;dwm.exe;0.62;System;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:34:53;13.6;8;52.1;40.6;286;2366331577;2366331577;237902128;473031;python.exe;4.64;WINWORD.EXE;3.81;WindowsCamera.exe;2.95;audiodg.exe;1.57;dwm.exe;1.48
+servidor42.LUCHT33RSTA;2025-10-04 22:35:06;30.2;8;52.6;40.6;290;2366353450;2366353450;237920791;473098;System;14.56;Code.exe;8.38;python.exe;5.61;Code.exe;2.24;WindowsCamera.exe;1.93
+servidor42.LUCHT33RSTA;2025-10-04 22:35:18;21.7;8;52.3;40.6;290;2366385771;2366385771;237935623;473155;python.exe;5.42;WINWORD.EXE;3.65;dwm.exe;3.64;WindowsCamera.exe;1.88;audiodg.exe;1.34
+servidor42.LUCHT33RSTA;2025-10-04 22:35:31;9.6;8;52.3;40.6;290;2366397695;2366397695;237939641;473178;python.exe;4.67;WindowsCamera.exe;1.84;audiodg.exe;0.99;dwm.exe;0.49;svchost.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:35:43;15.9;8;52.4;40.6;288;2366416153;2366416153;237953063;473245;python.exe;5.21;WINWORD.EXE;3.16;dwm.exe;2.99;WindowsCamera.exe;2.45;explorer.exe;1.68
+servidor42.LUCHT33RSTA;2025-10-04 22:35:55;18.9;8;52.7;40.6;291;2366469984;2366469984;237992402;473308;dwm.exe;4.74;python.exe;4.72;WINWORD.EXE;3.17;explorer.exe;1.56;WindowsCamera.exe;0.93
+servidor42.LUCHT33RSTA;2025-10-04 22:36:08;14.6;8;52.3;40.6;288;2366494326;2366494326;238011974;473400;python.exe;4.6;services.exe;1.8;audiodg.exe;1.49;WindowsCamera.exe;0.99;dwm.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:36:20;11.9;8;52.3;40.6;288;2366554209;2366554209;238058910;473553;python.exe;4.46;WINWORD.EXE;2.09;dwm.exe;1.5;WindowsCamera.exe;1.16;audiodg.exe;1.04
+servidor42.LUCHT33RSTA;2025-10-04 22:36:32;14.5;8;52.3;40.6;288;2366589336;2366589336;238077280;473615;WINWORD.EXE;4.86;python.exe;4.67;dwm.exe;2.64;audiodg.exe;1.98;svchost.exe;1.05
+servidor42.LUCHT33RSTA;2025-10-04 22:36:45;13.8;8;52;40.6;288;2366614975;2366614975;238105359;473682;python.exe;4.36;WindowsCamera.exe;3.54;dwm.exe;2.88;WINWORD.EXE;2.08;audiodg.exe;1.2
+servidor42.LUCHT33RSTA;2025-10-04 22:36:57;15.4;8;52.3;40.6;287;2366627740;2366627740;238110177;473716;python.exe;4.72;rstudio.exe;2.01;WindowsCamera.exe;1.43;rstudio.exe;0.95;audiodg.exe;0.84
+servidor42.LUCHT33RSTA;2025-10-04 22:37:09;21.6;8;52.4;40.6;287;2366651900;2366651900;238117002;473768;python.exe;4.38;rstudio.exe;1.89;dwm.exe;1.88;audiodg.exe;1.64;WindowsCamera.exe;1.52
+servidor42.LUCHT33RSTA;2025-10-04 22:37:22;16.7;8;51.5;40.6;285;2366664444;2366664444;238121284;473795;svchost.exe;12.41;python.exe;5.1;rstudio.exe;2.2;rstudio.exe;2.2;dwm.exe;1.86
+servidor42.LUCHT33RSTA;2025-10-04 22:37:34;12.7;8;50.6;40.6;285;2366676459;2366676459;238125565;473822;python.exe;4.34;rstudio.exe;1.32;audiodg.exe;1.18;WindowsCamera.exe;1.07;rstudio.exe;0.84
+servidor42.LUCHT33RSTA;2025-10-04 22:37:46;14.5;8;50.8;40.6;285;2366699551;2366699551;238131003;473862;python.exe;4.44;audiodg.exe;1.21;WindowsCamera.exe;1.09;rstudio.exe;0.97;svchost.exe;0.72
+servidor42.LUCHT33RSTA;2025-10-04 22:37:58;12.8;8;50.7;40.6;285;2366716217;2366716217;238136701;473900;rstudio.exe;5.15;dwm.exe;5.01;python.exe;4.33;svchost.exe;3.67;svchost.exe;3.31
+servidor42.LUCHT33RSTA;2025-10-04 22:38:11;24.3;8;51.1;40.6;286;2366728113;2366728113;238149953;473975;explorer.exe;12.74;python.exe;5.08;rstudio.exe;2.36;dwm.exe;1.26;System;1.15
+servidor42.LUCHT33RSTA;2025-10-04 22:38:23;16.5;8;51;40.6;285;2366751179;2366751179;238154861;474008;python.exe;4.74;WindowsCamera.exe;2.38;audiodg.exe;1.3;rstudio.exe;1.19;rstudio.exe;0.82
+servidor42.LUCHT33RSTA;2025-10-04 22:38:36;21.8;8;51.6;40.6;285;2366829505;2366829505;238164647;474059;rstudio.exe;4.66;python.exe;4.65;rstudio.exe;3.46;rstudio.exe;1.68;audiodg.exe;1.2
+servidor42.LUCHT33RSTA;2025-10-04 22:38:48;13.8;8;51.4;40.6;285;2366843032;2366843032;238170470;474105;python.exe;4.3;rstudio.exe;2.35;audiodg.exe;1.85;WindowsCamera.exe;1.24;rstudio.exe;0.86
+servidor42.LUCHT33RSTA;2025-10-04 22:39:00;14.1;8;51.3;40.6;285;2366902466;2366902466;238174471;474128;python.exe;4.66;WindowsCamera.exe;1.94;dwm.exe;1.82;audiodg.exe;1.1;rstudio.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:39:12;13.1;8;51.4;40.6;285;2366956888;2366956888;238180906;474176;python.exe;4.44;WindowsCamera.exe;2.11;dwm.exe;1.52;audiodg.exe;1.25;WINWORD.EXE;0.91
+servidor42.LUCHT33RSTA;2025-10-04 22:39:25;14.2;8;51.4;40.6;285;2366978239;2366978239;238196474;474243;python.exe;4.56;WindowsCamera.exe;1.25;audiodg.exe;1.12;MsMpEng.exe;0.75;System;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:39:37;14.2;8;51.5;40.6;285;2367017850;2367017850;238214268;474312;python.exe;4.7;rstudio.exe;3.14;WindowsCamera.exe;1.21;Spotify.exe;1.09;audiodg.exe;0.97
+servidor42.LUCHT33RSTA;2025-10-04 22:39:49;12.7;8;51.4;40.6;285;2367037597;2367037597;238220427;474358;python.exe;4.38;rstudio.exe;1.59;WindowsCamera.exe;1.23;audiodg.exe;1.1;svchost.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:40:01;17;8;51.5;40.6;285;2367091276;2367091276;238267735;474499;python.exe;4.34;audiodg.exe;1.49;WindowsCamera.exe;1.36;dwm.exe;0.5;Spotify.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:40:13;9.6;8;51.4;40.6;285;2367123612;2367123612;238289615;474589;python.exe;4.36;audiodg.exe;1.5;WindowsCamera.exe;0.75;System;0.5;rstudio.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:40:26;16.4;8;51.6;40.6;285;2367135915;2367135915;238293790;474614;python.exe;5.55;rstudio.exe;1.9;dwm.exe;1.5;MsMpEng.exe;1.15;rstudio.exe;1.11
+servidor42.LUCHT33RSTA;2025-10-04 22:40:38;11.1;8;51.5;40.6;287;2367166519;2367166519;238316837;474684;python.exe;4.38;WindowsCamera.exe;2.01;rstudio.exe;1.55;audiodg.exe;1.54;dwm.exe;1.19
+servidor42.LUCHT33RSTA;2025-10-04 22:40:50;12.7;8;51.9;40.6;290;2367200273;2367200696;238330433;474771;python.exe;4.38;WindowsCamera.exe;1.91;rstudio.exe;1.19;audiodg.exe;1.19;svchost.exe;1.19
+servidor42.LUCHT33RSTA;2025-10-04 22:41:03;11.5;8;51.7;40.6;290;2367211422;2367211422;238334504;474795;python.exe;4.05;WindowsCamera.exe;1.35;audiodg.exe;1.23;svchost.exe;0.61;System;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:41:15;12.3;8;51.8;40.6;289;2367227349;2367227349;238342705;474857;python.exe;4.61;rstudio.exe;2.34;WindowsCamera.exe;1.95;rstudio.exe;1.88;audiodg.exe;1.27
+servidor42.LUCHT33RSTA;2025-10-04 22:41:27;12.1;8;51.7;40.6;290;2367247558;2367247558;238346786;474883;python.exe;4.61;rstudio.exe;1.84;audiodg.exe;1.46;WindowsCamera.exe;1.1;dwm.exe;0.97
+servidor42.LUCHT33RSTA;2025-10-04 22:41:39;13.7;8;51.7;40.6;290;2367267773;2367267773;238356173;474929;python.exe;4.36;WindowsCamera.exe;2.3;rstudio.exe;2.17;rstudio.exe;1.39;audiodg.exe;1.38
+servidor42.LUCHT33RSTA;2025-10-04 22:41:52;19.9;8;51.9;40.6;289;2367295965;2367295965;238367212;474967;python.exe;4.69;rstudio.exe;4.29;rstudio.exe;4.17;WindowsCamera.exe;2.09;audiodg.exe;1.27
+servidor42.LUCHT33RSTA;2025-10-04 22:42:04;16.9;8;51.9;40.6;288;2367323613;2367323613;238375210;475024;python.exe;4.26;WindowsCamera.exe;2.17;dwm.exe;1.45;audiodg.exe;1.09;Spotify.exe;0.96
+servidor42.LUCHT33RSTA;2025-10-04 22:42:16;13.2;8;51.6;40.6;286;2367336456;2367336456;238386738;475092;python.exe;4.38;WindowsCamera.exe;1.59;audiodg.exe;1.46;dwm.exe;1.23;rstudio.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:42:28;11.8;8;51.6;40.6;286;2367355681;2367355849;238390474;475111;python.exe;4.21;WindowsCamera.exe;3.06;rstudio.exe;1.1;dwm.exe;0.97;System;0.86
+servidor42.LUCHT33RSTA;2025-10-04 22:42:40;12.9;8;51.5;40.6;285;2367371858;2367371858;238394736;475137;python.exe;4.46;WindowsCamera.exe;2.05;rstudio.exe;1.69;rstudio.exe;1.34;audiodg.exe;1.32
+servidor42.LUCHT33RSTA;2025-10-04 22:42:52;14;8;51.6;40.6;285;2367383055;2367383055;238398507;475158;python.exe;4.22;rstudio.exe;2.56;WindowsCamera.exe;2.2;dwm.exe;1.95;audiodg.exe;0.72
+servidor42.LUCHT33RSTA;2025-10-04 22:43:05;12.1;8;51.7;40.6;285;2367410975;2367411041;238407122;475234;python.exe;4.31;Spotify.exe;1.98;svchost.exe;1.35;audiodg.exe;1.24;WindowsCamera.exe;0.86
+servidor42.LUCHT33RSTA;2025-10-04 22:43:17;13.1;8;50.9;40.6;285;2367433536;2367433536;238421058;475294;python.exe;4.39;WindowsCamera.exe;1.51;audiodg.exe;1.14;System;0.88;rstudio.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:43:29;11.8;8;50.8;40.6;285;2367444874;2367444874;238425014;475318;python.exe;4.24;WindowsCamera.exe;1.62;audiodg.exe;1.12;rstudio.exe;0.5;svchost.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:43:41;13.4;8;50.9;40.6;286;2367535340;2367535340;238435979;475383;python.exe;4.39;rstudio.exe;1.46;rstudio.exe;1.46;WindowsCamera.exe;0.97;audiodg.exe;0.96
+servidor42.LUCHT33RSTA;2025-10-04 22:43:53;13.7;8;50.9;40.6;285;2367550819;2367550819;238440557;475408;python.exe;4.11;WindowsCamera.exe;1.62;audiodg.exe;1.5;svchost.exe;0.75;rstudio.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 22:44:05;11;8;50.8;40.6;285;2367575055;2367575738;238455061;475486;python.exe;4.33;WindowsCamera.exe;1.62;svchost.exe;1.25;audiodg.exe;1.12;Spotify.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:44:17;12.1;8;50.9;40.6;285;2367594364;2367594364;238465376;475544;python.exe;3.89;audiodg.exe;1.64;WindowsCamera.exe;0.62;dwm.exe;0.38;System;0.25
+servidor42.LUCHT33RSTA;2025-10-04 22:44:29;11.4;8;50.9;40.6;285;2367607946;2367607946;238469674;475570;python.exe;4.53;rstudio.exe;1.75;WindowsCamera.exe;1.5;audiodg.exe;1.12;dwm.exe;1
+servidor42.LUCHT33RSTA;2025-10-04 22:44:42;9.7;8;50.9;40.6;285;2367627717;2367627717;238481971;475625;python.exe;4.41;WindowsCamera.exe;1.49;audiodg.exe;1.49;rstudio.exe;0.88;dwm.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:44:54;15.2;8;50.9;40.6;285;2367687809;2367687809;238527108;475762;python.exe;4.75;Spotify.exe;3.88;audiodg.exe;1.49;System;1.36;WindowsCamera.exe;1.11
+servidor42.LUCHT33RSTA;2025-10-04 22:45:06;13.4;8;51;40.6;285;2367717438;2367717438;238551930;475874;python.exe;4.54;svchost.exe;1.32;WindowsCamera.exe;1.21;System;1.19;audiodg.exe;0.84
+servidor42.LUCHT33RSTA;2025-10-04 22:45:18;9.6;8;50.9;40.6;285;2367732954;2367732954;238555333;475889;python.exe;4.4;WindowsCamera.exe;1.45;rstudio.exe;1.2;audiodg.exe;1.2;System;0.74
+servidor42.LUCHT33RSTA;2025-10-04 22:45:30;12.6;8;51.1;40.6;285;2367753726;2367753726;238560574;475926;python.exe;4.11;WindowsCamera.exe;1.35;audiodg.exe;1.34;MsMpEng.exe;0.86;svchost.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:45:43;17.9;8;51.9;40.6;286;2367912366;2367912366;238660845;476157;python.exe;5.08;chrome.exe;3.45;dwm.exe;3.14;WindowsCamera.exe;2.09;audiodg.exe;1.66
+servidor42.LUCHT33RSTA;2025-10-04 22:45:55;23.3;8;52.2;40.6;288;2367956443;2367956443;238683441;476217;python.exe;4.58;Code.exe;3.29;Code.exe;1.84;dwm.exe;1.59;WindowsCamera.exe;1.36
+servidor42.LUCHT33RSTA;2025-10-04 22:46:08;14.3;8;51.6;40.6;288;2367979265;2367979265;238707541;476354;python.exe;4.67;WindowsCamera.exe;2.88;Code.exe;2.33;services.exe;2;dwm.exe;1.66
+servidor42.LUCHT33RSTA;2025-10-04 22:46:20;18.8;8;51.6;40.6;289;2367994108;2367994108;238711952;476381;python.exe;4.81;dwm.exe;1.62;WindowsCamera.exe;1.39;Code.exe;1.27;Code.exe;1.15
+servidor42.LUCHT33RSTA;2025-10-04 22:46:32;17.1;8;50.5;40.6;294;2368100956;2368100956;238720275;476430;dwm.exe;5.06;python.exe;4.58;Code.exe;3.29;System;3.16;Code.exe;2.6
+servidor42.LUCHT33RSTA;2025-10-04 22:46:45;13.5;8;49.9;40.6;290;2368120563;2368120563;238730862;476465;python.exe;4.12;explorer.exe;0.75;chrome.exe;0.62;Spotify.exe;0.5;dwm.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:46:57;12.6;8;50.2;40.6;290;2368140704;2368140704;238735631;476498;explorer.exe;4.95;python.exe;4.08;dwm.exe;0.86;svchost.exe;0.49;System;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:47:09;15.6;8;50.2;40.6;288;2368160493;2368160493;238741957;476547;python.exe;4.26;Spotify.exe;0.9;bash.exe;0.51;MsMpEng.exe;0.51;Code.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:47:21;10.9;8;49.9;40.6;285;2368183199;2368183199;238757618;476629;python.exe;4.09;explorer.exe;2.15;dwm.exe;1.77;Spotify.exe;0.89;rstudio.exe;0.76
+servidor42.LUCHT33RSTA;2025-10-04 22:47:33;31.4;8;51.7;40.6;292;2368399137;2368399137;238898837;477022;WindowsCamera.exe;16.16;python.exe;4.5;chrome.exe;0.84;dwm.exe;0.6;svchost.exe;0.47
+servidor42.LUCHT33RSTA;2025-10-04 22:47:45;25.8;8;53.2;40.6;292;2368818024;2368818024;238941928;477166;Photos.exe;5.25;python.exe;4.66;dwm.exe;3.79;MsMpEng.exe;1.46;Spotify.exe;0.84
+servidor42.LUCHT33RSTA;2025-10-04 22:47:58;24.5;8;53.3;40.6;293;2368976750;2368976750;238957556;477242;Photos.exe;10.51;python.exe;4.97;dwm.exe;2.23;MsMpEng.exe;1.05;rstudio.exe;0.94
+servidor42.LUCHT33RSTA;2025-10-04 22:48:10;16.6;8;53.3;40.6;293;2369020038;2369020038;238977398;477355;Photos.exe;10.11;python.exe;5.19;dwm.exe;1.39;System;0.76;Spotify.exe;0.56
+servidor42.LUCHT33RSTA;2025-10-04 22:48:23;20.4;8;51.5;40.6;289;2369070598;2369070598;238998677;477470;explorer.exe;8.94;python.exe;5.76;dwm.exe;3.65;System;0.85;Spotify.exe;0.78
+servidor42.LUCHT33RSTA;2025-10-04 22:48:35;17.4;8;51.4;40.6;287;2369182252;2369182252;239019649;477575;explorer.exe;12.06;python.exe;4.16;Code.exe;3.19;System;3.05;Code.exe;1.59
+servidor42.LUCHT33RSTA;2025-10-04 22:48:48;10.8;8;51.2;40.6;285;2369212421;2369212421;239026474;477612;python.exe;4.5;Code.exe;2.91;Code.exe;2.02;dwm.exe;1.35;Code.exe;0.82
+servidor42.LUCHT33RSTA;2025-10-04 22:49:00;11.1;8;51.2;40.6;285;2369224354;2369224354;239030797;477640;python.exe;3.9;svchost.exe;0.88;Code.exe;0.62;Spotify.exe;0.62;svchost.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:49:12;13.6;8;51.3;40.6;285;2369248719;2369248719;239038118;477693;python.exe;4.55;explorer.exe;1.94;dwm.exe;1.71;Code.exe;1.15;System;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:49:24;19.7;8;51.8;40.6;285;2369286113;2369286113;239070806;477764;python.exe;5.03;chrome.exe;4.8;dwm.exe;1.69;chrome.exe;1.45;System;0.66
+servidor42.LUCHT33RSTA;2025-10-04 22:49:37;28.2;8;52.9;40.6;286;2369650849;2369650849;239239961;478166;python.exe;4.62;dwm.exe;2.79;chrome.exe;2.67;svchost.exe;2.09;Spotify.exe;1.49
+servidor42.LUCHT33RSTA;2025-10-04 22:49:49;15.5;8;52.5;40.6;286;2369813731;2369813821;239321859;478336;chrome.exe;4.64;python.exe;4.61;chrome.exe;2.96;chrome.exe;2.4;dwm.exe;0.89
+servidor42.LUCHT33RSTA;2025-10-04 22:50:01;14.9;8;52.3;40.6;286;2369950230;2369950230;239366634;478442;python.exe;4.55;chrome.exe;1.64;System;0.82;Spotify.exe;0.76;chrome.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 22:50:13;10.5;8;52.2;40.6;286;2369985308;2369985308;239397010;478572;python.exe;4.03;chrome.exe;1.77;dwm.exe;0.89;chrome.exe;0.62;svchost.exe;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:50:25;14;8;52.1;40.6;286;2370018998;2370018998;239410894;478630;python.exe;4.53;chrome.exe;1.59;chrome.exe;1.31;dwm.exe;0.96;chrome.exe;0.72
+servidor42.LUCHT33RSTA;2025-10-04 22:50:38;16.5;8;52.3;40.6;285;2370057882;2370057882;239432135;478686;python.exe;4.09;rstudio.exe;1.5;rstudio.exe;1.38;dwm.exe;0.75;audiodg.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 22:50:50;13.5;8;52.6;40.6;287;2370078347;2370078347;239444155;478735;python.exe;4.04;Spotify.exe;3.09;dwm.exe;0.82;chrome.exe;0.71;Spotify.exe;0.71
+servidor42.LUCHT33RSTA;2025-10-04 22:51:02;19.5;8;52.7;40.6;287;2370181943;2370181943;239502445;478889;python.exe;4.35;System;0.86;Spotify.exe;0.86;chrome.exe;0.74;audiodg.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:51:14;13.4;8;52.5;40.6;287;2370290356;2370290779;239538914;479003;python.exe;4.31;chrome.exe;1.14;conhost.exe;0.38;MsMpEng.exe;0.38;Spotify.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:51:26;8.6;8;52;40.6;287;2370303422;2370303422;239544682;479047;python.exe;3.85;Spotify.exe;0.65;System;0.64;Code.exe;0.51;bash.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:51:38;8.6;8;51.9;40.6;287;2370326324;2370326324;239549562;479081;python.exe;4;Spotify.exe;1.04;mysqld.exe;0.78;bash.exe;0.65;System;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:51:50;7.9;8;51.9;40.6;286;2370353210;2370353210;239562385;479126;python.exe;4.44;System;1.01;audiodg.exe;0.65;Spotify.exe;0.51;bash.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:52:02;7.8;8;51.9;40.6;286;2370364551;2370364551;239567400;479157;python.exe;4.41;chrome.exe;3.58;chrome.exe;1.91;dwm.exe;1.79;rstudio.exe;0.36
+servidor42.LUCHT33RSTA;2025-10-04 22:52:14;18.1;8;51.3;40.6;284;2370389858;2370389858;239579991;479228;python.exe;4.55;dwm.exe;4.15;explorer.exe;2.08;WINWORD.EXE;0.66;chrome.exe;0.44
+servidor42.LUCHT33RSTA;2025-10-04 22:52:27;13.4;8;51.3;40.6;284;2370405923;2370405923;239585873;479273;python.exe;4.29;rstudio.exe;0.76;rstudio.exe;0.5;MsMpEng.exe;0.5;System;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:52:39;10.2;8;51.1;40.6;282;2370467335;2370467335;239640860;479449;python.exe;4.12;rstudio.exe;0.65;rstudio.exe;0.53;Spotify.exe;0.53;System;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:52:51;10.9;8;51.1;40.6;282;2370503163;2370503163;239662348;479519;python.exe;3.92;rstudio.exe;1;rstudio.exe;0.88;rstudio.exe;0.86;audiodg.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 22:53:03;13.8;8;51.1;40.6;282;2370515390;2370515390;239668751;479546;python.exe;3.95;rstudio.exe;0.89;Spotify.exe;0.89;bash.exe;0.64;rstudio.exe;0.64
+servidor42.LUCHT33RSTA;2025-10-04 22:53:15;11.8;8;51.1;40.6;283;2370530262;2370530262;239675089;479594;python.exe;3.95;rstudio.exe;1.88;rstudio.exe;0.88;dwm.exe;0.62;rstudio.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 22:53:27;13.2;8;51.1;40.6;282;2370555811;2370555811;239681025;479640;rstudio.exe;4.81;python.exe;4.2;rstudio.exe;2.1;rstudio.exe;1.11;dwm.exe;0.99
+servidor42.LUCHT33RSTA;2025-10-04 22:53:39;12.3;8;51.1;40.6;282;2370635519;2370635519;239691451;479701;python.exe;3.91;System;0.89;rstudio.exe;0.76;MsMpEng.exe;0.76;rstudio.exe;0.64
+servidor42.LUCHT33RSTA;2025-10-04 22:53:51;11.6;8;51.1;40.6;282;2370710169;2370711277;239696216;479732;python.exe;4.25;rstudio.exe;1.51;rstudio.exe;1.26;rstudio.exe;1.01;rsession-utf8.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 22:54:03;11.4;8;51.1;40.6;282;2370750925;2370750925;239701787;479765;python.exe;4.46;dwm.exe;0.62;rstudio.exe;0.51;bash.exe;0.5;rstudio.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 22:54:15;12.1;8;51.1;40.6;282;2370779214;2370779214;239724581;479885;python.exe;4.24;rstudio.exe;0.62;rstudio.exe;0.5;rstudio.exe;0.5;System;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:54:27;8.9;8;51.1;40.6;282;2370795696;2370795696;239734279;479934;python.exe;4.12;rstudio.exe;1.41;rstudio.exe;1.41;rstudio.exe;0.51;audiodg.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:54:39;11.3;8;51.1;40.6;282;2370827692;2370827692;239747775;479986;python.exe;3.98;rstudio.exe;1.01;audiodg.exe;0.74;dwm.exe;0.5;rstudio.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:54:51;28.6;8;53.7;40.6;285;2373559719;2373559867;240328575;480807;python.exe;4.33;chrome.exe;1.57;chrome.exe;1.25;chrome.exe;0.99;System;0.71
+servidor42.LUCHT33RSTA;2025-10-04 22:55:04;15.8;8;53.7;40.6;285;2374019644;2374019644;240552046;481011;python.exe;4.42;Code.exe;2.04;Code.exe;0.84;Code.exe;0.62;MsMpEng.exe;0.6
+servidor42.LUCHT33RSTA;2025-10-04 22:55:16;16.7;8;53;40.6;285;2374427189;2374427189;240609173;481137;python.exe;4.01;chrome.exe;2.14;dwm.exe;1.27;System;1.11;WINWORD.EXE;0.64
+servidor42.LUCHT33RSTA;2025-10-04 22:55:28;9.9;8;52.7;40.6;284;2374617287;2374617287;240711575;481239;python.exe;4.28;System;0.86;bash.exe;0.51;audiodg.exe;0.51;dwm.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:55:40;12;8;53;40.6;284;2374810092;2374810092;240760821;481374;python.exe;4.92;rstudio.exe;2.73;rstudio.exe;1.85;dwm.exe;1.38;System;1.01
+servidor42.LUCHT33RSTA;2025-10-04 22:55:52;14.6;8;53.1;40.6;286;2374952131;2374952131;240842193;481485;python.exe;4.16;rstudio.exe;2.51;Spotify.exe;0.9;rstudio.exe;0.64;audiodg.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:56:04;12.7;8;53.1;40.6;286;2374986662;2374986662;240873679;481541;python.exe;4.11;rstudio.exe;1.57;rstudio.exe;1.09;chrome.exe;0.97;rstudio.exe;0.85
+servidor42.LUCHT33RSTA;2025-10-04 22:56:16;13;8;53;40.6;286;2375007247;2375007247;240891298;481616;python.exe;4.22;rstudio.exe;1.66;rstudio.exe;0.51;rstudio.exe;0.51;Code.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:56:28;11.7;8;53;40.6;286;2375028899;2375028899;240896976;481660;python.exe;4.11;rstudio.exe;0.78;System;0.64;Spotify.exe;0.51;mysqld.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:56:40;8.3;8;52.9;40.6;286;2375056758;2375056758;240918700;481747;python.exe;4.31;Spotify.exe;0.65;System;0.62;rstudio.exe;0.51;rstudio.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:56:52;9.8;8;52.7;40.6;284;2375075751;2375075751;240923382;481778;python.exe;4.34;rstudio.exe;1.02;System;0.97;Spotify.exe;0.88;ctfmon.exe;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:57:05;10.6;8;52.7;40.6;284;2375097433;2375097433;240929699;481825;python.exe;3.98;Spotify.exe;2.01;rstudio.exe;1.51;svchost.exe;0.9;System;0.76
+servidor42.LUCHT33RSTA;2025-10-04 22:57:17;11;8;52.3;40.6;281;2375109469;2375109555;240934628;481861;python.exe;3.8;rstudio.exe;0.76;System;0.38;audiodg.exe;0.26;ctfmon.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 22:57:29;13.5;8;52.4;40.6;281;2375182636;2375182636;240993024;482028;python.exe;3.99;rstudio.exe;2.48;rstudio.exe;1.85;dwm.exe;0.61;System;0.38
+servidor42.LUCHT33RSTA;2025-10-04 22:57:41;14.3;8;52.5;40.6;280;2375210687;2375210687;241005001;482089;python.exe;4.08;rstudio.exe;1.54;dwm.exe;1.29;audiodg.exe;0.51;System;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:57:53;14.1;8;52;40.6;279;2375222303;2375222303;241009287;482114;python.exe;3.89;rstudio.exe;1.41;rstudio.exe;1.15;dwm.exe;0.51;rstudio.exe;0.49
+servidor42.LUCHT33RSTA;2025-10-04 22:58:05;14.6;8;51.8;40.6;278;2375243440;2375243440;241017001;482164;python.exe;4;rstudio.exe;1.3;rstudio.exe;1.04;Code.exe;0.65;System;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:58:17;8.4;8;51.8;40.6;278;2375260435;2375260435;241028032;482229;python.exe;3.98;rstudio.exe;0.65;Spotify.exe;0.65;rstudio.exe;0.53;conhost.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 22:58:29;8;8;51.8;40.6;278;2375273816;2375273816;241032053;482252;python.exe;3.73;rstudio.exe;0.65;Spotify.exe;0.65;audiodg.exe;0.65;svchost.exe;0.26
+servidor42.LUCHT33RSTA;2025-10-04 22:58:41;10.6;8;51.8;40.6;278;2375362147;2375362147;241044451;482332;Code.exe;4.79;python.exe;4.41;rstudio.exe;3.02;rstudio.exe;2.89;Code.exe;1.76
+servidor42.LUCHT33RSTA;2025-10-04 22:58:53;12.4;8;51.7;40.6;278;2375373801;2375373801;241048756;482360;python.exe;3.75;rstudio.exe;1.65;rstudio.exe;1.64;MsMpEng.exe;1;System;0.65
+servidor42.LUCHT33RSTA;2025-10-04 22:59:05;11.9;8;51.7;40.6;278;2375400053;2375400053;241061384;482437;python.exe;4.2;svchost.exe;1.74;Spotify.exe;1.43;rstudio.exe;1.15;svchost.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 22:59:17;10;8;51.9;40.6;278;2375426413;2375426413;241069142;482468;python.exe;4.05;rstudio.exe;3.29;MsMpEng.exe;1;rstudio.exe;0.75;rsession-utf8.exe;0.64
+servidor42.LUCHT33RSTA;2025-10-04 22:59:29;13.9;8;52.2;40.6;279;2375441904;2375441904;241074665;482508;WhatsApp.exe;6.26;python.exe;4.17;dwm.exe;3.08;System;0.36;svchost.exe;0.36
+servidor42.LUCHT33RSTA;2025-10-04 22:59:42;19.9;8;52.5;40.6;280;2375472465;2375472465;241091455;482601;python.exe;4.83;System;1.56;chrome.exe;1.04;Spotify.exe;0.9;conhost.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 22:59:54;14.8;8;52.5;40.6;279;2375496963;2375496963;241095662;482625;python.exe;5.26;Code.exe;1.18;System;1.15;Spotify.exe;0.76;bash.exe;0.64
+servidor42.LUCHT33RSTA;2025-10-04 23:00:06;11.1;8;52.4;40.6;279;2375515618;2375515618;241103345;482674;python.exe;3.98;bash.exe;0.39;audiodg.exe;0.39;System;0.38;svchost.exe;0.26
+servidor42.LUCHT33RSTA;2025-10-04 23:00:18;8.7;8;52;40.6;280;2375544988;2375544988;241133752;482791;python.exe;4.24;audiodg.exe;0.5;MsMpEng.exe;0.38;svchost.exe;0.25;Code.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 23:00:30;13.9;8;52.1;40.6;279;2375598435;2375598435;241171549;482899;Spotify.exe;5.97;python.exe;4.41;Spotify.exe;2.88;sihost.exe;2.05;svchost.exe;1.82
+servidor42.LUCHT33RSTA;2025-10-04 23:00:42;12.8;8;52.2;40.6;280;2375634317;2375634317;241204469;483013;python.exe;4.11;Code.exe;2.01;Code.exe;1.38;dwm.exe;1.12;System;0.62
+servidor42.LUCHT33RSTA;2025-10-04 23:00:54;13.5;8;52.4;40.6;282;2375655592;2375655592;241216578;483051;python.exe;4.65;Code.exe;0.88;dwm.exe;0.64;Code.exe;0.49;audiodg.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 23:01:06;10.8;8;52.3;40.6;282;2375687088;2375687088;241232979;483132;python.exe;3.76;audiodg.exe;0.64;System;0.51;Spotify.exe;0.51;svchost.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 23:01:18;10.6;8;52.4;40.6;282;2375789406;2375789406;241243956;483176;python.exe;3.94;rstudio.exe;0.39;Code.exe;0.39;System;0.38;svchost.exe;0.38
+servidor42.LUCHT33RSTA;2025-10-04 23:01:31;11.1;8;52.3;40.6;282;2375801784;2375801784;241248111;483203;python.exe;4.05;rstudio.exe;0.78;rstudio.exe;0.78;Spotify.exe;0.78;svchost.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 23:01:43;10.4;8;52.3;40.6;281;2375832679;2375832679;241272599;483306;python.exe;4.16;rstudio.exe;2.01;rstudio.exe;1.14;dwm.exe;1;TextInputHost.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 23:01:55;12;8;52.3;40.6;280;2375857361;2375857361;241277395;483336;python.exe;4.12;rstudio.exe;0.79;audiodg.exe;0.65;bash.exe;0.39;Code.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 23:02:07;9.9;8;52.2;40.6;280;2375882610;2375882610;241286142;483395;python.exe;4.06;WmiPrvSE.exe;1;rstudio.exe;0.99;MsMpEng.exe;0.86;rstudio.exe;0.75
+servidor42.LUCHT33RSTA;2025-10-04 23:02:19;11.5;8;52.1;40.6;279;2375909692;2375909692;241301175;483471;python.exe;4.01;rstudio.exe;1.15;rstudio.exe;0.9;MsMpEng.exe;0.76;rstudio.exe;0.64
+servidor42.LUCHT33RSTA;2025-10-04 23:02:31;11.5;8;52.1;40.6;279;2375934069;2375934069;241312913;483504;python.exe;4.16;MsMpEng.exe;0.78;rstudio.exe;0.65;Spotify.exe;0.64;bash.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 23:02:43;9.5;8;52.1;40.6;280;2375945846;2375945846;241317136;483530;python.exe;3.94;Spotify.exe;1.04;rstudio.exe;1.02;rsession-utf8.exe;1.02;rstudio.exe;0.9
+servidor42.LUCHT33RSTA;2025-10-04 23:02:55;9.9;8;52.1;40.6;280;2375966773;2375966773;241322771;483573;python.exe;3.81;Spotify.exe;1.29;audiodg.exe;0.65;System;0.64;rstudio.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 23:03:07;10.5;8;51.9;40.6;280;2376046447;2376046447;241394904;483793;python.exe;4.34;services.exe;1.74;rstudio.exe;1.35;rstudio.exe;0.99;Spotify.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 23:03:19;10.6;8;52;40.6;280;2376068565;2376068565;241410525;483852;python.exe;3.71;rstudio.exe;1.39;rstudio.exe;1.39;rstudio.exe;0.88;dwm.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 23:03:31;10.9;8;52;40.6;279;2376092653;2376092653;241417165;483888;python.exe;4.06;rstudio.exe;1.27;System;0.89;rstudio.exe;0.76;rstudio.exe;0.51
+servidor42.LUCHT33RSTA;2025-10-04 23:03:43;11.9;8;52;40.6;279;2376188137;2376188137;241432189;483971;python.exe;4.42;rstudio.exe;1.3;rstudio.exe;0.53;Code.exe;0.53;dwm.exe;0.39
+servidor42.LUCHT33RSTA;2025-10-04 23:03:55;12;8;52;40.6;279;2376203895;2376203895;241438806;484024;python.exe;4.29;rstudio.exe;1.89;rstudio.exe;1.26;dwm.exe;1.26;rstudio.exe;0.62
+servidor42.LUCHT33RSTA;2025-10-04 23:04:07;16.6;8;52.7;40.6;281;2376340252;2376340252;241509638;484210;python.exe;4.51;services.exe;1.21;chrome.exe;1;WmiPrvSE.exe;0.88;chrome.exe;0.64
+servidor42.LUCHT33RSTA;2025-10-04 23:04:20;26.2;8;53.5;40.6;281;2379774199;2379774372;241868847;485247;MemCompression;9.64;chrome.exe;7.84;python.exe;5.19;svchost.exe;3.89;Spotify.exe;3.48
+servidor42.LUCHT33RSTA;2025-10-04 23:04:32;20.6;8;53.1;40.6;281;2383774826;2383774826;242082763;486035;python.exe;4.45;chrome.exe;2.05;chrome.exe;1.81;dwm.exe;1.09;svchost.exe;0.36
+servidor42.LUCHT33RSTA;2025-10-04 23:04:44;13.9;8;52.5;40.6;281;2385860672;2385860672;242138147;486327;python.exe;4.29;chrome.exe;3.01;chrome.exe;2.16;dwm.exe;1.32;System;0.6
+servidor42.LUCHT33RSTA;2025-10-04 23:04:56;12.7;8;52.4;40.6;281;2386676922;2386676922;242162255;486484;python.exe;4.01;chrome.exe;3.77;chrome.exe;2.67;dwm.exe;1.57;System;0.96
+servidor42.LUCHT33RSTA;2025-10-04 23:05:09;14.7;8;52.3;40.6;281;2386702814;2386702814;242168172;486526;chrome.exe;7.59;python.exe;4.44;chrome.exe;1.79;dwm.exe;1.56;System;0.47
+servidor42.LUCHT33RSTA;2025-10-04 23:05:21;15.3;8;52.3;40.6;281;2386724092;2386724092;242182464;486578;chrome.exe;9.45;python.exe;4.36;chrome.exe;2.84;dwm.exe;2.33;System;0.46
+servidor42.LUCHT33RSTA;2025-10-04 23:05:33;25;8;52.6;40.6;281;2401869589;2401869589;242610470;488658;chrome.exe;10.72;python.exe;5.17;chrome.exe;1.8;System;1.12;dwm.exe;1.07
+servidor42.LUCHT33RSTA;2025-10-04 23:05:45;15.2;8;52.6;40.6;282;2403775404;2403775994;242726105;489115;chrome.exe;8.57;python.exe;4.41;chrome.exe;1.27;chrome.exe;1.23;dwm.exe;1.14
+servidor42.LUCHT33RSTA;2025-10-04 23:05:58;31.2;8;54;40.6;284;2408124652;2408124652;242957988;489906;chrome.exe;7.59;python.exe;4.51;chrome.exe;2.51;chrome.exe;2.11;dwm.exe;1.51
+servidor42.LUCHT33RSTA;2025-10-04 23:06:10;25.2;8;53.9;40.6;283;2410804568;2410804568;243159402;490414;python.exe;4.51;chrome.exe;4.31;chrome.exe;2.77;dwm.exe;2.41;explorer.exe;1.62
+servidor42.LUCHT33RSTA;2025-10-04 23:06:23;24.1;8;54.4;40.6;283;2413329723;2413329723;243281920;490771;chrome.exe;4.49;python.exe;4.4;Code.exe;2.41;Code.exe;1.09;dwm.exe;1.04
+servidor42.LUCHT33RSTA;2025-10-04 23:06:35;20.6;8;54;40.6;283;2415267861;2415267861;243335549;490982;Code.exe;4.99;chrome.exe;4.84;python.exe;4.3;Code.exe;3.11;Code.exe;1.77
+servidor42.LUCHT33RSTA;2025-10-04 23:06:47;22.5;8;53.9;40.6;282;2417199534;2417199534;243376875;491197;chrome.exe;4.88;python.exe;4.21;Code.exe;1.69;Code.exe;0.93;Code.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 23:06:59;11.9;8;53.7;40.6;282;2419133735;2419133735;243417706;491474;chrome.exe;9.12;python.exe;4.12;System;0.5;svchost.exe;0.5;Code.exe;0.5
+servidor42.LUCHT33RSTA;2025-10-04 23:07:12;11.5;8;53.6;40.6;281;2421073263;2421073263;243476910;491739;python.exe;4.14;chrome.exe;2.31;Code.exe;1.12;dwm.exe;0.84;Code.exe;0.61
+servidor42.LUCHT33RSTA;2025-10-04 23:07:24;16.4;8;53.7;40.6;281;2422079680;2422079680;243501127;491867;python.exe;4.1;chrome.exe;2.62;bash.exe;0.5;Code.exe;0.5;System;0.49
+servidor42.LUCHT33RSTA;2025-10-04 23:07:36;11.2;8;53.6;40.6;281;2422096284;2422096284;243505568;491895;chrome.exe;6.17;python.exe;4.09;Spotify.exe;1;System;0.49;svchost.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 23:07:48;12.1;8;53.6;40.6;281;2422123057;2422123143;243524184;491946;python.exe;4.15;chrome.exe;1.76;System;0.61;svchost.exe;0.25;svchost.exe;0.25
+servidor42.LUCHT33RSTA;2025-10-04 23:08:00;11.5;8;53.7;40.6;281;2422163698;2422163698;243535043;492031;chrome.exe;4.79;python.exe;4.04;Code.exe;1.48;dwm.exe;1.23;Code.exe;1.11
+servidor42.LUCHT33RSTA;2025-10-04 23:08:12;23.8;8;54;40.6;282;2422175586;2422175586;243541892;492070;chrome.exe;13.16;python.exe;5.14;chrome.exe;3.98;dwm.exe;3.62;chrome.exe;2.64
+servidor6.NICOLASF8SK4U2;2025-10-07 09:27:37;26;4;45.7;79.4;243;343004441;343004441;5518549;30999;System Idle Process;84.05;python.exe;7.33;dwm.exe;2.25;svchost.exe;0.23;System;0
+servidor6.NICOLASF8SK4U2;2025-10-07 09:27:49;38.4;4;47.3;79.4;247;344585882;344585882;5573933;31375;System Idle Process;67.85;MsMpEng.exe;24.45;python.exe;7.12;svchost.exe;0.55;System;0.28
+servidor6.NICOLASF8SK4U2;2025-10-07 09:28:01;29.3;4;44.5;79.4;239;344595308;344595308;5582817;31427;System Idle Process;67.8;MsMpEng.exe;24.98;python.exe;7.05;svchost.exe;0.55;services.exe;0.28
+servidor6.NICOLASF8SK4U2;2025-10-07 09:28:13;37;4;44.7;79.4;237;344597811;344597811;5586991;31450;System Idle Process;30.93;MsMpEng.exe;23.27;python.exe;7.25;chrome.exe;5.75;chrome.exe;5.4
+servidor6.NICOLASF8SK4U2;2025-10-07 09:28:25;59.9;4;47.9;79.4;240;351153111;351153271;6208588;33098;System Idle Process;50.98;chrome.exe;13.9;python.exe;7.05;chrome.exe;4.42;chrome.exe;4.35
+servidor6.NICOLASF8SK4U2;2025-10-07 09:28:37;41.8;4;47.6;79.4;239;354617238;354627486;6938727;34252;System Idle Process;48.65;chrome.exe;8.15;python.exe;6.85;dwm.exe;6.58;chrome.exe;5.62
+servidor6.NICOLASF8SK4U2;2025-10-07 09:28:49;60.1;4;46;79.4;236;362730894;362730894;7652679;35953;System Idle Process;32.25;chrome.exe;17.05;chrome.exe;13.85;chrome.exe;13.28;dwm.exe;12.2
+servidor6.NICOLASF8SK4U2;2025-10-07 09:29:00;41.1;4;45.2;79.4;233;362875840;362875840;7819223;36116;System Idle Process;86.35;sqlservr.exe;9.55;python.exe;6.83;chrome.exe;1.1;svchost.exe;0.28
+servidor6.NICOLASF8SK4U2;2025-10-07 09:29:12;54.7;4;45.2;79.4;236;363069626;363069626;7848893;36185;System Idle Process;44.85;explorer.exe;19.23;chrome.exe;10.05;python.exe;6.53;MsMpEng.exe;3.88
+servidor6.NICOLASF8SK4U2;2025-10-07 09:29:24;40.3;4;45.1;79.4;232;363142346;363142432;7993006;36311;System Idle Process;52.77;chrome.exe;19.23;python.exe;6.58;dwm.exe;6.5;SynTPEnh.exe;3.27
+servidor6.NICOLASF8SK4U2;2025-10-07 09:29:36;37.6;4;45.5;79.4;233;363195114;363195114;8063443;36466;System Idle Process;50.17;chrome.exe;7.6;python.exe;7.05;dwm.exe;5.95;chrome.exe;4.28
+servidor6.NICOLASF8SK4U2;2025-10-07 09:29:48;53.9;4;46.4;79.4;233;364813775;364817651;8443675;37269;System Idle Process;64.38;chrome.exe;10.75;python.exe;7.3;chrome.exe;6.08;chrome.exe;4.85
+servidor6.NICOLASF8SK4U2;2025-10-07 09:30:00;45.2;4;47.8;79.4;234;367001301;367003179;8701867;38131;System Idle Process;49.75;chrome.exe;13.22;chrome.exe;9.85;chrome.exe;8.38;python.exe;5.8
+servidor6.NICOLASF8SK4U2;2025-10-07 09:30:12;49.5;4;46.5;79.4;234;367481178;367481178;8770532;38395;System Idle Process;82.5;python.exe;6.22;dwm.exe;1.98;SynTPEnh.exe;1.4;chrome.exe;1.12
+servidor6.NICOLASF8SK4U2;2025-10-07 09:30:24;45.9;4;48.3;79.4;236;367723910;367723984;8891236;38589;System Idle Process;40.23;chrome.exe;36.92;python.exe;5.6;chrome.exe;3.12;dwm.exe;2.05
+servidor6.NICOLASF8SK4U2;2025-10-07 09:30:36;46.3;4;46.8;79.4;234;367938374;367938993;9637278;39236;System Idle Process;62.3;chrome.exe;8.43;chrome.exe;8.07;python.exe;6.42;MsMpEng.exe;2.52
+servidor6.NICOLASF8SK4U2;2025-10-07 09:30:48;46.8;4;46.9;79.4;233;368144928;368144928;9755909;39425;System Idle Process;74.03;chrome.exe;9.2;python.exe;6.17;MsMpEng.exe;1.4;dwm.exe;1.35
+servidor6.NICOLASF8SK4U2;2025-10-07 09:30:59;31.3;4;46.8;79.4;234;368153877;368153877;9771065;39458;System Idle Process;61.7;dwm.exe;10.07;python.exe;5.95;chrome.exe;5.38;chrome.exe;5.38
+servidor6.NICOLASF8SK4U2;2025-10-07 09:31:11;7.9;4;46.9;79.4;233;368164207;368164207;9787737;39495;System Idle Process;66.12;sqlservr.exe;13.15;python.exe;5.75;dwm.exe;4.2;System;3.35
+servidor6.NICOLASF8SK4U2;2025-10-07 09:31:23;54.5;4;49.2;79.4;234;368226533;368226533;9939641;39673;System Idle Process;37.23;chrome.exe;21.57;chrome.exe;13.4;dwm.exe;9.25;python.exe;5.47
+servidor6.NICOLASF8SK4U2;2025-10-07 09:31:35;33.1;4;48.8;79.4;233;368236720;368236720;9961602;39736;System Idle Process;64.62;dwm.exe;7.2;chrome.exe;6.95;python.exe;6.03;chrome.exe;4.88
+servidor6.NICOLASF8SK4U2;2025-10-07 09:31:47;30.1;4;48.8;79.4;233;368286049;368286049;9988732;39857;System Idle Process;87.12;python.exe;5.88;chrome.exe;2.62;chrome.exe;0.88;dwm.exe;0.57
+servidor6.NICOLASF8SK4U2;2025-10-07 09:31:58;23.3;4;48.5;79.4;232;368309621;368309706;10014537;39942;System Idle Process;83.38;python.exe;6.28;chrome.exe;5.95;chrome.exe;1.15;chrome.exe;0.85
+servidor6.NICOLASF8SK4U2;2025-10-07 09:32:10;64.8;4;50.4;79.4;234;368447903;368448013;10325169;40336;System Idle Process;30.52;chrome.exe;19.57;dwm.exe;18.77;chrome.exe;18.75;python.exe;4.9
+servidor6.NICOLASF8SK4U2;2025-10-07 09:32:22;44.2;4;48.5;79.4;231;368487851;368487851;10374312;40436;System Idle Process;70.67;MsMpEng.exe;8.78;python.exe;5.8;explorer.exe;3.45;dwm.exe;1.65
+servidor6.NICOLASF8SK4U2;2025-10-07 09:32:34;48.8;4;49.4;79.4;235;368973939;368974013;10500192;40770;System Idle Process;55.23;MsMpEng.exe;10.45;EXCEL.EXE;8.53;python.exe;7.17;svchost.exe;2.15
+servidor6.NICOLASF8SK4U2;2025-10-07 09:32:45;34;4;49.4;79.5;235;369328770;369328770;10711450;41142;System Idle Process;84.08;python.exe;6.9;EXCEL.EXE;5.8;dwm.exe;2.52;SynTPEnh.exe;0.55
+servidor6.NICOLASF8SK4U2;2025-10-07 09:32:57;58.1;4;48.3;79.5;233;369364252;369366836;10754668;41276;System Idle Process;40.7;chrome.exe;13.82;chrome.exe;8.07;chrome.exe;7.12;python.exe;6.75
+servidor6.NICOLASF8SK4U2;2025-10-07 09:33:09;39.6;4;48.6;79.5;235;369406290;369406290;10815916;41367;System Idle Process;83.88;python.exe;6.28;dwm.exe;1.95;chrome.exe;1.38;Registry;1.1
+servidor6.NICOLASF8SK4U2;2025-10-07 09:33:21;49.6;4;50.8;79.5;235;370681764;370682274;12269224;42213;System Idle Process;71.58;python.exe;7.05;dwm.exe;2.75;chrome.exe;2.6;SynTPEnh.exe;1.57
+servidor6.NICOLASF8SK4U2;2025-10-07 09:33:33;15.4;4;49.9;79.5;235;371255558;371255558;12622493;42550;System Idle Process;93.4;python.exe;6.3;sihost.exe;0.28;svchost.exe;0.28;svchost.exe;0.28
+servidor6.NICOLASF8SK4U2;2025-10-07 09:33:44;49.1;4;49;79.5;236;385675744;385675744;12771424;43894;MsMpEng.exe;46.75;System Idle Process;33.73;SDXHelper.exe;11.4;python.exe;7.42;chrome.exe;1.88
+servidor6.NICOLASF8SK4U2;2025-10-07 09:33:56;21.5;4;48.9;79.5;235;385702850;385702850;12818954;43971;System Idle Process;87.25;python.exe;6.25;chrome.exe;1.62;chrome.exe;1.38;svchost.exe;1.1
+servidor6.NICOLASF8SK4U2;2025-10-07 09:34:08;10.4;4;48.1;79.5;234;385723085;385723085;12839968;44041;System Idle Process;93.6;python.exe;5.7;svchost.exe;0.28;svchost.exe;0.28;System;0
+servidor6.NICOLASF8SK4U2;2025-10-07 09:34:20;3;4;48.1;79.5;234;385733907;385733907;12865861;44092;System Idle Process;93.2;python.exe;6.08;svchost.exe;0.3;System;0;;0
+servidor6.NICOLASF8SK4U2;2025-10-07 09:34:31;21.9;4;47.9;79.5;232;385737811;385737811;12892392;44129;System Idle Process;73.25;sqlservr.exe;12.62;python.exe;5.45;SgrmBroker.exe;1.15;svchost.exe;0.82
+servidor6.NICOLASF8SK4U2;2025-10-07 09:34:43;16.7;4;47.8;79.5;232;385762847;385762847;12913712;44189;System Idle Process;83.35;python.exe;5.17;chrome.exe;3.15;dwm.exe;1.43;chrome.exe;1.43
+servidor6.NICOLASF8SK4U2;2025-10-07 09:34:55;9.3;4;47.7;79.5;232;385772900;385772900;12927487;44245;System Idle Process;92.97;python.exe;5.88;svchost.exe;0.3;99Store.exe;0.3;System;0
+servidor6.NICOLASF8SK4U2;2025-10-07 09:35:06;4.3;4;47.5;79.5;232;385806285;385806285;12954525;44325;System Idle Process;93.25;python.exe;5.3;svchost.exe;0.57;System;0.3;;0
+servidor6.NICOLASF8SK4U2;2025-10-07 09:35:18;20.4;4;47.5;79.5;232;385811447;385811447;12962175;44361;System Idle Process;70.83;chrome.exe;9.07;python.exe;6.08;dwm.exe;3.4;chrome.exe;1.45
+servidor6.NICOLASF8SK4U2;2025-10-07 09:35:30;13.5;4;47.7;79.5;234;385904042;385904042;12998210;44453;System Idle Process;80.03;python.exe;6.28;chrome.exe;3.7;dwm.exe;1.7;chrome.exe;1.7
+servidor6.NICOLASF8SK4U2;2025-10-07 09:35:41;26.2;4;47.7;79.5;233;385946738;385946738;13034413;44537;System Idle Process;75.83;python.exe;5.95;chrome.exe;4.83;dwm.exe;3.67;chrome.exe;2.27
+servidor6.NICOLASF8SK4U2;2025-10-07 09:35:53;25.4;4;47.6;79.5;233;385963111;385963111;13046938;44592;System Idle Process;64.42;chrome.exe;10.6;chrome.exe;9.22;chrome.exe;6.47;dwm.exe;6.2
+servidor6.NICOLASF8SK4U2;2025-10-07 09:36:05;17.9;4;47.6;79.5;233;385990566;385990566;13073848;44664;System Idle Process;85.35;python.exe;5.8;MsMpEng.exe;1.75;99Store.exe;1.15;chrome.exe;0.88
+servidor6.NICOLASF8SK4U2;2025-10-07 09:36:17;18.1;4;47.6;79.5;233;385993668;385993668;13078962;44686;System Idle Process;75.4;python.exe;6.2;dwm.exe;4.25;chrome.exe;3.98;chrome.exe;2.83
+servidor6.NICOLASF8SK4U2;2025-10-07 09:36:28;27.3;4;47.5;79.5;232;386006895;386006895;13096333;44733;System Idle Process;81.4;python.exe;5.72;chrome.exe;4.28;dwm.exe;1.43;chrome.exe;1.15
+servidor6.NICOLASF8SK4U2;2025-10-07 09:36:40;24.7;4;48;79.5;232;386046629;386046629;13137029;44825;System Idle Process;31.6;sqlservr.exe;14.32;chrome.exe;13.03;chrome.exe;6.58;chrome.exe;6.53
+servidor6.NICOLASF8SK4U2;2025-10-07 09:36:52;42.2;4;47.7;79.5;231;386176072;386176072;13235047;45029;System Idle Process;69;python.exe;5.67;dwm.exe;2.5;chrome.exe;2.25;chrome.exe;1.98
+servidor6.NICOLASF8SK4U2;2025-10-07 09:37:04;42.4;4;48.1;79.5;234;387534243;387534243;13284244;45371;System Idle Process;48.92;Code.exe;15.28;Code.exe;13.05;Code.exe;9.97;python.exe;5.55
+servidor77.VINICIUSTJAS12;2025-10-07 10:16:58;6.4;16;62.6;32.2;235;229169603;229169603;18123586;86165;python.exe;3;dwm.exe;0.05;svchost.exe;0.04;svchost.exe;0.04;Code.exe;0.04
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:02;12.5;16;62.6;32.2;235;229171327;229171327;18123692;86166;Code.exe;4.13;python.exe;2.84;Code.exe;1.49;explorer.exe;0.94;AMDRSServ.exe;0.66
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:06;7.5;16;62.5;32.2;235;229181067;229181067;18142041;86178;python.exe;2.76;MsMpEng.exe;1.04;Code.exe;0.26;Code.exe;0.16;Code.exe;0.16
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:10;4.3;16;62.5;32.2;235;229190203;229190203;18145059;86189;python.exe;2.9;Code.exe;1.01;Code.exe;0.61;svchost.exe;0.16;dwm.exe;0.15
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:14;9.7;16;62.5;32.2;235;229194488;229194488;18147672;86194;python.exe;3.01;Code.exe;1.16;Code.exe;0.5;Code.exe;0.4;dwm.exe;0.2
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:18;13.5;16;62.6;32.2;235;229199006;229199006;18151634;86206;Code.exe;3.21;python.exe;2.99;Code.exe;1.24;MsMpEng.exe;1.2;dwm.exe;0.91
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:22;15.6;16;62.6;32.2;235;229205866;229205866;18154442;86211;Code.exe;3.5;python.exe;3.08;MsMpEng.exe;1.6;Code.exe;1.5;Code.exe;0.74
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:26;13.7;16;62.6;32.2;235;229217554;229217554;18157592;86221;python.exe;2.9;Code.exe;2.29;Code.exe;0.73;dwm.exe;0.56;AMDRSServ.exe;0.56
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:29;15.1;16;62.7;32.2;235;229276974;229276974;18160423;86229;Code.exe;4.68;python.exe;2.79;Code.exe;1.79;AMDRSServ.exe;0.97;Code.exe;0.91
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:33;13.7;16;62.8;32.2;235;229293629;229293629;18163041;86234;Code.exe;5.64;python.exe;2.62;Code.exe;1.92;MsMpEng.exe;1.33;Code.exe;0.85
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:37;13.8;16;62.1;32.2;235;229308067;229308067;18167795;86252;python.exe;2.83;Code.exe;2.37;Code.exe;1.28;Code.exe;1.21;AMDRSServ.exe;0.5
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:41;8.7;16;62.1;32.2;235;229313888;229313888;18170577;86260;python.exe;2.99;Code.exe;1.91;Code.exe;0.54;Code.exe;0.49;dwm.exe;0.29
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:45;17.6;16;62.1;32.2;235;229320322;229320322;18173269;86267;Code.exe;7.64;python.exe;2.69;Code.exe;2.23;MsMpEng.exe;0.96;Code.exe;0.94
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:48;11.1;16;62.1;32.2;235;229324735;229324735;18176277;86278;python.exe;3.11;MsMpEng.exe;0.95;Code.exe;0.82;AMDRSServ.exe;0.57;Code.exe;0.38
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:52;6.1;16;62.1;32.2;235;229335143;229335143;18178895;86282;python.exe;2.77;Code.exe;0.16;Code.exe;0.16;System;0.11;svchost.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:17:56;6.3;16;62.1;32.2;235;229339928;229339928;18181514;86287;python.exe;2.88;Code.exe;0.11;System;0.05;svchost.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:00;5.9;16;62.1;32.2;235;229348446;229348446;18183938;86290;python.exe;2.81;MsMpEng.exe;1.14;Code.exe;0.21;Code.exe;0.16;svchost.exe;0.16
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:04;3.9;16;62.1;32.2;235;229354461;229354461;18186556;86295;python.exe;2.89;Code.exe;0.16;svchost.exe;0.05;svchost.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:07;7.2;16;62.1;32.2;235;229358866;229358866;18189269;86301;python.exe;2.82;Code.exe;0.26;svchost.exe;0.11;svchost.exe;0.11;Code.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:11;6;16;62;32.2;235;229364760;229364760;18192135;86309;python.exe;3.1;MsMpEng.exe;0.82;Code.exe;0.46;Code.exe;0.4;dwm.exe;0.25
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:15;5;16;62.1;32.2;235;229369955;229369955;18194804;86315;python.exe;3.11;MsMpEng.exe;0.91;Code.exe;0.29;svchost.exe;0.15;Code.exe;0.09
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:19;6;16;62.1;32.2;235;229381089;229381089;18202033;86340;python.exe;2.78;chrome.exe;0.26;Code.exe;0.21;svchost.exe;0.11;chrome.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:23;7.9;16;62.2;32.2;235;229388460;229388460;18204727;86347;python.exe;2.96;Code.exe;0.26;System;0.25;svchost.exe;0.11;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:26;5.7;16;62.1;32.2;235;229394243;229394243;18207499;86355;python.exe;2.81;MsMpEng.exe;0.62;Code.exe;0.31;Code.exe;0.31;svchost.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:30;4.3;16;62.2;32.2;235;229404996;229404996;18210388;86364;python.exe;2.88;Code.exe;0.16;System;0.15;Code.exe;0.11;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:34;6.1;16;62.2;32.2;235;229412180;229412180;18213036;86369;python.exe;2.86;Code.exe;0.16;Code.exe;0.11;svchost.exe;0.1;System;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:38;6.6;16;62;32.2;235;229425390;229425390;18228221;86413;python.exe;2.92;Code.exe;1.94;MsMpEng.exe;1.09;svchost.exe;0.09;Code.exe;0.09
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:42;5;16;62.1;32.2;235;229478698;229478698;18230941;86419;python.exe;3.08;MsMpEng.exe;1.06;Code.exe;0.48;svchost.exe;0.09;Code.exe;0.09
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:46;6.6;16;62.1;32.2;235;229483869;229483869;18233470;86423;python.exe;2.79;dwm.exe;0.21;Code.exe;0.16;Code.exe;0.16;System;0.15
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:49;7.2;16;62.1;32.2;235;229486684;229486684;18236226;86429;python.exe;2.84;chrome.exe;0.21;System;0.16;chrome.exe;0.11;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:53;8.1;16;62.2;32.2;235;229496562;229496562;18245456;86446;python.exe;2.85;MsMpEng.exe;0.87;System;0.4;Code.exe;0.21;Code.exe;0.2
+servidor77.VINICIUSTJAS12;2025-10-07 10:18:57;3.9;16;62.2;32.2;235;229503051;229503051;18248020;86450;python.exe;2.74;svchost.exe;0.11;svchost.exe;0.11;Code.exe;0.11;Code.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:01;6.1;16;62.1;32.2;235;229506582;229506582;18250659;86456;python.exe;2.92;System;0.21;svchost.exe;0.16;svchost.exe;0.16;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:05;6.9;16;62.2;32.2;235;229572462;229572462;18267667;86589;jetbrains-toolbox.exe;9.11;MsMpEng.exe;3.16;python.exe;3.09;EpicGamesLauncher.exe;1.74;System;0.24
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:09;32;16;63.6;32.2;236;231202499;231202499;18368548;87391;jetbrains-toolbox.exe;26.62;python.exe;2.56;MsMpEng.exe;1.74;AMDRSServ.exe;0.39;System;0.28
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:12;11.1;16;63.2;32.2;236;231225826;231225826;18478879;87430;python.exe;2.89;System;0.15;svchost.exe;0.15;Code.exe;0.15;jetbrains-toolbox.exe;0.15
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:16;5.9;16;63.3;32.2;236;231240902;231240902;18485844;87444;python.exe;2.97;svchost.exe;0.31;System;0.2;svchost.exe;0.1;Code.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:20;7.2;16;63.2;32.2;236;231244713;231244713;18488408;87448;python.exe;2.88;MsMpEng.exe;0.82;Code.exe;0.16;Code.exe;0.16;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:24;5.5;16;63.2;32.2;236;231248287;231248287;18490937;87452;python.exe;2.93;Code.exe;0.96;svchost.exe;0.15;System;0.1;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:27;6.1;16;63.3;32.2;236;231250348;231250348;18493735;87459;python.exe;2.86;Code.exe;0.21;MsMpEng.exe;0.16;svchost.exe;0.1;services.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:31;5.6;16;63.2;32.2;236;231255694;231255694;18496264;87463;python.exe;2.87;System;0.19;MsMpEng.exe;0.15;Code.exe;0.14;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:35;4.6;16;63.4;32.2;236;231270661;231270661;18504882;87483;python.exe;3.02;MsMpEng.exe;0.99;csrss.exe;0.15;Code.exe;0.15;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:39;4.9;16;63.3;32.2;236;231280587;231280587;18509840;87497;python.exe;2.93;System;0.05;dwm.exe;0.05;powershell.exe;0;Registry;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:43;6;16;63.3;32.2;236;231297884;231297884;18520853;87513;python.exe;2.96;System;0.1;Code.exe;0.1;svchost.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:47;6.5;16;63.2;32.2;236;231300979;231300979;18523382;87517;python.exe;2.98;Code.exe;1.49;MsMpEng.exe;1.07;Code.exe;0.15;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:50;4.6;16;63.3;32.2;236;231312463;231312463;18526138;87523;python.exe;3.14;Code.exe;0.14;Code.exe;0.14;System;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:54;5.7;16;63.3;32.2;236;231320192;231320192;18528777;87529;python.exe;2.94;System;0.1;svchost.exe;0.05;chrome.exe;0.05;powershell.exe;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:19:58;5.8;16;63.3;32.2;236;231328192;231328192;18531451;87535;python.exe;2.84;System;0.14;svchost.exe;0.1;Code.exe;0.1;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:02;8.6;16;63.3;32.2;236;231335839;231335839;18533980;87539;python.exe;2.78;MsMpEng.exe;0.98;svchost.exe;0.46;System;0.41;Code.exe;0.21
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:06;5.6;16;63.2;32.2;236;231350996;231350996;18536544;87543;python.exe;2.87;svchost.exe;0.1;System;0.05;svchost.exe;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:10;5.9;16;63.3;32.2;234;231429739;231429739;18544909;87585;python.exe;2.94;svchost.exe;0.16;Code.exe;0.16;System;0.15;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:13;5.4;16;63.2;32.2;234;231444641;231444641;18547668;87592;python.exe;2.87;MsMpEng.exe;0.96;svchost.exe;0.15;Code.exe;0.15;svchost.exe;0.15
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:17;4.2;16;63.2;32.2;234;231459318;231459318;18555137;87613;python.exe;3.11;MsMpEng.exe;0.79;Code.exe;0.19;svchost.exe;0.11;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:21;6.1;16;63.3;32.2;234;231510196;231510196;18557701;87617;python.exe;2.82;svchost.exe;0.11;System;0.05;svchost.exe;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:25;6.8;16;63.2;32.2;234;231515136;231515136;18560180;87621;python.exe;2.88;System;0.24;svchost.exe;0.1;svchost.exe;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:29;5.4;16;63.1;32.2;234;231524549;231524549;18562886;87627;python.exe;2.92;MsMpEng.exe;1.13;Code.exe;0.36;Code.exe;0.31;svchost.exe;0.16
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:33;5.4;16;63.2;32.2;234;231531683;231531683;18565310;87630;python.exe;2.77;svchost.exe;0.41;svchost.exe;0.11;svchost.exe;0.1;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:36;5.3;16;63.2;32.2;234;231536112;231536112;18567769;87633;python.exe;2.86;svchost.exe;0.11;System;0.1;svchost.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:40;5.1;16;63.1;32.2;234;231542395;231542395;18570373;87639;python.exe;2.96;MsMpEng.exe;0.85;svchost.exe;0.1;System;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:44;3.8;16;63.2;32.2;234;231548073;231548073;18572886;87643;python.exe;3.06;MsMpEng.exe;0.68;svchost.exe;0.11;svchost.exe;0.1;Code.exe;0.09
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:48;6.5;16;63.2;32.2;234;231558463;231558463;18575501;87648;python.exe;2.77;Code.exe;0.16;svchost.exe;0.11;System;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:52;6.1;16;63.2;32.2;234;231565995;231565995;18578014;87652;python.exe;2.91;AMDRSServ.exe;0.47;dwm.exe;0.21;svchost.exe;0.11;Code.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:55;5.6;16;63.2;32.2;234;231571186;231571186;18580437;87655;python.exe;2.86;MsMpEng.exe;0.68;Code.exe;0.31;Code.exe;0.11;System;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:20:59;5;16;63.2;32.2;234;231575654;231575654;18582949;87659;python.exe;2.87;svchost.exe;0.11;MsMpEng.exe;0.11;System;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:03;8.2;16;63.2;32.2;234;231579405;231579405;18585752;87669;python.exe;3.03;Code.exe;1.35;Code.exe;0.91;dwm.exe;0.5;MsMpEng.exe;0.4
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:07;8.2;16;62.8;32.2;236;231582179;231582179;18588504;87677;python.exe;2.94;MemCompression;2.08;MsMpEng.exe;1.04;Code.exe;0.82;System;0.33
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:11;10.8;16;62.9;32.2;236;231589821;231589821;18591454;87687;python.exe;3.18;Code.exe;3.17;Code.exe;1.1;Code.exe;0.93;MsMpEng.exe;0.78
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:15;10.3;16;62.8;32.2;236;231593997;231593997;18593967;87691;Code.exe;3.64;python.exe;3.05;AMDRSServ.exe;0.78;Code.exe;0.54;Code.exe;0.39
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:19;14.2;16;62.9;32.2;236;231607490;231607490;18599505;87711;Code.exe;3.46;python.exe;2.71;Code.exe;1.12;Code.exe;0.94;AMDRSServ.exe;0.8
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:22;10.7;16;63;32.2;236;231609605;231609605;18601963;87714;python.exe;2.71;MsMpEng.exe;1.25;AMDRSServ.exe;0.62;Code.exe;0.26;System;0.21
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:26;7.4;16;63.1;32.2;236;231632415;231632415;18616432;87763;python.exe;2.83;AMDRSServ.exe;0.62;System;0.42;chrome.exe;0.42;explorer.exe;0.37
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:30;8.7;16;63.2;32.2;236;231645316;231645316;18643820;87800;python.exe;2.88;AMDRSServ.exe;1.31;MsMpEng.exe;0.99;explorer.exe;0.67;Code.exe;0.57
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:34;7.7;16;63.1;32.2;236;231650168;231650168;18647589;87805;python.exe;2.79;chrome.exe;0.93;chrome.exe;0.93;dwm.exe;0.54;chrome.exe;0.54
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:38;11;16;63.7;32.2;238;231790151;231790151;18744789;88044;python.exe;3.12;chrome.exe;1.17;chrome.exe;0.88;AMDRSServ.exe;0.49;System;0.44
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:42;10.6;16;63.7;32.2;237;231877727;231878224;18830983;88218;python.exe;2.96;chrome.exe;1.19;chrome.exe;0.9;chrome.exe;0.74;dwm.exe;0.49
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:46;11.2;16;64.1;32.2;237;231966307;231966307;18876202;88298;chrome.exe;4.34;python.exe;3.02;AMDRSServ.exe;1.15;chrome.exe;1.06;chrome.exe;0.85
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:50;13.5;16;63;32.2;236;231972658;231972658;18880385;88309;python.exe;2.95;AMDRSServ.exe;1.12;Code.exe;0.66;Code.exe;0.56;System;0.54
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:53;7.5;16;63.2;32.2;236;231982503;231983369;18882899;88313;python.exe;2.82;System;0.44;AMDRSServ.exe;0.42;svchost.exe;0.1;explorer.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:21:57;6.4;16;63.1;32.2;236;231989821;231989821;18890199;88323;python.exe;2.92;explorer.exe;0.3;chrome.exe;0.16;MsMpEng.exe;0.11;chrome.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:01;4.6;16;63;32.2;236;232001431;232001431;18892758;88328;python.exe;2.87;svchost.exe;0.46;MsMpEng.exe;0.21;Code.exe;0.11;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:05;4.2;16;63;32.2;236;232008840;232008840;18895265;88332;python.exe;2.92;Code.exe;0.16;EpicGamesLauncher.exe;0.05;Code.exe;0.05;System;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:08;3.8;16;63;32.2;236;232013082;232013082;18898259;88337;python.exe;2.77;svchost.exe;0.16;svchost.exe;0.11;System;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:12;5.3;16;63;32.2;236;232019869;232019869;18901088;88346;python.exe;2.85;Code.exe;0.16;svchost.exe;0.11;svchost.exe;0.1;System;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:16;3.7;16;62.9;32.2;236;232025164;232025164;18903685;88351;python.exe;2.78;svchost.exe;0.11;Code.exe;0.11;svchost.exe;0.1;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:20;4;16;62.9;32.2;236;232029190;232029190;18906151;88355;python.exe;2.92;Code.exe;0.11;System;0.1;svchost.exe;0.1;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:23;4.1;16;62.9;32.2;236;232041158;232041158;18911764;88387;python.exe;2.91;System;0.26;svchost.exe;0.05;svchost.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:27;4.1;16;62.9;32.2;236;232049940;232049940;18914742;88396;python.exe;2.89;Code.exe;0.21;System;0.16;svchost.exe;0.11;svchost.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:31;4;16;62.9;32.2;236;232080125;232080423;18917782;88404;python.exe;2.96;Code.exe;0.11;svchost.exe;0.1;System;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:35;4.4;16;62.9;32.2;236;232088003;232088003;18920426;88412;chrome.exe;4.69;python.exe;3.09;chrome.exe;0.1;jetbrains-toolbox.exe;0.1;System;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:38;6.6;16;62.9;32.2;236;232090548;232090548;18922994;88416;python.exe;2.78;svchost.exe;0.11;System;0.1;svchost.exe;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:42;4.2;16;62.9;32.2;236;232095680;232095680;18925473;88420;python.exe;2.82;System;0.21;svchost.exe;0.11;Code.exe;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:46;4.4;16;62.9;32.2;236;232102959;232102959;18927932;88423;python.exe;2.83;Code.exe;0.16;svchost.exe;0.11;jetbrains-toolbox.exe;0.11;System;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:50;4.2;16;62.9;32.2;236;232105298;232105298;18930603;88429;python.exe;2.96;svchost.exe;0.1;System;0.05;svchost.exe;0.05;NisSrv.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:53;3.9;16;62.9;32.2;236;232109533;232109533;18933062;88432;python.exe;2.82;svchost.exe;0.16;svchost.exe;0.11;System;0.05;powershell.exe;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:22:57;3.8;16;62.9;32.2;236;232114483;232114483;18935652;88438;python.exe;2.86;svchost.exe;0.11;Code.exe;0.11;svchost.exe;0.1;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:01;4.4;16;62.8;32.2;236;232116734;232116734;18938275;88444;python.exe;2.85;svchost.exe;0.16;svchost.exe;0.16;Code.exe;0.11;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:05;4.2;16;62.9;32.2;236;232119024;232119024;18940699;88447;python.exe;2.81;jetbrains-toolbox.exe;0.16;Code.exe;0.11;System;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:08;4.4;16;62.9;32.2;236;232122712;232122766;18944117;88467;python.exe;2.89;svchost.exe;0.16;System;0.05;svchost.exe;0.05;Code.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:12;4.3;16;62.9;32.2;236;232130026;232130026;18947032;88478;python.exe;2.92;svchost.exe;0.11;Code.exe;0.11;svchost.exe;0.1;System;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:16;4.8;16;62.9;32.2;236;232134102;232134102;18949910;88487;python.exe;2.91;jetbrains-toolbox.exe;0.16;svchost.exe;0.11;svchost.exe;0.11;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:20;4.1;16;62.8;32.2;236;232137842;232137842;18952663;88496;python.exe;2.78;svchost.exe;0.11;svchost.exe;0.05;svchost.exe;0.05;System;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:23;4;16;62.9;32.2;236;232139413;232139413;18955122;88499;python.exe;2.78;svchost.exe;0.11;System;0.05;svchost.exe;0.05;powershell.exe;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:27;4;16;62.8;32.2;236;232142963;232142963;18957601;88503;python.exe;2.89;System;0.16;svchost.exe;0.11;Code.exe;0.11;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:31;4;16;62.9;32.2;236;232151598;232151598;18960252;88508;python.exe;2.74;svchost.exe;0.11;svchost.exe;0.11;System;0.1;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:35;3.9;16;62.8;32.2;236;232160762;232160762;18962676;88511;python.exe;2.82;svchost.exe;0.11;svchost.exe;0.05;svchost.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:38;4.8;16;62.8;32.2;236;232167622;232167622;18965196;88516;python.exe;2.98;MySQLWorkbench.exe;2.21;MsMpEng.exe;0.52;explorer.exe;0.41;dwm.exe;0.2
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:42;10.3;16;63.2;32.2;236;232194565;232194565;18967763;88521;MySQLWorkbench.exe;4.58;python.exe;2.44;chrome.exe;1.93;dwm.exe;0.61;MsMpEng.exe;0.56
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:46;11.7;16;63.4;32.2;236;232202846;232202846;18971201;88533;python.exe;2.89;chrome.exe;0.67;AMDRSServ.exe;0.56;chrome.exe;0.53;System;0.51
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:49;8.5;16;63.5;32.2;236;232218074;232218074;18989544;88578;python.exe;2.92;explorer.exe;0.44;dwm.exe;0.41;svchost.exe;0.15;System;0.14
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:53;6;16;63.5;32.2;236;232223770;232223770;18992388;88588;python.exe;2.86;explorer.exe;0.45;MsMpEng.exe;0.41;dwm.exe;0.31;System;0.15
+servidor77.VINICIUSTJAS12;2025-10-07 10:23:57;5.5;16;63.4;32.2;236;232241360;232241360;19000782;88600;python.exe;2.85;dwm.exe;0.16;svchost.exe;0.11;Code.exe;0.11;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:01;4.4;16;63.3;32.2;236;232251965;232251965;19006702;88612;python.exe;2.98;svchost.exe;0.16;svchost.exe;0.16;dwm.exe;0.16;explorer.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:05;4.5;16;63.3;32.2;236;232256456;232256456;19009126;88615;python.exe;2.88;EpicGamesLauncher.exe;1.49;svchost.exe;0.11;MsMpEng.exe;0.11;System;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:08;4.9;16;63.3;32.2;236;232272420;232272420;19015338;88632;python.exe;2.86;svchost.exe;0.05;svchost.exe;0.05;System;0;powershell.exe;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:12;3.9;16;63.3;32.2;234;232312973;232312973;19017804;88636;python.exe;2.73;System;0.15;svchost.exe;0.11;Code.exe;0.11;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:16;3.9;16;63.3;32.2;234;232344005;232344005;19020346;88640;python.exe;2.89;svchost.exe;0.11;Code.exe;0.11;jetbrains-toolbox.exe;0.05;System;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:20;4;16;63.3;32.2;234;232363783;232366113;19022954;88645;python.exe;2.78;svchost.exe;0.11;svchost.exe;0.1;System;0;powershell.exe;0
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:23;5.2;16;63.2;32.2;234;232380682;232380682;19025413;88648;python.exe;2.73;MsMpEng.exe;0.16;svchost.exe;0.11;System;0.1;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:27;8.9;16;63.9;32.2;236;232460279;232460279;19049264;88738;python.exe;2.91;chrome.exe;1.31;chrome.exe;0.7;System;0.6;MsMpEng.exe;0.31
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:31;9;16;63.6;32.2;235;232539920;232539920;19083742;88852;python.exe;2.89;chrome.exe;0.81;AMDRSServ.exe;0.52;chrome.exe;0.41;System;0.34
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:35;9.3;16;63.9;32.2;236;232691926;232691926;19113564;88959;python.exe;2.85;chrome.exe;0.68;System;0.39;svchost.exe;0.11;chrome.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:39;5.4;16;64;32.2;236;232739258;232739442;19116863;88967;python.exe;2.84;chrome.exe;0.62;chrome.exe;0.62;chrome.exe;0.31;dwm.exe;0.26
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:42;5.8;16;64;32.2;236;232819310;232819310;19119540;88974;python.exe;2.83;chrome.exe;0.51;chrome.exe;0.26;chrome.exe;0.21;MsMpEng.exe;0.16
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:46;8.9;16;64.1;32.2;236;232926316;232926316;19131210;89012;python.exe;2.81;System;0.31;chrome.exe;0.26;chrome.exe;0.16;svchost.exe;0.11
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:50;6.1;16;64.2;32.2;236;232954681;232954681;19133880;89018;python.exe;2.83;chrome.exe;0.46;chrome.exe;0.41;chrome.exe;0.41;dwm.exe;0.31
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:54;5.9;16;64.2;32.2;236;232983815;232983815;19136339;89021;python.exe;2.84;chrome.exe;0.46;chrome.exe;0.41;chrome.exe;0.36;svchost.exe;0.21
+servidor77.VINICIUSTJAS12;2025-10-07 10:24:57;6.6;16;64.1;32.2;236;233028663;233028663;19145612;89055;python.exe;3.06;chrome.exe;2.34;chrome.exe;0.91;chrome.exe;0.88;chrome.exe;0.81
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:01;15.2;16;64.7;32.5;237;233539867;233539867;19207891;89362;chrome.exe;4.05;python.exe;2.97;chrome.exe;1.41;chrome.exe;0.91;AMDRSServ.exe;0.76
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:05;9.5;16;64.9;32.5;237;233612170;233612170;19219283;89403;chrome.exe;3.69;python.exe;2.9;chrome.exe;1.57;chrome.exe;1.08;AMDRSServ.exe;0.59
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:09;13.6;16;65.4;32.5;238;234368076;234368076;19294984;89780;python.exe;2.92;chrome.exe;0.69;chrome.exe;0.59;dwm.exe;0.55;chrome.exe;0.4
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:13;8.8;16;65.7;32.5;238;234717202;234717202;19319911;89959;python.exe;2.86;chrome.exe;1.31;chrome.exe;1.3;dwm.exe;0.8;chrome.exe;0.6
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:17;9.5;16;66.1;32.5;238;235032267;235032267;19354739;90077;python.exe;2.98;chrome.exe;1.36;chrome.exe;0.65;chrome.exe;0.61;chrome.exe;0.36
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:21;8.4;16;65.6;32.5;238;235188856;235188856;19369048;90134;python.exe;2.98;chrome.exe;0.46;chrome.exe;0.16;svchost.exe;0.1;chrome.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:25;6.7;16;65.5;32.5;238;235216276;235216276;19375553;90159;python.exe;2.86;chrome.exe;0.51;chrome.exe;0.26;System;0.1;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:28;5.6;16;65.3;32.5;238;235241580;235241580;19378345;90167;python.exe;2.88;chrome.exe;0.98;chrome.exe;0.21;chrome.exe;0.16;svchost.exe;0.1
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:32;9;16;64.7;32.5;238;235257056;235257056;19380889;90171;python.exe;2.89;svchost.exe;2.49;chrome.exe;0.32;chrome.exe;0.31;chrome.exe;0.26
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:36;4.9;16;64.7;32.5;238;235267544;235267544;19383423;90175;python.exe;2.91;chrome.exe;0.36;System;0.1;chrome.exe;0.1;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:40;4.7;16;64.7;32.5;238;235288485;235288485;19386441;90182;python.exe;2.96;chrome.exe;0.66;chrome.exe;0.21;Code.exe;0.05;svchost.exe;0.05
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:44;5.8;16;64.7;32.5;238;235304578;235304578;19389058;90188;python.exe;2.92;chrome.exe;0.46;chrome.exe;0.41;chrome.exe;0.21;System;0.15
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:48;6.6;16;64.8;32.5;238;235313360;235313360;19391971;90198;python.exe;3.01;chrome.exe;0.75;System;0.49;dwm.exe;0.45;explorer.exe;0.44
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:51;6.5;16;64.8;32.5;238;235323779;235323779;19394752;90208;python.exe;3.06;explorer.exe;0.65;chrome.exe;0.44;System;0.25;svchost.exe;0.2
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:55;18.1;16;65;32.5;242;235343102;235343102;19402059;90217;python.exe;2.93;Code.exe;0.96;Code.exe;0.65;Code.exe;0.36;chrome.exe;0.31
+servidor77.VINICIUSTJAS12;2025-10-07 10:25:59;12.7;16;64.8;32.5;240;235354471;235354471;19404976;90229;Code.exe;3.9;python.exe;2.59;AMDRSServ.exe;1.88;MsMpEng.exe;0.91;Code.exe;0.82
+servidor77.VINICIUSTJAS12;2025-10-07 10:26:03;10.5;16;64.8;32.5;240;235370853;235370853;19407826;90238;python.exe;2.89;Code.exe;1.23;Code.exe;0.73;chrome.exe;0.59;dwm.exe;0.29
+servidor77.VINICIUSTJAS12;2025-10-07 10:26:07;14.2;16;64.8;32.5;240;235383071;235383071;19410766;90250;Code.exe;3.41;python.exe;3.08;Code.exe;1.31;Code.exe;0.83;dwm.exe;0.68
+servidor77.VINICIUSTJAS12;2025-10-07 10:26:11;12.6;16;64.9;32.5;240;235397737;235397737;19413624;90259;python.exe;2.94;Code.exe;1.79;MsMpEng.exe;1.11;Code.exe;0.72;Code.exe;0.64
+servidor77.VINICIUSTJAS12;2025-10-07 10:26:15;10.3;16;65;32.5;240;235415563;235415563;19416130;90263;python.exe;3.32;Code.exe;2.65;MsMpEng.exe;1.18;Code.exe;1.07;Code.exe;0.78
+servidor77.VINICIUSTJAS12;2025-10-07 10:26:19;13.2;16;64.9;32.5;240;235439539;235439539;19418754;90268;python.exe;2.79;Code.exe;1.31;Code.exe;1.1;chrome.exe;0.36;dwm.exe;0.31
+servidor77.VINICIUSTJAS12;2025-10-07 10:26:22;12.8;16;64.9;32.5;240;235458020;235458020;19421444;90274;python.exe;2.89;Code.exe;2.22;Code.exe;1.23;dwm.exe;0.84;Code.exe;0.64
