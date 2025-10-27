@@ -130,14 +130,14 @@ function verifyPassword(type = "default") {
     valid = false;
   }
 
-  if (has_lower_input && has_upper_input) {
-    has_upper_lower_char.style.color = "#00863F";
-  } else {
-    if (type == "default")
-      has_upper_lower_char.style.color = "rgba(43, 43, 43, 0.4)";
-    else has_upper_lower_char.style.color = "rgba(255, 0, 0, 0.4)";
-    valid = false;
-  }
+  // if (has_lower_input && has_upper_input) {
+  //   has_upper_lower_char.style.color = "#00863F";
+  // } else {
+  //   if (type == "default")
+  //     has_upper_lower_char.style.color = "rgba(43, 43, 43, 0.4)";
+  //   else has_upper_lower_char.style.color = "rgba(255, 0, 0, 0.4)";
+  //   valid = false;
+  // }
 
   if (password_input.value != password_retype_input.value) {
     valid = false;
