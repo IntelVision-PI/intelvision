@@ -23,7 +23,16 @@ insert into servidor  (fkEmpresa,nome,sistema_operacional,macaddress,tipo) value
 (3, 'servidor19.LETSS05HWDF', 'ubuntu', '00:1A:2B:3C:4D:19', 'Processamento'),
 (1, 'servidor42.LUCHT33RSTA', 'windows server', '00:1A:2B:3C:4D:42', 'Web'),
 (2, 'servidor6.NICOLASF8SK4U2', 'ubuntu', '00:1A:2B:3C:4D:06', 'Armazenamento'),
-(3, 'servidor77.VINICIUSTJAS12', 'windows server', '00:1A:2B:3C:4D:77', 'Processamento');
+(3, 'servidor77.VINICIUSTJAS12', 'windows server', '00:1A:2B:3C:4D:77', 'Processamento'),
+(1, 'servidor13.DDFISA23', 'ubuntu', '00:1A:2B:3C:4D:12', 'Processamento'),
+(1, 'servidor14.JASUDJC', 'ubuntu', '00:1A:2B:3C:4D:13', 'Armazenamento'),
+(1, 'servidor15.SJRF6DS', 'ubuntu', '00:1A:2B:3C:4D:14', 'Armazenamento'),
+(1, 'servidor16.FFGWC09', 'ubuntu', '00:1A:2B:3C:4D:15', 'Armazenamento'),
+(1, 'servidor17.SDCSD56', 'ubuntu', '00:1A:2B:3C:4D:16', 'Processamento'),
+(1, 'servidor18.SDCVDE67', 'ubuntu', '00:1A:2B:3C:4D:17', 'Processamento'),
+(1, 'servidor19.SADCX66', 'ubuntu', '00:1A:2B:3C:4D:18', 'Processamento'),
+(1, 'servidor20.ASWE776', 'ubuntu', '00:1A:2B:3C:4D:19', 'Web');
+;
 
 -- componente
 insert into componente (nome,unidade_medida) values
