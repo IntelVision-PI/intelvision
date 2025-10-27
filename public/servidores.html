@@ -101,13 +101,14 @@
             </div>
           </div>
           <!-- Filtro Servidores -->
-          <div class="kpi-container">
-            <div class="filtro_servidores">
+          <div class="kpi-container div-procura">
+            <div class="filtro_servidores div-ipt-procura">
               <p>Filtrar Tipo de Servidores:</p>
               <select
                 name="fitro_tipo_servidor"
                 id="fitro_tipo_servidor"
                 onchange="puxarDadosServidor()"
+                class="ipt_procura"
               >
                 <option value="Todos">Todos</option>
                 <option value="Armazenamento">Armazenamento</option>
@@ -115,12 +116,13 @@
                 <option value="Web">WEB</option>
               </select>
             </div>
-            <div class="filtro_servidores">
+            <div class="filtro_servidores div-ipt-procura">
               <p>Filtrar Situação de Servidores:</p>
               <select
                 name="fitro_situacao_servidor"
                 id="fitro_situacao_servidor"
                 onchange="puxarDadosServidor()"
+                class="ipt_procura"
               >
                 <option value="Todos">Todos</option>
                 <option value="critico">Crítico</option>
