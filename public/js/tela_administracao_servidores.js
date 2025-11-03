@@ -66,8 +66,13 @@ function listarServidores(data) {
             </span>
           </td>
           
-         
-      `;
+          <td class="colunaConfiguracaoComponente">
+            <span class="material-symbols-outlined" onclick="open_modal_componente(${servidor.id}, '${servidor.nome}')">
+                memory
+            </span>
+          </td>
+          
+        `;
 
     if (servidor.nome == 0) {
       tr.style.backgroundColor = "yellow";
@@ -122,7 +127,13 @@ function buscarNomeServidor(nome) {
                 <i class="fa-solid fa-gears"></i>
             </span>
           </td>
-      `;
+          
+          <td class="colunaConfiguracaoComponente">
+            <span class="material-symbols-outlined" onclick="open_modal_componente(${servidor.id}, '${servidor.nome}')">
+                memory
+            </span>
+          </td>
+        `;
 
     if (servidor.nome == 0) {
       tr.style.backgroundColor = "yellow";
@@ -156,15 +167,21 @@ function selecionarTipo() {
 
     if (servidor.tipo == tipoSelecionado) {
       tr.innerHTML = `
-          <td class="colunaNomeServidor">${servidor.nome}</td>
-          <td class="colunaTipoServidor">${servidor.tipo}</td>
-          <td class="colunaStatusServidor">Ativo</td>
-          <td class="colunaConfiguracaoServidor">
-            <span onclick="open_modal_configuracaoServidor(${servidor.id})">
-                <i class="fa-solid fa-gears"></i>
-            </span>
-          </td>
-      `;
+            <td class="colunaNomeServidor">${servidor.nome}</td>
+            <td class="colunaTipoServidor">${servidor.tipo}</td>
+            <td class="colunaStatusServidor">Ativo</td>
+            <td class="colunaConfiguracaoServidor">
+              <span onclick="open_modal_configuracaoServidor(${servidor.id})">
+                  <i class="fa-solid fa-gears"></i>
+              </span>
+            </td>
+
+            <td class="colunaConfiguracaoComponente">
+              <span class="material-symbols-outlined" onclick="open_modal_componente(${servidor.id}, '${servidor.nome}')">
+                  memory
+              </span>
+            </td>
+          `;
 
       if (servidor.nome == 0) {
         tr.style.backgroundColor = "yellow";
@@ -261,3 +278,82 @@ close_edit_configuracaoServidorAplicativos_button_local.addEventListener(
   "click",
   close_modal_configuracaoServidorAplicativos
 );
+
+const outEditComponente = document.getElementById("out_edit_componente");
+const modalEditComponente = document.getElementById("edit_componente_modal");
+const closeBtnComponente = document.getElementById("close_edit_componente_button");
+const cancelBtnComponente = document.getElementById("cancel_edit_componente_button");
+
+const iptServidorId = document.getElementById("ipt_componente_servidor_id");
+const iptParamCpu = document.getElementById("ipt_param_cpu");
+const iptParamRam = document.getElementById("ipt_param_ram");
+const iptParamDisco = document.getElementById("ipt_param_disco");
+const modalTitle = document.getElementById("componente_modal_title");
+
+function open_modal_componente(idServidor, nomeServidor) {
+  console.log(`Abrindo modal de componentes para o servidor ID: ${idServidor}`);
+
+  iptServidorId.value = idServidor;
+  
+  modalTitle.innerHTML = `Parâmetros - ${nomeServidor}`;
+
+  outEditComponente.style.visibility = "visible";
+  outEditComponente.style.opacity = 1;
+  outEditComponente.style.pointerEvents = "all";
+  modalEditComponente.style.visibility = "visible";
+  modalEditComponente.style.opacity = 1;
+  modalEditComponente.style.pointerEvents = "all";
+
+  fetchComponenteData(idServidor);
+}
+
+function close_modal_componente() {
+  outEditComponente.style.visibility = "hidden";
+  outEditComponente.style.opacity = 0;
+  outEditComponente.style.pointerEvents = "none";
+  modalEditComponente.style.visibility = "hidden";
+  modalEditComponente.style.opacity = 0;
+  modalEditComponente.style.pointerEvents = "none";
+
+  iptParamCpu.value = "";
+  iptParamRam.value = "";
+  iptParamDisco.value = "";
+  iptServidorId.value = "";
+}
+
+function fetchComponenteData(idServidor) {
+  console.log(`Buscando dados de parâmetros para o ID: ${idServidor}`);
+
+  const mockData = {
+    paramCpu: 85,
+    paramRam: 70,
+    paramDisco: 90,
+  };
+  populateComponenteModal(mockData);
+  
+}
+
+function populateComponenteModal(data) {
+  iptParamCpu.value = data.paramCpu; 
+  iptParamRam.value = data.paramRam;
+  iptParamDisco.value = data.paramDisco;
+
+}
+
+function updateComponenteData() {
+  const idServidor = iptServidorId.value;
+  
+  const dadosAtualizados = {
+    paramCpu: iptParamCpu.value,
+    paramRam: iptParamRam.value,
+    paramDisco: iptParamDisco.value,
+  };
+
+  console.log(`Salvando dados para o ID: ${idServidor}`, dadosAtualizados);
+  alert("Dados salvos (simulação)!");
+  close_modal_componente();
+}
+
+closeBtnComponente.addEventListener("click", close_modal_componente);
+cancelBtnComponente.addEventListener("click", close_modal_componente);
+outEditComponente.addEventListener("click", close_modal_componente);

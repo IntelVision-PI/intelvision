@@ -422,6 +422,15 @@ thead {
   cursor: pointer;
 }
 
+/* Ícone de componente na tabela */
+.colunaConfiguracaoComponente span {
+  cursor: pointer;
+}
+.colunaConfiguracaoComponente span:hover {
+  color: var(--primary-color);
+}
+
+
 /* Parte tela-administracao-servidores.html */
 .edit_configuracaoServidor_modal {
   width: 90%;
@@ -441,6 +450,41 @@ thead {
 #edit_configuracaoServidor_field__box__informacao {
   width: 60%;
   padding-right: 5%;
+}
+
+
+/* pagina de admin-serv componente*/
+
+.out_edit_componente {
+/* isso é meio que para herdar de out_edit*/
+}
+
+.edit_componente_modal {
+  width: 40vw;
+}
+
+.edit_componente_modal .edit_field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.edit_componente_modal .edit_field label {
+  font-weight: 600;
+  color: #333;
+  margin-left: 5px;
+}
+
+.edit_componente_modal .edit_field input {
+  border: #00863f 2px solid;
+  background-color: #f4f4f4;
+  font-size: 16px;
+  padding: 15px 30px;
+  border-radius: 100px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Parte tela-administracao-servidores.html - lista aplicativos */
