@@ -198,7 +198,6 @@ header {
   border: 3px solid var(--primary-color);
   margin-bottom: 15px;
   padding: 4px;
-  /* clip-path: polygon(0 25px, 25px 0, calc(100% - 25px) 0, 100% 25px, 100% calc(100% - 25px), calc(100% - 25px) 100%, 25px 100%, 0 calc(100% - 25px)); */
 }
 
 .div-ipt-procura label {
@@ -207,23 +206,19 @@ header {
 }
 
 .div-ipt-procura .ipt_procura {
-  /* border: 0; */
   height: 30px;
   border: none;
   border-bottom: 2px solid red;
   outline: none;
-  /* border-bottom: 2px solid linear-gradient(to right, #6E035C 0%, #B94FFA 50%, #6E035C 100%); */
 }
 
 .mostrarUsuarios {
-  /* overflow-x: scroll; */
   overflow-y: scroll;
   scrollbar-color: var(--light-primary-color);
   margin-top: 30px;
   height: 200px;
   margin-bottom: 40px;
   width: 75%;
-  /* border: var(--verde-3) 2px solid; */
 }
 
 select,
@@ -452,7 +447,6 @@ thead {
   padding-right: 5%;
 }
 
-
 /* pagina de admin-serv componente*/
 
 .out_edit_componente {
@@ -460,7 +454,9 @@ thead {
 }
 
 .edit_componente_modal {
-  width: 40vw;
+  width: 50vw; 
+  max-height: 80vh; 
+  overflow-y: auto; 
 }
 
 .edit_componente_modal .edit_field {
@@ -486,6 +482,32 @@ thead {
   width: 100%;
   box-sizing: border-box;
 }
+
+/* agrupar parâmetros */
+.componente-param-group {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 20px 20px 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.componente-param-group h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--lightiest-primary-color);
+  padding-bottom: 10px;
+}
+
+.componente-param-group h4 .material-symbols-outlined {
+   color: var(--primary-color);
+   font-size: 24px;
+}
+
 
 /* Parte tela-administracao-servidores.html - lista aplicativos */
 
@@ -734,8 +756,8 @@ thead {
   .btn-nav h3 {
     font-size: 7px;
     text-align: center;
-    white-space: nowrap; /* Impede quebra de linha */
-    overflow: hidden; /* Esconde o texto que ultrapassa o limite */
+    white-space: nowrap;
+    overflow: hidden; 
     text-overflow: ellipsis;
   }
 

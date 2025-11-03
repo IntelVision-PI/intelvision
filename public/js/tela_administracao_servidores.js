@@ -68,7 +68,7 @@ function listarServidores(data) {
           
           <td class="colunaConfiguracaoComponente">
             <span class="material-symbols-outlined" onclick="open_modal_componente(${servidor.id}, '${servidor.nome}')">
-                memory
+                tune
             </span>
           </td>
           
@@ -130,7 +130,7 @@ function buscarNomeServidor(nome) {
           
           <td class="colunaConfiguracaoComponente">
             <span class="material-symbols-outlined" onclick="open_modal_componente(${servidor.id}, '${servidor.nome}')">
-                memory
+                tune
             </span>
           </td>
         `;
@@ -178,7 +178,7 @@ function selecionarTipo() {
 
             <td class="colunaConfiguracaoComponente">
               <span class="material-symbols-outlined" onclick="open_modal_componente(${servidor.id}, '${servidor.nome}')">
-                  memory
+                  tune
               </span>
             </td>
           `;
@@ -283,11 +283,7 @@ const outEditComponente = document.getElementById("out_edit_componente");
 const modalEditComponente = document.getElementById("edit_componente_modal");
 const closeBtnComponente = document.getElementById("close_edit_componente_button");
 const cancelBtnComponente = document.getElementById("cancel_edit_componente_button");
-
 const iptServidorId = document.getElementById("ipt_componente_servidor_id");
-const iptParamCpu = document.getElementById("ipt_param_cpu");
-const iptParamRam = document.getElementById("ipt_param_ram");
-const iptParamDisco = document.getElementById("ipt_param_disco");
 const modalTitle = document.getElementById("componente_modal_title");
 
 function open_modal_componente(idServidor, nomeServidor) {
@@ -315,38 +311,72 @@ function close_modal_componente() {
   modalEditComponente.style.opacity = 0;
   modalEditComponente.style.pointerEvents = "none";
 
-  iptParamCpu.value = "";
-  iptParamRam.value = "";
-  iptParamDisco.value = "";
   iptServidorId.value = "";
+  
+  // CPU
+  document.getElementById("ipt_cpu_risco_min").value = "";
+  document.getElementById("ipt_cpu_alerta").value = "";
+  document.getElementById("ipt_cpu_risco_max").value = "";
+  
+  // RAM
+  document.getElementById("ipt_ram_risco_min").value = "";
+  document.getElementById("ipt_ram_alerta").value = "";
+  document.getElementById("ipt_ram_risco_max").value = "";
+
+  // Disco
+  document.getElementById("ipt_disco_risco_min").value = "";
+  document.getElementById("ipt_disco_alerta").value = "";
+  document.getElementById("ipt_disco_risco_max").value = "";
 }
 
 function fetchComponenteData(idServidor) {
   console.log(`Buscando dados de parâmetros para o ID: ${idServidor}`);
-
   const mockData = {
-    paramCpu: 85,
-    paramRam: 70,
-    paramDisco: 90,
+    cpu_risco_min: 10,
+    cpu_alerta: 75,
+    cpu_risco_max: 90,
+    ram_risco_min: 10,
+    ram_alerta: 70,
+    ram_risco_max: 85,
+    disco_risco_min: 5,
+    disco_alerta: 80,
+    disco_risco_max: 95
   };
   populateComponenteModal(mockData);
-  
 }
 
 function populateComponenteModal(data) {
-  iptParamCpu.value = data.paramCpu; 
-  iptParamRam.value = data.paramRam;
-  iptParamDisco.value = data.paramDisco;
+  // CPU
+  document.getElementById("ipt_cpu_risco_min").value = data.cpu_risco_min;
+  document.getElementById("ipt_cpu_alerta").value = data.cpu_alerta;
+  document.getElementById("ipt_cpu_risco_max").value = data.cpu_risco_max;
+  
+  // RAM
+  document.getElementById("ipt_ram_risco_min").value = data.ram_risco_min;
+  document.getElementById("ipt_ram_alerta").value = data.ram_alerta;
+  document.getElementById("ipt_ram_risco_max").value = data.ram_risco_max;
 
+  // Disco
+  document.getElementById("ipt_disco_risco_min").value = data.disco_risco_min;
+  document.getElementById("ipt_disco_alerta").value = data.disco_alerta;
+  document.getElementById("ipt_disco_risco_max").value = data.disco_risco_max;
 }
 
 function updateComponenteData() {
   const idServidor = iptServidorId.value;
   
   const dadosAtualizados = {
-    paramCpu: iptParamCpu.value,
-    paramRam: iptParamRam.value,
-    paramDisco: iptParamDisco.value,
+    cpu_risco_min: document.getElementById("ipt_cpu_risco_min").value,
+    cpu_alerta: document.getElementById("ipt_cpu_alerta").value,
+    cpu_risco_max: document.getElementById("ipt_cpu_risco_max").value,
+    
+    ram_risco_min: document.getElementById("ipt_ram_risco_min").value,
+    ram_alerta: document.getElementById("ipt_ram_alerta").value,
+    ram_risco_max: document.getElementById("ipt_ram_risco_max").value,
+
+    disco_risco_min: document.getElementById("ipt_disco_risco_min").value,
+    disco_alerta: document.getElementById("ipt_disco_alerta").value,
+    disco_risco_max: document.getElementById("ipt_disco_risco_max").value
   };
 
   console.log(`Salvando dados para o ID: ${idServidor}`, dadosAtualizados);
