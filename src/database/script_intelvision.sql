@@ -48,8 +48,9 @@ create table parametro(
 	id int not null primary key auto_increment,
     fkComponente int not null,
     fkServidor int not null,
-    alerta_min double, -- Alerta mínimo de perigo
-    alerta_max double, -- Alerta máximo de perigo
+    em_risco_min double, -- Alerta mínimo de perigo
+    em_risco_max double, -- Alerta máximo de perigo
+    alerta double,
     -- capacidade_total double, -- Capacidade total do componente (Exemplo: 100, que seria, por exemplo, 100 GB de RAM)
     foreign key (fkServidor) references servidor(id),
     foreign key (fkComponente) references componente(id)
