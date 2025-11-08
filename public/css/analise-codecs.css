@@ -1,0 +1,7 @@
+.cabecalho-dash img {
+  width: 50px;
+}
+
+.dash__conteudo__descricao-servidor {
+  display: flex;
+}
