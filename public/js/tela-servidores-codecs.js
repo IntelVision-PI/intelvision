@@ -1,4 +1,65 @@
 const ctxDia = document.getElementById("requisicoesDia");
+
+let servidores = [];
+
+function puxarDadosServidor() {
+  /* Essa função puxa os dados de servidores do banco de dados */
+  console.log("Me chamou puxarDadosServidor()");
+  const idEmpresa = Number(sessionStorage.fkEmpresa);
+  console.log(idEmpresa);
+
+  fetch(`/servidores/select/servidor/${idEmpresa}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Erro na resposta da API");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      listarServidores(data);
+    });
+}
+
+function listarServidores(data) {
+  console.log("Me chamou listarServidores(data)");
+  console.log(data);
+  servidores = data;
+  const selectServidores = document.getElementById("fitro_nome_servidor");
+  selectServidores.innerHTML = "<option value='Todos'>Todos</option>";
+
+  for (let i = 0; i < data.length; i++) {
+    const servidor = data[i];
+    if (servidor.tipo == "Processamento") {
+      selectServidores.innerHTML += `
+            <option value="${servidor.id}">${servidor.nome}</option> 
+          `;
+    }
+  }
+}
+
+function mostrarNavbar() {
+  const larguraTela = window.innerWidth;
+  var menu = document.getElementById("navbar");
+  var icone = document.getElementById("icone");
+
+  if (larguraTela < 1342) {
+    if (getComputedStyle(menu).display == "none") {
+      menu.style.display = "flex";
+      icone.classList.remove("fa-bars");
+      icone.classList.add("fa-times");
+    } else {
+      menu.style.display = "none";
+      icone.classList.remove("fa-times");
+      icone.classList.add("fa-bars");
+    }
+  }
+}
+
 new Chart(ctxDia, {
   type: "bar",
   data: {

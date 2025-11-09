@@ -38,12 +38,12 @@
     ></script>
   </head>
 
-  <body onload="puxarDados(), validarSessaoAdministrador()">
+  <body onload="puxarDadosServidor(), validarSessaoAdministrador()">
     <header>
       <div class="cabecalho-dash">
         <div class="nome-dash">
           <img src="./assets/img/icon-codec.png" alt="" />
-          <h3>Análise - Codecs</h3>
+          <h3>Análise - Codecs de Servidores de Processamento</h3>
         </div>
       </div>
     </header>
@@ -82,12 +82,18 @@
 
       <div class="dash">
         <div class="dash__conteudo">
-          <select name="servidores" id="">
-            <option value="">Todos</option>
-            <option value="">SRV001</option>
-            <option value="">SRV002</option>
-            <option value="">SRV003</option>
-          </select>
+          <div class="kpi-container div-procura">
+            <div class="filtro_servidores div-ipt-procura">
+              <p>Filtrar por servidor:</p>
+              <select
+                name="fitro_nome_servidor"
+                id="fitro_nome_servidor"
+                onchange="puxarDadosServidor()"
+                class="ipt_procura"
+              ></select>
+            </div>
+          </div>
+
           <div class="dash__conteudo__descricao-servidor">
             <img src="./assets/img/servidores/servidorDemo.png" alt="" />
             <table>
@@ -162,17 +168,5 @@
   </body>
 </html>
 <script src="js/verificarCampos.js"></script>
-<script src="js/cadastro.js"></script>
 <script src="js/verifyLogin.js"></script>
-<script src="js/tela_administracao.js"></script>
 <script src="js/tela-servidores-codecs.js"></script>
-
-<script>
-  function sairX() {
-    document.querySelector(".div_cadastrar").style.display = "none";
-  }
-
-  function cadastrar() {
-    document.querySelector(".div_cadastrar").style.display = "flex";
-  }
-</script>
