@@ -1,0 +1,19 @@
+services: 
+  site:
+    image: site:1.0
+    ports:
+      - "8080:8080"
+      - "3333:3333"
+    networks:
+      - rede-compose
+    depends_on:
+      - database
+  database:
+    image: database:1.0
+    ports:
+      - "3306:3306"
+    networks:
+      - rede-compose
+networks:
+  rede-compose:
+    driver: bridge
