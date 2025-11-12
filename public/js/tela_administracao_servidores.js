@@ -346,7 +346,7 @@ function fetchComponenteData(idServidor) {
             document.getElementById("ipt_ram_alerta").value = item.alerta;
             document.getElementById("ipt_ram_risco_max").value = item.em_risco_max;
           } 
-          else if (item.componente === 'Disco') {
+          else if (item.componente === 'HD') {
             document.getElementById("ipt_disco_risco_min").value = item.em_risco_min;
             document.getElementById("ipt_disco_alerta").value = item.alerta;
             document.getElementById("ipt_disco_risco_max").value = item.em_risco_max;

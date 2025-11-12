@@ -103,7 +103,7 @@ function atualizarParametros(idServidor, dados) {
             alerta = ${tratar(dados.disco_alerta)},
             em_risco_max = ${tratar(dados.disco_risco_max)}
         WHERE fkServidor = ${idServidor} 
-        AND fkComponente = (SELECT id FROM componente WHERE nome = 'Disco');
+        AND fkComponente = (SELECT id FROM componente WHERE nome = 'HD');
     `;
 
     return database.executar(sqlCPU)
