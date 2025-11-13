@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelVision | Servidores</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
+    <script
+      src="https://kit.fontawesome.com/9f7414eb10.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/sessao.js"></script>
+  </head>
+
+  <body onload="validarSessaoAdministrador(), puxarDadosServidor()">
+    <header>
+      <div class="cabecalho-dash">
+        <div class="nome-dash">
+          <i class="fa-solid fa-chart-simple"></i>
+          <h3>Dashboard</h3>
+        </div>
+
+        <div class="icone-usuario">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="janela">
+      <div class="header-left">
+        <h1>IntelVision</h1>
+
+        <div class="btn-nav ativo">
+          <a href="servidores.html">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h3>Dashboard</h3>
+          </a>
+        </div>
+
+        <!-- <div class="btn-nav">
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>Análise de dados</h3>
+          </a>
+        </div> -->
+
+        <div class="btn-nav" id="btn-nav-admin-usuarios">
+          <a href="./tela-administracao-usuario.html">
+            <i class="fa-solid fa-user-gear"></i>
+            <h3>Adm - Usuários</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav" id="btn-nav-admin-servidores">
+          <a href="./tela-administracao-servidores.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h3>Adm - Servidores</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav btn-logout" onclick="limparSessao()">
+          <a href="./index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <h3>Sair</h3>
+          </a>
+        </div>
+      </div>
+
+      <!-- Conteúdo da página -->
+      <div class="dash">
+        <div class="dash__conteudo">
+
+            <div class="div-relatorio">
+                <div class="div-botao-relatorio">
+                    <div class="div-flex">
+                    <div class="div-textos">
+                    <h2 class="h2-branco">Relatórios da situação</h2>
+                    <p class="p-verde">Relatórios e análise para auxílio</p>
+                    </div>
+                    <div class="div-bola-relatorio"></div>
+                    </div>
+                </div>
+            </div>
+          <!-- Gráfico de requisições por dia -->
+          <div class="chart-container">
+            <h3>Requisições por dia da semana</h3>
+            <canvas id="requisicoesDia"></canvas>
+          </div>
+
+          <!-- Gráficos de requisições por hora -->
+          <div class="chart-container">
+            <h3>Requisições por hora</h3>
+            <canvas id="requisicoesHora"></canvas>
+          </div>
+
+          <div class="chart-container">
+            <h3>Uso da CPU (%) por hora</h3>
+            <canvas id="cpuUso"></canvas>
+          </div>
+
+          <div class="chart-container">
+            <h3>Uso da RAM (%) por hora</h3>
+            <canvas id="ramUso"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Gráfico de Requisições por dia
+      const ctxDia = document.getElementById("requisicoesDia");
+      new Chart(ctxDia, {
+        type: "bar",
+        data: {
+          labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+          datasets: [
+            {
+              label: "Requisições",
+              data: [100000, 80000, 120000, 150000, 90000, 70000, 200000],
+              backgroundColor: "#28a745",
+              borderColor: "#145a32",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } },
+      });
+
+      // Gráfico de Requisições por hora
+      const ctxHora = document.getElementById("requisicoesHora");
+      new Chart(ctxHora, {
+        type: "line",
+        data: {
+          labels: ["00-04", "04-08", "08-12", "12-16", "16-20", "20-24"],
+          datasets: [
+            {
+              label: "Requisições",
+              data: [5000, 10000, 8000, 15000, 12000, 20000],
+              backgroundColor: "rgba(40,167,69,0.2)",
+              borderColor: "#28a745",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } },
+      });
+      // Gráfico de Uso da CPU
+      const ctxCPU = document.getElementById("cpuUso");
+      new Chart(ctxCPU, {
+        type: "line",
+        data: {
+          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
+          datasets: [
+            {
+              label: "Uso da CPU (%)",
+              data: [35, 50, 70, 90, 65, 45, 55],
+              backgroundColor: "rgba(255, 82, 82, 0.2)",
+              borderColor: "#ff5252",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: { display: true, text: "%" },
+            },
+          },
+        },
+      });
+
+      // Gráfico de Uso da RAM
+      const ctxRAM = document.getElementById("ramUso");
+      new Chart(ctxRAM, {
+        type: "line",
+        data: {
+          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
+          datasets: [
+            {
+              label: "Uso da RAM (%)",
+              data: [60, 55, 65, 85, 75, 70, 60],
+              backgroundColor: "rgba(0, 188, 212, 0.2)",
+              borderColor: "#00bcd4",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: { display: true, text: "%" },
+            },
+          },
+        },
+      });
+    </script>
+    <script></script>
+    <script src="./js/situacaoServidores.js"></script>
+  </body>
+</html>
