@@ -1,0 +1,35 @@
+/* PÁGINA DE PREDICOES.HTML */
+
+/* Parte de Relatório */
+
+.div-relatorio {
+  width: 100%;
+  height: 8rem;
+  /* background-color: #00863f; */
+  display: block;
+}
+
+.div-relatorio .div-botao-relatorio {
+  width: 493px;
+  height: 105px;
+  background-color: #00A335;
+  border-radius: 24px; 
+  margin-left: 15px;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.div-botao-relatorio .div-textos {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.h2-branco {
+  color: white;
+}
+
+.p-verde {
+  color: #00FF88;
+}
