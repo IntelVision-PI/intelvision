@@ -1,6 +1,7 @@
 const ctxDia = document.getElementById("requisicoesDia");
 
 let servidores = [];
+let servidoresProcessamento = [];
 
 function puxarDadosServidor() {
   /* Essa função puxa os dados de servidores do banco de dados */
@@ -35,6 +36,7 @@ function listarServidores(data) {
   for (let i = 0; i < data.length; i++) {
     const servidor = data[i];
     if (servidor.tipo == "Processamento") {
+      servidoresProcessamento.push(servidor);
       selectServidores.innerHTML += `
             <option value="${servidor.id}">${servidor.nome}</option> 
           `;
@@ -58,6 +60,90 @@ function mostrarNavbar() {
       icone.classList.add("fa-bars");
     }
   }
+}
+
+function pegarInformacoesServidor(idServidor) {
+  console.log(
+    "Me chamou (pegarInformacoesServidor) do servidor com id " + idServidor
+  );
+  const tbodyServidoresCodec = document.getElementById(
+    "tbody_servidores_codec"
+  );
+  tbodyServidoresCodec.innerHTML = ` <tr>
+              <td>Carregando a tabela</td>
+              <td>...</td>
+            </tr>`;
+  setTimeout(() => {
+    if (idServidor == "Todos") {
+      tbodyServidoresCodec.innerHTML = `
+            <tr>
+              <td>Quantidade Servidores Processamento</td>
+              <td>${servidoresProcessamento.length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Codec A</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Codec B</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Codec C</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Codec D</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Codec E</td>
+              <td>0</td>
+            </tr>
+  
+          `;
+    } else {
+      for (let i = 0; i < servidores.length; i++) {
+        if (servidores[i].id == Number(idServidor)) {
+          tbodyServidoresCodec.innerHTML = `
+            <tr>
+              <td>Nome</td>
+              <td>${servidores[i].nome}</td>
+            </tr>
+            <tr>
+              <td>Modelo</td>
+              <td>${servidores[i].modelo}</td>
+            </tr>
+            <tr>
+              <td>Service Tag</td>
+              <td>${servidores[i].service_tag}</td>
+            </tr>
+            <tr>
+              <td>Endereço MAC</td>
+              <td>${servidores[i].macaddress}</td>
+            </tr>
+            <tr>
+              <td>Disco</td>
+              <td>1TB</td>
+            </tr>
+            <tr>
+              <td>Memória</td>
+              <td>64GB</td>
+            </tr>
+            <tr>
+              <td>CPU</td>
+              <td>Intel Xeon CPU Max 9462 2,70 GHz</td>
+            </tr>
+            <tr>
+              <td>CODEC</td>
+              <td>H.264</td>
+            </tr>
+          `;
+          break;
+        }
+      }
+    }
+  }, 1000);
 }
 
 new Chart(ctxDia, {

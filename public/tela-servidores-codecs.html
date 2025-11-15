@@ -38,7 +38,9 @@
     ></script>
   </head>
 
-  <body onload="puxarDadosServidor(), validarSessaoAdministrador()">
+  <body
+    onload="puxarDadosServidor(), validarSessaoAdministrador(),pegarInformacoesServidor('Todos')"
+  >
     <header>
       <div class="cabecalho-dash">
         <div class="nome-dash">
@@ -88,7 +90,7 @@
               <select
                 name="fitro_nome_servidor"
                 id="fitro_nome_servidor"
-                onchange="puxarDadosServidor()"
+                onchange="pegarInformacoesServidor(fitro_nome_servidor.value)"
                 class="ipt_procura"
               ></select>
             </div>
@@ -102,48 +104,7 @@
                     <th>Valores</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Nome</td>
-                    <td>SRV001</td>
-                  </tr>
-                  <tr>
-                    <td>Modelo</td>
-                    <td>AV-CSCX16T</td>
-                  </tr>
-                  <tr>
-                    <td>Service Tag</td>
-                    <td>123ABC</td>
-                  </tr>
-                  <tr>
-                    <td>Endereço MAC</td>
-                    <td>d4:77:c4:dc:34:ab</td>
-                  </tr>
-                  <tr>
-                    <td>Disco Rígido</td>
-                    <td>512 SSD</td>
-                  </tr>
-                  <tr>
-                    <td>RAM</td>
-                    <td>64GB</td>
-                  </tr>
-                  <tr>
-                    <td>CPU</td>
-                    <td>i9-7842</td>
-                  </tr>
-                  <tr>
-                    <td>GPU</td>
-                    <td>Nvidia RTX 3500</td>
-                  </tr>
-                  <tr>
-                    <td>Tipo</td>
-                    <td>Processamento</td>
-                  </tr>
-                  <tr>
-                    <td>Codec</td>
-                    <td>H.264</td>
-                  </tr>
-                </tbody>
+                <tbody id="tbody_servidores_codec"></tbody>
               </table>
             </div>
             <div class="dash__conteudo__grupo__graficos">

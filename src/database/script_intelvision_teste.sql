@@ -17,21 +17,21 @@ insert into usuario (fkEmpresa,nome,email,senha,perfil,atividade) values
 (3,'Isadora Ibisco', 'isadora@tivit.com.br', '123456','empresaComum',0);
 
 -- servidor
-insert into servidor  (fkEmpresa,nome,sistema_operacional,macaddress,tipo) values
-(1, 'servidor12.GABSERVIREDES', 'ubuntu', '00:1A:2B:3C:4D:12', 'Web'),
-(2, 'servidor5.GUIEWVLXC', 'windows server', '00:1A:2B:3C:4D:05', 'Armazenamento'),
-(3, 'servidor19.LETSS05HWDF', 'ubuntu', '00:1A:2B:3C:4D:19', 'Processamento'),
-(1, 'servidor42.LUCHT33RSTA', 'windows server', '00:1A:2B:3C:4D:42', 'Web'),
-(2, 'servidor6.NICOLASF8SK4U2', 'ubuntu', '00:1A:2B:3C:4D:06', 'Armazenamento'),
-(3, 'servidor77.VINICIUSTJAS12', 'windows server', '00:1A:2B:3C:4D:77', 'Processamento'),
-(1, 'servidor13.DDFISA23', 'ubuntu', '00:1A:2B:3C:4D:12', 'Processamento'),
-(1, 'servidor14.JASUDJC', 'ubuntu', '00:1A:2B:3C:4D:13', 'Armazenamento'),
-(1, 'servidor15.SJRF6DS', 'ubuntu', '00:1A:2B:3C:4D:14', 'Armazenamento'),
-(1, 'servidor16.FFGWC09', 'ubuntu', '00:1A:2B:3C:4D:15', 'Armazenamento'),
-(1, 'servidor17.SDCSD56', 'ubuntu', '00:1A:2B:3C:4D:16', 'Processamento'),
-(1, 'servidor18.SDCVDE67', 'ubuntu', '00:1A:2B:3C:4D:17', 'Processamento'),
-(1, 'servidor19.SADCX66', 'ubuntu', '00:1A:2B:3C:4D:18', 'Processamento'),
-(1, 'servidor20.ASWE776', 'ubuntu', '00:1A:2B:3C:4D:19', 'Web');
+insert into servidor  (fkEmpresa,nome,sistema_operacional,macaddress,tipo,modelo,service_tag,atividade) values
+(1, 'servidor12.GABSERVIREDES', 'ubuntu', '00:1A:2B:3C:4D:12', 'Web',"PowerEdge123", "123ABC", 1),
+(2, 'servidor5.GUIEWVLXC', 'windows server', '00:1A:2B:3C:4D:05', 'Armazenamento',"PowerEdge456", "123ABD", 1),
+(3, 'servidor19.LETSS05HWDF', 'ubuntu', '00:1A:2B:3C:4D:19', 'Processamento',"PowerEdge789", "123ABF", 1),
+(1, 'servidor42.LUCHT33RSTA', 'windows server', '00:1A:2B:3C:4D:42', 'Web',"PowerEdge123", "123ACC", 1),
+(2, 'servidor6.NICOLASF8SK4U2', 'ubuntu', '00:1A:2B:3C:4D:06', 'Armazenamento',"PowerEdge753", "123SBC", 1),
+(3, 'servidor77.VINICIUSTJAS12', 'windows server', '00:1A:2B:3C:4D:77', 'Processamento',"PowerEdge856", "153ABC", 1),
+(1, 'servidor13.DDFISA23', 'ubuntu', '00:1A:2B:3C:4D:12', 'Processamento',"PowerEdge777", "129TBC", 1),
+(1, 'servidor14.JASUDJC', 'ubuntu', '00:1A:2B:3C:4D:13', 'Armazenamento',"HPSRV888", "175ABC", 1),
+(1, 'servidor15.SJRF6DS', 'ubuntu', '00:1A:2B:3C:4D:14', 'Armazenamento',"HPSRV888", "961ABC", 1),
+(1, 'servidor16.FFGWC09', 'ubuntu', '00:1A:2B:3C:4D:15', 'Armazenamento',"HPSRV898", "123AYU", 1),
+(1, 'servidor17.SDCSD56', 'ubuntu', '00:1A:2B:3C:4D:16', 'Processamento',"HPSRV718", "123GBC", 1),
+(1, 'servidor18.SDCVDE67', 'ubuntu', '00:1A:2B:3C:4D:17', 'Processamento',"HPSRV688", "114ABC", 1),
+(1, 'servidor19.SADCX66', 'ubuntu', '00:1A:2B:3C:4D:18', 'Processamento',"HPSRV878", "123ASF", 1),
+(1, 'servidor20.ASWE776', 'ubuntu', '00:1A:2B:3C:4D:19', 'Web',"HPSRV888", "129YBC", 1);
 ;
 
 -- componente
