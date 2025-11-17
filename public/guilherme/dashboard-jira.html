@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelVision | Servidores</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/alerta.js"></script>
+</head>
+
+<body onload="
+  validarSessaoAdministrador(), puxarDadosServidor()
+  ">
+    <header>
+        <div class="cabecalho-dash">
+            <div class="nome-dash">
+                <i class="fa-solid fa-chart-simple"></i>
+                <h3>Dashboard</h3>
+            </div>
+
+            <div class="icone-usuario">
+                <i class="fa-solid fa-user"></i>
+                <img src="../public/assets/cadastro/iconeUser.jpg" alt="" />
+            </div>
+        </div>
+    </header>
+
+    <div class="janela">
+        <div class="header-left">
+            <h1>IntelVision</h1>
+
+            <div class="btn-nav ativo">
+                <a href="servidores.html">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <h3>Dashboard</h3>
+                </a>
+            </div>
+
+            <!-- <div class="btn-nav">
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>Análise de dados</h3>
+          </a>
+        </div> -->
+
+            <div class="btn-nav" id="btn-nav-admin-usuarios">
+                <a href="./tela-administracao-usuario.html">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <h3>Adm - Usuários</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav" id="btn-nav-admin-servidores">
+                <a href="./tela-administracao-servidores.html">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Adm - Servidores</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav btn-logout" onclick="limparSessao()">
+                <a href="./index.html">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <h3>Sair</h3>
+                </a>
+            </div>
+        </div>
+
+        <!-- Conteúdo da página -->
+        <div class="dash">
+            <div class="dash__conteudo">
+                <!-- Filtro Servidores -->
+                <div class="kpi-container div-procura">
+                    <div class="filtro_servidores div-ipt-procura">
+                        <p>Filtrar Tipo de Servidores:</p>
+                        <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
+                            class="ipt_procura">
+                            <option value="Todos">Todos</option>
+                            <option value="Armazenamento">Armazenamento</option>
+                            <option value="Processamento">Processamento</option>
+                            <option value="Web">WEB</option>
+                        </select>
+                    </div>
+                    <div class="filtro_servidores div-ipt-procura">
+                        <p>Filtrar Situação de Servidores:</p>
+                        <select name="fitro_situacao_servidor" id="fitro_situacao_servidor"
+                            onchange="puxarDadosServidor()" class="ipt_procura">
+                            <option value="Todos">Todos</option>
+                            <option value="critico">Crítico</option>
+                            <option value="alerta">Alerta</option>
+                            <option value="ok">Ok</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: flex;">
+                    <!-- Gráfico de requisições por dia -->
+                    <div class="chart-container" style="width: 50%;">
+                        <h3>Requisições por dia da semana</h3>
+                        <canvas id="requisicoesDia"></canvas>
+                    </div>
+                    <!-- Rosca verde MTTR -->
+                    <div style="width: 50%;display: flex;justify-content: center;align-items: center;">
+                        <img src="../assets/img/rosca-verde.png" alt="" width="100%">
+                        <h1 style="position: absolute;">3d12h</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        // Gráfico de Requisições por dia
+        const ctxDia = document.getElementById("requisicoesDia");
+        new Chart(ctxDia, {
+            type: "bar",
+            data: {
+                labels: ["01/11/2025", "02/11/2025", "03/11/2025", "04/11/2025", "05/11/2025", "06/11/2025", "07/11/2025"],
+                datasets: [
+                    {
+                        label: "Web",
+                        data: [200, 350, 100, 290, 65, 82, 105],
+                        backgroundColor: "orange",
+                        stack: "Stack 1"
+                    },
+                    {
+                        label: "Processamento",
+                        data: [300, 360, 340, 210, 260, 100, 120],
+                        backgroundColor: "darkseagreen",
+                        stack: "Stack 1"
+                    },
+                    {
+                        label: "Armazenamento",
+                        data: [50, 200, 210, 60, 65, 79, 92],
+                        backgroundColor: "darkgoldenrod",
+                        stack: "Stack 1"
+                    },
+                ],
+            },
+            options: { responsive: true, plugins: { legend: { display: false } } },
+        });
+    </script>
+    <script src="./js/situacaoServidores.js"></script>
+</body>
+
+</html>
