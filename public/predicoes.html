@@ -6,6 +6,7 @@
     <title>IntelVision | Servidores</title>
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/predicoes.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap"
       rel="stylesheet"
@@ -77,37 +78,58 @@
       <div class="dash">
         <div class="dash__conteudo">
 
-            <div class="div-relatorio">
-                <div class="div-botao-relatorio">
-                    <div class="div-flex">
-                    <div class="div-textos">
-                    <h2 class="h2-branco">Relatórios da situação</h2>
-                    <p class="p-verde">Relatórios e análise para auxílio</p>
-                    </div>
-                    <div class="div-bola-relatorio"></div>
-                    </div>
-                </div>
-            </div>
-          <!-- Gráfico de requisições por dia -->
-          <div class="chart-container">
-            <h3>Requisições por dia da semana</h3>
-            <canvas id="requisicoesDia"></canvas>
+            <!-- KPI do relatório -->
+          <div class="div-relatorio">
+              <div class="div-botao-relatorio">
+                  <div class="div-flex">
+                  <div class="div-textos">
+                  <h2 class="h2-branco">Relatórios da situação</h2>
+                  <p class="p-verde">Relatórios e análise para auxílio</p>
+                  </div>
+                  <div class="div-bola-relatorio">
+                    <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio">
+                  </div>
+                  </div>
+              </div>
           </div>
-
           <!-- Gráficos de requisições por hora -->
           <div class="chart-container">
-            <h3>Requisições por hora</h3>
-            <canvas id="requisicoesHora"></canvas>
+              <h3>Predição de disco</h3>
+            <div class="div-sub-titulo">
+              <h3>Passado</h3>
+              <h3>Futuro</h3>
+            </div>
+            <canvas id="predicaoDisco"></canvas>
+          </div>
+
+          <div class="div-relatorio">
+            <div class="div-botao-relatorio">
+                  <div class="div-flex">
+                  <div class="div-textos">
+                  <h2 class="h2-branco">Relatórios da situação</h2>
+                  <p class="p-verde">Relatórios e análise para auxílio</p>
+                  </div>
+                  <div class="div-bola-relatorio">
+                    <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio">
+                  </div>
+                  </div>
+            </div>
+            <div class="div-botao-relatorio">
+                  <div class="div-flex">
+                  <div class="div-textos">
+                  <h2 class="h2-branco">Relatórios da situação</h2>
+                  <p class="p-verde">Relatórios e análise para auxílio</p>
+                  </div>
+                  <div class="div-bola-relatorio">
+                    <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio">
+                  </div>
+                  </div>
+            </div>
           </div>
 
           <div class="chart-container">
-            <h3>Uso da CPU (%) por hora</h3>
+            <h3>Comparação anual de disco</h3>
             <canvas id="cpuUso"></canvas>
-          </div>
-
-          <div class="chart-container">
-            <h3>Uso da RAM (%) por hora</h3>
-            <canvas id="ramUso"></canvas>
           </div>
         </div>
       </div>
@@ -134,7 +156,7 @@
       });
 
       // Gráfico de Requisições por hora
-      const ctxHora = document.getElementById("requisicoesHora");
+      const ctxHora = document.getElementById("predicaoDisco");
       new Chart(ctxHora, {
         type: "line",
         data: {
