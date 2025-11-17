@@ -77,8 +77,8 @@
             <div class="dash__conteudo">
                 <!-- Filtro Servidores -->
                 <div class="kpi-container div-procura">
-                    <div class="filtro_servidores div-ipt-procura">
-                        <p>Filtrar Tipo de Servidores:</p>
+                    <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
+                        <p>Filtrar Tipo dos Servidores:</p>
                         <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
                             class="ipt_procura">
                             <option value="Todos">Todos</option>
@@ -87,8 +87,17 @@
                             <option value="Web">WEB</option>
                         </select>
                     </div>
-                    <div class="filtro_servidores div-ipt-procura">
-                        <p>Filtrar Situação de Servidores:</p>
+                    <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
+                        <p>Filtrar Situação dos Chamados:</p>
+                        <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
+                            class="ipt_procura">
+                            <option value="Todos">Todos</option>
+                            <option value="Aberto">Em aberto</option>
+                            <option value="Fechado">Fechado</option>
+                        </select>
+                    </div>
+                    <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
+                        <p>Filtrar Situação dos Servidores:</p>
                         <select name="fitro_situacao_servidor" id="fitro_situacao_servidor"
                             onchange="puxarDadosServidor()" class="ipt_procura">
                             <option value="Todos">Todos</option>
@@ -97,18 +106,25 @@
                             <option value="ok">Ok</option>
                         </select>
                     </div>
+                    <div class="div-links-contas" style="width: 20%;">
+                        <a onclick="cadastrar()" class="X">
+                            <!-- <div class="div-botao"> -->
+                            <h3>Atualizar</h3>
+                            <!-- </div> -->
+                        </a>
+                    </div>
                 </div>
 
                 <div style="display: flex;">
                     <!-- Gráfico de requisições por dia -->
-                    <div class="chart-container" style="width: 50%;">
-                        <h3>Requisições por dia da semana</h3>
+                    <div class="chart-container" style="width: 60%;">
+                        <h3>Quantidade de Chamados abertos:</h3>
                         <canvas id="requisicoesDia"></canvas>
                     </div>
                     <!-- Rosca verde MTTR -->
-                    <div style="width: 50%;display: flex;justify-content: center;align-items: center;">
+                    <div style="width: 40%;display: flex;justify-content: center;align-items: center;">
                         <img src="../assets/img/rosca-verde.png" alt="" width="100%">
-                        <h1 style="position: absolute;">3d12h</h1>
+                        <h1 style="position: absolute;font-size: 3em;">3d12h</h1>
                     </div>
                 </div>
             </div>
