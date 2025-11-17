@@ -10,13 +10,17 @@
 }
 
 .div-relatorio .div-botao-relatorio {
-  width: 493px;
+  width: 450px;
   height: 105px;
   background-color: #00A335;
   border-radius: 24px; 
   margin-left: 15px;
   box-sizing: border-box;
   padding: 15px;
+}
+
+.div-relatorio .div-botao-relatorio:hover {
+  cursor: pointer;
 }
 
 .div-botao-relatorio .div-textos {
@@ -32,4 +36,18 @@
 
 .p-verde {
   color: #00FF88;
+}
+
+.div-botao-relatorio .div-flex { 
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-bola-relatorio {
+  width: 55px;
+  height: 55px;
+  border-radius: 50px;
+  background-color: white;
 }
