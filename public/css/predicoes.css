@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #00863f;
+  --light-primary-color: #00a335;
+  --lightiest-primary-color: #87c984;
+}
+
 /* PÁGINA DE PREDICOES.HTML */
 
 /* Parte de Relatório */
@@ -75,4 +81,22 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+
+.chart-container-teste {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 60%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.chart-container-teste h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-align: center;
 }

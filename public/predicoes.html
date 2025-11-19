@@ -93,7 +93,7 @@
               </div>
           </div>
           <!-- Gráficos de requisições por hora -->
-          <div class="chart-container">
+          <div class="chart-container-teste">
               <h3>Predição de disco</h3>
             <div class="div-sub-titulo">
               <h3>Passado</h3>
@@ -106,22 +106,22 @@
             <div class="div-botao-relatorio">
                   <div class="div-flex">
                   <div class="div-textos">
-                  <h2 class="h2-branco">Relatórios da situação</h2>
-                  <p class="p-verde">Relatórios e análise para auxílio</p>
+                  <h2 class="h2-branco">Anotações passadas</h2>
+                  <p class="p-verde">Leia anotações do ano passado</p>
                   </div>
                   <div class="div-bola-relatorio">
-                    <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio">
+                    <img src="./assets/dashboard/anotacoes.png" alt="Relatórios" class="img_relatorio">
                   </div>
                   </div>
             </div>
             <div class="div-botao-relatorio">
                   <div class="div-flex">
                   <div class="div-textos">
-                  <h2 class="h2-branco">Relatórios da situação</h2>
-                  <p class="p-verde">Relatórios e análise para auxílio</p>
+                  <h2 class="h2-branco">Anotações atuais</h2>
+                  <p class="p-verde">Faça suas anotações</p>
                   </div>
                   <div class="div-bola-relatorio">
-                    <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio">
+                    <img src="./assets/dashboard/anotacoes.png" alt="Relatórios" class="img_relatorio">
                   </div>
                   </div>
             </div>
@@ -136,66 +136,65 @@
     </div>
 
     <script>
-      // Gráfico de Requisições por dia
-      const ctxDia = document.getElementById("requisicoesDia");
-      new Chart(ctxDia, {
-        type: "bar",
-        data: {
-          labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
-          datasets: [
-            {
-              label: "Requisições",
-              data: [100000, 80000, 120000, 150000, 90000, 70000, 200000],
-              backgroundColor: "#28a745",
-              borderColor: "#145a32",
-              borderWidth: 2,
-            },
-          ],
-        },
-        options: { responsive: true, plugins: { legend: { display: false } } },
-      });
-
       // Gráfico de Requisições por hora
       const ctxHora = document.getElementById("predicaoDisco");
       new Chart(ctxHora, {
         type: "line",
         data: {
-          labels: ["00-04", "04-08", "08-12", "12-16", "16-20", "20-24"],
+          labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
           datasets: [
             {
               label: "Requisições",
-              data: [5000, 10000, 8000, 15000, 12000, 20000],
-              backgroundColor: "rgba(40,167,69,0.2)",
+              data: [2000, 5000, 10000, 8000, 15000, 17000, 20000],
+              backgroundColor: "rgba(40,167,69,0.0)",
               borderColor: "#28a745",
               borderWidth: 2,
               fill: true,
-              tension: 0.4,
+              tension: 0.0,
+            },
+            {
+              label: "Teste",
+              data: [3000, 10, 8000, 15000, 12000, 20000],
+              backgroundColor: "rgba(40,167,69,0.0)",
+              borderColor: "#6990A7",
+              borderWidth: 2,
+              fill: true,
+              tension: 10.0,
             },
           ],
         },
-        options: { responsive: true, plugins: { legend: { display: false } } },
+        options: { responsive: true, plugins: { legend: { display: true } } },
       });
       // Gráfico de Uso da CPU
       const ctxCPU = document.getElementById("cpuUso");
       new Chart(ctxCPU, {
         type: "line",
         data: {
-          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
+          labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto" ,"Setembro" ,"Outubro", "Novembro", "Dezembro"],
           datasets: [
             {
               label: "Uso da CPU (%)",
               data: [35, 50, 70, 90, 65, 45, 55],
-              backgroundColor: "rgba(255, 82, 82, 0.2)",
+              backgroundColor: "rgba(40,167,69,0.0)",
               borderColor: "#ff5252",
               borderWidth: 2,
               fill: true,
-              tension: 0.4,
+              tension: 0.0,
+            },
+            {
+              label: "Uso da CPU (%)",
+              data: [60, 50, 20, 10, 100, 45, 55],
+              backgroundColor: "rgba(40,167,69,0.0)",
+              borderColor: "#ff5252",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.0,
             },
           ],
         },
         options: {
           responsive: true,
-          plugins: { legend: { display: false } },
+          plugins: { legend: { display: true } },
           scales: {
             y: {
               beginAtZero: true,

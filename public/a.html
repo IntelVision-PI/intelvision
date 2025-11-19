@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chart.js Progressive Line with Margin of Error</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<canvas id="myChart"></canvas>
+
+<script>
+// Example data
+const labels = [0, 1, 2, 3, 4, 5, 6];
+const mainData = [10, 12, 15, 14, 18, 20, 19];
+const errorMargin = 3; // ±2 units
+
+// Compute upper and lower bounds
+const upperData = mainData.map(v => v + errorMargin);
+const lowerData = mainData.map(v => v - errorMargin);
+
+// Chart configuration
+const config = {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [
+            // Upper bound (transparent line, used for fill)
+            {
+                label: 'Upper Bound',
+                data: upperData,
+                borderColor: 'rgba(54, 162, 235,0.7)',
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                fill: '-1', // Fill to the previous dataset (lower bound)
+                pointRadius: 0,
+                tension: 0.3
+            },
+            // Lower bound (transparent line)
+            {
+                label: 'Lower Bound',
+                data: lowerData,
+                borderColor: 'rgba(54, 162, 235,0.7)',
+                backgroundColor: 'rgba(54, 162, 235, 0.9)',
+                pointRadius: 0,
+                tension: 0.3
+            },
+            // Main line
+            {
+                label: 'Main Data',
+                data: mainData,
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgb(54, 162, 235)',
+                borderWidth: 2,
+                pointRadius: 3,
+                tension: 0.3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        animation: {
+            x: {
+                type: 'number',
+                easing: 'linear',
+                duration: 2000,
+                from: NaN, // progressive reveal
+                delay(ctx) {
+                    return ctx.type === 'data' && ctx.mode === 'default'
+                        ? ctx.dataIndex * 200
+                        : 0;
+                }
+            },
+            y: {
+                easing: 'easeOutQuad',
+                duration: 1000
+            }
+        },
+        interaction: {
+            intersect: false,
+            mode: 'nearest'
+        },
+        plugins: {
+            legend: {
+                labels: { filter: item => item.text !== 'Upper Bound' && item.text !== 'Lower Bound' }
+            },
+            tooltip: {
+                callbacks: {
+                    label: ctx => `${ctx.dataset.label}: ${ctx.formattedValue}`
+                }
+            }
+        },
+        scales: {
+            x: {
+                type: 'linear',
+                title: { display: true, text: 'X Axis' }
+            },
+            y: {
+                title: { display: true, text: 'Value' }
+            }
+        }
+    }
+};
+
+// Render chart
+new Chart(document.getElementById('myChart'), config);
+</script>
+
+</body>
+</html>
