@@ -21,12 +21,13 @@ a {
 
 /* pagina graficos */
 
+/* COMEÇO DO CABEÇALHO */
 .dash {
   width: 85%;
   position: relative;
-  top: 70px;
+  /* top: 70px; */
   left: 15%;
-  background-color: #ebeeee;
+  background-color: #F9FAFB;
   height: 100vh;
   overflow: auto;
 }
@@ -80,9 +81,13 @@ header {
   padding-right: 30px;
 }
 
+/* FIM DO CABEÇALHO */
+
 .janela {
   display: flex;
 }
+
+/* COMEÇO DO MENU */
 
 .header-left a {
   text-decoration: none;
@@ -98,18 +103,31 @@ header {
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  -webkit-box-shadow: 0.5px 0px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5px 0px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .header-left h1 {
   text-align: center;
   color: #00863f;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 50px;
   font-family: alro-400;
 }
 
 .btn-nav {
-  padding: 10px 0;
+  padding: 20px 15px;
+  margin: 5px 10px;
+  border-radius: 10px;
+}
+
+.inativo:hover {
+  background-color: #F3F4F6;
+  color: #00863f;
+
+  svg path {
+    fill: #00a335;
+  }
 }
 
 .btn-nav a,
@@ -118,23 +136,35 @@ header {
   align-items: center;
 }
 
-.btn-nav i {
-  width: 20px;
-  font-size: 20px;
-  margin: 0 20px;
+.ativo {
+  background-color: #10B981;
+  color: #fff;
+  -webkit-box-shadow: 0px 3px 8px 0px rgba(16, 185, 129, 0.25);
+  box-shadow: 0px 3px 8px 0px rgba(16, 185, 129, 0.25);
+
+  svg path {
+    fill: #fff;
+  }
 }
 
-.ativo {
-  background-color: #87c984;
-  border-left: 5px solid #00863f;
-  color: #00863f;
+.inativo {
+  color: #8b979f;
 }
 
 .btn-nav h3,
 .btn-logout h3 {
   padding: 0;
   margin: 0;
+  font-size: 16px;
+  margin-left: 10px;
 }
+
+.btn-logout {
+  margin-top: auto;
+  margin-bottom: 49px;
+}
+
+/* FIM DO MENU */
 
 /* PARTE Administração Usuários */
 .div-links-contas {
@@ -186,6 +216,7 @@ header {
   flex-wrap: wrap;
   width: 50%;
 }
+
 .div-procura .div-ipt-procura {
   background-color: #ffffff;
   flex-direction: column;
@@ -312,11 +343,11 @@ thead {
   gap: 5px;
 }
 
-.edit_content > div label {
+.edit_content>div label {
   margin-left: 20px;
 }
 
-.edit_content > div input {
+.edit_content>div input {
   border: #00863f 2px solid;
   background-color: #f4f4f4;
   font-size: 16px;
@@ -421,6 +452,7 @@ thead {
 .colunaConfiguracaoComponente span {
   cursor: pointer;
 }
+
 .colunaConfiguracaoComponente span:hover {
   color: var(--primary-color);
 }
@@ -449,14 +481,10 @@ thead {
 
 /* pagina de admin-serv componente*/
 
-.out_edit_componente {
-/* isso é meio que para herdar de out_edit*/
-}
-
 .edit_componente_modal {
-  width: 50vw; 
-  max-height: 80vh; 
-  overflow-y: auto; 
+  width: 50vw;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .edit_componente_modal .edit_field {
@@ -504,8 +532,8 @@ thead {
 }
 
 .componente-param-group h4 .material-symbols-outlined {
-   color: var(--primary-color);
-   font-size: 24px;
+  color: var(--primary-color);
+  font-size: 24px;
 }
 
 
@@ -589,9 +617,11 @@ thead {
 .kpiCritico {
   border-top-color: #ff5252 !important;
 }
+
 .kpiAlerta {
   border-top-color: #f2b400 !important;
 }
+
 .kpiOk {
   border-top-color: #8bc34a !important;
 }
@@ -599,12 +629,15 @@ thead {
 .kpi1 {
   border-top-color: #f2b400;
 }
+
 .kpi2 {
   border-top-color: #00bcd4;
 }
+
 .kpi3 {
   border-top-color: #ff5252;
 }
+
 .kpi4 {
   border-top-color: #8bc34a;
 }
@@ -721,6 +754,7 @@ thead {
 .prev {
   left: 0;
 }
+
 .next {
   right: 0;
 }
@@ -758,7 +792,7 @@ thead {
     font-size: 7px;
     text-align: center;
     white-space: nowrap;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
   }
 
@@ -814,4 +848,3 @@ thead {
   padding: 1%;
   text-align: center;
 }
-
