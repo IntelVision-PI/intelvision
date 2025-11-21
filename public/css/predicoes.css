@@ -6,11 +6,50 @@
 
 /* PÁGINA DE PREDICOES.HTML */
 
+
+/* Parte das 2 KPI's */
+
+.div-kpi-predicao {
+  width: 21rem;
+  height: 10rem;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 8px 0px rgba(20, 29, 26, 0.25);
+  margin-bottom: 30px;
+  transition: transform 0.5s ease;
+  border: 1px solid #cfcbcb;
+}
+
+.div-kpi-predicao:nth-child(2) {
+  border: 1px solid rgb(255, 153, 153);
+  background-color: #FEF2F2;
+  box-shadow: 0px 3px 8px 0px rgba(248, 162, 162, 0.774);
+}
+
+.div-kpi-predicao:hover {
+  transform: translateY(-7px);
+  cursor: pointer;
+  box-shadow: 0px 3px 8px 0px rgba(37, 53, 48, 0.25);
+}
+
+.div-kpi-predicao:nth-child(2):hover {
+  box-shadow: 0px 3px 8px 0px rgb(255, 96, 96);
+}
+
+.div-kpi-1 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
 /* Parte de Relatório */
 
 .div-relatorio {
   width: 100%;
-  height: 8rem;
+  height: auto;
   /* background-color: #00863f; */
   display: flex;
   justify-content: space-around;
@@ -18,16 +57,20 @@
 }
 
 .div-relatorio .div-botao-relatorio {
-  width: 450px;
-  height: 105px;
-  background-color: #00A335;
-  border-radius: 24px; 
+  width: 90%;
+  height: 120px;
+  background-color: #059669;
+  border-radius: 10px; 
   margin-left: 15px;
   box-sizing: border-box;
   padding: 15px;
+  transition: transform 0.5s ease;
+  box-shadow: 0px 3px 8px 0px rgba(16, 185, 129, 0.25);
 }
 
 .div-relatorio .div-botao-relatorio:hover {
+  transform: translateY(-2px);
+  background: #06b981;
   cursor: pointer;
 }
 
@@ -35,7 +78,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .h2-branco {
@@ -56,8 +99,8 @@
 .div-bola-relatorio {
   width: 55px;
   height: 55px;
-  border-radius: 50px;
-  background-color: white;
+  border-radius: 12px;
+  background-color: #ffffff33;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +113,7 @@
 
 .chart-container-predicao {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 30px;
   margin-top: 50px;
   width: 90%;
@@ -99,4 +142,15 @@
   color: var(--primary-color);
   margin-bottom: 20px;
   text-align: center;
+}
+
+
+/* SPANS DAS IMAGENS */
+.mdi--file-report-outline {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8zm4 18H6V4h7v5h5zm-9-7v6H7v-6zm6 2v4h2v-4zm-4-4v8h2v-8z'/%3E%3C/svg%3E");
 }
