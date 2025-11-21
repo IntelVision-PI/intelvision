@@ -119,6 +119,7 @@ header {
   padding: 20px 15px;
   margin: 5px 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .inativo:hover {
@@ -130,6 +131,7 @@ header {
   }
 }
 
+.btn-nav span,
 .btn-nav a,
 .btn-logout {
   display: flex;
