@@ -31,6 +31,7 @@
   </header> -->
 
   <div class="janela">
+
     <!-- MENU -->
     <div class="header-left">
       <h1>IntelVision</h1>
@@ -157,11 +158,18 @@
         </div>
 
         <!-- Gráfico de requisições por dia -->
-        <div class="chart-container">
-          <h3>Requisições por dia da semana</h3>
-          <canvas id="requisicoesDia"></canvas>
+        <div class="graficos-dados-gerais">
+          <div class="chart-container">
+            <h3>Top 5 Uso de RAM</h3>
+            <canvas id="requisicoesDia"></canvas>
+          </div>
+          <div class="mapaServidores">
+            <h3>Situação dos servidores</h3>
+            <div class="mapaDeCalor">
+              <div class="server01"></div>
+            </div>
+          </div>
         </div>
-
         <!-- Gráficos de requisições por hora -->
         <div class="chart-container">
           <h3>Requisições por hora</h3>
@@ -181,24 +189,31 @@
     </div>
   </div>
 
+
   <script>
     // Gráfico de Requisições por dia
     const ctxDia = document.getElementById("requisicoesDia");
     new Chart(ctxDia, {
       type: "bar",
       data: {
-        labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
-        datasets: [
-          {
-            label: "Requisições",
-            data: [100000, 80000, 120000, 150000, 90000, 70000, 200000],
-            backgroundColor: "#28a745",
-            borderColor: "#145a32",
-            borderWidth: 2,
-          },
+        labels: ["Seg", "Ter", "Qua", "Qui", "Sex"],
+        datasets: [{
+          axis: 'y',
+          label: "Requisições",
+          data: [100000, 80000, 120000, 150000, 90000],
+          backgroundColor: "#2D6A54",
+          borderColor: "#2D6A54",
+          borderWidth: 1,
+        },
         ],
       },
-      options: { responsive: true, plugins: { legend: { display: false } } },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      },
     });
 
     // Gráfico de Requisições por hora
@@ -211,7 +226,7 @@
           {
             label: "Requisições",
             data: [5000, 10000, 8000, 15000, 12000, 20000],
-            backgroundColor: "rgba(40,167,69,0.2)",
+            backgroundColor: "#D8F4EA",
             borderColor: "#28a745",
             borderWidth: 2,
             fill: true,
