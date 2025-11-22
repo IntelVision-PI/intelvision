@@ -74,6 +74,15 @@ function pegarInformacoesServidor(idServidor) {
               <td>Carregando a tabela</td>
               <td>...</td>
             </tr>`;
+  const containerGrafico1 = document.getElementById(
+    "dash__conteudo__grupo__graficos__container1"
+  );
+  containerGrafico1.innerHTML = `
+  <h3 id="dash__conteudo__grupo__graficos__titulo">
+                  Aguarde ...
+                </h3>
+                <canvas id="requisicoesHora"></canvas>
+  `;
   setTimeout(() => {
     if (idServidor == "Todos") {
       tbodyServidoresCodec.innerHTML = `
@@ -101,8 +110,8 @@ function pegarInformacoesServidor(idServidor) {
               <td>Quantidade Servidores Codec E</td>
               <td>0</td>
             </tr>
-  
           `;
+      pegarRegistrosServidor("Todos");
     } else {
       for (let i = 0; i < servidores.length; i++) {
         if (servidores[i].id == Number(idServidor)) {
@@ -133,6 +142,7 @@ function pegarInformacoesServidor(idServidor) {
             </tr>
 
           `;
+          pegarRegistrosServidor(servidores[i].nome);
           break;
         }
       }
@@ -140,16 +150,23 @@ function pegarInformacoesServidor(idServidor) {
   }, 1000);
 }
 
-function pegarRegistrosServidor(idServidor) {
-  fetch("http://127.0.0.1:3000/s3Route/dados/csv_cliente_teste_lucas.csv")
-    .then((response) => response.json())
-    .then((json) => {
-      dadosGrafico = json;
-      // Pegar só uma parte do gráfico
-      let dadosGraficoTeste = dadosGrafico.slice(0, 10);
-      console.log(dadosGraficoTeste);
-      plotarGraficoLinha(dadosGrafico);
-    });
+function pegarRegistrosServidor(nomeServidor) {
+  for (let i = 0; i < servidoresProcessamento.length; i++) {
+    if (servidoresProcessamento[i].nome == nomeServidor) {
+      fetch(
+        `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${nomeServidor}_cliente_teste_lucas.csv`
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          dadosGrafico = json;
+          console.log(dadosGrafico);
+          plotarGraficoLinha(dadosGrafico);
+        });
+      break;
+    } else {
+      console.log("Não existe esse servidor");
+    }
+  }
 }
 
 function plotarGraficoLinha(resposta) {
@@ -206,6 +223,7 @@ function plotarGraficoLinha(resposta) {
           reverse: true,
         },
         y: {
+          max: 100,
           beginAtZero: true,
         },
       },
