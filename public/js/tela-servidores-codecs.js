@@ -2,6 +2,7 @@ const ctxDia = document.getElementById("requisicoesDia");
 
 let servidores = [];
 let servidoresProcessamento = [];
+let dadosGrafico = [];
 
 function puxarDadosServidor() {
   /* Essa função puxa os dados de servidores do banco de dados */
@@ -141,14 +142,111 @@ function pegarInformacoesServidor(idServidor) {
 
 function pegarRegistrosServidor(idServidor) {
   fetch("http://127.0.0.1:3000/s3Route/dados/csv_cliente_teste_lucas.csv")
-    .then((response) => response.text())
-    .then((csv) => {
-      console.log("Array de registros");
-      console.log(csv);
+    .then((response) => response.json())
+    .then((json) => {
+      dadosGrafico = json;
+      // Pegar só uma parte do gráfico
+      let dadosGraficoTeste = dadosGrafico.slice(0, 10);
+      console.log(dadosGraficoTeste);
+      plotarGraficoLinha(dadosGrafico);
     });
 }
 
-new Chart(ctxDia, {
+function plotarGraficoLinha(resposta) {
+  console.log("iniciando plotagem do gráfico...");
+
+  // Criando estrutura para plotar gráfico - labels
+  let labels = [];
+
+  // Criando estrutura para plotar gráfico - dados
+  let dados = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Tempo",
+        data: [],
+        backgroundColor: "rgba(40,167,69,0.2)",
+        borderColor: "#28a745",
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+      },
+    ],
+  };
+
+  console.log("----------------------------------------------");
+  console.log(
+    'Estes dados foram recebidos pela funcao "pegarRegistrosServidor" e passados para "plotarGrafico":'
+  );
+  console.log(resposta);
+
+  // Inserindo valores recebidos em estrutura para plotar o gráfico
+  // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
+  for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    labels.push(registro.timestamp);
+    dados.datasets[0].data.push(registro.proc1_cpu_pct);
+  }
+
+  console.log("----------------------------------------------");
+  console.log("O gráfico será plotado com os respectivos valores:");
+  console.log("Labels:");
+  console.log(labels);
+  console.log("Dados:");
+  console.log(dados.datasets);
+  console.log("----------------------------------------------");
+
+  // Criando estrutura para plotar gráfico - config
+  const config = {
+    type: "line",
+    data: dados,
+    options: {
+      scales: {
+        x: {
+          reverse: true,
+        },
+        y: {
+          beginAtZero: true,
+        },
+      },
+      responsive: true,
+      plugins: { legend: { display: false } },
+    },
+  };
+
+  // Adicionando título do gráfico
+  let tituloGrafico = document.getElementById(
+    "dash__conteudo__grupo__graficos__titulo"
+  );
+  tituloGrafico.innerHTML = "Porcentagem de CPU consumida no dia";
+  // Adicionando gráfico criado em div na tela
+  let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
+
+  //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+}
+
+// Gráfico de Requisições por hora
+/* const ctxHora = document.getElementById("requisicoesHora");
+new Chart(ctxHora, {
+  type: "line",
+  data: {
+    labels: ["00-04", "04-08", "08-12", "12-16", "16-20", "20-24"],
+    datasets: [
+      {
+        label: "Porcentagem CPU (%)",
+        data: [5000, 10000, 8000, 15000, 12000, 20000],
+        backgroundColor: "rgba(40,167,69,0.2)",
+        borderColor: "#28a745",
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+      },
+    ],
+  },
+  options: { responsive: true, plugins: { legend: { display: false } } },
+}); */
+
+/* new Chart(ctxDia, {
   type: "bar",
   data: {
     labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
@@ -163,25 +261,4 @@ new Chart(ctxDia, {
     ],
   },
   options: { responsive: true, plugins: { legend: { display: false } } },
-});
-
-// Gráfico de Requisições por hora
-const ctxHora = document.getElementById("requisicoesHora");
-new Chart(ctxHora, {
-  type: "line",
-  data: {
-    labels: ["00-04", "04-08", "08-12", "12-16", "16-20", "20-24"],
-    datasets: [
-      {
-        label: "Requisições",
-        data: [5000, 10000, 8000, 15000, 12000, 20000],
-        backgroundColor: "rgba(40,167,69,0.2)",
-        borderColor: "#28a745",
-        borderWidth: 2,
-        fill: true,
-        tension: 0.4,
-      },
-    ],
-  },
-  options: { responsive: true, plugins: { legend: { display: false } } },
-});
+}); */
