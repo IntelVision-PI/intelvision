@@ -111,6 +111,14 @@ function pegarInformacoesServidor(idServidor) {
               <td>${servidores[i].nome}</td>
             </tr>
             <tr>
+              <td>Tipo Servidor</td>
+              <td>${servidores[i].tipo}</td>
+            </tr>
+            <tr>
+              <td>Sistema Operacional</td>
+              <td>${servidores[i].sistema_operacional}</td>
+            </tr>
+            <tr>
               <td>Modelo</td>
               <td>${servidores[i].modelo}</td>
             </tr>
@@ -122,28 +130,22 @@ function pegarInformacoesServidor(idServidor) {
               <td>Endereço MAC</td>
               <td>${servidores[i].macaddress}</td>
             </tr>
-            <tr>
-              <td>Disco</td>
-              <td>1TB</td>
-            </tr>
-            <tr>
-              <td>Memória</td>
-              <td>64GB</td>
-            </tr>
-            <tr>
-              <td>CPU</td>
-              <td>Intel Xeon CPU Max 9462 2,70 GHz</td>
-            </tr>
-            <tr>
-              <td>CODEC</td>
-              <td>H.264</td>
-            </tr>
+
           `;
           break;
         }
       }
     }
   }, 1000);
+}
+
+function pegarRegistrosServidor(idServidor) {
+  fetch("http://127.0.0.1:3000/s3Route/dados/csv_cliente_teste_lucas.csv")
+    .then((response) => response.text())
+    .then((csv) => {
+      console.log("Array de registros");
+      console.log(csv);
+    });
 }
 
 new Chart(ctxDia, {
