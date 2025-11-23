@@ -132,36 +132,48 @@ function pegarInformacoesServidor(idServidor) {
 }
 
 function pegarRegistrosServidor(nomeServidor) {
-  for (let i = 0; i < servidoresProcessamento.length; i++) {
-    if (servidoresProcessamento[i].nome == nomeServidor) {
-      fetch(
-        `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${nomeServidor}_cliente_teste_lucas.csv`
-      )
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            console.log("Deu erro na requisição do registro do servidor");
-          }
-        })
-        .then((json) => {
-          console.log(json);
-          if (json == undefined) {
-            console.log("Resposta está vazia !");
+  if (nomeServidor == "Todos") {
+    plotarGraficoLinhaTodos();
+  } else {
+    for (let i = 0; i < servidoresProcessamento.length; i++) {
+      if (servidoresProcessamento[i].nome == nomeServidor) {
+        fetch(
+          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${nomeServidor}_cliente_teste_lucas.csv`
+        )
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.log("Deu erro na requisição do registro do servidor");
+            }
+          })
+          .then((json) => {
+            console.log(json);
+            if (json == undefined || json == null || json.size <= 0) {
+              console.log("Resposta está vazia !");
+              containerGrafico1.innerHTML = `
+            <h3 id="dash__conteudo__grupo__graficos__titulo">
+                            Não existem registros desse servidor
+                          </h3>
+                          <canvas id="requisicoesHora"></canvas>
+            `;
+            } else {
+              dadosGrafico = json;
+              console.log(dadosGrafico);
+              plotarGraficoLinha(dadosGrafico);
+            }
+          })
+          .catch((erro) => {
+            console.log(erro);
             containerGrafico1.innerHTML = `
-  <h3 id="dash__conteudo__grupo__graficos__titulo">
-                  Não existem registros desse servidor
-                </h3>
-                <canvas id="requisicoesHora"></canvas>
-  `;
-          } else {
-            dadosGrafico = json;
-            console.log(dadosGrafico);
-            plotarGraficoLinha(dadosGrafico);
-          }
-        })
-        .catch((erro) => console.log(erro));
-      break;
+            <h3 id="dash__conteudo__grupo__graficos__titulo">
+                            Não existem registros desse servidor
+                          </h3>
+                          <canvas id="requisicoesHora"></canvas>
+            `;
+          });
+        break;
+      }
     }
   }
 }
@@ -217,7 +229,7 @@ function plotarGraficoLinha(resposta) {
     options: {
       scales: {
         x: {
-          reverse: true,
+          reverse: false,
         },
         y: {
           max: 100,
@@ -240,49 +252,48 @@ function plotarGraficoLinha(resposta) {
   //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
 }
 
-function plotarGraficoLinhaTodos(resposta) {
+function plotarGraficoLinhaTodos() {
   console.log("iniciando plotagem do gráfico de todos servidores...");
 
   // Criando estrutura para plotar gráfico - labels
-  let labels = [];
+  let labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // Criando estrutura para plotar gráfico - dados
   let dados = {
     labels: labels,
     datasets: [
       {
-        label: "Tempo",
-        data: [],
-        backgroundColor: "rgba(40,167,69,0.2)",
-        borderColor: "#28a745",
+        label: "Servidor 1",
+        data: [21, 23, 59, 87, 45, 3, 52, 45, 56, 45],
+        backgroundColor: "rgba(236,167,69,0.2)",
+        borderColor: "#784512",
         borderWidth: 2,
-        fill: true,
+        fill: false,
+        tension: 0.4,
+      },
+      {
+        label: "Servidor 2",
+        data: [78, 98, 45, 23, 12, 4, 98, 54, 23, 68],
+        backgroundColor: "rgba(125,187,249,0.2)",
+        borderColor: "#41548a",
+        borderWidth: 2,
+        fill: false,
+        tension: 0.4,
+      },
+      {
+        label: "Servidor 2",
+        data: [75, 75, 75, 75, 75, 75, 75, 75, 75, 75],
+        backgroundColor: "rgba(125,187,249,0.2)",
+        borderColor: "#ff0000",
+        borderWidth: 2,
+        fill: false,
         tension: 0.4,
       },
     ],
   };
 
-  console.log("----------------------------------------------");
-  console.log(
-    'Estes dados foram recebidos pela funcao "pegarRegistrosServidor" e passados para "plotarGrafico":'
-  );
-  console.log(resposta);
-
   // Inserindo valores recebidos em estrutura para plotar o gráfico
   // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
-  for (i = 0; i < resposta.length; i++) {
-    var registro = resposta[i];
-    labels.push(registro.timestamp.split(" ")[1]);
-    dados.datasets[0].data.push(registro.proc1_cpu_pct);
-  }
-
-  console.log("----------------------------------------------");
-  console.log("O gráfico será plotado com os respectivos valores:");
-  console.log("Labels:");
-  console.log(labels);
-  console.log("Dados:");
-  console.log(dados.datasets);
-  console.log("----------------------------------------------");
 
   // Criando estrutura para plotar gráfico - config
   const config = {
@@ -291,7 +302,7 @@ function plotarGraficoLinhaTodos(resposta) {
     options: {
       scales: {
         x: {
-          reverse: true,
+          reverse: false,
         },
         y: {
           max: 100,
