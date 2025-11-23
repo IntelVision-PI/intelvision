@@ -1,4 +1,7 @@
 const ctxDia = document.getElementById("requisicoesDia");
+const containerGrafico1 = document.getElementById(
+  "dash__conteudo__grupo__graficos__container1"
+);
 
 let servidores = [];
 let servidoresProcessamento = [];
@@ -74,9 +77,7 @@ function pegarInformacoesServidor(idServidor) {
               <td>Carregando a tabela</td>
               <td>...</td>
             </tr>`;
-  const containerGrafico1 = document.getElementById(
-    "dash__conteudo__grupo__graficos__container1"
-  );
+
   containerGrafico1.innerHTML = `
   <h3 id="dash__conteudo__grupo__graficos__titulo">
                   Aguarde ...
@@ -89,26 +90,6 @@ function pegarInformacoesServidor(idServidor) {
             <tr>
               <td>Quantidade Servidores Processamento</td>
               <td>${servidoresProcessamento.length}</td>
-            </tr>
-            <tr>
-              <td>Quantidade Servidores Codec A</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Quantidade Servidores Codec B</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Quantidade Servidores Codec C</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Quantidade Servidores Codec D</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>Quantidade Servidores Codec E</td>
-              <td>0</td>
             </tr>
           `;
       pegarRegistrosServidor("Todos");
@@ -156,15 +137,31 @@ function pegarRegistrosServidor(nomeServidor) {
       fetch(
         `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${nomeServidor}_cliente_teste_lucas.csv`
       )
-        .then((response) => response.json())
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.log("Deu erro na requisição do registro do servidor");
+          }
+        })
         .then((json) => {
-          dadosGrafico = json;
-          console.log(dadosGrafico);
-          plotarGraficoLinha(dadosGrafico);
-        });
+          console.log(json);
+          if (json == undefined) {
+            console.log("Resposta está vazia !");
+            containerGrafico1.innerHTML = `
+  <h3 id="dash__conteudo__grupo__graficos__titulo">
+                  Não existem registros desse servidor
+                </h3>
+                <canvas id="requisicoesHora"></canvas>
+  `;
+          } else {
+            dadosGrafico = json;
+            console.log(dadosGrafico);
+            plotarGraficoLinha(dadosGrafico);
+          }
+        })
+        .catch((erro) => console.log(erro));
       break;
-    } else {
-      console.log("Não existe esse servidor");
     }
   }
 }
@@ -201,7 +198,81 @@ function plotarGraficoLinha(resposta) {
   // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
   for (i = 0; i < resposta.length; i++) {
     var registro = resposta[i];
-    labels.push(registro.timestamp);
+    labels.push(registro.timestamp.split(" ")[1]);
+    dados.datasets[0].data.push(registro.proc1_cpu_pct);
+  }
+
+  console.log("----------------------------------------------");
+  console.log("O gráfico será plotado com os respectivos valores:");
+  console.log("Labels:");
+  console.log(labels);
+  console.log("Dados:");
+  console.log(dados.datasets);
+  console.log("----------------------------------------------");
+
+  // Criando estrutura para plotar gráfico - config
+  const config = {
+    type: "line",
+    data: dados,
+    options: {
+      scales: {
+        x: {
+          reverse: true,
+        },
+        y: {
+          max: 100,
+          beginAtZero: true,
+        },
+      },
+      responsive: true,
+      plugins: { legend: { display: false } },
+    },
+  };
+
+  // Adicionando título do gráfico
+  let tituloGrafico = document.getElementById(
+    "dash__conteudo__grupo__graficos__titulo"
+  );
+  tituloGrafico.innerHTML = "Porcentagem de CPU consumida no dia";
+  // Adicionando gráfico criado em div na tela
+  let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
+
+  //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+}
+
+function plotarGraficoLinhaTodos(resposta) {
+  console.log("iniciando plotagem do gráfico de todos servidores...");
+
+  // Criando estrutura para plotar gráfico - labels
+  let labels = [];
+
+  // Criando estrutura para plotar gráfico - dados
+  let dados = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Tempo",
+        data: [],
+        backgroundColor: "rgba(40,167,69,0.2)",
+        borderColor: "#28a745",
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+      },
+    ],
+  };
+
+  console.log("----------------------------------------------");
+  console.log(
+    'Estes dados foram recebidos pela funcao "pegarRegistrosServidor" e passados para "plotarGrafico":'
+  );
+  console.log(resposta);
+
+  // Inserindo valores recebidos em estrutura para plotar o gráfico
+  // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
+  for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    labels.push(registro.timestamp.split(" ")[1]);
     dados.datasets[0].data.push(registro.proc1_cpu_pct);
   }
 
