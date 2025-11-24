@@ -117,13 +117,13 @@ function listar(data) {
                   </span>
                 </td>
                 <td class="colunaAcesso">${
-                  usuario.atividade == "1" ? "Ativo" : "Inativo"
+                  usuario.atividade == "1" ? "<span style='color: #296CF2; border: 1px solid #DBEAFE; background-color: #EFF6FF; border-radius: 20px; padding: 5px 10px; font-weight: 800; font-size: 12px;'>Ativo</span>" : "<span style='color: #D96B0B; border: 1px solid #FEF3C7; background-color: #FFFBEB; border-radius: 20px; padding: 5px 10px; font-weight: 800; font-size: 12px;'>Inativo</span>"
                 }</td>
          
       `;
 
     if (usuario.atividade == 0) {
-      tr.style.backgroundColor = "yellow";
+      tr.style.backgroundColor = "#fff";
     } else {
       if (i % 2 == 0) {
         tr.style.backgroundColor = "#B7E4C7";
@@ -182,7 +182,7 @@ function buscarRepresentante(representante) {
       `;
 
     if (usuario.atividade == 0) {
-      tr.style.backgroundColor = "yellow";
+      tr.style.backgroundColor = "#D96B0B";
     } else {
       if (i % 2 == 0) {
         tr.style.backgroundColor = "#B7E4C7";
@@ -229,7 +229,7 @@ function selecionarAtividade() {
       `;
 
       if (usuario.atividade == 0) {
-        tr.style.backgroundColor = "yellow";
+        tr.style.backgroundColor = "#D96B0B";
       } else {
         if (i % 2 == 0) {
           tr.style.backgroundColor = "#B7E4C7";

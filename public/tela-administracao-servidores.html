@@ -1,332 +1,383 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon" />
-    <link rel="icon" href="./assets/img/Câmera.png" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administração - Servidores</title>
-    
-    <link rel="stylesheet" href="./css/dashboard.css" />
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="css/cadastro.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <script src="./js/sessao.js"></script>
-    <script src="./js/alerta.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 
-    <style>
-      .input-edit { width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 5px; background-color: white; }
-      .input-edit:disabled { background-color: #e0e0e0; cursor: not-allowed; }
-    </style>
-  </head>
+<head>
+  <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon" />
+  <link rel="icon" href="./assets/img/Câmera.png" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administração - Servidores</title>
 
-  <body onload="puxarDadosServidor(), validarSessaoAdministrador()">
-    <header>
-      <div class="cabecalho-dash">
-        <div class="nome-dash">
-          <i class="fa-solid fa-screwdriver-wrench"></i>
-          <h3>Administração - Servidores</h3>
+  <link rel="stylesheet" href="./css/dashboard.css" />
+  <link rel="stylesheet" href="./css/global.css" />
+  <link rel="stylesheet" href="css/cadastro.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="./js/sessao.js"></script>
+  <script src="./js/alerta.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+
+  <style>
+    .input-edit {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    .input-edit:disabled {
+      background-color: #e0e0e0;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body onload="puxarDadosServidor(), validarSessaoAdministrador()">
+  <header>
+    <div class="cabecalho-dash">
+      <div class="nome-dash">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <h3>Administração - Servidores</h3>
+      </div>
+    </div>
+  </header>
+  <div class="janela">
+    <!-- MENU -->
+    <div class="header-left">
+      <h1>IntelVision</h1>
+      <div class="escolhaDash">
+
+        <a href="./servidores.html">
+          <div class="btn-nav inativo">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+              </svg>
+              <h3>Dashboard</h3>
+            </span>
+          </div>
+        </a>
+
+        <a href="./tela-administracao-usuario.html">
+          <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+              </svg>
+              <h3>Adm - Usuários</h3>
+            </span>
+          </div>
+        </a>
+
+        <a href="./tela-administracao-servidores.html">
+          <div class="btn-nav ativo" id="btn-nav-admin-servidores">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+              </svg>
+              <h3>Adm - Servidores</h3>
+            </span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
+        <a href="./index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b979f">
+            <path
+              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+          </svg>
+          <h3>Sair</h3>
+        </a>
+      </div>
+
+    </div>
+    <!-- FIM MENU -->
+
+    <div class="dash">
+      <div class="dash__conteudo">
+        <div class="div-links-contas">
+          <a onclick="cadastrar()" class="X">
+            <h3>Adicionar Servidores</h3>
+          </a>
+        </div>
+
+        <div class="div-procura">
+          <div class="div-ipt-procura">
+            <label for="">Procure pelo nome:</label>
+            <input type="text" id="ipt_representante" class="ipt_procura"
+              oninput="buscarNomeServidor(ipt_representante.value)" placeholder="Nome do servidor" />
+          </div>
+          <div class="div-ipt-procura">
+            <label for="">Filtrar por tipo:</label>
+            <select name="" id="select_tipo" onchange="selecionarTipo()" class="ipt_procura">
+              <option value="Todos">Todos</option>
+              <option value="Armazenamento">Armazenamento</option>
+              <option value="Processamento">Processamento</option>
+              <option value="Web">Web</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mostrarUsuarios">
+          <table>
+            <thead>
+              <tr class="nomeColuna">
+                <th class="colunaNomeServidor">Nome</th>
+                <th class="colunaTipoServidor">Tipo</th>
+                <th class="colunaStatusServidor">Status</th>
+                <th class="colunaConfiguracaoServidor">Configurações</th>
+                <th class="colunaConfiguracaoComponente">Parâmetros</th>
+              </tr>
+            </thead>
+            <tbody id="tbody_servidores"></tbody>
+          </table>
+        </div>
+        <div class="div_cadastrar">
+          <div class="cadastro_wrapper">
+            <div class="cabecalho_cadastro">
+              <h2>Cadastro de servidores</h2>
+              <span class="material-symbols-outlined" onclick="sairX()" class="X"> close </span>
+            </div>
+            <div class="div-inputs">
+              <div class="form">
+                <div class="field">
+                  <input type="text" id="ipt_nome_servidor" placeholder="" value="SRVTeste-001" />
+                  <label for="name">Nome do servidor</label>
+                  <span class="material-symbols-outlined input_icon"> storage </span>
+                </div>
+
+                <div class="field">
+                  <select id="select_tipo_servidor">
+                    <option value="Armazenamento">Armazenamento</option>
+                    <option value="Processamento">Processamento</option>
+                    <option value="Web">Web</option>
+                  </select>
+                  <label for="tipoUsuario">Selecione o tipo de servidor</label>
+                  <span class="material-symbols-outlined input_icon"> domain </span>
+                </div>
+
+                <div class="field">
+                  <input type="text" id="ipt_service_tag" placeholder="" value="123ABC" />
+                  <label for="name">Service Tag</label>
+                  <span class="material-symbols-outlined input_icon"> inbox_customize </span>
+                </div>
+              </div>
+
+              <div class="form">
+                <div class="field">
+                  <input type="text" id="ipt_so" placeholder="" value="ubuntu" />
+                  <label for="email">Sistema operacional</label>
+                  <span class="material-symbols-outlined input_icon"> adb </span>
+                </div>
+                <div class="field">
+                  <input type="text" id="ipt_mac" placeholder="" value="d4:77:c4:dc:34:ab" />
+                  <label for="password">MAC Address</label>
+                  <span class="material-symbols-outlined input_icon"> file_map </span>
+                </div>
+
+                <div class="field">
+                  <input type="text" id="ipt_modelo" placeholder="" value="AV-CSCX16T" />
+                  <label for="password">Modelo</label>
+                  <span class="material-symbols-outlined input_icon"> graph_5 </span>
+                </div>
+              </div>
+            </div>
+            <div class="buttons">
+              <a href="#" id="submit_cadastro" class="cadastro_button_page">
+                <span> Cadastrar </span>
+                <span class="icon_circle">
+                  <span class="material-symbols-outlined"> arrow_forward </span>
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
-    <div class="janela">
-      <div class="header-left">
-        <h1>IntelVision</h1>
-        <div class="btn-nav">
-          <a href="servidores.html">
-            <i class="fa-solid fa-chart-simple"></i>
-            <h3>Dashboard</h3>
-          </a>
+
+      <div class="out_edit_configuracaoServidor out_edit" id="out_edit_configuracaoServidor"></div>
+      <div class="edit_configuracaoServidor_modal modal_edit" id="edit_configuracaoServidor_modal">
+        <div class="edit_configuracaoServidor_headers edit_headers">
+          <h3>Editar Servidor</h3>
+          <span class="material-symbols-outlined" id="close_edit_configuracaoServidor_button"> close </span>
         </div>
-        <div class="btn-nav" id="btn-nav-admin-usuarios">
-          <a href="./tela-administracao-usuario.html">
-            <i class="fa-solid fa-user-gear"></i>
-            <h3>Adm - Usuários</h3>
-          </a>
-        </div>
-        <div class="btn-nav ativo" id="btn-nav-admin-servidores">
-          <a href="./tela-administracao-servidores.html">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            <h3>Adm - Servidores</h3>
-          </a>
-        </div>
-        <div class="btn-nav btn-logout" onclick="limparSessao()">
-          <a href="./index.html">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <h3>Sair</h3>
-          </a>
+        <div class="edit_configuracaoServidor_content edit_content">
+          <div class="edit_configuracaoServidor_field edit_field">
+            <label for="">Dados do Servidor</label>
+            <input type="hidden" id="ipt_id_servidor_edit">
+            <div class="edit_configuracaoServidor_field__box">
+              <div id="edit_configuracaoServidor_field__box__imagem">
+                <img src="./assets/img/servidores/servidorDemo.png" alt="" />
+              </div>
+              <div id="edit_configuracaoServidor_field__box__informacao">
+                <table>
+                  <thead>
+                    <tr class="nomeColuna">
+                      <th class="">Componente</th>
+                      <th class="">Valor (Editável)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody_edit_servidor">
+                    <tr>
+                      <td class="">Nome</td>
+                      <td class=""><input type="text" id="ipt_edit_nome" class="input-edit"></td>
+                    </tr>
+                    <tr>
+                      <td class="">Modelo</td>
+                      <td class=""><input type="text" id="ipt_edit_modelo" class="input-edit"></td>
+                    </tr>
+                    <tr>
+                      <td class="">Sist. Operacional</td>
+                      <td class=""><input type="text" id="ipt_edit_so" class="input-edit"></td>
+                    </tr>
+                    <tr>
+                      <td class="">Tipo</td>
+                      <td class="">
+                        <select id="select_edit_tipo" class="input-edit">
+                          <option value="Armazenamento">Armazenamento</option>
+                          <option value="Processamento">Processamento</option>
+                          <option value="Web">Web</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="">Service Tag</td>
+                      <td class=""><input type="text" id="ipt_edit_tag" class="input-edit" disabled
+                          title="Não é possível alterar Service Tag"></td>
+                    </tr>
+                    <tr>
+                      <td class="">Endereço MAC</td>
+                      <td class=""><input type="text" id="ipt_edit_mac" class="input-edit" disabled
+                          title="Não é possível alterar MAC"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+              <button class="cancel_button" onclick="close_modal_configuracaoServidor()">Cancelar</button>
+              <button class="confirm_button" onclick="salvarEdicaoServidor()">Salvar Alterações</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="dash">
-        <div class="dash__conteudo">
-          <div class="div-links-contas">
-            <a onclick="cadastrar()" class="X">
-              <h3>Adicionar Servidores</h3>
-            </a>
-          </div>
-
-          <div class="div-procura">
-            <div class="div-ipt-procura">
-              <label for="">Procure pelo nome:</label>
-              <input type="text" id="ipt_representante" class="ipt_procura" oninput="buscarNomeServidor(ipt_representante.value)" placeholder="Nome do servidor" />
-            </div>
-            <div class="div-ipt-procura">
-              <label for="">Filtrar por tipo:</label>
-              <select name="" id="select_tipo" onchange="selecionarTipo()" class="ipt_procura">
-                <option value="Todos">Todos</option>
-                <option value="Armazenamento">Armazenamento</option>
-                <option value="Processamento">Processamento</option>
-                <option value="Web">Web</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="mostrarUsuarios">
-            <table>
-              <thead>
-                <tr class="nomeColuna">
-                  <th class="colunaNomeServidor">Nome</th>
-                  <th class="colunaTipoServidor">Tipo</th>
-                  <th class="colunaStatusServidor">Status</th>
-                  <th class="colunaConfiguracaoServidor">Configurações</th>
-                  <th class="colunaConfiguracaoComponente">Parâmetros</th>
-                </tr>
-              </thead>
-              <tbody id="tbody_servidores"></tbody>
-            </table>
-          </div>
-          <div class="div_cadastrar">
-            <div class="cadastro_wrapper">
-              <div class="cabecalho_cadastro">
-                <h2>Cadastro de servidores</h2>
-                <span class="material-symbols-outlined" onclick="sairX()" class="X"> close </span>
+      <div class="out_edit_configuracaoServidorAplicativos out_edit" id="out_edit_configuracaoServidorAplicativos">
+      </div>
+      <div class="edit_configuracaoServidorAplicativos_modal modal_edit"
+        id="edit_configuracaoServidorAplicativos_modal">
+        <div class="edit_configuracaoServidorAplicativos_headers edit_headers">
+          <h3>Informações dos aplicativos</h3>
+          <span class="material-symbols-outlined" id="close_edit_configuracaoServidorAplicativos_button"> close </span>
+        </div>
+        <div class="edit_configuracaoServidorAplicativos_content edit_content">
+          <div class="edit_configuracaoServidorAplicativos_field edit_field">
+            <label for="">Configurações dos aplicativos servidor</label>
+            <div class="edit_configuracaoServidorAplicativos_field__box">
+              <div id="edit_configuracaoServidorAplicativos_field__box__imagem">
+                <img src="./assets/img/aplicacoes.png" alt="" />
               </div>
-              <div class="div-inputs">
-                <div class="form">
-                  <div class="field">
-                    <input type="text" id="ipt_nome_servidor" placeholder="" value="SRVTeste-001" />
-                    <label for="name">Nome do servidor</label>
-                    <span class="material-symbols-outlined input_icon"> storage </span>
-                  </div>
-
-                  <div class="field">
-                    <select id="select_tipo_servidor">
-                      <option value="Armazenamento">Armazenamento</option>
-                      <option value="Processamento">Processamento</option>
-                      <option value="Web">Web</option>
-                    </select>
-                    <label for="tipoUsuario">Selecione o tipo de servidor</label>
-                    <span class="material-symbols-outlined input_icon"> domain </span>
-                  </div>
-
-                  <div class="field">
-                    <input type="text" id="ipt_service_tag" placeholder="" value="123ABC" />
-                    <label for="name">Service Tag</label>
-                    <span class="material-symbols-outlined input_icon"> inbox_customize </span>
-                  </div>
-                </div>
-
-                <div class="form">
-                  <div class="field">
-                    <input type="text" id="ipt_so" placeholder="" value="ubuntu" />
-                    <label for="email">Sistema operacional</label>
-                    <span class="material-symbols-outlined input_icon"> adb </span>
-                  </div>
-                  <div class="field">
-                    <input type="text" id="ipt_mac" placeholder="" value="d4:77:c4:dc:34:ab" />
-                    <label for="password">MAC Address</label>
-                    <span class="material-symbols-outlined input_icon"> file_map </span>
-                  </div>
-
-                  <div class="field">
-                    <input type="text" id="ipt_modelo" placeholder="" value="AV-CSCX16T" />
-                    <label for="password">Modelo</label>
-                    <span class="material-symbols-outlined input_icon"> graph_5 </span>
-                  </div>
-                </div>
-              </div>
-              <div class="buttons">
-                <a href="#" id="submit_cadastro" class="cadastro_button_page">
-                  <span> Cadastrar </span>
-                  <span class="icon_circle">
-                    <span class="material-symbols-outlined"> arrow_forward </span>
-                  </span>
-                </a>
+              <div id="edit_configuracaoServidorAplicativos_field__box__informacao">
+                <table>
+                  <thead>
+                    <tr class="nomeColuna">
+                      <th class="">Aplicativo</th>
+                      <th class="">Editor</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody_servidoresAplicativos">
+                    <tr>
+                      <td class="colunaAplicativo">ConteraWS® Web Services</td>
+                      <td class="colunaEditor">ConteraCMR</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="out_edit_configuracaoServidor out_edit" id="out_edit_configuracaoServidor"></div>
-        <div class="edit_configuracaoServidor_modal modal_edit" id="edit_configuracaoServidor_modal">
-          <div class="edit_configuracaoServidor_headers edit_headers">
-            <h3>Editar Servidor</h3>
-            <span class="material-symbols-outlined" id="close_edit_configuracaoServidor_button"> close </span>
-          </div>
-          <div class="edit_configuracaoServidor_content edit_content">
-            <div class="edit_configuracaoServidor_field edit_field">
-              <label for="">Dados do Servidor</label>
-              <input type="hidden" id="ipt_id_servidor_edit">
-              <div class="edit_configuracaoServidor_field__box">
-                <div id="edit_configuracaoServidor_field__box__imagem">
-                  <img src="./assets/img/servidores/servidorDemo.png" alt="" />
-                </div>
-                <div id="edit_configuracaoServidor_field__box__informacao">
-                  <table>
-                    <thead>
-                      <tr class="nomeColuna">
-                        <th class="">Componente</th>
-                        <th class="">Valor (Editável)</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody_edit_servidor">
-                      <tr>
-                        <td class="">Nome</td>
-                        <td class=""><input type="text" id="ipt_edit_nome" class="input-edit"></td>
-                      </tr>
-                      <tr>
-                        <td class="">Modelo</td>
-                        <td class=""><input type="text" id="ipt_edit_modelo" class="input-edit"></td>
-                      </tr>
-                      <tr>
-                        <td class="">Sist. Operacional</td>
-                        <td class=""><input type="text" id="ipt_edit_so" class="input-edit"></td>
-                      </tr>
-                       <tr>
-                        <td class="">Tipo</td>
-                        <td class="">
-                            <select id="select_edit_tipo" class="input-edit">
-                                <option value="Armazenamento">Armazenamento</option>
-                                <option value="Processamento">Processamento</option>
-                                <option value="Web">Web</option>
-                            </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="">Service Tag</td>
-                        <td class=""><input type="text" id="ipt_edit_tag" class="input-edit" disabled title="Não é possível alterar Service Tag"></td>
-                      </tr>
-                      <tr>
-                        <td class="">Endereço MAC</td>
-                        <td class=""><input type="text" id="ipt_edit_mac" class="input-edit" disabled title="Não é possível alterar MAC"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-                  <button class="cancel_button" onclick="close_modal_configuracaoServidor()">Cancelar</button>
-                  <button class="confirm_button" onclick="salvarEdicaoServidor()">Salvar Alterações</button>
-              </div>
-            </div>
-          </div>
+      <div class="out_edit out_edit_componente" id="out_edit_componente"></div>
+      <div class="modal_edit edit_componente_modal" id="edit_componente_modal">
+        <div class="edit_headers">
+          <h3 id="componente_modal_title">Parâmetros do Servidor</h3>
+          <span class="material-symbols-outlined" id="close_edit_componente_button"> close </span>
         </div>
-
-        <div class="out_edit_configuracaoServidorAplicativos out_edit" id="out_edit_configuracaoServidorAplicativos"></div>
-        <div class="edit_configuracaoServidorAplicativos_modal modal_edit" id="edit_configuracaoServidorAplicativos_modal">
-          <div class="edit_configuracaoServidorAplicativos_headers edit_headers">
-            <h3>Informações dos aplicativos</h3>
-            <span class="material-symbols-outlined" id="close_edit_configuracaoServidorAplicativos_button"> close </span>
-          </div>
-          <div class="edit_configuracaoServidorAplicativos_content edit_content">
-            <div class="edit_configuracaoServidorAplicativos_field edit_field">
-              <label for="">Configurações dos aplicativos servidor</label>
-              <div class="edit_configuracaoServidorAplicativos_field__box">
-                <div id="edit_configuracaoServidorAplicativos_field__box__imagem">
-                  <img src="./assets/img/aplicacoes.png" alt="" />
-                </div>
-                <div id="edit_configuracaoServidorAplicativos_field__box__informacao">
-                  <table>
-                    <thead>
-                      <tr class="nomeColuna">
-                        <th class="">Aplicativo</th>
-                        <th class="">Editor</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody_servidoresAplicativos">
-                       <tr>
-                        <td class="colunaAplicativo">ConteraWS® Web Services</td>
-                        <td class="colunaEditor">ConteraCMR</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+        <div class="edit_content">
+          <input type="hidden" id="ipt_componente_servidor_id" />
+          <div class="componente-param-group">
+            <h4><span class="material-symbols-outlined">memory</span> CPU</h4>
+            <div class="edit_field">
+              <label for="ipt_cpu_risco_min">Em Risco (Mín %)</label>
+              <input type="number" id="ipt_cpu_risco_min" placeholder="Ex: 10" />
+            </div>
+            <div class="edit_field">
+              <label for="ipt_cpu_alerta">Alerta (A partir de %)</label>
+              <input type="number" id="ipt_cpu_alerta" placeholder="Ex: 75" />
+            </div>
+            <div class="edit_field">
+              <label for="ipt_cpu_risco_max">Em Risco (Máx %)</label>
+              <input type="number" id="ipt_cpu_risco_max" placeholder="Ex: 90" />
             </div>
           </div>
-        </div>
 
-        <div class="out_edit out_edit_componente" id="out_edit_componente"></div>
-        <div class="modal_edit edit_componente_modal" id="edit_componente_modal">
-          <div class="edit_headers">
-            <h3 id="componente_modal_title">Parâmetros do Servidor</h3>
-            <span class="material-symbols-outlined" id="close_edit_componente_button"> close </span>
+          <div class="componente-param-group">
+            <h4><span class="material-symbols-outlined">speed</span> RAM</h4>
+            <div class="edit_field">
+              <label for="ipt_ram_risco_min">Em Risco (Mín %)</label>
+              <input type="number" id="ipt_ram_risco_min" placeholder="Ex: 10" />
+            </div>
+            <div class="edit_field">
+              <label for="ipt_ram_alerta">Alerta (A partir de %)</label>
+              <input type="number" id="ipt_ram_alerta" placeholder="Ex: 70" />
+            </div>
+            <div class="edit_field">
+              <label for="ipt_ram_risco_max">Em Risco (Máx %)</label>
+              <input type="number" id="ipt_ram_risco_max" placeholder="Ex: 85" />
+            </div>
           </div>
-          <div class="edit_content">
-            <input type="hidden" id="ipt_componente_servidor_id" />
-            <div class="componente-param-group">
-              <h4><span class="material-symbols-outlined">memory</span> CPU</h4>
-              <div class="edit_field">
-                <label for="ipt_cpu_risco_min">Em Risco (Mín %)</label>
-                <input type="number" id="ipt_cpu_risco_min" placeholder="Ex: 10" />
-              </div>
-              <div class="edit_field">
-                <label for="ipt_cpu_alerta">Alerta (A partir de %)</label>
-                <input type="number" id="ipt_cpu_alerta" placeholder="Ex: 75" />
-              </div>
-              <div class="edit_field">
-                <label for="ipt_cpu_risco_max">Em Risco (Máx %)</label>
-                <input type="number" id="ipt_cpu_risco_max" placeholder="Ex: 90" />
-              </div>
-            </div>
 
-            <div class="componente-param-group">
-              <h4><span class="material-symbols-outlined">speed</span> RAM</h4>
-              <div class="edit_field">
-                <label for="ipt_ram_risco_min">Em Risco (Mín %)</label>
-                <input type="number" id="ipt_ram_risco_min" placeholder="Ex: 10" />
-              </div>
-              <div class="edit_field">
-                <label for="ipt_ram_alerta">Alerta (A partir de %)</label>
-                <input type="number" id="ipt_ram_alerta" placeholder="Ex: 70" />
-              </div>
-              <div class="edit_field">
-                <label for="ipt_ram_risco_max">Em Risco (Máx %)</label>
-                <input type="number" id="ipt_ram_risco_max" placeholder="Ex: 85" />
-              </div>
+          <div class="componente-param-group">
+            <h4><span class="material-symbols-outlined">save</span> Disco</h4>
+            <div class="edit_field">
+              <label for="ipt_disco_risco_min">Em Risco (Mín %)</label>
+              <input type="number" id="ipt_disco_risco_min" placeholder="Ex: 5" />
             </div>
+            <div class="edit_field">
+              <label for="ipt_disco_alerta">Alerta (A partir de %)</label>
+              <input type="number" id="ipt_disco_alerta" placeholder="Ex: 80" />
+            </div>
+            <div class="edit_field">
+              <label for="ipt_disco_risco_max">Em Risco (Máx %)</label>
+              <input type="number" id="ipt_disco_risco_max" placeholder="Ex: 95" />
+            </div>
+          </div>
 
-            <div class="componente-param-group">
-              <h4><span class="material-symbols-outlined">save</span> Disco</h4>
-              <div class="edit_field">
-                <label for="ipt_disco_risco_min">Em Risco (Mín %)</label>
-                <input type="number" id="ipt_disco_risco_min" placeholder="Ex: 5" />
-              </div>
-              <div class="edit_field">
-                <label for="ipt_disco_alerta">Alerta (A partir de %)</label>
-                <input type="number" id="ipt_disco_alerta" placeholder="Ex: 80" />
-              </div>
-              <div class="edit_field">
-                <label for="ipt_disco_risco_max">Em Risco (Máx %)</label>
-                <input type="number" id="ipt_disco_risco_max" placeholder="Ex: 95" />
-              </div>
-            </div>
-
-            <div class="edit_buttons">
-              <button class="cancel_button" id="cancel_edit_componente_button"> Cancelar </button>
-              <button class="confirm_button" onclick="updateComponenteData()"> Salvar </button>
-            </div>
+          <div class="edit_buttons">
+            <button class="cancel_button" id="cancel_edit_componente_button"> Cancelar </button>
+            <button class="confirm_button" onclick="updateComponenteData()"> Salvar </button>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 
 <script src="js/tela_administracao_servidores.js"></script>
