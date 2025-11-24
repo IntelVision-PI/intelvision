@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="../public/css/global.css">
   <link rel="stylesheet" href="../public/css/comparativo.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-
+  <!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
+  <script type="module" src="../public/js/comparativo.js"></script>
   
 </head>
 
-<body>
+<body onload="">
 
   <div class="header-left">
     <h1>IntelVision</h1>
@@ -188,8 +188,38 @@
         </div>
     </div>
 
-    <script>
-       
+    <script type="module">       
+        import { pegarDadosS3 } from "../public/js/comparativo.js";
+        let cpu = [];
+        let ram = [];
+        let disco = [];
+        let cpuComp = [];
+        let ramComp = [];
+        let discoComp = [];
+
+        pegarDadosS3("2025", "11", "24", "servidor6.nicolasf8sk4u2").then(dados => {
+                dados.forEach(item => {
+                    cpu.push(item.cpu);
+                    ram.push(item.ram);
+                    disco.push(item.disco);
+                    console.log("atual: "+ cpu)
+                });
+        }).catch(err => {
+            console.error("Erro ao obter dados do S3:", err);
+        });
+
+
+         pegarDadosS3("2025", "11", "24", "servidor6.nicolasf8sk4u2").then(dados => {
+                dados.forEach(item => {
+                    cpuComp.push(item.cpu);
+                    ramComp.push(item.ram);
+                    discoComp.push(item.disco);
+                    console.log("comparação: "+ cpuComp)
+                });
+        }).catch(err => {
+            console.error("Erro ao obter dados do S3:", err);
+        });
+
         function validarSessaoAdministrador() {
             console.log("Sessão validada (Ambiente de Teste).");
         }
