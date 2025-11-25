@@ -1,6 +1,6 @@
-services: 
+services:
   site:
-    image: site:1.0
+    image: lucastsuzukusptech/intelvision_site:1.2
     ports:
       - "8080:8080"
       - "3333:3333"
@@ -9,9 +9,15 @@ services:
     depends_on:
       - database
   database:
-    image: database:1.0
+    image: lucastsuzukusptech/intelvision_database:1.2
     ports:
       - "3306:3306"
+    networks:
+      - rede-compose
+  s3viewer:
+    image: lucastsuzukusptech/intelvision_s3viewer_lucas:1.2
+    ports:
+      - "3000:3000"
     networks:
       - rede-compose
 networks:
