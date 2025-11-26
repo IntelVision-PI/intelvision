@@ -41,7 +41,7 @@ a {
 }
 
 header {
-  position: relative;
+  position: fixed;
   z-index: 10;
   width: 85%;
   left: 15%;
@@ -264,7 +264,6 @@ table {
   z-index: 0;
   width: 100%;
   border-collapse: collapse;
-  text-align: center;
 }
 
 table .colunaDelete {
@@ -273,13 +272,19 @@ table .colunaDelete {
 
 td,
 th {
-  text-align: center;
   padding: 10px;
 }
 
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--primary-color);
+  text-align: left;
+}
+
 td {
-  border-bottom: 1px solid #008080;
-  text-align: center;
+  border-bottom: 1px solid #EBEEEE;
 }
 
 .colunaDelete {
@@ -287,7 +292,6 @@ td {
 }
 
 thead {
-  background-color: var(--primary-color);
   color: #ffffff;
 }
 
@@ -696,21 +700,46 @@ thead {
 }
 
 /* Gráfico */
+.graficos-dados-gerais {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.server01 {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+}
+
 .chart-container {
   background-color: white;
   border-radius: 10px;
   padding: 30px;
-  margin-top: 50px;
   margin-bottom: 50px;
-  width: 90%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 50%;
+  border: 1px solid #EBEEEE;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); */
+}
+
+.cabecalhoGraficoUm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mapaServidores {
+  background-color: #fff;
+  width: 50%;
+  padding: 20px;
+  border: 1px solid #EBEEEE;
+  height: 330px;
+  border-radius: 10px;
 }
 
 .chart-container h3 {
   margin-top: 0;
-  color: var(--primary-color);
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .situacao-servidores {

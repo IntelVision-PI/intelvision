@@ -160,7 +160,22 @@
         <!-- Gráfico de requisições por dia -->
         <div class="graficos-dados-gerais">
           <div class="chart-container">
-            <h3>Top 5 Uso de RAM</h3>
+            <div class="cabecalhoGraficoUm">
+              <h3>Top 5 Uso de RAM</h3>
+              <div class="filtrosGraficoUm">
+                <select name="" id="">
+                  <option value="Todos">Todos</option>
+                  <option value="Armazenamento">Armazenamento</option>
+                  <option value="Processamento">Processamento</option>
+                  <option value="Web">WEB</option>
+                </select>
+                <select name="" id="">
+                  <option value="">RAM</option>
+                  <option value="">Disco</option>
+                  <option value="">CPU</option>
+                </select>
+              </div>
+            </div>
             <canvas id="requisicoesDia"></canvas>
           </div>
           <div class="mapaServidores">
