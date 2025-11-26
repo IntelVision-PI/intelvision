@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IntelVision | Comparativo de Performance</title>
+
+  <link rel="stylesheet" href="../public/css/global.css">
+  <link rel="stylesheet" href="../public/css/comparativo.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
+  <script type="module" src="../public/js/comparativo.js"></script>
+  
+</head>
+
+<body onload="">
+
+  <div class="header-left">
+    <h1>IntelVision</h1>
+    
+    <div class="escolhaDash">
+
+      <div class="btn-nav inativo">
+        <a href="dashboard.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+          </svg>
+          <h3>Dashboard</h3>
+        </a>
+      </div>
+
+      <div class="btn-nav ativo">
+        <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z"/>
+            </svg>
+            <h3>Comparativo</h3>
+        </a>
+      </div>
+
+      <div class="btn-nav inativo">
+        <a href="./tela-administracao-usuario.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+          </svg>
+          <h3>Adm - Usuários</h3>
+        </a>
+      </div>
+
+      <div class="btn-nav inativo">
+        <a href="./tela-administracao-servidores.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+          </svg>
+          <h3>Adm - Servidores</h3>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
+      <a href="./index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+        </svg>
+        <h3>Sair</h3>
+      </a>
+    </div>
+  </div>
+
+  
+  <div class="dash">
+    <div class="dash__conteudo">
+      
+       <div class="control-bar">
+
+        <div class="control-group">
+
+            <div class="input-wrapper">
+
+                <p class="control-label">Data Referência (Passado)</p>
+
+                <input type="date" id="date1" class="date-input" value="2025-11-19">
+
+            </div>
+
+            <div class="vs-badge">VS</div>
+
+            <div class="input-wrapper">
+
+                <p class="control-label">Data Análise (Atual)</p>
+
+                <input type="date" id="date2" class="date-input" value="2025-11-20">
+
+            </div>
+
+            <div class="quick-actions">
+
+
+                <button onclick="setLast24h()">Últimas 24h</button>
+
+                <button onclick="setLastWeek()">Semana</button>
+
+            </div>
+
+        </div>
+
+       
+
+        <button class="btn-primary" onclick="atualizarComparacao()">
+
+            <i class="fa-solid fa-magnifying-glass-chart"></i> Comparar Performance
+
+        </button>
+
+    </div>
+                <div class="summary-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">CPU (Média)</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div>
+                        </div>
+                        <div class="kpi-value">42%</div>
+                        <div class="kpi-delta delta-positive">
+                            <i class="fa-solid fa-arrow-trend-up"></i> +12.5% 
+                            <span style="color: #999; font-weight: 400; margin-left: 5px;">vs ref.</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">RAM (Média)</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-memory"></i></div>
+                        </div>
+                        <div class="kpi-value">64%</div>
+                        <div class="kpi-delta delta-negative">
+                            <i class="fa-solid fa-arrow-trend-down"></i> -3.2%
+                            <span style="color: #999; font-weight: 400; margin-left: 5px;">vs ref.</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Disco (Média)</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-hard-drive"></i></div>
+                        </div>
+                        <div class="kpi-value">81%</div>
+                        <div class="kpi-delta delta-neutral">
+                            <i class="fa-solid fa-minus"></i> 0.5%
+                            <span style="color: #999; font-weight: 400; margin-left: 5px;">vs ref.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-area">
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Comparativo de Processamento (CPU)</h3>
+                            <div class="custom-legend">
+                                <div class="legend-item">
+                                    <div class="dot" style="background-color: #00C885;"></div> Atual
+                                </div>
+                                <div class="legend-item">
+                                    <div class="line-dash"></div> Referência
+                                </div>
+                            </div>
+                        </div>
+                        <canvas id="chartCPU" style="height: 300px; width: 100%;"></canvas>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Comparativo de Memória (RAM)</h3>
+                        </div>
+                        <canvas id="chartRAM" style="height: 300px; width: 100%;"></canvas>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Comparativo de Armazenamento</h3>
+                        </div>
+                        <canvas id="chartDisco" style="height: 300px; width: 100%;"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module">       
+        import { pegarDadosS3 } from "../public/js/comparativo.js";
+        let cpu = [];
+        let ram = [];
+        let disco = [];
+        let cpuComp = [];
+        let ramComp = [];
+        let discoComp = [];
+
+        pegarDadosS3("2025", "11", "24", "servidor6.nicolasf8sk4u2").then(dados => {
+                dados.forEach(item => {
+                    cpu.push(item.cpu);
+                    ram.push(item.ram);
+                    disco.push(item.disco);
+                    console.log("atual: "+ cpu)
+                });
+        }).catch(err => {
+            console.error("Erro ao obter dados do S3:", err);
+        });
+
+
+         pegarDadosS3("2025", "11", "24", "servidor6.nicolasf8sk4u2").then(dados => {
+                dados.forEach(item => {
+                    cpuComp.push(item.cpu);
+                    ramComp.push(item.ram);
+                    discoComp.push(item.disco);
+                    console.log("comparação: "+ cpuComp)
+                });
+        }).catch(err => {
+            console.error("Erro ao obter dados do S3:", err);
+        });
+
+        function validarSessaoAdministrador() {
+            console.log("Sessão validada (Ambiente de Teste).");
+        }
+
+        function limparSessao() {
+            alert("Você clicou em Sair. (Redirecionamento simulado)");
+        }
+
+
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = "#8b979f";
+        const labelsHoras = ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "23:59"];
+
+        function createChartConfig(dataAtual, dataPassado) {
+            return {
+                type: 'line',
+                data: {
+                    labels: labelsHoras,
+                    datasets: [
+                        {
+                            label: 'Atual',
+                            data: dataAtual,
+                            borderColor: '#00C885', 
+                            backgroundColor: 'rgba(0, 200, 133, 0.1)',
+                            borderWidth: 3,
+                            pointRadius: 3,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Referência',
+                            data: dataPassado,
+                            borderColor: '#90A4AE', 
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            tension: 0.4,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false }, 
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            };
+        }
+
+        const chartCPU = new Chart(document.getElementById('chartCPU'), createChartConfig(
+            [20, 35, 55, 80, 60, 40, 30], 
+            [15, 25, 45, 50, 45, 30, 25]  
+        ));
+
+        const chartRAM = new Chart(document.getElementById('chartRAM'), createChartConfig(
+            [60, 62, 65, 70, 75, 72, 60],
+            [58, 60, 60, 62, 65, 64, 58]
+        ));
+
+        const chartDisco = new Chart(document.getElementById('chartDisco'), createChartConfig(
+            [10, 12, 40, 20, 15, 50, 10],
+            [10, 10, 15, 12, 10, 15, 10]
+        ));
+
+        function atualizarComparacao() {
+            chartCPU.data.datasets[0].data = chartCPU.data.datasets[0].data.map(v => Math.floor(Math.random() * 100));
+            chartCPU.update();
+            alert(`Comparando ${document.getElementById('date1').value} com ${document.getElementById('date2').value}`);
+        }
+
+        function setLast24h() {
+            const today = new Date();
+            const yesterday = new Date(today);
+            yesterday.setDate(today.getDate() - 1);
+            
+            document.getElementById('date1').value = yesterday.toISOString().split('T')[0];
+            document.getElementById('date2').value = today.toISOString().split('T')[0];
+            atualizarComparacao();
+        }
+
+        function setLastWeek() {
+            const today = new Date();
+            const lastWeek = new Date(today);
+            lastWeek.setDate(today.getDate() - 7);
+
+            document.getElementById('date1').value = lastWeek.toISOString().split('T')[0];
+            document.getElementById('date2').value = today.toISOString().split('T')[0];
+            atualizarComparacao();
+        }
+    </script>
+</body>
+</html>

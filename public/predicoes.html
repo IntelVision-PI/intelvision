@@ -81,8 +81,32 @@
             <!-- KPI do relatório -->
           <div class="div-kpi-1">
             <div class="div-relatorio">
-              <div class="div-kpi-predicao"></div>
-              <div class="div-kpi-predicao"></div>
+              <div class="div-kpi-predicao">
+                <div class="div-textos-kpi">
+                  <span class="span-titulo-kpi">Servidores saudáveis</span>
+                  <span class="span-numero-kpi">04</span>
+                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+                </div>
+
+                <div class="div-simbolo-kpi">
+                  <div class="div-bola-relatorio">
+                    <span class="flat-color-icons--negative-dynamic"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="div-kpi-predicao">
+                <div class="div-textos-kpi">
+                  <span class="span-titulo-kpi">Servidores em perigo</span>
+                  <span class="span-numero-kpi">10</span>
+                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+                </div>
+
+                <div class="div-simbolo-kpi">
+                  <div class="div-bola-relatorio perigo">
+                    <span class="flat-color-icons--positive-dynamic"></span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="div-relatorio">
                 <div class="div-botao-relatorio">
@@ -142,91 +166,151 @@
       </div>
     </div>
 
-    <script>
-      // Gráfico de predição de discos para os próximos meses
+<script>
+const valores = [null, null, null, 10000, 12000, 14000, 16000];
+const desvio = 1000;
+const ctxHora = document.getElementById("predicaoDisco");
 
-      
+new Chart(ctxHora, {
+  type: "line",
+  data: {
+    labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
+    datasets: [
+      {
+        label: "Servidor passado",
+        data: [2000, 5000, 7000, 10000],
+        borderColor: "#28a745",
+        borderWidth: 3,
+        fill: true,
+        tension: 0.2,
+        backgroundColor: "rgba(40,167,69,0.0)"
+      },
+      {
+        label: "Predição",
+        data: valores,
+        borderColor: "#6990A7",
+        borderWidth: 3,
+        fill: false,
+        tension: 0,
+        borderDash: [5, 5]
+      },
+      {
+        label: "Desvio padrão positivo",
+        data: valores.map(v => v ? v + desvio : null),
+        borderColor: "#06b98057",
+        borderWidth: 3,
+        fill: '+1', // preenche até o próximo dataset (inferior)
+        tension: 0,
+        backgroundColor: "#06b98057" // cor da faixa
 
-      const ctxHora = document.getElementById("predicaoDisco");
-      new Chart(ctxHora, {
-        type: "line",
-        data: {
-          labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
-          datasets: [
-            {
-              label: "Servidor passado",
-              data: [2000, 5000, 7000, 10000],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#28a745",
-              borderWidth: 2,
-              fill: true,
-              tension: 0.2,
-            },
-            {
-              label: null,
-              data: [null, null, null, 10000, 15000, 12000, 20000],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#6990A7",
-              borderWidth: 2,
-              fill: false,
-              tension: 0,
-              borderDash: [5, 5]
-            },
-          ],
+      },
+      {
+        label: "Desvio padrão negativo",
+        data: valores.map(v => v ? v - desvio : null),
+        borderColor: "#06b98057",
+        borderWidth: 3,
+        fill: false,
+        tension: 0,
+        backgroundColor: "#06b98057" // cor da faixa
+      }
+    ],
+  },
+options: {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        font: {
+          size: 16   // aumenta fonte da legenda
+        }
+      }
+    },
+    annotation: {
+      annotations: {
+        linhaVertical: {
+          type: 'line',
+          xMin: 3,
+          xMax: 3,
+          borderColor: '#585555',
+          borderWidth: 2,
+          borderDash: [4, 3]
         },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: true
-              },
-              annotation: {
-                annotations: {
-                  linhaVertical: {
-                    type: 'line',
-                    xMin: 3,
-                    xMax: 3,
-                    borderColor: '#585555',
-                    borderWidth: 2,
-                    borderDash: [4, 3]
-                  },
-                  linhaHorizontal: {
-                    type: 'line',
-                    yMin: 16000,
-                    yMax: 16000,
-                    borderColor: '#ff0000',
-                    borderWidth: 2,
-                  },
+        linhaHorizontal: {
+          type: 'line',
+          yMin: 16000,
+          yMax: 16000,
+          borderColor: '#ff0000',
+          borderWidth: 2,
+        },
+      }
+    }
+  },
+  scales: {
+    x: {
+      ticks: {
+        font: {
+          size: 14
+        }
+      },
+      title: {
+        display: true,
+        text: "Meses",
+        font: {
+          size: 18
+        }
+      }
+    },
+    y: {
+      ticks: {
+        font: {
+          size: 14
+        }
+      },
+      title: {
+        display: true,
+        text: "Quantidade de disco usado (em Gb)",
+        font: {
+          size: 18
+        }
+      }
+    }
+  }
+}
 
-                }
-              }
-            }
-          }
-      });
-      // Gráfico de Uso da CPU
+
+});
+
+      // Gráfico de comparação anual de disco
       const ctxCPU = document.getElementById("cpuUso");
       new Chart(ctxCPU, {
-        type: "line",
+        type: "bar",
         data: {
           labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto" ,"Setembro" ,"Outubro", "Novembro", "Dezembro"],
           datasets: [
             {
-              label: "Uso da CPU (%)",
-              data: [35, 50, 70, 90, 65, 45, 55],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#ff5252",
+              label: "Ano atual",
+              data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+              backgroundColor: "#64748b",
               borderWidth: 2,
-              fill: true,
-              tension: 0.0,
+              borderRadius: {
+                topLeft: 7,
+                topRight: 7,
+                bottomLeft: 0,
+                bottomRight: 0
+              }
             },
             {
-              label: "Uso da CPU (%)",
-              data: [60, 50, 20, 10, 100, 45, 55],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#ff5252",
+              label: "Ano anterior",
+              data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+              backgroundColor: "#1e293b",
               borderWidth: 2,
-              fill: true,
-              tension: 0.0,
+              borderRadius: {
+                topLeft: 7,
+                topRight: 7,
+                bottomLeft: 0,
+                bottomRight: 0
+              }
             },
           ],
         },
