@@ -70,7 +70,7 @@
 
 .div-relatorio .div-botao-relatorio:hover {
   transform: translateY(-2px);
-  background: #06b981;
+  background: #06b98057;
   cursor: pointer;
 }
 
@@ -133,7 +133,7 @@
   padding: 30px;
   margin-top: 50px;
   margin-bottom: 50px;
-  width: 60%;
+  width: 90%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 

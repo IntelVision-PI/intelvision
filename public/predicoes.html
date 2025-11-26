@@ -147,62 +147,120 @@
 
       
 
+      const valores = [null, null, null, 10000, 12000, 14000, 16000];
+      const desvio = 1000;
       const ctxHora = document.getElementById("predicaoDisco");
-      new Chart(ctxHora, {
-        type: "line",
-        data: {
-          labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
-          datasets: [
-            {
-              label: "Servidor passado",
-              data: [2000, 5000, 7000, 10000],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#28a745",
-              borderWidth: 2,
-              fill: true,
-              tension: 0.2,
-            },
-            {
-              label: null,
-              data: [null, null, null, 10000, 15000, 12000, 20000],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#6990A7",
-              borderWidth: 2,
-              fill: false,
-              tension: 0,
-              borderDash: [5, 5]
-            },
-          ],
-        },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: true
-              },
-              annotation: {
-                annotations: {
-                  linhaVertical: {
-                    type: 'line',
-                    xMin: 3,
-                    xMax: 3,
-                    borderColor: '#585555',
-                    borderWidth: 2,
-                    borderDash: [4, 3]
-                  },
-                  linhaHorizontal: {
-                    type: 'line',
-                    yMin: 16000,
-                    yMax: 16000,
-                    borderColor: '#ff0000',
-                    borderWidth: 2,
-                  },
 
-                }
-              }
-            }
-          }
-      });
+new Chart(ctxHora, {
+  type: "line",
+  data: {
+    labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
+    datasets: [
+      {
+        label: "Servidor passado",
+        data: [2000, 5000, 7000, 10000],
+        borderColor: "#28a745",
+        borderWidth: 3,
+        fill: true,
+        tension: 0.2,
+        backgroundColor: "rgba(40,167,69,0.0)"
+      },
+      {
+        label: "Predição",
+        data: valores,
+        borderColor: "#6990A7",
+        borderWidth: 3,
+        fill: false,
+        tension: 0,
+        borderDash: [5, 5]
+      },
+      {
+        label: "Desvio padrão positivo",
+        data: valores.map(v => v ? v + desvio : null),
+        borderColor: "#06b98057",
+        borderWidth: 3,
+        fill: '+1', // preenche até o próximo dataset (inferior)
+        tension: 0,
+        backgroundColor: "#06b98057" // cor da faixa
+
+      },
+      {
+        label: "Desvio padrão negativo",
+        data: valores.map(v => v ? v - desvio : null),
+        borderColor: "#06b98057",
+        borderWidth: 3,
+        fill: false,
+        tension: 0,
+        backgroundColor: "#06b98057" // cor da faixa
+      }
+    ],
+  },
+options: {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        font: {
+          size: 16   // aumenta fonte da legenda
+        }
+      }
+    },
+    annotation: {
+      annotations: {
+        linhaVertical: {
+          type: 'line',
+          xMin: 3,
+          xMax: 3,
+          borderColor: '#585555',
+          borderWidth: 2,
+          borderDash: [4, 3]
+        },
+        linhaHorizontal: {
+          type: 'line',
+          yMin: 16000,
+          yMax: 16000,
+          borderColor: '#ff0000',
+          borderWidth: 2,
+        },
+      }
+    }
+  },
+  scales: {
+    x: {
+      ticks: {
+        font: {
+          size: 14
+        }
+      },
+      title: {
+        display: true,
+        text: "Meses",
+        font: {
+          size: 18
+        }
+      }
+    },
+    y: {
+      ticks: {
+        font: {
+          size: 14
+        }
+      },
+      title: {
+        display: true,
+        text: "Quantidade de disco usado (em Gb)",
+        font: {
+          size: 18
+        }
+      }
+    }
+  }
+}
+
+
+});
+
       // Gráfico de Uso da CPU
       const ctxCPU = document.getElementById("cpuUso");
       new Chart(ctxCPU, {
