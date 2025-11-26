@@ -81,8 +81,32 @@
             <!-- KPI do relatório -->
           <div class="div-kpi-1">
             <div class="div-relatorio">
-              <div class="div-kpi-predicao"></div>
-              <div class="div-kpi-predicao"></div>
+              <div class="div-kpi-predicao">
+                <div class="div-textos-kpi">
+                  <span class="span-titulo-kpi">Servidores saudáveis</span>
+                  <span class="span-numero-kpi">04</span>
+                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+                </div>
+
+                <div class="div-simbolo-kpi">
+                  <div class="div-bola-relatorio">
+                    <span class="flat-color-icons--negative-dynamic"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="div-kpi-predicao">
+                <div class="div-textos-kpi">
+                  <span class="span-titulo-kpi">Servidores em perigo</span>
+                  <span class="span-numero-kpi">10</span>
+                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+                </div>
+
+                <div class="div-simbolo-kpi">
+                  <div class="div-bola-relatorio perigo">
+                    <span class="flat-color-icons--positive-dynamic"></span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="div-relatorio">
                 <div class="div-botao-relatorio">
@@ -142,14 +166,10 @@
       </div>
     </div>
 
-    <script>
-      // Gráfico de predição de discos para os próximos meses
-
-      
-
-      const valores = [null, null, null, 10000, 12000, 14000, 16000];
-      const desvio = 1000;
-      const ctxHora = document.getElementById("predicaoDisco");
+<script>
+const valores = [null, null, null, 10000, 12000, 14000, 16000];
+const desvio = 1000;
+const ctxHora = document.getElementById("predicaoDisco");
 
 new Chart(ctxHora, {
   type: "line",
@@ -261,30 +281,36 @@ options: {
 
 });
 
-      // Gráfico de Uso da CPU
+      // Gráfico de comparação anual de disco
       const ctxCPU = document.getElementById("cpuUso");
       new Chart(ctxCPU, {
-        type: "line",
+        type: "bar",
         data: {
           labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto" ,"Setembro" ,"Outubro", "Novembro", "Dezembro"],
           datasets: [
             {
-              label: "Uso da CPU (%)",
-              data: [35, 50, 70, 90, 65, 45, 55],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#ff5252",
+              label: "Ano atual",
+              data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+              backgroundColor: "#64748b",
               borderWidth: 2,
-              fill: true,
-              tension: 0.0,
+              borderRadius: {
+                topLeft: 7,
+                topRight: 7,
+                bottomLeft: 0,
+                bottomRight: 0
+              }
             },
             {
-              label: "Uso da CPU (%)",
-              data: [60, 50, 20, 10, 100, 45, 55],
-              backgroundColor: "rgba(40,167,69,0.0)",
-              borderColor: "#ff5252",
+              label: "Ano anterior",
+              data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+              backgroundColor: "#1e293b",
               borderWidth: 2,
-              fill: true,
-              tension: 0.0,
+              borderRadius: {
+                topLeft: 7,
+                topRight: 7,
+                bottomLeft: 0,
+                bottomRight: 0
+              }
             },
           ],
         },
