@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const comparativoController = require("../controllers/comparativo");
 
-const { pegarDados } = require("../controllers/comparativo");
+router.get("/select", comparativoController.pegarServidores);
 
-router.get("/:ano/:mes/:dia/:servidor", pegarDados);
+router.get("/:ano/:mes/:dia/:servidor", comparativoController.pegarDados);
 
 module.exports = router;
