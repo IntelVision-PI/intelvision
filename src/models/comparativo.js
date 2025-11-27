@@ -11,9 +11,8 @@ async function streamParaString(stream) {
   });
 }
 
-// src/models/comparativo.js
-
-async function buscarDadosS3(ano, mes, dia, servidor) {
+ 
+async function buscarDadosS3(anxo, mes, dia, servidor) {
   const bucket = "my-bucket-client-nicolas";
 
   const servidorTransformado = servidor.toLowerCase();
