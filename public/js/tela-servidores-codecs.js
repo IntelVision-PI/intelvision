@@ -133,7 +133,39 @@ function pegarInformacoesServidor(idServidor) {
 
 function pegarRegistrosServidor(nomeServidor) {
   if (nomeServidor == "Todos") {
-    plotarGraficoLinhaTodos();
+    let promessas = [];
+
+    for (let i = 0; i < servidoresProcessamento.length; i++) {
+      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${servidoresProcessamento[i].nome}_cliente_teste_lucas.csv`;
+
+      let p = fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            console.log("Erro na resposta:", url);
+            return null;
+          }
+          return response.json();
+        })
+        .catch((err) => {
+          console.log("Erro no fetch:", err);
+          return null;
+        });
+
+      promessas.push(p);
+    }
+
+    Promise.allSettled(promessas).then((resultados) => {
+      resultados.forEach((resultado) => {
+        if (resultado.status === "fulfilled" && resultado.value) {
+          dadosGrafico.push(resultado.value);
+        }
+      });
+
+      console.log("Dados finais:", dadosGrafico);
+
+      // só agora plota o gráfico
+      plotarGraficoLinhaTodos(dadosGrafico);
+    });
   } else {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
@@ -144,7 +176,9 @@ function pegarRegistrosServidor(nomeServidor) {
             if (response.ok) {
               return response.json();
             } else {
-              console.log("Deu erro na requisição do registro do servidor");
+              console.log(
+                "Deu erro na reposta de requisição do registro do servidor"
+              );
             }
           })
           .then((json) => {
@@ -158,7 +192,7 @@ function pegarRegistrosServidor(nomeServidor) {
                           <canvas id="requisicoesHora"></canvas>
             `;
             } else {
-              dadosGrafico = json;
+              dadosGrafico.push(json);
               console.log(dadosGrafico);
               plotarGraficoLinha(dadosGrafico);
             }
@@ -189,7 +223,7 @@ function plotarGraficoLinha(resposta) {
     labels: labels,
     datasets: [
       {
-        label: "Tempo",
+        label: resposta[0].user,
         data: [],
         backgroundColor: "rgba(40,167,69,0.2)",
         borderColor: "#28a745",
@@ -204,12 +238,12 @@ function plotarGraficoLinha(resposta) {
   console.log(
     'Estes dados foram recebidos pela funcao "pegarRegistrosServidor" e passados para "plotarGrafico":'
   );
-  console.log(resposta);
+  console.log(resposta[0]);
 
   // Inserindo valores recebidos em estrutura para plotar o gráfico
   // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
-  for (i = 0; i < resposta.length; i++) {
-    var registro = resposta[i];
+  for (i = 0; i < resposta[0].length; i++) {
+    var registro = resposta[0][i];
     labels.push(registro.timestamp.split(" ")[1]);
     dados.datasets[0].data.push(registro.proc1_cpu_pct);
   }
@@ -245,51 +279,59 @@ function plotarGraficoLinha(resposta) {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML = "Porcentagem de CPU consumida no dia";
+  tituloGrafico.innerHTML = "Porcentagem de CPU consumida em 22/11/2025";
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
+  dadosGrafico = [];
 
   //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
 }
 
-function plotarGraficoLinhaTodos() {
+function plotarGraficoLinhaTodos(arrayRespostas) {
   console.log("iniciando plotagem do gráfico de todos servidores...");
+  console.log(arrayRespostas);
 
   // Criando estrutura para plotar gráfico - labels
-  let labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let labels = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23,
+  ];
+
+  // Criando estrutura para plotar gráfico - daatsets
+  let datasets = [];
+  let dataIteracao = [];
+
+  // criando um dataset de cada item do array
+
+  for (i = 0; i < arrayRespostas.length; i++) {
+    for (j = 0; j < arrayRespostas[i].length; j++) {
+      var registro = arrayRespostas[i][j];
+      //labels.push(registro.timestamp.split(" ")[1]);
+      dataIteracao.push(registro.proc1_cpu_pct);
+    }
+    var nomeLabel = arrayRespostas[i][0].user;
+    var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    let objetoIteracao = {
+      label: nomeLabel,
+      data: dataIteracao,
+      backgroundColor: "rgba(125,187,249,0.2)",
+      borderColor: randomColor,
+      borderWidth: 2,
+      fill: false,
+      tension: 0.4,
+    };
+    console.log("Objeto a ser jogado em datasets");
+    console.log(objetoIteracao);
+    datasets.push(objetoIteracao);
+    dataIteracao = [];
+  }
+  console.log("Dados a serem jogado em datasets");
+  console.log(datasets);
 
   // Criando estrutura para plotar gráfico - dados
   let dados = {
     labels: labels,
-    datasets: [
-      {
-        label: "Servidor 1",
-        data: [21, 23, 59, 87, 45, 3, 52, 45, 56, 45],
-        backgroundColor: "rgba(236,167,69,0.2)",
-        borderColor: "#784512",
-        borderWidth: 2,
-        fill: false,
-        tension: 0.4,
-      },
-      {
-        label: "Servidor 2",
-        data: [78, 98, 45, 23, 12, 4, 98, 54, 23, 68],
-        backgroundColor: "rgba(125,187,249,0.2)",
-        borderColor: "#41548a",
-        borderWidth: 2,
-        fill: false,
-        tension: 0.4,
-      },
-      {
-        label: "Servidor 2",
-        data: [75, 75, 75, 75, 75, 75, 75, 75, 75, 75],
-        backgroundColor: "rgba(125,187,249,0.2)",
-        borderColor: "#ff0000",
-        borderWidth: 2,
-        fill: false,
-        tension: 0.4,
-      },
-    ],
+    datasets: datasets,
   };
 
   // Inserindo valores recebidos em estrutura para plotar o gráfico
@@ -318,9 +360,12 @@ function plotarGraficoLinhaTodos() {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML = "Porcentagem de CPU consumida no dia";
+  tituloGrafico.innerHTML =
+    "Porcentagem de CPU consumida dos servidores de processamento em 22/11/2025";
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
+
+  dadosGrafico = [];
 
   //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
 }
