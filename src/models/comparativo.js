@@ -11,9 +11,20 @@ async function streamParaString(stream) {
   });
 }
 
+// src/models/comparativo.js
+
 async function buscarDadosS3(ano, mes, dia, servidor) {
   const bucket = "my-bucket-client-nicolas";
-  const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidor}.json`;
+
+  const servidorTransformado = servidor.toLowerCase();
+  
+  const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidorTransformado}.json`;
+  
+  console.log("-------------------------------------------------");
+  console.log(`[S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
+  console.log(`[S3 DEBUG] Caminho (Key) gerado: ${key}`);
+  console.log("-------------------------------------------------");
+
   const params = { Bucket: bucket, Key: key };
 
   try {
@@ -21,7 +32,8 @@ async function buscarDadosS3(ano, mes, dia, servidor) {
     const bodyString = await streamParaString(response.Body);
     return JSON.parse(bodyString);
   } catch (err) {
-    console.error("Erro ao ler S3:", err.message || err);
+    console.error(`[S3 ERRO] Falha ao baixar o arquivo: ${key}`);
+    console.error(`[S3 ERRO] Detalhe: ${err.message || err.Code}`);
     return null;
   }
 }

@@ -2,15 +2,13 @@ export async function pegarDadosS3(ano, mes, dia, servidor) {
     const url = `/dados/${ano}/${mes}/${dia}/${servidor}`;
 
     const res = await fetch(url);
-    if (!res.ok) {
+    if (!res.ok) {  
         console.warn(`Arquivo não encontrado: ${url}`);
         return { vazio: true };  
     }
 
     return await res.json();
 }
-
-
 
 let chartCPU, chartRAM, chartDisco;
 
