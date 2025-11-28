@@ -1,3 +1,4 @@
+use intelvision;
 
 insert into empresa (cnpj, nome, email, senha, codigo_ativacao, telefone, razao_social) values
 ('123456789', 'Intelbras', 'intelbras@intelbras.com', '123456789','ATV123', '(11) 95289-8922','INTELBRAS S.A. INDUSTRIA DE TELECOMUNICACAO ELETRONICA BRASILEIRA'),
