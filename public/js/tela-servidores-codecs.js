@@ -13,7 +13,7 @@ function puxarDadosServidor() {
   const idEmpresa = Number(sessionStorage.fkEmpresa);
   console.log(idEmpresa);
 
-  fetch(`/servidores/select/servidor/${idEmpresa}`, {
+  fetch(`/servidores/select/servidorCodecs/${idEmpresa}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -120,6 +120,10 @@ function pegarInformacoesServidor(idServidor) {
             <tr>
               <td>Endereço MAC</td>
               <td>${servidores[i].macaddress}</td>
+            </tr>
+            <tr>
+              <td>CODEC</td>
+              <td>${servidores[i].codec}</td>
             </tr>
 
           `;
