@@ -173,11 +173,11 @@ function pegarRegistrosServidor(nomeServidor) {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
         fetch(
-          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${nomeServidor}_cliente_teste_lucas.csv`
+          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-27--${nomeServidor.toLowerCase()}.json`
         )
           .then((response) => {
             if (response.ok) {
-              return response;
+              return response.json();
             } else {
               console.log(
                 "Deu erro na reposta de requisição do registro do servidor"
@@ -220,6 +220,8 @@ function plotarGraficoLinha(resposta) {
 
   // Criando estrutura para plotar gráfico - labels
   let labels = [];
+
+  console.log(resposta);
 
   // Criando estrutura para plotar gráfico - dados
   let dados = {
