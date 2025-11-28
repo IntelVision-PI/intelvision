@@ -14,7 +14,6 @@ async function streamParaString(stream) {
  
 async function buscarDadosS3(ano, mes, dia, servidor) {
   const bucket = "my-bucket-client-nicolas";
-giot
   const servidorTransformado = servidor.toLowerCase();
   
   const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidorTransformado}.json`;

@@ -254,79 +254,39 @@
             </div>
 
             <div class="summary-grid">
-
                 <div class="kpi-card">
-
                     <div class="kpi-header">
-
                         <span class="kpi-title">CPU (Média)</span>
-
                         <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div>
-
                     </div>
-
-                    <div class="kpi-value">42%</div>
-
-                    <div class="kpi-delta delta-positive">
-
-                        <i class="fa-solid fa-arrow-trend-up"></i> +12.5%
-
-                        <span style="color: #999; font-weight: 400; margin-left: 5px;">vs ref.</span>
-
+                    <div class="kpi-value" id="kpiCPU">--%</div>
+                    <div class="kpi-delta" id="deltaCPU">
+                        <span style="color: #999; font-weight: 400;">Aguardando...</span>
                     </div>
-
                 </div>
 
-
-
                 <div class="kpi-card">
-
                     <div class="kpi-header">
-
                         <span class="kpi-title">RAM (Média)</span>
-
                         <div class="kpi-icon"><i class="fa-solid fa-memory"></i></div>
-
                     </div>
-
-                    <div class="kpi-value">64%</div>
-
-                    <div class="kpi-delta delta-negative">
-
-                        <i class="fa-solid fa-arrow-trend-down"></i> -3.2%
-
-                        <span style="color: #999; font-weight: 400; margin-left: 5px;">vs ref.</span>
-
+                    <div class="kpi-value" id="kpiRAM">--%</div>
+                    <div class="kpi-delta" id="deltaRAM">
+                        <span style="color: #999; font-weight: 400;">Aguardando...</span>
                     </div>
-
                 </div>
-
-
 
                 <div class="kpi-card">
-
                     <div class="kpi-header">
-
                         <span class="kpi-title">Disco (Média)</span>
-
                         <div class="kpi-icon"><i class="fa-solid fa-hard-drive"></i></div>
-
                     </div>
-
-                    <div class="kpi-value">81%</div>
-
-                    <div class="kpi-delta delta-neutral">
-
-                        <i class="fa-solid fa-minus"></i> 0.5%
-
-                        <span style="color: #999; font-weight: 400; margin-left: 5px;">vs ref.</span>
-
+                    <div class="kpi-value" id="kpiDisco">--%</div>
+                    <div class="kpi-delta" id="deltaDisco">
+                        <span style="color: #999; font-weight: 400;">Aguardando...</span>
                     </div>
-
                 </div>
-
             </div>
-
 
 
             <div class="charts-area">
@@ -364,7 +324,7 @@
 
 
 
-    <script type="module">
+   <script type="module">
         import { pegarDadosS3, inicializarGraficos, atualizarGraficos } from "./js/comparativo.js";
 
         document.addEventListener("DOMContentLoaded", async () => {
@@ -374,13 +334,12 @@
             document.getElementById("date1").value = hoje;
             document.getElementById("date2").value = hoje;
 
+            // Carregar Select de Servidores
             const select = document.getElementById("selectServidor");
             try {
-                const res = await fetch("/dados/select");
+                const res = await fetch("/dados/select"); // Ajuste sua rota se necessario
                 const servidores = await res.json();
-
                 select.innerHTML = `<option value="">Selecione...</option>`;
-
                 servidores.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.nome || s.hostname || s.id;
@@ -388,19 +347,15 @@
                     select.appendChild(opt);
                 });
             } catch (err) {
+                console.error(err);
                 select.innerHTML = `<option>Erro ao carregar</option>`;
             }
 
-
             const btn = document.getElementById("btnConsultar");
-
-            if (btn) {
-                btn.addEventListener("click", atualizar);
-            }
+            if (btn) btn.addEventListener("click", atualizar);
 
             async function atualizar() {
                 const servidor = select.value;
-
                 if (!servidor || servidor === "Carregando..." || servidor === "") {
                     alert("Por favor, selecione um servidor primeiro.");
                     return;
@@ -413,22 +368,21 @@
                 const [ano1, mes1, dia1] = document.getElementById("date1").value.split("-");
                 const [ano2, mes2, dia2] = document.getElementById("date2").value.split("-");
 
-                console.log("Buscando referência:", ano1, mes1, dia1, servidor);
-                console.log("Buscando atual:", ano2, mes2, dia2, servidor);
-
                 try {
+                    // Pega os dados brutos (arrays de registros)
                     const dadosRef = await pegarDadosS3(ano1, mes1, dia1, servidor);
                     const dadosAtual = await pegarDadosS3(ano2, mes2, dia2, servidor);
-
-                    console.log("REF:", dadosRef);
-                    console.log("ATUAL:", dadosAtual);
 
                     if (dadosRef.vazio || dadosAtual.vazio) {
                         document.getElementById("msgErro").style.display = "block";
                         atualizarGraficos({ vazio: true }, { vazio: true });
+                        resetarKPIs(); // Limpa as KPIs se não tiver dados
                     } else {
                         document.getElementById("msgErro").style.display = "none";
                         atualizarGraficos(dadosRef, dadosAtual);
+                        
+                        // AQUI ESTÁ A MÁGICA DOS KPIS
+                        calcularEExibirKPIs(dadosRef, dadosAtual);
                     }
                 } catch (error) {
                     console.error("Erro ao atualizar:", error);
@@ -436,6 +390,75 @@
                     btn.innerHTML = textoOriginal;
                     btn.disabled = false;
                 }
+            }
+
+            // --- FUNÇÕES DE KPI ---
+
+            function calcularEExibirKPIs(ref, atual) {
+                // Supondo que seus dados venham com chaves: cpu, ram, disco (ou similar)
+                // Se as chaves do JSON forem diferentes (ex: processamento), ajuste abaixo.
+                
+                atualizarCardKPI("kpiCPU", "deltaCPU", ref, atual, "cpu");
+                atualizarCardKPI("kpiRAM", "deltaRAM", ref, atual, "ram");
+                atualizarCardKPI("kpiDisco", "deltaDisco", ref, atual, "disco");
+            }
+
+            function atualizarCardKPI(idValor, idDelta, dadosRef, dadosAtual, metrica) {
+                // 1. Calcular médias
+                const mediaRef = calcularMediaArray(dadosRef, metrica);
+                const mediaAtual = calcularMediaArray(dadosAtual, metrica);
+
+                // 2. Calcular diferença (Pontos percentuais)
+                const diferenca = mediaAtual - mediaRef;
+
+                // 3. Atualizar Valor Principal
+                document.getElementById(idValor).innerText = mediaAtual.toFixed(1) + "%";
+
+                // 4. Configurar Delta (Diferença)
+                const divDelta = document.getElementById(idDelta);
+                
+                let icone = "";
+                let cor = "";
+                let sinal = diferenca > 0 ? "+" : ""; // Adiciona o + se for positivo
+
+                // Lógica: Aumento de consumo (positivo) = Ruim (Vermelho)
+                // Queda de consumo (negativo) = Bom (Verde)
+                if (diferenca > 0.1) {
+                    icone = '<i class="fa-solid fa-arrow-trend-up"></i>';
+                    cor = "red"; // Vermelho pq aumentou consumo
+                } else if (diferenca < -0.1) {
+                    icone = '<i class="fa-solid fa-arrow-trend-down"></i>';
+                    cor = "green"; // Verde pq economizou recurso
+                } else {
+                    icone = '<i class="fa-solid fa-minus"></i>';
+                    cor = "gray"; // Neutro
+                }
+
+                divDelta.innerHTML = `
+                    <span style="color: ${cor}; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        ${icone} ${sinal}${diferenca.toFixed(1)}%
+                    </span>
+                    <span style="color: #999; font-size: 12px; margin-left: 5px;">vs ref.</span>
+                `;
+            }
+
+            function calcularMediaArray(dados, chave) {
+                // Se o dado não for um array (ex: objeto único), adapta-se
+                const lista = Array.isArray(dados) ? dados : (dados.dados || []);
+                
+                if (lista.length === 0) return 0;
+
+                const soma = lista.reduce((acc, item) => {
+                    // Garante que é número. Ajuste 'item[chave]' se o nome da coluna for diferente
+                    return acc + (parseFloat(item[chave]) || 0);
+                }, 0);
+
+                return soma / lista.length;
+            }
+
+            function resetarKPIs() {
+                ["kpiCPU", "kpiRAM", "kpiDisco"].forEach(id => document.getElementById(id).innerText = "--%");
+                ["deltaCPU", "deltaRAM", "deltaDisco"].forEach(id => document.getElementById(id).innerHTML = "<span>--</span>");
             }
         });
     </script>
