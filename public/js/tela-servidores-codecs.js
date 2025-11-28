@@ -136,7 +136,10 @@ function pegarRegistrosServidor(nomeServidor) {
     let promessas = [];
 
     for (let i = 0; i < servidoresProcessamento.length; i++) {
-      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-22-${servidoresProcessamento[i].nome}_cliente_teste_lucas.csv`;
+      let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
+      console.log(nomeServidorMinusculo);
+
+      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-27--${nomeServidorMinusculo}.json`;
 
       let p = fetch(url)
         .then((response) => {
@@ -174,7 +177,7 @@ function pegarRegistrosServidor(nomeServidor) {
         )
           .then((response) => {
             if (response.ok) {
-              return response.json();
+              return response;
             } else {
               console.log(
                 "Deu erro na reposta de requisição do registro do servidor"
