@@ -31,12 +31,10 @@
   </header> -->
 
   <div class="janela">
-
     <!-- MENU -->
     <div class="header-left">
       <h1>IntelVision</h1>
       <div class="escolhaDash">
-
         <a href="./servidores.html">
           <div class="btn-nav ativo">
             <span>
@@ -76,6 +74,18 @@
           </div>
         </a>
 
+        <a href="./tela-servidores-codecs.html">
+          <div class="btn-nav inativo" id="btn-nav-admin-servidores">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M160-400v-80h640v80H160Zm0-120v-80h640v80H160ZM440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160Z" />
+              </svg>
+              <h3>Análise-Codecs</h3>
+            </span>
+          </div>
+        </a>
       </div>
 
       <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
@@ -87,108 +97,143 @@
           <h3>Sair</h3>
         </a>
       </div>
-
     </div>
     <!-- FIM MENU -->
     <!-- Conteúdo da página -->
     <div class="dash">
       <div class="dash__conteudo">
         <!-- KPIs -->
-        <div class="dash-atualizacao">
+        <!-- <div class="dash-atualizacao">
           <h4>Última Atualização:</h4>
           <span id="dataHora"></span>
-        </div>
+        </div> -->
         <div class="kpi-container">
-          <div class="kpi kpi1">
+          <div class="kpi">
             <h4>Servidores de armazenamento em alerta ou crítico</h4>
             <p>5</p>
             <span>Total de 10 servidores</span>
           </div>
-          <div class="kpi kpi2">
+          <div class="kpi">
             <h4>Servidores WEB em alerta ou crítico</h4>
             <p>3</p>
             <span>Total de 5 servidores</span>
           </div>
-          <div class="kpi kpi3">
+          <div class="kpi">
             <h4>Servidores de processamento em alerta ou crítico</h4>
             <p>9</p>
             <span>Total de 15 servidores</span>
           </div>
         </div>
         <!-- Filtro Servidores -->
-        <div class="kpi-container div-procura">
-          <div class="filtro_servidores div-ipt-procura">
-            <p>Filtrar Tipo de Servidores:</p>
-            <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
-              class="ipt_procura">
-              <option value="Todos">Todos</option>
-              <option value="Armazenamento">Armazenamento</option>
-              <option value="Processamento">Processamento</option>
-              <option value="Web">WEB</option>
-            </select>
-          </div>
-          <div class="filtro_servidores div-ipt-procura">
-            <p>Filtrar Situação de Servidores:</p>
-            <select name="fitro_situacao_servidor" id="fitro_situacao_servidor" onchange="puxarDadosServidor()"
-              class="ipt_procura">
-              <option value="Todos">Todos</option>
-              <option value="critico">Crítico</option>
-              <option value="alerta">Alerta</option>
-              <option value="ok">Ok</option>
-            </select>
-          </div>
-        </div>
+        <!-- <div class="kpi-container div-procura">
+            <div class="filtro_servidores div-ipt-procura">
+              <p>Filtrar Tipo de Servidores:</p>
+              <select
+                name="fitro_tipo_servidor"
+                id="fitro_tipo_servidor"
+                onchange="puxarDadosServidor()"
+                class="ipt_procura"
+              >
+                <option value="Todos">Todos</option>
+                <option value="Armazenamento">Armazenamento</option>
+                <option value="Processamento">Processamento</option>
+                <option value="Web">WEB</option>
+              </select>
+            </div>
+            <div class="filtro_servidores div-ipt-procura">
+              <p>Filtrar Situação de Servidores:</p>
+              <select
+                name="fitro_situacao_servidor"
+                id="fitro_situacao_servidor"
+                onchange="puxarDadosServidor()"
+                class="ipt_procura"
+              >
+                <option value="Todos">Todos</option>
+                <option value="critico">Crítico</option>
+                <option value="alerta">Alerta</option>
+                <option value="ok">Ok</option>
+              </select>
+            </div>
+          </div> -->
 
         <!-- Situação dos Servidores -->
-        <div class="situacao-servidores">
-          <h3>Situação dos servidores</h3>
+        <!-- <div class="situacao-servidores">
+            <h3>Situação dos servidores</h3>
 
-          <!-- Carrossel de servidores (feito pelo chat, será atualizado logo)-->
-          <div class="carousel">
-            <div class="carousel-track" id="trilhaCarrosselServidores"></div>
+            <div class="carousel">
+              <div class="carousel-track" id="trilhaCarrosselServidores"></div>
 
-            <!-- Botões de navegação -->
-            <button class="prev">
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button class="next">
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
-          </div>
-        </div>
+              <button class="prev">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="next">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div> -->
 
         <!-- Gráfico de requisições por dia -->
         <div class="graficos-dados-gerais">
           <div class="chart-container">
-            <h3>Top 5 Uso de RAM</h3>
+            <div class="cabecalhoGraficoUm">
+              <h3>Top 5 Uso de RAM</h3>
+              <div class="filtrosGraficoUm">
+                <select name="" id="">
+                  <option value="Todos">Todos</option>
+                  <option value="Armazenamento">Armazenamento</option>
+                  <option value="Processamento">Processamento</option>
+                  <option value="Web">WEB</option>
+                </select>
+                <select name="" id="">
+                  <option value="">RAM</option>
+                  <option value="">Disco</option>
+                  <option value="">CPU</option>
+                </select>
+              </div>
+            </div>
             <canvas id="requisicoesDia"></canvas>
           </div>
           <div class="mapaServidores">
             <h3>Situação dos servidores</h3>
             <div class="mapaDeCalor">
               <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
+              <div class="server01"></div>
             </div>
           </div>
         </div>
         <!-- Gráficos de requisições por hora -->
-        <div class="chart-container">
-          <h3>Requisições por hora</h3>
-          <canvas id="requisicoesHora"></canvas>
+        <div class="grafico-so-rede">
+          <div class="chart-container2">
+            <h3>Requisições por hora</h3>
+            <canvas id="requisicoesHora"></canvas>
+          </div>
         </div>
 
-        <div class="chart-container">
-          <h3>Uso da CPU (%) por hora</h3>
-          <canvas id="cpuUso"></canvas>
-        </div>
 
-        <div class="chart-container">
-          <h3>Uso da RAM (%) por hora</h3>
-          <canvas id="ramUso"></canvas>
-        </div>
+        <!-- <div class="chart-container">
+            <h3>Uso da CPU (%) por hora</h3>
+            <canvas id="cpuUso"></canvas>
+          </div>
+
+          <div class="chart-container">
+            <h3>Uso da RAM (%) por hora</h3>
+            <canvas id="ramUso"></canvas>
+          </div> -->
       </div>
     </div>
   </div>
-
 
   <script>
     // Gráfico de Requisições por dia
@@ -197,22 +242,23 @@
       type: "bar",
       data: {
         labels: ["Seg", "Ter", "Qua", "Qui", "Sex"],
-        datasets: [{
-          axis: 'y',
-          label: "Requisições",
-          data: [100000, 80000, 120000, 150000, 90000],
-          backgroundColor: "#2D6A54",
-          borderColor: "#2D6A54",
-          borderWidth: 1,
-        },
+        datasets: [
+          {
+            axis: "y",
+            label: "Requisições",
+            data: [100000, 80000, 120000, 150000, 90000],
+            backgroundColor: "#2D6A54",
+            borderColor: "#2D6A54",
+            borderWidth: 1,
+          },
         ],
       },
       options: {
-        indexAxis: 'y',
+        indexAxis: "y",
         responsive: true,
         plugins: {
-          legend: { display: false }
-        }
+          legend: { display: false },
+        },
       },
     });
 
@@ -221,11 +267,11 @@
     new Chart(ctxHora, {
       type: "line",
       data: {
-        labels: ["00-04", "04-08", "08-12", "12-16", "16-20", "20-24"],
+        labels: ["00", "01", "02", "03", "04", "05"],
         datasets: [
           {
             label: "Requisições",
-            data: [5000, 10000, 8000, 15000, 12000, 20000],
+            data: [5000, 10000, 8000, 9000, 8000, 10000],
             backgroundColor: "#D8F4EA",
             borderColor: "#28a745",
             borderWidth: 2,
@@ -234,7 +280,7 @@
           },
         ],
       },
-      options: { responsive: true, plugins: { legend: { display: false } } },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } },
     });
     // Gráfico de Uso da CPU
     const ctxCPU = document.getElementById("cpuUso");
