@@ -3,6 +3,23 @@ const containerGrafico1 = document.getElementById(
   "dash__conteudo__grupo__graficos__container1"
 );
 
+const dataHoje = new Date();
+const formatoBrasileiro = new Intl.DateTimeFormat("pt-BR", {
+  dateStyle: "long",
+  timeStyle: "medium",
+});
+console.log("Data Brasileira");
+console.log(formatoBrasileiro.format(dataHoje));
+const formatoDataCurta = new Intl.DateTimeFormat("pt-BR", {
+  dateStyle: "short",
+});
+console.log("Data Brasileira Curta");
+console.log(formatoDataCurta.format(dataHoje));
+
+let dataSelecionada = new Date().setDate(dataHoje.getDate() - 1);
+console.log("Data Brasileira Curta Selecionada");
+console.log(formatoDataCurta.format(dataSelecionada));
+
 let servidores = [];
 let servidoresProcessamento = [];
 let dadosGrafico = [];
@@ -162,6 +179,11 @@ function pegarInformacoesServidor(idServidor) {
 }
 
 function pegarRegistrosServidor(nomeServidor) {
+  let arrayDataSelecionada = formatoDataCurta
+    .format(dataSelecionada)
+    .split("/");
+  console.log(arrayDataSelecionada);
+
   if (nomeServidor == "Todos") {
     let promessas = [];
 
@@ -169,7 +191,7 @@ function pegarRegistrosServidor(nomeServidor) {
       let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
       console.log(nomeServidorMinusculo);
 
-      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-27--${nomeServidorMinusculo}.json`;
+      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
 
       let p = fetch(url)
         .then((response) => {
@@ -203,7 +225,11 @@ function pegarRegistrosServidor(nomeServidor) {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
         fetch(
-          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-27--${nomeServidor.toLowerCase()}.json`
+          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${
+            arrayDataSelecionada[2]
+          }-${arrayDataSelecionada[1]}-${
+            arrayDataSelecionada[0]
+          }--${nomeServidor.toLowerCase()}.json`
         )
           .then((response) => {
             if (response.ok) {
@@ -313,8 +339,9 @@ function plotarGraficoLinha(resposta) {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML =
-    "Porcentagem de CPU consumida do CODEC em 22/11/2025";
+  tituloGrafico.innerHTML = `Porcentagem de CPU consumida do CODEC em ${formatoDataCurta.format(
+    dataSelecionada
+  )}`;
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
   dadosGrafico = [];
@@ -395,8 +422,9 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML =
-    "Porcentagem de CPU consumida dos CODECS dos servidores em 22/11/2025";
+  tituloGrafico.innerHTML = `Porcentagem de CPU consumida dos CODECS em ${formatoDataCurta.format(
+    dataSelecionada
+  )}`;
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
 
