@@ -26,6 +26,7 @@ function puxarDadosServidor() {
       return res.json();
     })
     .then((data) => {
+      console.log(data);
       listarServidores(data);
     });
 }
@@ -86,10 +87,35 @@ function pegarInformacoesServidor(idServidor) {
   `;
   setTimeout(() => {
     if (idServidor == "Todos") {
+      let arrayCodecs = servidores.map((servidorAtual) => {
+        return servidorAtual.codec;
+      });
+      console.log(arrayCodecs);
       tbodyServidoresCodec.innerHTML = `
             <tr>
               <td>Quantidade Servidores Processamento</td>
               <td>${servidoresProcessamento.length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores CODEC H.265</td>
+              <td>${arrayCodecs.filter((x) => x === "H-265").length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores CODEC H.264</td>
+              <td>${arrayCodecs.filter((x) => x === "H-264").length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores CODEC MPEG-2</td>
+              <td>${arrayCodecs.filter((x) => x === "MPEG-2").length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Outros CODECS</td>
+              <td>${
+                servidoresProcessamento.length -
+                arrayCodecs.filter((x) => x === "H-265").length -
+                arrayCodecs.filter((x) => x === "MPEG-2").length -
+                arrayCodecs.filter((x) => x === "H-264").length
+              }</td>
             </tr>
           `;
       pegarRegistrosServidor("Todos");
@@ -226,13 +252,12 @@ function plotarGraficoLinha(resposta) {
   let labels = [];
 
   console.log(resposta);
-
   // Criando estrutura para plotar gráfico - dados
   let dados = {
     labels: labels,
     datasets: [
       {
-        label: resposta[0].user,
+        label: resposta[0][0].user,
         data: [],
         backgroundColor: "rgba(40,167,69,0.2)",
         borderColor: "#28a745",
@@ -280,7 +305,7 @@ function plotarGraficoLinha(resposta) {
         },
       },
       responsive: true,
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: true } },
     },
   };
 
@@ -288,7 +313,8 @@ function plotarGraficoLinha(resposta) {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML = "Porcentagem de CPU consumida em 22/11/2025";
+  tituloGrafico.innerHTML =
+    "Porcentagem de CPU consumida do CODEC em 22/11/2025";
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
   dadosGrafico = [];
@@ -323,7 +349,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
     let objetoIteracao = {
       label: nomeLabel,
       data: dataIteracao,
-      backgroundColor: "rgba(125,187,249,0.2)",
+      backgroundColor: randomColor,
       borderColor: randomColor,
       borderWidth: 2,
       fill: false,
@@ -361,7 +387,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
         },
       },
       responsive: true,
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: true } },
     },
   };
 
@@ -370,7 +396,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
     "dash__conteudo__grupo__graficos__titulo"
   );
   tituloGrafico.innerHTML =
-    "Porcentagem de CPU consumida dos servidores de processamento em 22/11/2025";
+    "Porcentagem de CPU consumida dos CODECS dos servidores em 22/11/2025";
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
 
