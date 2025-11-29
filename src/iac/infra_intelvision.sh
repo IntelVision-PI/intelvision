@@ -1,5 +1,4 @@
 #!/bin/bash
-
 KEY_NAME="servicekey123"
 SECURITY_GROUP_NAME="launch-wizard-42"
 INSTANCE_NAME="web-server-01"

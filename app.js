@@ -18,16 +18,16 @@ var app = express();
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
-var dadosRouter = require("./src/routes/comparativo");
+// var dadosRouter = require("./src/routes/comparativo");
 
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+// const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
 
 app.use(cors());
 
-const s3 = new S3Client({
-  region: "us-east-1"
-});
+// const s3 = new S3Client({
+//   region: "us-east-1"
+// });
 
 
 
@@ -40,7 +40,8 @@ app.use(cors());
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
-app.use("/dados", dadosRouter);
+// app.use("/dados", dadosRouter);
+
 
 
 app.listen(PORTA_APP, function () {
