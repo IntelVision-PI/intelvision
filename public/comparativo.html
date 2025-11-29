@@ -289,6 +289,37 @@
             </div>
 
 
+<div class="alerts-grid">
+                
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <h3>Alertas (Ref) <span id="labelDataRef" style="font-size:0.8em; color:#666;"></span></h3>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content" id="listaAlertasRef">
+                        <p class="empty-msg">Aguardando dados...</p>
+                    </div>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <h3>Alertas (Atual) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content" id="listaAlertasAtual">
+                        <p class="empty-msg">Aguardando dados...</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="charts-area">
+                ```
+
+
+
+
+
+
             <div class="charts-area">
                 <div class="chart-wrapper">
                     <div class="chart-header">
@@ -334,10 +365,9 @@
             document.getElementById("date1").value = hoje;
             document.getElementById("date2").value = hoje;
 
-            // Carregar Select de Servidores
             const select = document.getElementById("selectServidor");
             try {
-                const res = await fetch("/dados/select"); // Ajuste sua rota se necessario
+                const res = await fetch("/dados/select"); 
                 const servidores = await res.json();
                 select.innerHTML = `<option value="">Selecione...</option>`;
                 servidores.forEach(s => {
@@ -369,19 +399,17 @@
                 const [ano2, mes2, dia2] = document.getElementById("date2").value.split("-");
 
                 try {
-                    // Pega os dados brutos (arrays de registros)
                     const dadosRef = await pegarDadosS3(ano1, mes1, dia1, servidor);
                     const dadosAtual = await pegarDadosS3(ano2, mes2, dia2, servidor);
 
                     if (dadosRef.vazio || dadosAtual.vazio) {
                         document.getElementById("msgErro").style.display = "block";
                         atualizarGraficos({ vazio: true }, { vazio: true });
-                        resetarKPIs(); // Limpa as KPIs se não tiver dados
+                        resetarKPIs();
                     } else {
                         document.getElementById("msgErro").style.display = "none";
                         atualizarGraficos(dadosRef, dadosAtual);
                         
-                        // AQUI ESTÁ A MÁGICA DOS KPIS
                         calcularEExibirKPIs(dadosRef, dadosAtual);
                     }
                 } catch (error) {
@@ -392,46 +420,38 @@
                 }
             }
 
-            // --- FUNÇÕES DE KPI ---
 
             function calcularEExibirKPIs(ref, atual) {
-                // Supondo que seus dados venham com chaves: cpu, ram, disco (ou similar)
-                // Se as chaves do JSON forem diferentes (ex: processamento), ajuste abaixo.
-                
+               
                 atualizarCardKPI("kpiCPU", "deltaCPU", ref, atual, "cpu");
                 atualizarCardKPI("kpiRAM", "deltaRAM", ref, atual, "ram");
                 atualizarCardKPI("kpiDisco", "deltaDisco", ref, atual, "disco");
             }
 
             function atualizarCardKPI(idValor, idDelta, dadosRef, dadosAtual, metrica) {
-                // 1. Calcular médias
                 const mediaRef = calcularMediaArray(dadosRef, metrica);
                 const mediaAtual = calcularMediaArray(dadosAtual, metrica);
 
-                // 2. Calcular diferença (Pontos percentuais)
                 const diferenca = mediaAtual - mediaRef;
 
-                // 3. Atualizar Valor Principal
                 document.getElementById(idValor).innerText = mediaAtual.toFixed(1) + "%";
 
-                // 4. Configurar Delta (Diferença)
                 const divDelta = document.getElementById(idDelta);
                 
                 let icone = "";
                 let cor = "";
-                let sinal = diferenca > 0 ? "+" : ""; // Adiciona o + se for positivo
+                let sinal = diferenca > 0 ? "+" : ""; 
 
-                // Lógica: Aumento de consumo (positivo) = Ruim (Vermelho)
-                // Queda de consumo (negativo) = Bom (Verde)
+                
                 if (diferenca > 0.1) {
                     icone = '<i class="fa-solid fa-arrow-trend-up"></i>';
-                    cor = "red"; // Vermelho pq aumentou consumo
+                    cor = "red";
                 } else if (diferenca < -0.1) {
                     icone = '<i class="fa-solid fa-arrow-trend-down"></i>';
-                    cor = "green"; // Verde pq economizou recurso
+                    cor = "green"; 
                 } else {
                     icone = '<i class="fa-solid fa-minus"></i>';
-                    cor = "gray"; // Neutro
+                    cor = "gray"; 
                 }
 
                 divDelta.innerHTML = `
@@ -443,13 +463,11 @@
             }
 
             function calcularMediaArray(dados, chave) {
-                // Se o dado não for um array (ex: objeto único), adapta-se
                 const lista = Array.isArray(dados) ? dados : (dados.dados || []);
                 
                 if (lista.length === 0) return 0;
 
                 const soma = lista.reduce((acc, item) => {
-                    // Garante que é número. Ajuste 'item[chave]' se o nome da coluna for diferente
                     return acc + (parseFloat(item[chave]) || 0);
                 }, 0);
 
@@ -461,6 +479,81 @@
                 ["deltaCPU", "deltaRAM", "deltaDisco"].forEach(id => document.getElementById(id).innerHTML = "<span>--</span>");
             }
         });
+
+        function renderizarAlertas(dadosRef, dadosAtual) {
+            preencherListaAlertas("listaAlertasRef", dadosRef);
+            preencherListaAlertas("listaAlertasAtual", dadosAtual);
+        }
+
+        function preencherListaAlertas(elementId, dados) {
+            const divLista = document.getElementById(elementId);
+            divLista.innerHTML = ""; 
+
+            const lista = Array.isArray(dados) ? dados : (dados.dados || []);
+
+            const alertas = lista.filter(d => {
+                return (d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") ||
+                       (d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") ||
+                       (d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO");
+            });
+
+            if (alertas.length === 0) {
+                divLista.innerHTML = '<p class="empty-msg">Nenhum alerta registrado nesta data. <i class="fa-solid fa-check-circle" style="color:green"></i></p>';
+                return;
+            }
+
+            alertas.forEach(d => {
+                const hora = d.timestamp.split(" ")[1] || d.timestamp;
+
+                let htmlConteudo = "";
+
+                if (d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") {
+                    htmlConteudo += criarItemAlerta(hora, "CPU", d.status_cpu, d.cpu);
+                }
+                if (d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") {
+                    htmlConteudo += criarItemAlerta(hora, "RAM", d.status_ram, d.ram);
+                }
+                if (d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO") {
+                    htmlConteudo += criarItemAlerta(hora, "Disco", d.status_disco, d.disco);
+                }
+
+                divLista.innerHTML += htmlConteudo;
+            });
+        }
+
+        function criarItemAlerta(hora, componente, status, valor) {
+            const statusUpper = status.toUpperCase();
+            
+            let classeBadge = "";
+            let iconeStatus = "";
+
+            if (statusUpper.includes("CRITICO") || statusUpper.includes("CRÍTICO")) {
+                classeBadge = "badge-danger";
+                iconeStatus = '<i class="fa-solid fa-circle-exclamation" style="margin-right:5px"></i>';
+            
+            } else if (statusUpper.includes("ALERTA")) {
+                classeBadge = "badge-warning";
+                iconeStatus = '<i class="fa-solid fa-triangle-exclamation" style="margin-right:5px"></i>';
+            
+            } else if (statusUpper.includes("ABAIXO")) {
+                classeBadge = "badge-info";
+                iconeStatus = '<i class="fa-solid fa-arrow-trend-down" style="margin-right:5px"></i>';
+            
+            } else {
+                classeBadge = "badge-warning";
+            }
+
+            return `
+                <div class="alert-item">
+                    <span class="alert-time">${hora}</span>
+                    <span class="alert-msg">
+                        ${iconeStatus}
+                        <strong>${componente}</strong>: ${valor}%
+                    </span>
+                    <span class="alert-badge ${classeBadge}">${status}</span>
+                </div>
+            `;
+        }
     </script>
 
 </body>
