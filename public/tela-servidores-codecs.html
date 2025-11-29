@@ -39,7 +39,7 @@
   </head>
 
   <body
-    onload="puxarDadosServidor(), validarSessaoAdministrador(),pegarInformacoesServidor('Todos'), pegarRegistrosServidor(1)"
+    onload="pegarDataServidor(), puxarDadosServidor(), validarSessaoAdministrador(),pegarInformacoesServidor('Todos'), pegarRegistrosServidor(1)"
   >
     <header>
       <div class="cabecalho-dash">
@@ -173,6 +173,14 @@
                 onchange="pegarInformacoesServidor(fitro_nome_servidor.value)"
                 class="ipt_procura"
               ></select>
+            </div>
+            <div class="filtro_servidores div-ipt-procura">
+              <p>Filtrar por data:</p>
+              <input
+                type="date"
+                id="filtro_data_servidor"
+                onchange="pegarDataServidor()"
+              />
             </div>
           </div>
           <div class="dash__conteudo__grupo">

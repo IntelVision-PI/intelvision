@@ -2,6 +2,7 @@ const ctxDia = document.getElementById("requisicoesDia");
 const containerGrafico1 = document.getElementById(
   "dash__conteudo__grupo__graficos__container1"
 );
+const selectServidores = document.getElementById("fitro_nome_servidor");
 
 const dataHoje = new Date();
 const formatoBrasileiro = new Intl.DateTimeFormat("pt-BR", {
@@ -16,9 +17,7 @@ const formatoDataCurta = new Intl.DateTimeFormat("pt-BR", {
 console.log("Data Brasileira Curta");
 console.log(formatoDataCurta.format(dataHoje));
 
-let dataSelecionada = new Date().setDate(dataHoje.getDate() - 1);
-console.log("Data Brasileira Curta Selecionada");
-console.log(formatoDataCurta.format(dataSelecionada));
+let dataSelecionada;
 
 let servidores = [];
 let servidoresProcessamento = [];
@@ -52,7 +51,7 @@ function listarServidores(data) {
   console.log("Me chamou listarServidores(data)");
   console.log(data);
   servidores = data;
-  const selectServidores = document.getElementById("fitro_nome_servidor");
+
   selectServidores.innerHTML = "<option value='Todos'>Todos</option>";
 
   for (let i = 0; i < data.length; i++) {
@@ -431,6 +430,29 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   dadosGrafico = [];
 
   //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+}
+
+function pegarDataServidor() {
+  let dataFiltro = document.getElementById("filtro_data_servidor").value;
+  if (dataFiltro == "" || dataFiltro == null) {
+    dataSelecionada = new Date().setDate(dataHoje.getDate() - 1);
+    console.log(formatoDataCurta.format(dataSelecionada));
+  } else {
+    console.log(dataFiltro);
+    console.log(typeof dataFiltro);
+    let arrayDataFiltro = dataFiltro.split("-");
+    console.log(arrayDataFiltro);
+    dataSelecionada = new Date(
+      arrayDataFiltro[0],
+      arrayDataFiltro[1] - 1,
+      arrayDataFiltro[2]
+    );
+    console.log(formatoDataCurta.format(dataSelecionada));
+    selectServidores.selectedIndex = 0;
+    pegarInformacoesServidor("Todos");
+  }
+
+  //
 }
 
 // Gráfico de Requisições por hora
