@@ -160,7 +160,7 @@ function pegarInformacoesServidor(idServidor) {
   }, 1000);
 }
 
-function pegarRegistrosServidor(nomeServidor) {
+async function pegarRegistrosServidor(nomeServidor) {
   let arrayDataSelecionada = formatoDataCurta
     .format(dataSelecionada)
     .split("/");
@@ -173,12 +173,17 @@ function pegarRegistrosServidor(nomeServidor) {
       let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
       console.log(nomeServidorMinusculo);
 
-      let url = `http://3.214.106.104:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
+      //let url = `http://44.217.46.168:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
 
-      let p = fetch(url)
+      let p = await pegarDadosS3(
+        arrayDataSelecionada[2],
+        arrayDataSelecionada[1],
+        arrayDataSelecionada[0],
+        nomeServidorMinusculo
+      )
         .then((response) => {
           if (!response.ok) {
-            console.log("Erro na resposta:", url);
+            console.log("Erro na resposta:");
             return null;
           }
           return response.json();
@@ -206,12 +211,18 @@ function pegarRegistrosServidor(nomeServidor) {
   } else {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
-        fetch(
-          `http://3.214.106.104:3000/s3Route/dados/dados_maquina_${
+        /* fetch(
+          `http://44.217.46.168:3000/s3Route/dados/dados_maquina_${
             arrayDataSelecionada[2]
           }-${arrayDataSelecionada[1]}-${
             arrayDataSelecionada[0]
           }--${nomeServidor.toLowerCase()}.json`
+        ) */
+        await pegarDadosS3(
+          arrayDataSelecionada[2],
+          arrayDataSelecionada[1],
+          arrayDataSelecionada[0],
+          nomeServidor.toLowerCase()
         )
           .then((response) => {
             if (response.ok) {
