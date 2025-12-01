@@ -233,10 +233,9 @@
     element.classList.add('selected');
   }
 </script>
+<script src="js/ped.js"></script>
 
 <script>
-  let servidores = [];
-
   async function carregarServidores() {
     const resposta = await fetch("/predicoes/select");
     servidores = await resposta.json();

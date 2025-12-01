@@ -262,10 +262,6 @@ function regressaoLinear(valores) {
 
   return { m, b };
 }
-
-// -----------------------------------------------------------
-//  PREVISÃO
-// -----------------------------------------------------------
 function preverProximos(reg, quantidade, base) {
   const inicio = base.length;
   const result = [];
@@ -279,9 +275,6 @@ function preverProximos(reg, quantidade, base) {
 let grafico;
 const desvio = 5;
 
-// -----------------------------------------------------------
-//  GRÁFICO DE PREDIÇÃO USANDO SOMENTE "disco"
-// -----------------------------------------------------------
 function mostrarGraficoPredicao() {
 
   if (!dados2025 || !Array.isArray(dados2025)) {
@@ -357,33 +350,76 @@ function mostrarGraficoPredicao() {
 // -----------------------------------------------------------
 //  GRÁFICO ANUAL — usando SOMENTE valores de “disco”
 // -----------------------------------------------------------
+// -------------------------------
+// 1) Função para calcular média mês a mês
+// -------------------------------
+function calcularMediaPorMes(dados) {
+  const grupos = {};
+
+  dados.forEach(item => {
+    if (!item.timestamp || !item.disco) return;
+
+    const data = new Date(item.timestamp.replace(" ", "T"));
+    if (isNaN(data)) return;
+
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
+    const valor = Number(item.disco);
+
+    if (!grupos[mes]) grupos[mes] = [];
+    grupos[mes].push(valor);
+  });
+
+  return medias;
+}
+
 function criarGraficoAnual() {
   if (!dados2024 || !dados2025) return;
 
-  const valores2024 = dados2024.map(x => Number(x.disco));
-  const valores2025 = dados2025.map(x => Number(x.disco));
+  const medias2024 = calcularMediaPorMes(dados2024);
+  const medias2025 = calcularMediaPorMes(dados2025);
 
   const ctx = document.getElementById("discoAnual");
 
   new Chart(ctx, {
     type: "bar",
     data: {
-      labels: ["Registros 2024", "Registros 2025"],
+      labels: [
+        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+        "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+      ],
       datasets: [
         {
-          label: "Média Ano 2024",
-          data: [valores2024.reduce((a,b)=>a+b)/valores2024.length],
-          backgroundColor: "#1e293b"
+          label: "Ano 2025",
+          data: medias2025,
+          backgroundColor: "#64748b",
+          borderWidth: 2,
+          borderRadius: 7
         },
         {
-          label: "Média Ano 2025",
-          data: [valores2025.reduce((a,b)=>a+b)/valores2025.length],
-          backgroundColor: "#64748b"
+          label: "Ano 2024",
+          data: medias2024,
+          backgroundColor: "#1e293b",
+          borderWidth: 2,
+          borderRadius: 7
         }
       ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: "%"
+          }
+        }
+      }
     }
   });
 }
+
 
 // -----------------------------------------------------------
 //  APÓS CARREGAR OS ARQUIVOS DO S3
