@@ -237,6 +237,28 @@
 <script src="js/predicao.js"></script>
 
 <script type="module">
+
+  if (!dados2025 || !Array.isArray(dados2025)) {
+    console.error("ERRO: dados2025 não é um array válido:", dados2025);
+    return;
+}
+
+// pegar o disco dos últimos registros
+const valoresDisco = dados2025.map(item => Number(item.disco));
+
+// garantir que existem pelo menos 4 registros
+if (valoresDisco.length < 4) {
+    console.error("ERRO: não há dados suficientes para regressão. Registros:", valoresDisco.length);
+    return;
+}
+
+// últimos 4 valores
+const ultimos4 = valoresDisco.slice(-4);
+
+// rodar a regressão linear
+const reg = regressaoLinear(ultimos4);
+
+
 const desvio = 5;
 
 // Regressão
