@@ -825,7 +825,7 @@ thead {
   color: #333;
 }
 
-.chart-container2 {
+.chart-container2 #graficoRequisicaoHora{
   width: 100%;
   height: 35vh;
 }
