@@ -1,27 +1,10 @@
-const ctxDia = document.getElementById("requisicoesDia");
-const containerGrafico1 = document.getElementById(
-  "dash__conteudo__grupo__graficos__container1"
-);
-const selectServidores = document.getElementById("fitro_nome_servidor");
+import { pegarDadosS3 } from "./comparativo.js";
 
-const dataHoje = new Date();
-const formatoBrasileiro = new Intl.DateTimeFormat("pt-BR", {
-  dateStyle: "long",
-  timeStyle: "medium",
-});
-console.log("Data Brasileira");
-console.log(formatoBrasileiro.format(dataHoje));
-const formatoDataCurta = new Intl.DateTimeFormat("pt-BR", {
-  dateStyle: "short",
-});
-console.log("Data Brasileira Curta");
-console.log(formatoDataCurta.format(dataHoje));
-
-let dataSelecionada;
-
-let servidores = [];
-let servidoresProcessamento = [];
-let dadosGrafico = [];
+window.pegarDataServidor = pegarDataServidor;
+window.puxarDadosServidor = puxarDadosServidor;
+window.validarSessaoAdministrador = validarSessaoAdministrador;
+window.pegarInformacoesServidor = pegarInformacoesServidor;
+window.pegarRegistrosServidor = pegarRegistrosServidor;
 
 function puxarDadosServidor() {
   /* Essa função puxa os dados de servidores do banco de dados */
@@ -177,7 +160,7 @@ function pegarInformacoesServidor(idServidor) {
   }, 1000);
 }
 
-function pegarRegistrosServidor(nomeServidor) {
+async function pegarRegistrosServidor(nomeServidor) {
   let arrayDataSelecionada = formatoDataCurta
     .format(dataSelecionada)
     .split("/");
@@ -190,12 +173,17 @@ function pegarRegistrosServidor(nomeServidor) {
       let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
       console.log(nomeServidorMinusculo);
 
-      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
+      //let url = `http://44.217.46.168:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
 
-      let p = fetch(url)
+      let p = await pegarDadosS3(
+        arrayDataSelecionada[2],
+        arrayDataSelecionada[1],
+        arrayDataSelecionada[0],
+        nomeServidorMinusculo
+      )
         .then((response) => {
           if (!response.ok) {
-            console.log("Erro na resposta:", url);
+            console.log("Erro na resposta:");
             return null;
           }
           return response.json();
@@ -223,12 +211,18 @@ function pegarRegistrosServidor(nomeServidor) {
   } else {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
-        fetch(
-          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${
+        /* fetch(
+          `http://44.217.46.168:3000/s3Route/dados/dados_maquina_${
             arrayDataSelecionada[2]
           }-${arrayDataSelecionada[1]}-${
             arrayDataSelecionada[0]
           }--${nomeServidor.toLowerCase()}.json`
+        ) */
+        await pegarDadosS3(
+          arrayDataSelecionada[2],
+          arrayDataSelecionada[1],
+          arrayDataSelecionada[0],
+          nomeServidor.toLowerCase()
         )
           .then((response) => {
             if (response.ok) {
@@ -301,7 +295,7 @@ function plotarGraficoLinha(resposta) {
 
   // Inserindo valores recebidos em estrutura para plotar o gráfico
   // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
-  for (i = 0; i < resposta[0].length; i++) {
+  for (let i = 0; i < resposta[0].length; i++) {
     var registro = resposta[0][i];
     labels.push(registro.timestamp.split(" ")[1]);
     dados.datasets[0].data.push(registro.proc1_cpu_pct);
@@ -364,8 +358,8 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
 
   // criando um dataset de cada item do array
 
-  for (i = 0; i < arrayRespostas.length; i++) {
-    for (j = 0; j < arrayRespostas[i].length; j++) {
+  for (let i = 0; i < arrayRespostas.length; i++) {
+    for (let j = 0; j < arrayRespostas[i].length; j++) {
       var registro = arrayRespostas[i][j];
       //labels.push(registro.timestamp.split(" ")[1]);
       dataIteracao.push(registro.proc1_cpu_pct);
@@ -454,6 +448,14 @@ function pegarDataServidor() {
 
   //
 }
+
+module.exports = {
+  pegarDataServidor,
+  puxarDadosServidor,
+  validarSessaoAdministrador,
+  pegarInformacoesServidor,
+  pegarRegistrosServidor,
+};
 
 // Gráfico de Requisições por hora
 /* const ctxHora = document.getElementById("requisicoesHora");

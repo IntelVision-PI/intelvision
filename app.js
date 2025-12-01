@@ -1,7 +1,7 @@
 // var ambiente_processo = 'producao';
-var ambiente_processo = 'desenvolvimento';
+var ambiente_processo = "desenvolvimento";
 
-var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
+var caminho_env = ambiente_processo === "producao" ? ".env" : ".env.dev";
 // Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
 // A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 
@@ -14,38 +14,35 @@ var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
 
 var app = express();
-
+var trafegoRouter = require("./src/routes/trafego");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
-// var dadosRouter = require("./src/routes/comparativo");
+var dadosRouter = require("./src/routes/comparativo");
+var situacaoRouter = require("./src/routes/situacao");
 
-// const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
 app.use(cors());
 
-// const s3 = new S3Client({
-//   region: "us-east-1"
-// });
-
-
+const s3 = new S3Client({
+  region: "us-east-1",
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
-
+app.use("/trafego", trafegoRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
-// app.use("/dados", dadosRouter);
-
-
+app.use("/situacao", situacaoRouter);
+app.use("/dados", dadosRouter);
 
 app.listen(PORTA_APP, function () {
-    console.log(`
+  console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
     ##   ##  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##        ##   

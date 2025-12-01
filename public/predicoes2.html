@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelVision | Servidores</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/predicoes.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <script src="./js/sessao.js"></script>
+  </head>
+
+  <body onload="validarSessaoAdministrador(), puxarDadosServidor()">
+    <header>
+      <div class="cabecalho-dash">
+        <div class="nome-dash">
+          <i class="fa-solid fa-chart-simple"></i>
+          <h3>Dashboard</h3>
+        </div>
+
+        <div class="icone-usuario">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="janela">
+      <div class="header-left">
+        <h1>IntelVision</h1>
+
+        <div class="btn-nav ativo">
+          <a href="servidores.html">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h3>Dashboard</h3>
+          </a>
+        </div>
+
+        <!-- <div class="btn-nav">
+          <a href="./mainPage.html">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>Análise de dados</h3>
+          </a>
+        </div> -->
+
+        <div class="btn-nav" id="btn-nav-admin-usuarios">
+          <a href="./tela-administracao-usuario.html">
+            <i class="fa-solid fa-user-gear"></i>
+            <h3>Adm - Usuários</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav" id="btn-nav-admin-servidores">
+          <a href="./tela-administracao-servidores.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h3>Adm - Servidores</h3>
+          </a>
+        </div>
+
+        <div class="btn-nav btn-logout" onclick="limparSessao()">
+          <a href="./index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <h3>Sair</h3>
+          </a>
+        </div>
+      </div>
+
+      <!-- Conteúdo da página -->
+      <div class="dash">
+        <div class="dash__conteudo">
+
+            <!-- KPI do relatório -->
+          <div class="div-kpi-1">
+            <div class="div-relatorio">
+              <div class="div-kpi-predicao">
+                <div class="div-textos-kpi">
+                  <span class="span-titulo-kpi">Servidores saudáveis</span>
+                  <span class="span-numero-kpi">04</span>
+                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+                </div>
+
+                <div class="div-simbolo-kpi">
+                  <div class="div-bola-relatorio">
+                    <span class="flat-color-icons--negative-dynamic"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="div-kpi-predicao">
+                <div class="div-textos-kpi">
+                  <span class="span-titulo-kpi">Servidores em perigo</span>
+                  <span class="span-numero-kpi">10</span>
+                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+                </div>
+
+                <div class="div-simbolo-kpi">
+                  <div class="div-bola-relatorio perigo">
+                    <span class="flat-color-icons--positive-dynamic"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="div-relatorio">
+                <div class="div-botao-relatorio">
+                    <div class="div-flex">
+                    <div class="div-textos">
+                    <h2 class="h2-branco">Relatórios da situação</h2>
+                    <p class="p-verde">Relatórios e análise para auxílio</p>
+                    </div>
+                    <div class="div-bola-relatorio">
+                      <span class="mdi--file-report-outline"></span>
+                      <!-- <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio"> -->
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- Gráficos de requisições por hora -->
+          <div class="chart-container-teste">
+              <h3>Predição de disco</h3>
+            <div class="div-sub-titulo">
+              <h3>Passado</h3>
+              <h3>Futuro</h3>
+            </div>
+            <canvas id="predicaoDisco"></canvas>
+          </div>
+
+          <div class="div-relatorio">
+            <div class="div-botao-relatorio">
+                  <div class="div-flex">
+                  <div class="div-textos">
+                  <h2 class="h2-branco">Anotações passadas</h2>
+                  <p class="p-verde">Leia anotações do ano passado</p>
+                  </div>
+                  <div class="div-bola-relatorio">
+                    <img src="./assets/dashboard/anotacoes.png" alt="Relatórios" class="img_relatorio">
+                  </div>
+                  </div>
+            </div>
+            <div class="div-botao-relatorio">
+                  <div class="div-flex">
+                  <div class="div-textos">
+                  <h2 class="h2-branco">Anotações atuais</h2>
+                  <p class="p-verde">Faça suas anotações</p>
+                  </div>
+                  <div class="div-bola-relatorio">
+                    <img src="./assets/dashboard/anotacoes.png" alt="Relatórios" class="img_relatorio">
+                  </div>
+                  </div>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <h3>Comparação anual de disco</h3>
+            <canvas id="cpuUso"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+const ultimos4 = [2000, 10000, 7000, 9000];
+const desvio = 1000;
+
+
+function regressaoLinear(valores) {
+    const n = valores.length;
+    const xs = valores.map((_, i) => i);
+
+    const somaX = xs.reduce((a, b) => a + b, 0);
+    const somaY = valores.reduce((a, b) => a + b, 0);
+
+    const somaXY = xs.reduce((acc, x, i) => acc + x * valores[i], 0);
+    const somaX2 = xs.reduce((acc, x) => acc + x * x, 0);
+
+    const m = (n * somaXY - somaX * somaY) / (n * somaX2 - somaX * somaX);
+    const b = (somaY - m * somaX) / n;
+
+    return { m, b };
+}
+
+function preverProximosMeses(regressao, quantidade, valoresBase) { 
+    const inicio = valoresBase.length;
+    let preds = [];
+
+    for (let i = 0; i < quantidade; i++) {
+        const x = inicio + i;
+        preds.push(regressao.m * x + regressao.b);
+    }
+    return preds;
+}
+
+//Fazer a predição para os próximos 3 meses
+const reg = regressaoLinear(ultimos4);
+const predicoes = preverProximosMeses(reg, 3, ultimos4);
+
+console.log("Predições:", predicoes);
+
+const valores = [
+  null, // Setembro
+  null, // Outubro
+  null, // Novembro
+  ultimos4[3],// Dezembro
+  predicoes[0], // Janeiro (x=4)
+  predicoes[1], // Fevereiro (x=5)
+  predicoes[2],  // Março (x=6)
+];
+
+// Gráfico De predição
+const ctxHora = document.getElementById("predicaoDisco");
+
+new Chart(ctxHora, {
+  type: "line",
+  data: {
+    labels: [
+      "Setembro", "Outubro", "Novembro", "Dezembro",
+      "Janeiro", "Fevereiro", "Março"
+    ],
+    datasets: [
+      {
+        label: "Servidor passado",
+        data: ultimos4,          // <-- agora usa o mesmo array de onde vem a regressão
+        borderColor: "#28a745",
+        borderWidth: 3,
+        fill: true,
+        tension: 0.2,
+        backgroundColor: "rgba(40,167,69,0.0)"
+      },
+      {
+        label: "Predição",
+        data: valores,
+        borderColor: "#6990A7",
+        borderWidth: 3,
+        fill: false,
+        tension: 0,
+        borderDash: [5, 5]
+      },
+      {
+        label: "Desvio padrão positivo",
+        data: valores.map(v => v ? v + desvio : null),
+        borderColor: "#06b98057",
+        borderWidth: 3,
+        fill: '+1',
+        tension: 0,
+        backgroundColor: "#06b98057"
+      },
+      {
+        label: "Desvio padrão negativo",
+        data: valores.map(v => v ? v - desvio : null),
+        borderColor: "#06b98057",
+        borderWidth: 3,
+        fill: false,
+        tension: 0,
+        backgroundColor: "#06b98057"
+      }
+    ],
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          font: { size: 16 }
+        }
+      },
+      annotation: {
+        annotations: {
+          linhaVertical: {
+            type: 'line',
+            xMin: 3,
+            xMax: 3,
+            borderColor: '#585555',
+            borderWidth: 2,
+            borderDash: [4, 3]
+          },
+          linhaHorizontal: {
+            type: 'line',
+            yMin: 16000,
+            yMax: 16000,
+            borderColor: '#ff0000',
+            borderWidth: 2,
+          },
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: { size: 14 }
+        },
+        title: {
+          display: true,
+          text: "Meses",
+          font: { size: 18 }
+        }
+      },
+      y: {
+        ticks: {
+          font: { size: 14 }
+        },
+        title: {
+          display: true,
+          text: "Quantidade de disco usado (em Gb)",
+          font: { size: 18 }
+        }
+      }
+    }
+  }
+});
+
+
+// -------------------------------------------------------------------------------------------
+// const valores = [null, null, null, 10000, 12000, 14000, 16000];
+// const desvio = 1000;
+// const ctxHora = document.getElementById("predicaoDisco");
+
+// new Chart(ctxHora, {
+//   type: "line",
+//   data: {
+//     labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
+//     datasets: [
+//       {
+//         label: "Servidor passado",
+//         data: [2000, 5000, 7000, 10000],
+//         borderColor: "#28a745",
+//         borderWidth: 3,
+//         fill: true,
+//         tension: 0.2,
+//         backgroundColor: "rgba(40,167,69,0.0)"
+//       },
+//       {
+//         label: "Predição",
+//         data: valores,
+//         borderColor: "#6990A7",
+//         borderWidth: 3,
+//         fill: false,
+//         tension: 0,
+//         borderDash: [5, 5]
+//       },
+//       {
+//         label: "Desvio padrão positivo",
+//         data: valores.map(v => v ? v + desvio : null),
+//         borderColor: "#06b98057",
+//         borderWidth: 3,
+//         fill: '+1', // preenche até o próximo dataset (inferior)
+//         tension: 0,
+//         backgroundColor: "#06b98057" // cor da faixa
+
+//       },
+//       {
+//         label: "Desvio padrão negativo",
+//         data: valores.map(v => v ? v - desvio : null),
+//         borderColor: "#06b98057",
+//         borderWidth: 3,
+//         fill: false,
+//         tension: 0,
+//         backgroundColor: "#06b98057" // cor da faixa
+//       }
+//     ],
+//   },
+// options: {
+//   responsive: true,
+//   plugins: {
+//     legend: {
+//       display: true,
+//       labels: {
+//         font: {
+//           size: 16   // aumenta fonte da legenda
+//         }
+//       }
+//     },
+//     annotation: {
+//       annotations: {
+//         linhaVertical: {
+//           type: 'line',
+//           xMin: 3,
+//           xMax: 3,
+//           borderColor: '#585555',
+//           borderWidth: 2,
+//           borderDash: [4, 3]
+//         },
+//         linhaHorizontal: {
+//           type: 'line',
+//           yMin: 16000,
+//           yMax: 16000,
+//           borderColor: '#ff0000',
+//           borderWidth: 2,
+//         },
+//       }
+//     }
+//   },
+//   scales: {
+//     x: {
+//       ticks: {
+//         font: {
+//           size: 14
+//         }
+//       },
+//       title: {
+//         display: true,
+//         text: "Meses",
+//         font: {
+//           size: 18
+//         }
+//       }
+//     },
+//     y: {
+//       ticks: {
+//         font: {
+//           size: 14
+//         }
+//       },
+//       title: {
+//         display: true,
+//         text: "Quantidade de disco usado (em Gb)",
+//         font: {
+//           size: 18
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+// });
+
+      // Gráfico de comparação anual de disco
+      const ctxCPU = document.getElementById("cpuUso");
+      new Chart(ctxCPU, {
+        type: "bar",
+        data: {
+          labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto" ,"Setembro" ,"Outubro", "Novembro", "Dezembro"],
+          datasets: [
+            {
+              label: "Ano atual",
+              data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+              backgroundColor: "#64748b",
+              borderWidth: 2,
+              borderRadius: {
+                topLeft: 7,
+                topRight: 7,
+                bottomLeft: 0,
+                bottomRight: 0
+              }
+            },
+            {
+              label: "Ano anterior",
+              data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+              backgroundColor: "#1e293b",
+              borderWidth: 2,
+              borderRadius: {
+                topLeft: 7,
+                topRight: 7,
+                bottomLeft: 0,
+                bottomRight: 0
+              }
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: true } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: { display: true, text: "%" },
+            },
+          },
+        },
+      });
+
+      // Gráfico de Uso da RAM
+      const ctxRAM = document.getElementById("ramUso");
+      new Chart(ctxRAM, {
+        type: "line",
+        data: {
+          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
+          datasets: [
+            {
+              label: "Uso da RAM (%)",
+              data: [60, 55, 65, 85, 75, 70, 60],
+              backgroundColor: "rgba(0, 188, 212, 0.2)",
+              borderColor: "#00bcd4",
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: { display: true, text: "%" },
+            },
+          },
+        },
+      });
+    </script>
+    <!-- <script src="./js/situacaoServidores.js"></script> -->
+  </body>
+</html>

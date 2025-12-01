@@ -1,38 +1,27 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 
-
-
 <head>
-
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>IntelVision | Comparativo de Performance</title>
 
-
-
     <link rel="stylesheet" href="css/global.css">
-
     <link rel="stylesheet" href="css/comparativo.css" />
+    
+    <style>
+        .kpi-subtext { font-size: 0.85rem; color: #666; margin-top: -5px; margin-bottom: 10px; }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-left: 10px; display: inline-block;}
+        .status-ok { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-alerta { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .status-critico { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script type="module" src="js/comparativo.js"></script>
     <script src="./js/sessao.js"></script>
-    <script src="./js/alerta.js"></script>
-
-
-
 </head>
 
-
-
 <body onload="validarSessaoAdministrador()">
-
-
 
     <div class="header-left">
 
@@ -145,112 +134,36 @@
 
     </div>
 
-
-
-
-
     <div class="dash">
-
         <div class="dash__conteudo">
 
-
-
             <div class="control-bar">
-
                 <div class="input-wrapper">
-
-                    <p class="control-label">Servidor</p>
-
+                    <p class="control-label">Servidor <span id="statusBadge"></span></p>
                     <select id="selectServidor" class="select-input">
-
                         <option>Carregando...</option>
-
                     </select>
-
                 </div>
-
-
-
-
 
                 <div class="control-group">
-
-
-
                     <div class="input-wrapper">
-
-
-
-                        <p class="control-label">Data Referência (Passado)</p>
-
-
-
+                        <p class="control-label">Data Referência</p>
                         <input type="date" id="date1" class="date-input">
-
-
-
                     </div>
-
-
-
                     <div class="vs-badge">VS</div>
-
-
-
                     <div class="input-wrapper">
-
-
-
-                        <p class="control-label">Data Análise (Atual)</p>
-
-
-
+                        <p class="control-label">Data Atual</p>
                         <input type="date" id="date2" class="date-input">
-
-
-
                     </div>
-
-
-
-                    <div class="quick-actions">
-
-
-
-
-
-                        <button onclick="setLast24h()">Últimas 24h</button>
-
-
-
-                        <button onclick="setLastWeek()">Semana</button>
-
-
-
-                    </div>
-
-
-
                 </div>
 
-
-
-
-
-
-
                 <button class="btn-primary" id="btnConsultar">
-                    <i class="fa-solid fa-magnifying-glass-chart"></i> Comparar Performance
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> Comparar
                 </button>
-
-
-
             </div>
 
             <div id="msgErro" style="display:none; color:red; font-size:18px; margin-top:12px;">
-
-                Nenhum dado encontrado para esse servidor/data.
-
+                Nenhum dado encontrado.
             </div>
 
             <div class="summary-grid">
@@ -260,8 +173,10 @@
                         <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div>
                     </div>
                     <div class="kpi-value" id="kpiCPU">--%</div>
+                    <div class="kpi-subtext">Pico: <span id="picoCPU">--%</span></div>
+                    
                     <div class="kpi-delta" id="deltaCPU">
-                        <span style="color: #999; font-weight: 400;">Aguardando...</span>
+                        <span style="color: #999;">Aguardando...</span>
                     </div>
                 </div>
 
@@ -271,198 +186,380 @@
                         <div class="kpi-icon"><i class="fa-solid fa-memory"></i></div>
                     </div>
                     <div class="kpi-value" id="kpiRAM">--%</div>
-                    <div class="kpi-delta" id="deltaRAM">
-                        <span style="color: #999; font-weight: 400;">Aguardando...</span>
-                    </div>
-                </div>
+                    <div class="kpi-subtext">Pico: <span id="picoRAM">--%</span></div>
 
-                <div class="kpi-card">
-                    <div class="kpi-header">
-                        <span class="kpi-title">Disco (Média)</span>
-                        <div class="kpi-icon"><i class="fa-solid fa-hard-drive"></i></div>
-                    </div>
-                    <div class="kpi-value" id="kpiDisco">--%</div>
-                    <div class="kpi-delta" id="deltaDisco">
-                        <span style="color: #999; font-weight: 400;">Aguardando...</span>
+                    <div class="kpi-delta" id="deltaRAM">
+                        <span style="color: #999;">Aguardando...</span>
                     </div>
                 </div>
             </div>
 
+            <div class="alerts-grid">
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <h3>Alertas (Ref) <span id="labelDataRef" style="font-size:0.8em; color:#666;"></span></h3>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content" id="listaAlertasRef">
+                        <p class="empty-msg">Aguardando dados...</p>
+                    </div>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <h3>Alertas (Atual) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content" id="listaAlertasAtual">
+                        <p class="empty-msg">Aguardando dados...</p>
+                    </div>
+                </div>
+            </div>
 
             <div class="charts-area">
                 <div class="chart-wrapper">
-                    <div class="chart-header">
-                        <h3>Comparativo de Processamento (CPU)</h3>
-                    </div>
-                    <div class="graph-container">
-                        <canvas id="chartCPU"></canvas>
-                    </div>
+                    <div class="chart-header"><h3>Processamento (CPU)</h3></div>
+                    <div class="graph-container"><canvas id="chartCPU"></canvas></div>
                 </div>
-
                 <div class="chart-wrapper">
-                    <div class="chart-header">
-                        <h3>Comparativo de Memória (RAM)</h3>
-                    </div>
-                    <div class="graph-container">
-                        <canvas id="chartRAM"></canvas>
-                    </div>
+                    <div class="chart-header"><h3>Memória (RAM)</h3></div>
+                    <div class="graph-container"><canvas id="chartRAM"></canvas></div>
                 </div>
-
                 <div class="chart-wrapper">
-                    <div class="chart-header">
-                        <h3>Comparativo de Armazenamento</h3>
-                    </div>
-                    <div class="graph-container">
-                        <canvas id="chartDisco"></canvas>
-                    </div>
+                    <div class="chart-header"><h3>Armazenamento (Tendência)</h3></div>
+                    <div class="graph-container"><canvas id="chartDisco"></canvas></div>
                 </div>
             </div>
 
         </div>
-
     </div>
 
-
-
-   <script type="module">
-        import { pegarDadosS3, inicializarGraficos, atualizarGraficos } from "./js/comparativo.js";
-
+    <script type="module">
         document.addEventListener("DOMContentLoaded", async () => {
             inicializarGraficos();
 
-            const hoje = new Date().toISOString().split("T")[0];
-            document.getElementById("date1").value = hoje;
-            document.getElementById("date2").value = hoje;
+            const hoje = new Date();
+            const ontem = new Date();
+            ontem.setDate(ontem.getDate() - 1);
 
-            // Carregar Select de Servidores
-            const select = document.getElementById("selectServidor");
+            if (document.getElementById("date1")) document.getElementById("date1").value = ontem.toISOString().split("T")[0];
+            if (document.getElementById("date2")) document.getElementById("date2").value = hoje.toISOString().split("T")[0];
+
+            await carregarServidores();
+            const btnConsultar = document.getElementById("btnConsultar");
+            if (btnConsultar) btnConsultar.addEventListener("click", atualizar);
+        });
+
+        async function carregarServidores() {
+            const selectServidor = document.getElementById("selectServidor");
             try {
-                const res = await fetch("/dados/select"); // Ajuste sua rota se necessario
-                const servidores = await res.json();
-                select.innerHTML = `<option value="">Selecione...</option>`;
-                servidores.forEach(s => {
+                const res = await fetch("/dados/select");
+                if (!res.ok) throw new Error("Erro API");
+                const lista = await res.json();
+                selectServidor.innerHTML = `<option value="">Selecione...</option>`;
+                lista.forEach(item => {
+                    const valor = item.nome || item.hostname || item.id;
                     const opt = document.createElement("option");
-                    opt.value = s.nome || s.hostname || s.id;
-                    opt.textContent = s.nome || s.hostname || s.id;
-                    select.appendChild(opt);
+                    opt.value = valor;
+                    opt.textContent = valor;
+                    selectServidor.appendChild(opt);
                 });
             } catch (err) {
                 console.error(err);
-                select.innerHTML = `<option>Erro ao carregar</option>`;
+                selectServidor.innerHTML = `<option value="">Erro ao carregar</option>`;
             }
+        }
+
+        async function pegarDadosS3(ano, mes, dia, servidor) {
+            const url = `/dados/${ano}/${mes}/${dia}/${servidor}`;
+            try {
+                const res = await fetch(url, { cache: "no-store" });
+                if (!res.ok) return [];
+                const json = await res.json();
+                return json.dados || json || [];
+            } catch { return []; }
+        }
+
+        async function atualizar() {
+            const servidor = document.getElementById("selectServidor").value;
+            if (!servidor) return alert("Selecione um servidor.");
 
             const btn = document.getElementById("btnConsultar");
-            if (btn) btn.addEventListener("click", atualizar);
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Buscando...';
 
-            async function atualizar() {
-                const servidor = select.value;
-                if (!servidor || servidor === "Carregando..." || servidor === "") {
-                    alert("Por favor, selecione um servidor primeiro.");
-                    return;
-                }
+            resetarKPIs();
+            limparAlertas();
+            document.getElementById("statusBadge").innerHTML = "";
 
-                const textoOriginal = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Buscando...';
-                btn.disabled = true;
+            const [a1, m1, d1] = document.getElementById("date1").value.split("-");
+            const [a2, m2, d2] = document.getElementById("date2").value.split("-");
 
-                const [ano1, mes1, dia1] = document.getElementById("date1").value.split("-");
-                const [ano2, mes2, dia2] = document.getElementById("date2").value.split("-");
+            document.getElementById("labelDataRef").innerText = `(${d1}/${m1})`;
+            document.getElementById("labelDataAtual").innerText = `(${d2}/${m2})`;
 
-                try {
-                    // Pega os dados brutos (arrays de registros)
-                    const dadosRef = await pegarDadosS3(ano1, mes1, dia1, servidor);
-                    const dadosAtual = await pegarDadosS3(ano2, mes2, dia2, servidor);
+            try {
+                const [rawRef, rawAtual] = await Promise.all([
+                    pegarDadosS3(a1, m1, d1, servidor),
+                    pegarDadosS3(a2, m2, d2, servidor)
+                ]);
 
-                    if (dadosRef.vazio || dadosAtual.vazio) {
-                        document.getElementById("msgErro").style.display = "block";
-                        atualizarGraficos({ vazio: true }, { vazio: true });
-                        resetarKPIs(); // Limpa as KPIs se não tiver dados
-                    } else {
-                        document.getElementById("msgErro").style.display = "none";
-                        atualizarGraficos(dadosRef, dadosAtual);
-                        
-                        // AQUI ESTÁ A MÁGICA DOS KPIS
-                        calcularEExibirKPIs(dadosRef, dadosAtual);
-                    }
-                } catch (error) {
-                    console.error("Erro ao atualizar:", error);
-                } finally {
-                    btn.innerHTML = textoOriginal;
+                if (rawRef.length === 0 && rawAtual.length === 0) {
                     btn.disabled = false;
-                }
-            }
-
-            // --- FUNÇÕES DE KPI ---
-
-            function calcularEExibirKPIs(ref, atual) {
-                // Supondo que seus dados venham com chaves: cpu, ram, disco (ou similar)
-                // Se as chaves do JSON forem diferentes (ex: processamento), ajuste abaixo.
-                
-                atualizarCardKPI("kpiCPU", "deltaCPU", ref, atual, "cpu");
-                atualizarCardKPI("kpiRAM", "deltaRAM", ref, atual, "ram");
-                atualizarCardKPI("kpiDisco", "deltaDisco", ref, atual, "disco");
-            }
-
-            function atualizarCardKPI(idValor, idDelta, dadosRef, dadosAtual, metrica) {
-                // 1. Calcular médias
-                const mediaRef = calcularMediaArray(dadosRef, metrica);
-                const mediaAtual = calcularMediaArray(dadosAtual, metrica);
-
-                // 2. Calcular diferença (Pontos percentuais)
-                const diferenca = mediaAtual - mediaRef;
-
-                // 3. Atualizar Valor Principal
-                document.getElementById(idValor).innerText = mediaAtual.toFixed(1) + "%";
-
-                // 4. Configurar Delta (Diferença)
-                const divDelta = document.getElementById(idDelta);
-                
-                let icone = "";
-                let cor = "";
-                let sinal = diferenca > 0 ? "+" : ""; // Adiciona o + se for positivo
-
-                // Lógica: Aumento de consumo (positivo) = Ruim (Vermelho)
-                // Queda de consumo (negativo) = Bom (Verde)
-                if (diferenca > 0.1) {
-                    icone = '<i class="fa-solid fa-arrow-trend-up"></i>';
-                    cor = "red"; // Vermelho pq aumentou consumo
-                } else if (diferenca < -0.1) {
-                    icone = '<i class="fa-solid fa-arrow-trend-down"></i>';
-                    cor = "green"; // Verde pq economizou recurso
-                } else {
-                    icone = '<i class="fa-solid fa-minus"></i>';
-                    cor = "gray"; // Neutro
+                    btn.innerHTML = originalText;
+                    return alert("Sem dados.");
                 }
 
-                divDelta.innerHTML = `
-                    <span style="color: ${cor}; font-weight: bold; display: flex; align-items: center; gap: 5px;">
-                        ${icone} ${sinal}${diferenca.toFixed(1)}%
-                    </span>
-                    <span style="color: #999; font-size: 12px; margin-left: 5px;">vs ref.</span>
-                `;
-            }
+                const refAgrupado = agruparPorJanela30min(rawRef);
+                const atualAgrupado = agruparPorJanela30min(rawAtual);
 
-            function calcularMediaArray(dados, chave) {
-                // Se o dado não for um array (ex: objeto único), adapta-se
-                const lista = Array.isArray(dados) ? dados : (dados.dados || []);
+                plotarGraficosOtimizados(refAgrupado, atualAgrupado);
                 
-                if (lista.length === 0) return 0;
+                calcularKPIsComPico(refAgrupado, atualAgrupado);
+                definirStatusGeral(atualAgrupado);
 
-                const soma = lista.reduce((acc, item) => {
-                    // Garante que é número. Ajuste 'item[chave]' se o nome da coluna for diferente
-                    return acc + (parseFloat(item[chave]) || 0);
-                }, 0);
+                gerarListaAlertas(refAgrupado, "listaAlertasRef");
+                gerarListaAlertas(atualAgrupado, "listaAlertasAtual");
 
-                return soma / lista.length;
+            } catch (erro) {
+                console.error(erro);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+       function agruparPorJanela30min(dados) {
+    if (!dados) return [];
+    const mapa = {};
+
+    for (let h = 0; h < 24; h++) {
+        for (let m = 0; m < 60; m += 30) {
+            const horaStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+            mapa[horaStr] = { 
+                cpu: [], ram: [], disco: [], 
+                status_cpu: [], status_ram: [], status_disco: [] 
+            };
+        }
+    }
+
+    dados.forEach(reg => {
+        const dt = new Date(reg.timestamp || reg.dtHora);
+        const min = dt.getMinutes();
+        const minArredondado = min < 30 ? 0 : 30;
+        dt.setMinutes(minArredondado, 0, 0);
+        const chave = dt.toTimeString().substring(0, 5);
+        
+        if (mapa[chave]) {
+            mapa[chave].cpu.push(Number(reg.cpu));
+            mapa[chave].ram.push(Number(reg.ram));
+            mapa[chave].disco.push(Number(reg.disco));
+            
+            if(reg.status_cpu) mapa[chave].status_cpu.push(reg.status_cpu);
+            if(reg.status_ram) mapa[chave].status_ram.push(reg.status_ram);
+            if(reg.status_disco) mapa[chave].status_disco.push(reg.status_disco);
+        }
+    });
+    
+    
+    const definirPiorStatus = (listaStatus) => {
+        if (listaStatus.includes("CRITICO")) return "CRITICO";
+        if (listaStatus.includes("ALERTA")) return "ALERTA";
+        return "OK"; 
+    };
+
+    const resultado = [];
+    Object.keys(mapa).sort().forEach(key => {
+        const bucket = mapa[key];
+        if (bucket.cpu.length > 0) {
+            resultado.push({
+                timestamp: key,
+                cpu: media(bucket.cpu),
+                ram: media(bucket.ram),
+                disco: media(bucket.disco),
+                cpuMax: Math.max(...bucket.cpu), 
+                ramMax: Math.max(...bucket.ram),
+                discoMax: Math.max(...bucket.disco),
+                status_cpu: definirPiorStatus(bucket.status_cpu),
+                status_ram: definirPiorStatus(bucket.status_ram),
+                status_disco: definirPiorStatus(bucket.status_disco)
+            });
+        }
+    });
+    return resultado;
+}
+
+        function media(arr) {
+            if (!arr.length) return 0;
+            return arr.reduce((a, b) => a + b, 0) / arr.length;
+        }
+
+        function calcularKPIsComPico(ref, atual) {
+            atualizarKPI("kpiCPU", "picoCPU", "deltaCPU", ref, atual, "cpu", "cpuMax");
+            atualizarKPI("kpiRAM", "picoRAM", "deltaRAM", ref, atual, "ram", "ramMax");
+        }
+
+        function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
+            const elMed = document.getElementById(idMed);
+            const elPico = document.getElementById(idPico);
+            const elDelta = document.getElementById(idDelta);
+
+            const mAtual = media(atual.map(d => d[campoMed]));
+            const mRef = media(ref.map(d => d[campoMed]));
+            const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : 0;
+
+            if (isNaN(mAtual) || atual.length === 0) {
+                elMed.innerText = "--%";
+                elPico.innerText = "--%";
+                return;
             }
 
-            function resetarKPIs() {
-                ["kpiCPU", "kpiRAM", "kpiDisco"].forEach(id => document.getElementById(id).innerText = "--%");
-                ["deltaCPU", "deltaRAM", "deltaDisco"].forEach(id => document.getElementById(id).innerHTML = "<span>--</span>");
+            elMed.innerText = mAtual.toFixed(1) + "%";
+            elPico.innerText = picoAtual.toFixed(1) + "%";
+
+            if(ref.length === 0) {
+                elDelta.innerHTML = "Sem ref";
+                return;
             }
-        });
+
+            const diff = mAtual - mRef;
+            let cor = diff > 0.1 ? "#e74c3c" : (diff < -0.1 ? "#2ecc71" : "#7f8c8d");
+            let icon = diff > 0.1 ? "fa-arrow-trend-up" : (diff < -0.1 ? "fa-arrow-trend-down" : "fa-minus");
+            let sinal = diff > 0.1 ? "+" : "";
+
+            elDelta.innerHTML = `<span style="color:${cor}; font-weight:bold"><i class="fa-solid ${icon}"></i> ${sinal}${diff.toFixed(1)}% ref</span>`;
+        }
+
+        function definirStatusGeral(dados) {
+            const badge = document.getElementById("statusBadge");
+            if(!dados.length) return;
+
+            const maxCPU = Math.max(...dados.map(d => d.cpuMax || d.cpu));
+            const maxRAM = Math.max(...dados.map(d => d.ramMax || d.ram));
+            const maiorPico = Math.max(maxCPU, maxRAM);
+
+            badge.className = "status-badge";
+            if (maiorPico >= 90) {
+                badge.classList.add("status-critico");
+                badge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> CRÍTICO';
+            } else if (maiorPico >= 75) {
+                badge.classList.add("status-alerta");
+                badge.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ALERTA';
+            } else {
+                badge.classList.add("status-ok");
+                badge.innerHTML = '<i class="fa-solid fa-check-circle"></i> NORMAL';
+            }
+        }
+
+        let chartCPU, chartRAM, chartDisco;
+        function inicializarGraficos() {
+            chartCPU = criarChart("chartCPU");
+            chartRAM = criarChart("chartRAM");
+            chartDisco = criarChart("chartDisco");
+        }
+        function criarChart(id) {
+            return new Chart(document.getElementById(id).getContext("2d"), {
+                type: 'line',
+                data: { labels: [], datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } },
+                    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100 } },
+                    elements: { point: { radius: 2 }, line: { tension: 0.3 } }
+                }
+            });
+        }
+        function plotarGraficosOtimizados(ref, atual) {
+            const labels = Array.from(new Set([...ref.map(d=>d.timestamp), ...atual.map(d=>d.timestamp)])).sort();
+            const mapData = (list, key) => labels.map(l => { const f = list.find(x=>x.timestamp===l); return f ? f[key] : null; });
+
+            updChart(chartCPU, labels, mapData(ref, 'cpu'), mapData(atual, 'cpu'));
+            updChart(chartRAM, labels, mapData(ref, 'ram'), mapData(atual, 'ram'));
+            updChart(chartDisco, labels, mapData(ref, 'disco'), mapData(atual, 'disco'));
+        }
+        function updChart(chart, lbls, dRef, dAtu) {
+            chart.data.labels = lbls;
+            chart.data.datasets = [
+                { label: 'Ref', data: dRef, borderColor: '#bdc3c7', borderDash:[5,5], borderWidth:2, pointRadius:0 },
+                { label: 'Atual', data: dAtu, borderColor: '#2ecc71', backgroundColor:'rgba(46,204,113,0.1)', borderWidth:2, fill:true }
+            ];
+            chart.update();
+        }
+
+       function gerarListaAlertas(lista, id) {
+    const div = document.getElementById(id);
+    div.innerHTML = "";
+    
+    
+    const dadosComAlerta = lista.filter(d => 
+        (d.status_cpu === "CRITICO" || d.status_cpu === "ALERTA") ||
+        (d.status_ram === "CRITICO" || d.status_ram === "ALERTA") ||
+        (d.status_disco === "CRITICO" || d.status_disco === "ALERTA")
+    );
+
+    if(!dadosComAlerta.length) {
+        div.innerHTML = '<p class="empty-msg">Nenhum alerta crítico encontrado.</p>';
+        return;
+    }
+
+    let html = "";
+    dadosComAlerta.forEach(d => {
+        if(d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") 
+            html += cardAlerta(d.timestamp, "CPU", d.cpuMax, d.status_cpu);
+            
+        if(d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") 
+            html += cardAlerta(d.timestamp, "RAM", d.ramMax, d.status_ram);
+            
+        if(d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO") 
+            html += cardAlerta(d.timestamp, "Disco", d.discoMax || d.disco, d.status_disco);
+    });
+    div.innerHTML = html;
+}
+
+function cardAlerta(hora, tipo, valor, status) {
+    let cor = "#7f8c8d";
+    let icon = "fa-circle-info";
+
+    if (status === "CRITICO") {
+        cor = "#e74c3c"; 
+        icon = "fa-circle-xmark";
+    } else if (status === "ALERTA") {
+        cor = "#f1c40f"; 
+        icon = "fa-triangle-exclamation";
+    } else if (status === "OK") {
+        cor = "#2ecc71"; 
+        icon = "fa-check-circle";
+    }
+
+    return `
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:10px; border-bottom:1px solid #eee; font-size:0.9rem;">
+        <div style="display:flex; flex-direction:column;">
+            <span style="font-weight:bold; color:#333;">${hora} - ${tipo}</span>
+            <span style="font-size:0.75rem; color:${cor}; font-weight:bold;">
+                <i class="fa-solid ${icon}"></i> ${status}
+            </span>
+        </div>
+        <div style="text-align:right;">
+            <span style="font-size:1.1rem; font-weight:bold; color:#555;">${valor.toFixed(1)}%</span>
+        </div>
+    </div>`;
+}
+
+        
+
+        function resetarKPIs() {
+            ["CPU", "RAM"].forEach(t => {
+                document.getElementById(`kpi${t}`).innerText = "--%";
+                document.getElementById(`pico${t}`).innerText = "--%";
+                document.getElementById(`delta${t}`).innerHTML = "Aguardando...";
+            });
+        }
+        function limparAlertas() {
+            document.getElementById("listaAlertasRef").innerHTML = "...";
+            document.getElementById("listaAlertasAtual").innerHTML = "...";
+        }
     </script>
-
 </body>
-
 </html>
