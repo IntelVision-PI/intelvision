@@ -95,6 +95,11 @@ async function buscarDados() {
 
 async function atualizarTabelaGlobal(ano, mes, dia) {
     const select = document.getElementById("selectServidor");
+    if(select.options.length <= 1) {
+        setTimeout(() => atualizarTabelaGlobal(ano, mes, dia), 500);
+        return;
+    }
+
     const options = Array.from(select.options);
     const servidores = options.map(opt => opt.value).filter(val => val !== "");
     
@@ -107,7 +112,7 @@ async function atualizarTabelaGlobal(ano, mes, dia) {
             const res = await fetch(url);
             if(res.ok) {
                 const dados = await res.json();
-                return { servidor: srv, dados: dados };
+                if(dados.length > 0) return { servidor: srv, dados: dados };
             }
         } catch(err) { return null; }
         return null;
@@ -117,7 +122,7 @@ async function atualizarTabelaGlobal(ano, mes, dia) {
     const todosAlertas = [];
 
     resultados.forEach(item => {
-        if(item && item.dados && item.dados.length > 0) {
+        if(item) {
             item.dados.forEach(reg => {
                 const lat = parseFloat(reg.rede_latencia || 0);
                 const perda = parseFloat(reg.rede_perda || 0);
@@ -174,7 +179,7 @@ async function atualizarTabelaGlobal(ano, mes, dia) {
         return;
     }
 
-    todosAlertas.forEach(alerta => {
+    todosAlertas.slice(0, 5).forEach(alerta => {
         let badgeClass = "badge-info";
         if (alerta.severidade === "Crítico") badgeClass = "badge-critico";
         if (alerta.severidade === "Aviso") badgeClass = "badge-aviso";
@@ -183,7 +188,7 @@ async function atualizarTabelaGlobal(ano, mes, dia) {
         tr.innerHTML = `
             <td style="font-weight: bold;">${alerta.horario}</td>
             <td><span class="badge-alerta ${badgeClass}">${alerta.severidade}</span></td>
-            <td style="text-transform: uppercase; font-weight: 600;">${alerta.servidor}</td>
+            <td style="text-transform: uppercase; font-weight: 600;">${alerta.servidor.split(".")[0]}</td>
             <td>${alerta.mensagem}</td>
         `;
         tbody.appendChild(tr);
@@ -273,25 +278,24 @@ function atualizarDashboard(dados, nomeServidor) {
     
     elPico.textContent = maxBanda.toFixed(1) + " Mbps";
     
-    const velPlaca = 100; 
+    const velPlaca = 200; 
     
-    elPico.style.color = "";
+    elPico.classList.remove("texto-perigo", "texto-aviso", "texto-normal");
     cardPico.classList.remove("borda-aviso");
     iconPico.className = "caixa-icone"; 
 
     if (maxBanda > (velPlaca * 0.9)) { 
-        elPico.style.color = "var(--red)";
+        elPico.classList.add("texto-perigo");
         iconPico.classList.add("vermelho");
         cardPico.classList.add("borda-aviso");
     } else if (maxBanda > (velPlaca * 0.7)) {
-        elPico.style.color = "var(--amber)";
+        elPico.classList.add("texto-aviso");
         iconPico.classList.add("amber");
     } else {
-        elPico.style.color = "var(--text-dark)";
+        elPico.classList.add("texto-normal");
         iconPico.classList.add("esmeralda");
     }
 
-    // 3. KPI LATÊNCIA
     const mediaLatTotal = dados.length > 0 ? (somaLatenciaTotal / dados.length) : 0;
     const mediaJitTotal = dados.length > 0 ? (somaJitterTotal / dados.length) : 0;
     
@@ -302,19 +306,19 @@ function atualizarDashboard(dados, nomeServidor) {
     elLat.textContent = mediaLatTotal.toFixed(1) + " ms";
     document.getElementById("kpiJitter").textContent = `Jitter médio: ${mediaJitTotal.toFixed(1)} ms`;
 
-    elLat.style.color = "";
+    elLat.classList.remove("texto-perigo", "texto-aviso", "texto-normal");
     cardLat.classList.remove("borda-aviso");
     iconLat.className = "caixa-icone";
 
     if (mediaLatTotal > 100) {
-        elLat.style.color = "var(--red)";
+        elLat.classList.add("texto-perigo");
         iconLat.classList.add("vermelho");
         cardLat.classList.add("borda-aviso");
     } else if (mediaLatTotal > 50) {
-        elLat.style.color = "var(--amber)";
+        elLat.classList.add("texto-aviso");
         iconLat.classList.add("amber");
     } else {
-        elLat.style.color = "var(--text-dark)";
+        elLat.classList.add("texto-normal");
         iconLat.classList.add("esmeralda");
     }
 
@@ -330,8 +334,50 @@ function atualizarDashboard(dados, nomeServidor) {
         elSat.style.color = maxSaturacao > 80 ? "var(--red)" : "var(--text-dark)";
     }
 
+    const alertasDesteServidor = [];
+    dados.forEach(reg => {
+       const p = parseFloat(reg.rede_perda || 0);
+       const s = parseFloat(reg.rede_saturacao || 0);
+       const l = parseFloat(reg.rede_latencia || 0);
+       let sev = "", msg = "";
+       if(p > 0) { sev="Crítico"; msg=`Perda ${p}%`; }
+       else if(l > 100) { sev="Crítico"; msg=`Latência ${l.toFixed(0)}ms`; }
+       else if(s > 90) { sev="Crítico"; msg=`Saturação ${s.toFixed(1)}%`; }
+       else if(l > 50) { sev="Aviso"; msg=`Latência ${l.toFixed(0)}ms`; }
+       else if(s > 70) { sev="Aviso"; msg=`Saturação ${s.toFixed(1)}%`; }
+       
+       if(sev) {
+           let h = reg.timestamp.includes(" ") ? reg.timestamp.split(" ")[1].substring(0,5) : reg.timestamp;
+           alertasDesteServidor.push({horario: h, severidade: sev, servidor: nomeServidor.split(".")[0], mensagem: msg});
+       }
+    });
+
+    atualizarTabelaAlertas(alertasDesteServidor);
     atualizarChartJS(labelsHora, dataDownload, dataUpload, dataLatencia, dataJitter);
     atualizarListaProcessos(ultimoRegistro);
+}
+
+function atualizarTabelaAlertas(listaAlertas) {
+    const tbody = document.getElementById("alerts-table-body");
+    if(!tbody) return;
+    tbody.innerHTML = "";
+
+    const ultimos = listaAlertas.reverse().slice(0, 5);
+
+    ultimos.forEach(alerta => {
+        let badgeClass = "badge-info";
+        if (alerta.severidade === "Crítico") badgeClass = "badge-critico";
+        if (alerta.severidade === "Aviso") badgeClass = "badge-aviso";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td style="font-weight: bold;">${alerta.horario}</td>
+            <td><span class="badge-alerta ${badgeClass}">${alerta.severidade}</span></td>
+            <td style="text-transform: uppercase; font-weight: 600;">${alerta.servidor}</td>
+            <td>${alerta.mensagem}</td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
 
 function atualizarListaProcessos(reg) {
@@ -463,6 +509,15 @@ function limparDashboard() {
     const elJitter = document.getElementById("kpiJitter");
     if(elJitter) elJitter.textContent = "Jitter médio: -- ms";
     
+    const ids = ["kpiPicoBanda", "kpiLatencia"];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) {
+            el.className = "valor-kpi"; 
+            el.style.color = "";
+        }
+    });
+
     atualizarChartJS([], [], [], [], []);
     
     const listProc = document.getElementById("top-processes-list");
