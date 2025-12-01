@@ -183,9 +183,12 @@
         });
 
         let csv;
+        let chamadosFiltrados = [];
+
 
         async function carregarCSV() {
-            const response = await fetch("/dados/chamados");
+            // const response = await fetch("/dados/chamados");
+            const response = await fetch("./dados_csv/chamados.csv");
             const text = await response.text();
 
             const lines = text.split("\n").map(l => l.trim());
@@ -233,6 +236,8 @@
                 contArm[d] = 0;
             });
 
+            chamadosFiltrados = [];
+
             csv.forEach(item => {
                 if (item["Criado"] >= dataInicio && item["Criado"] <= dataFim) {
 
@@ -250,9 +255,11 @@
                     };
 
                     let labels = parseLabels(item["Labels"]);
-                    if (situacaoServidor !== "Todos" && !labels.includes(situacaoServidor)) {
-                        return;
+                    if (situacaoServidor !== "Todos") {
+                        let filtroNormalizado = removerAcentos(situacaoServidor.toUpperCase());
+                        if (!labels.includes(filtroNormalizado)) return;
                     }
+
 
 
                     let dataFormatada = formatarData(item["Criado"]);
@@ -260,6 +267,8 @@
                     if (tipo === "Web") contWeb[dataFormatada]++;
                     if (tipo === "Processamento") contProc[dataFormatada]++;
                     if (tipo === "Armazenamento") contArm[dataFormatada]++;
+
+                    chamadosFiltrados.push(item);
                 }
             });
 
@@ -299,6 +308,8 @@
             chart.data.datasets[1].data = datasContagemProc;
             chart.data.datasets[2].data = datasContagemArm;
             chart.update();
+
+            atualizarTempoMedioResolucao(chamadosFiltrados);
         }
 
         function detectarTipo(labelsString) {
@@ -318,11 +329,51 @@
 
         function parseLabels(labelsString) {
             try {
-                return JSON.parse(labelsString);
+                let arr = JSON.parse(labelsString);
+                return arr.map(l => removerAcentos(l.toUpperCase()));
             } catch {
                 return [];
             }
         }
+
+        function removerAcentos(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        // Função MTTR
+
+        function extrairDias(descricao) {
+            if (!descricao) return null;
+            const match = descricao.match(/^\d+/);
+            return match ? parseInt(match[0], 10) : null;
+        }
+
+        function calcularMediaResolucaoFiltrada(chamadosFiltrados) {
+            if (!chamadosFiltrados || chamadosFiltrados.length === 0) return 0;
+
+            let soma = 0;
+            let count = 0;
+
+            chamadosFiltrados.forEach(item => {
+                const dias = extrairDias(item["Descricao"]);
+                if (dias !== null) {
+                    soma += dias;
+                    count++;
+                }
+            });
+
+            return count > 0 ? soma / count : 0;
+        }
+
+
+        function atualizarTempoMedioResolucao(chamadosFiltrados) {
+            const media = calcularMediaResolucaoFiltrada(chamadosFiltrados);
+            const dias = Math.floor(media);
+            const horas = Math.floor((media - dias) * 24);
+            const h1 = document.querySelector(".mttr h1");
+            h1.textContent = `${dias}d${horas}h`;
+        }
+
     </script>
     <script src="./js/situacaoServidores.js"></script>
 </body>
