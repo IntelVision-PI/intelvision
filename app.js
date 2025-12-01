@@ -1,7 +1,7 @@
 // var ambiente_processo = 'producao';
-var ambiente_processo = 'desenvolvimento';
+var ambiente_processo = "desenvolvimento";
 
-var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
+var caminho_env = ambiente_processo === "producao" ? ".env" : ".env.dev";
 // Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
 // A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 
@@ -20,16 +20,13 @@ var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
 var dadosRouter = require("./src/routes/comparativo");
 
-// const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
 app.use(cors());
 
-// const s3 = new S3Client({
-//   region: "us-east-1"
-// });
-
-
+const s3 = new S3Client({
+  region: "us-east-1",
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,7 +42,7 @@ app.use("/dados", dadosRouter);
 
 
 app.listen(PORTA_APP, function () {
-    console.log(`
+  console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
     ##   ##  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##        ##   
