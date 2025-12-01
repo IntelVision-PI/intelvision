@@ -217,7 +217,7 @@
 
         <div class="chart-container-teste">
           <h3>Comparação anual de disco</h3>
-          <canvas id="cpuUso"></canvas>
+          <canvas id="discoAnual"></canvas>
         </div>
       </div>
     </div>
@@ -234,244 +234,158 @@
   }
 </script>
 
+<script src="js/predicao.js"></script>
+
 <script>
-  const servidores = [
-    { nome: "Servidor A", riscoConfig: 70, ultimos4: [40, 50, 55, 60] },
-    { nome: "Servidor B", riscoConfig: 80, ultimos4: [65, 70, 72, 75] },
-    { nome: "Servidor C", riscoConfig: 75, ultimos4: [50, 55, 60, 65] },
-    { nome: "Servidor D", riscoConfig: 85, ultimos4: [75, 78, 82, 88] },
-    { nome: "Servidor E", riscoConfig: 70, ultimos4: [30, 38, 44, 50] },
-    { nome: "Servidor C", riscoConfig: 75, ultimos4: [50, 55, 60, 65] },
-    { nome: "Servidor D", riscoConfig: 85, ultimos4: [75, 78, 82, 88] },
-    { nome: "Servidor E", riscoConfig: 70, ultimos4: [30, 38, 44, 50] }
-  ];
+const desvio = 5;
 
-  const desvio = 5;
+// Regressão
+function regressaoLinear(valores) {
+  const n = valores.length;
+  const xs = valores.map((_, i) => i);
 
-  function regressaoLinear(valores) {
-    const n = valores.length;
-    const xs = valores.map((_, i) => i);
+  let somaX = 0, somaY = 0, somaXY = 0, somaX2 = 0;
 
-    const somaX = xs.reduce((a, b) => a + b, 0);
-    const somaY = valores.reduce((a, b) => a + b, 0);
-    const somaXY = xs.reduce((acc, x, i) => acc + x * valores[i], 0);
-    const somaX2 = xs.reduce((acc, x) => acc + x * x, 0);
-
-    const m = (n * somaXY - somaX * somaY) / (n * somaX2 - somaX * somaX);
-    const b = (somaY - m * somaX) / n;
-
-    return { m, b };
+  for (let i = 0; i < n; i++) {
+    somaX += xs[i];
+    somaY += valores[i];
+    somaXY += xs[i] * valores[i];
+    somaX2 += xs[i] * xs[i];
   }
 
-  function preverProximos(reg, quantidade, base) {
-    const inicio = base.length;
-    return Array.from({ length: quantidade }, (_, i) => reg.m * (inicio + i) + reg.b);
+  const m = (n * somaXY - somaX * somaY) / (n * somaX2 - somaX * somaX);
+  const b = (somaY - m * somaX) / n;
+
+  return { m, b };
+}
+
+function preverProximos(reg, quantidade, base) {
+  const inicio = base.length;
+  const result = [];
+
+  for (let i = 0; i < quantidade; i++) {
+    result.push(reg.m * (inicio + i) + reg.b);
   }
+  return result;
+}
 
-  function filtrarServidores() {
-    const risco = Number(document.getElementById("riscoSelect").value);
-    const div = document.getElementById("resultado");
+// Predição
+let grafico;
 
-    if (!risco) {
-      div.innerHTML = "<p class='no-results'>Selecione um nível de risco.</p>";
-      return;
+function mostrarGraficoPredicao() {
+  if (!dados2025) return;
+
+  const ultimos4 = dados2025.meses_anteriores;
+  const reg = regressaoLinear(ultimos4);
+  const predicoes = preverProximos(reg, 3, ultimos4);
+
+  const labels = ["M-3", "M-2", "M-1", "M-0", "M+1", "M+2", "M+3"];
+  const valores = [...ultimos4, ...predicoes];
+
+  const desvioPositivo = [];
+  const desvioNegativo = [];
+
+  for (let i = 0; i < valores.length; i++) {
+    if (i >= 3) {
+      desvioPositivo[i] = valores[i] + desvio;
+      desvioNegativo[i] = valores[i] - desvio;
+    } else {
+      desvioPositivo[i] = null;
+      desvioNegativo[i] = null;
     }
-
-    // Servidores que estão em risco
-    const lista = servidores
-      .filter(s => s.riscoConfig === risco)
-      .slice(0, 3)
-      .map(s => {
-        const reg = regressaoLinear(s.ultimos4);
-        const pred = preverProximos(reg, 3, s.ultimos4);
-
-        return {
-          nome: s.nome,
-          riscoConfig: s.riscoConfig,
-          ultimos4: s.ultimos4,
-          predicoes: pred
-        };
-      });
-
-    renderizar(lista);
   }
 
-  function renderizar(lista) {
-    const div = document.getElementById("resultado");
-    div.innerHTML = "";
+  if (grafico) grafico.destroy();
 
-    if (lista.length == 0) {
-      div.innerHTML = "<p class='no-results'>Nenhum servidor possui esse nível configurado.</p>";
-      return;
-    }
+  const ctx = document.getElementById("grafico");
 
-    lista.forEach(s => {
-      const card = document.createElement("div");
-      card.className = "server-card";
-      card.setAttribute("onclick", "toggleSelection(this)");
-      card.innerHTML = `
-    <h4>${s.nome}</h4>
-    <p>Risco configurado: <span class="risk-percentage">${s.riscoConfig}%</span></p>
-
-    <button class="server-card-button"
-        onclick='mostrarGrafico(${JSON.stringify(JSON.stringify(s))})'>
-        Ver gráfico
-    </button>
-`;
-      div.appendChild(card);
-    });
-  }
-
-  let grafico;
-
-  function mostrarGrafico(jsonData) {
-    const s = JSON.parse(jsonData);
-
-    const labels = ["M-3", "M-2", "M-1", "M-0", "M+1", "M+2", "M+3"];
-    const valores = [...s.ultimos4, ...s.predicoes];
-
-    // Desvio padrão
-    const desvioPositivo = [];
-    const desvioNegativo = [];
-
-    for (let i = 0; i < valores.length; i++) {
-      if (i >= 3 && valores[i] != null) {
-        desvioPositivo.push(valores[i] + desvio);
-        desvioNegativo.push(valores[i] - desvio);
-      } else {
-        desvioPositivo.push(null);
-        desvioNegativo.push(null);
-      }
-    }
-
-    if (grafico) {
-      grafico.destroy();
-    };
-
-    const ctx = document.getElementById("grafico");
-
-    grafico = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: s.nome + " - Valores reais",
-            data: [...s.ultimos4, null, null, null],
-            borderColor: "#28a745",
-            borderWidth: 3,
-            fill: false
-          },
-          {
-            label: s.nome + " - Predição",
-            data: [null, null, null, s.ultimos4[3], ...s.predicoes],
-            borderColor: "#6990A7",
-            borderDash: [5, 5],
-            borderWidth: 3,
-            fill: false
-          },
-          {
-            label: "desvio +",
-            data: desvioPositivo,
-            borderColor: "rgba(0, 200, 0, 0.4)",
-            backgroundColor: "rgba(0,200,0,0.15)",
-            fill: "+1",
-            borderWidth: 2,
-            tension: 0
-          },
-          {
-            label: "desvio -",
-            data: desvioNegativo,
-            borderColor: "rgba(0, 200, 0, 0.4)",
-            backgroundColor: "rgba(0,200,0,0.15)",
-            fill: false,
-            borderWidth: 2,
-            tension: 0
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              font: {
-                size: 16   // aumenta fonte da legenda
-              }
-            }
-          },
-          annotation: {
-            annotations: {
-              linhaVertical: {
-                type: 'line',
-                xMin: 3,
-                xMax: 3,
-                borderColor: '#585555',
-                borderWidth: 2,
-                borderDash: [4, 3]
-              },
-              linhaHorizontal: {
-                type: 'line',
-                yMin: 80,
-                yMax: 80,
-                borderColor: '#ff0000',
-                borderWidth: 2,
-              },
-            }
-          }
+  grafico = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Valores reais",
+          data: [...ultimos4, null, null, null],
+          borderColor: "#28a745",
+          borderWidth: 3,
+          fill: false
         },
-        scales: {
-          x: {
-            ticks: {
-              font: {
-                size: 14
-              }
+        {
+          label: "Predição",
+          data: [null, null, null, ultimos4[3], ...predicoes],
+          borderColor: "#6990A7",
+          borderDash: [5, 5],
+          borderWidth: 3,
+          fill: false
+        },
+        {
+          label: "desvio +",
+          data: desvioPositivo,
+          borderColor: "rgba(0, 200, 0, 0.4)",
+          backgroundColor: "rgba(0,200,0,0.15)",
+          fill: "+1",
+          borderWidth: 2,
+          tension: 0
+        },
+        {
+          label: "desvio -",
+          data: desvioNegativo,
+          borderColor: "rgba(0, 200, 0, 0, 0.4)",
+          backgroundColor: "rgba(0,200,0,0.15)",
+          fill: false,
+          borderWidth: 2,
+          tension: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: { font: { size: 16 } }
+        },
+        annotation: {
+          annotations: {
+            linhaVertical: {
+              type: 'line',
+              xMin: 3,
+              xMax: 3,
+              borderColor: '#585555',
+              borderWidth: 2,
+              borderDash: [4, 3]
             },
-            title: {
-              display: true,
-              text: "Meses",
-              font: {
-                size: 18
-              }
-            }
-          },
-          y: {
-            ticks: {
-              font: {
-                size: 14
-              }
-            },
-            title: {
-              display: true,
-              text: "Quantidade de disco usado (em Gb)",
-              font: {
-                size: 18
-              }
+            linhaHorizontal: {
+              type: 'line',
+              yMin: 80,
+              yMax: 80,
+              borderColor: '#ff0000',
+              borderWidth: 2
             }
           }
         }
+      },
+      scales: {
+        x: {
+          ticks: { font: { size: 14 } },
+          title: { display: true, text: "Meses", font: { size: 18 } }
+        },
+        y: {
+          ticks: { font: { size: 14 } },
+          title: { display: true, text: "Quantidade de disco usado (GB)", font: { size: 18 } }
+        }
       }
-    });
-  }
-
-  // montar select
-  function montarSelect() {
-    const select = document.getElementById("riscoSelect");
-    for (let i = 70; i <= 100; i += 5) {
-      const op = document.createElement("option");
-      op.value = i;
-      op.textContent = i + "%";
-      select.appendChild(op);
     }
-  }
+  });
+}
 
-  montarSelect();
-  document.getElementById("riscoSelect").addEventListener("change", filtrarServidores);
+// Grafico Anual
+function criarGraficoAnual() {
+  if (!dados2024 || !dados2025) return;
 
+  const ctxCPU = document.getElementById("discoAnual");
 
-  // Gráfico de comparação anual de disco
-  const ctxCPU = document.getElementById("cpuUso");
   new Chart(ctxCPU, {
     type: "bar",
     data: {
@@ -479,29 +393,25 @@
       datasets: [
         {
           label: "Ano atual",
-          data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+          data: dados2025.meses_ano_atual,
           backgroundColor: "#64748b",
           borderWidth: 2,
           borderRadius: {
-            topLeft: 7,
-            topRight: 7,
-            bottomLeft: 0,
-            bottomRight: 0
+            topLeft: 7, topRight: 7,
+            bottomLeft: 0, bottomRight: 0
           }
         },
         {
           label: "Ano anterior",
-          data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+          data: dados2024.meses_ano_anterior,
           backgroundColor: "#1e293b",
           borderWidth: 2,
           borderRadius: {
-            topLeft: 7,
-            topRight: 7,
-            bottomLeft: 0,
-            bottomRight: 0
+            topLeft: 7, topRight: 7,
+            bottomLeft: 0, bottomRight: 0
           }
-        },
-      ],
+        }
+      ]
     },
     options: {
       responsive: true,
@@ -510,9 +420,16 @@
         y: {
           beginAtZero: true,
           max: 100,
-          title: { display: true, text: "%" },
-        },
-      },
-    },
+          title: { display: true, text: "%" }
+        }
+      }
+    }
   });
+}
+
+// Após carregar tudo do S3 → mostrar gráficos
+carregarArquivosS3().then(() => {
+  mostrarGraficoPredicao();
+  criarGraficoAnual();
+});
 </script>
