@@ -22,3 +22,13 @@ async function carregarArquivosS3() {
   }
 }
 
+async function pegarDadosS3(ano, mes, dia, servidor) {
+            const url = `/dados/${ano}/${mes}/${dia}/${servidor}`;
+            try {
+                const res = await fetch(url, { cache: "no-store" });
+                if (!res.ok) return [];
+                const json = await res.json();
+                return json.dados || json || [];
+            } catch { return []; }
+        }
+
