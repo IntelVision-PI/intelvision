@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IntelVision | Servidores</title>
-    <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
@@ -36,7 +36,7 @@
         <div class="header-left">
             <h1>IntelVision</h1>
 
-            <div class="btn-nav ativo">
+            <div class="btn-nav">
                 <a href="servidores.html">
                     <i class="fa-solid fa-chart-simple"></i>
                     <h3>Dashboard</h3>
@@ -49,6 +49,13 @@
             <h3>Análise de dados</h3>
           </a>
         </div> -->
+
+            <div class="btn-nav ativo">
+                <a href="dashboard-jira.html">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <h3>Gerenciamento de Chamados</h3>
+                </a>
+            </div>
 
             <div class="btn-nav" id="btn-nav-admin-usuarios">
                 <a href="./tela-administracao-usuario.html">
@@ -76,7 +83,7 @@
         <div class="dash">
             <div class="dash__conteudo">
                 <!-- Filtro Servidores -->
-                <div class="kpi-container div-procura">
+                <div class="kpi-container div-procura" style="width: 100%; display: flex;margin-top: 25px;">
                     <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
                         <p>Filtrar Tipo dos Servidores:</p>
                         <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
@@ -115,16 +122,25 @@
                     </div>
                 </div>
 
+
                 <div style="display: flex;">
-                    <!-- Gráfico de requisições por dia -->
-                    <div class="chart-container" style="width: 60%;">
-                        <h3>Quantidade de Chamados abertos:</h3>
+                    <!-- Gráfico -->
+                    <div class="chart-container" style="flex:2">
+                        <div>
+                            <label for="">Início: </label>
+                            <input type="date" value="2025-12-02" onchange="atualizarDados()" id="dataInicio">
+                            <label for="">Fim: </label>
+                            <input type="date" value="2025-12-02" onchange="atualizarDados()" id="dataFim">
+                        </div>
+                        <h3>Quantidade de Chamados abertos</h3>
                         <canvas id="requisicoesDia"></canvas>
                     </div>
-                    <!-- Rosca verde MTTR -->
-                    <div style="width: 40%;display: flex;justify-content: center;align-items: center;">
-                        <img src="../assets/img/rosca-verde.png" alt="" width="100%">
-                        <h1 style="position: absolute;font-size: 3em;">3d12h</h1>
+
+                    <!-- Rosca -->
+                    <!-- <h2>Tempo Médio de Resolução</h2> -->
+                    <div class="mttr" style="flex:1;display: flex;justify-content: center;align-items: center;">
+                        <img src="../assets/img/rosca-verde.png" width="100%">
+                        <h1 style="position: absolute;">3d12h</h1>
                     </div>
                 </div>
             </div>
@@ -133,35 +149,152 @@
     </div>
 
     <script>
+        let datasLabel = ["01/11/2025", "02/11/2025", "03/11/2025", "04/11/2025", "05/11/2025", "06/11/2025", "07/11/2025"]
+        let datasContagemWeb = [200, 350, 100, 290, 65, 82, 105];
+        let datasContagemProc = [300, 360, 340, 210, 260, 100, 120];
+        let datasContagemArm = [50, 200, 210, 60, 65, 79, 92];
+
+
         // Gráfico de Requisições por dia
         const ctxDia = document.getElementById("requisicoesDia");
-        new Chart(ctxDia, {
+        const chart = new Chart(ctxDia, {
             type: "bar",
             data: {
-                labels: ["01/11/2025", "02/11/2025", "03/11/2025", "04/11/2025", "05/11/2025", "06/11/2025", "07/11/2025"],
+                labels: datasLabel,
                 datasets: [
                     {
                         label: "Web",
-                        data: [200, 350, 100, 290, 65, 82, 105],
+                        data: datasContagemWeb,
                         backgroundColor: "orange",
                         stack: "Stack 1"
                     },
                     {
                         label: "Processamento",
-                        data: [300, 360, 340, 210, 260, 100, 120],
+                        data: datasContagemProc,
                         backgroundColor: "darkseagreen",
                         stack: "Stack 1"
                     },
                     {
                         label: "Armazenamento",
-                        data: [50, 200, 210, 60, 65, 79, 92],
+                        data: datasContagemArm,
                         backgroundColor: "darkgoldenrod",
                         stack: "Stack 1"
                     },
                 ],
             },
-            options: { responsive: true, plugins: { legend: { display: false } } },
+            options: { responsive: true, plugins: { legend: { display: true } } },
         });
+
+        let csv;
+
+        async function carregarCSV() {
+            const response = await fetch("./dados_csv/chamados.csv");
+            const text = await response.text();
+
+            const lines = text.split("\n").map(l => l.trim());
+            const header = lines[0].split(";");
+
+            csv = lines.slice(1).map(line => {
+                const values = line.split(";");
+                const obj = {};
+
+                header.forEach((key, index) => {
+                    const cleanedValue = values[index]?.replace(/^"|"$/g, "") || "";
+                    obj[key] = cleanedValue;
+                    
+                    obj["Criado"] = new Date(obj["Criado"]);
+                });
+
+                return obj;
+            });
+        }
+
+        carregarCSV();
+
+        function atualizarDados() {
+            let dataInicio = new Date(document.getElementById("dataInicio").value);
+            let dataFim = new Date(document.getElementById("dataFim").value);
+
+            dataInicio.setDate(dataInicio.getDate() + 1)
+            dataInicio.setHours(0, 0, 0, 1);
+            dataFim.setDate(dataFim.getDate() + 1)
+            dataFim.setHours(23, 59, 59, 999);
+
+            let datas = gerarDatasEntre(dataInicio, dataFim);
+
+            let contWeb = {};
+            let contProc = {};
+            let contArm = {};
+
+            datas.forEach(d => {
+                contWeb[d] = 0;
+                contProc[d] = 0;
+                contArm[d] = 0;
+            });
+
+            csv.forEach(item => {
+                if (item["Criado"] >= dataInicio && item["Criado"] <= dataFim) {
+
+                    let tipo = detectarTipo(item["Labels"]);
+
+                    if (tipo === "Web") contWeb[formatarData(item["Criado"])]++;
+                    if (tipo === "Processamento") contProc[formatarData(item["Criado"])]++;
+                    if (tipo === "Armazenamento") contArm[formatarData(item["Criado"])]++;
+                }
+            });
+
+            datasLabel = datas;
+            datasContagemWeb = datas.map(d => contWeb[d]);
+            datasContagemProc = datas.map(d => contProc[d]);
+            datasContagemArm = datas.map(d => contArm[d]);
+
+            atualizarGrafico();
+        }
+
+
+
+        function gerarDatasEntre(inicio, fim) {
+            let data = new Date(inicio);
+            let datas = [];
+
+            while (data <= fim) {
+                datas.push(formatarData(data));
+                data.setDate(data.getDate() + 1);
+            }
+
+            return datas;
+        }
+
+        function formatarData(d) {
+            let data = new Date(d);
+            let dia = String(data.getDate()).padStart(2, "0");
+            let mes = String(data.getMonth() + 1).padStart(2, "0");
+            let ano = data.getFullYear();
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        function atualizarGrafico() {
+            chart.data.labels = datasLabel;
+            chart.data.datasets[0].data = datasContagemWeb;
+            chart.data.datasets[1].data = datasContagemProc;
+            chart.data.datasets[2].data = datasContagemArm;
+            chart.update();
+        }
+
+        function detectarTipo(labelsString) {
+            let labels = [];
+            try {
+                labels = JSON.parse(labelsString);
+            } catch {
+                return null;
+            }
+
+            if (labels.includes("HD")) return "Armazenamento";
+            if (labels.includes("RAM")) return "Processamento";
+            if (labels.includes("CPU")) return "Web";
+
+            return null;
+        }
     </script>
     <script src="./js/situacaoServidores.js"></script>
 </body>

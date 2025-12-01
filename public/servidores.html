@@ -12,10 +12,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
   <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
   <script src="./js/sessao.js"></script>
-  <script src="./js/alerta.js"></script>
 </head>
 
-<body onload="validarSessaoAdministrador(), puxarDadosServidor()">
+<body onload="validarSessaoAdministrador()">
+
   <!-- <header>
     <div class="cabecalho-dash">
       <div class="nome-dash">
@@ -73,6 +73,16 @@
             </span>
           </div>
         </a>
+        <div class="btn-nav inativo">
+          <a href="/comparativo.html">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              background="#FFFFFF" fill="#8b979f">
+              <path
+                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z" />
+            </svg>
+            <h3>Comparativo</h3>
+          </a>
+        </div>
 
         <a href="./tela-servidores-codecs.html">
           <div class="btn-nav inativo" id="btn-nav-admin-servidores">
@@ -108,20 +118,35 @@
           <span id="dataHora"></span>
         </div> -->
         <div class="kpi-container">
-          <div class="kpi">
-            <h4>Servidores de armazenamento em alerta ou crítico</h4>
-            <p>5</p>
-            <span>Total de 10 servidores</span>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Servidores de Armazenamento em alerta ou crítico</span>
+              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
+            </div>
+            <div class="kpi-value" id="kpiArmazenamento">--</div>
+            <div class="kpi-delta" id="deltaArmazenamento">
+              <span style="color: #999; font-weight: 400;">Aguardando...</span>
+            </div>
           </div>
-          <div class="kpi">
-            <h4>Servidores WEB em alerta ou crítico</h4>
-            <p>3</p>
-            <span>Total de 5 servidores</span>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Servidores de WEB em alerta ou crítico</span>
+              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
+            </div>
+            <div class="kpi-value" id="kpiWeb">--</div>
+            <div class="kpi-delta" id="deltaWeb">
+              <span style="color: #999; font-weight: 400;">Aguardando...</span>
+            </div>
           </div>
-          <div class="kpi">
-            <h4>Servidores de processamento em alerta ou crítico</h4>
-            <p>9</p>
-            <span>Total de 15 servidores</span>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Servidores de Processamento em alerta ou crítico</span>
+              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
+            </div>
+            <div class="kpi-value" id="kpiProcessamento">--</div>
+            <div class="kpi-delta" id="deltaProcessamento">
+              <span style="color: #999; font-weight: 400;">Aguardando...</span>
+            </div>
           </div>
         </div>
         <!-- Filtro Servidores -->
@@ -176,40 +201,28 @@
         <div class="graficos-dados-gerais">
           <div class="chart-container">
             <div class="cabecalhoGraficoUm">
-              <h3>Top 5 Uso de RAM</h3>
+              <h3>Top 5 Uso de <span id="qualComponente">RAM</span></h3>
               <div class="filtrosGraficoUm">
-                <select name="" id="">
+                <select name="" id="select_tipoServidor" class="select-input">
                   <option value="Todos">Todos</option>
                   <option value="Armazenamento">Armazenamento</option>
                   <option value="Processamento">Processamento</option>
                   <option value="Web">WEB</option>
                 </select>
-                <select name="" id="">
-                  <option value="">RAM</option>
-                  <option value="">Disco</option>
-                  <option value="">CPU</option>
+                <select name="" id="select_tipoComponente">
+                  <option value="1">RAM</option>
+                  <option value="2">Disco</option>
+                  <option value="3">CPU</option>
                 </select>
               </div>
             </div>
-            <canvas id="requisicoesDia"></canvas>
+            <div id="graficoCada">
+            </div>
+            <canvas id="SerivdorMaiorUso"></canvas>
           </div>
           <div class="mapaServidores">
             <h3>Situação dos servidores</h3>
-            <div class="mapaDeCalor">
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
-              <div class="server01"></div>
+            <div id="mapa_situacaoServidores" class="mapaDeCalor">
             </div>
           </div>
         </div>
@@ -217,135 +230,16 @@
         <div class="grafico-so-rede">
           <div class="chart-container2">
             <h3>Requisições por hora</h3>
-            <canvas id="requisicoesHora"></canvas>
+            <div id="graficoRequisicaoHora">
+            </div>
           </div>
         </div>
-
-
-        <!-- <div class="chart-container">
-            <h3>Uso da CPU (%) por hora</h3>
-            <canvas id="cpuUso"></canvas>
-          </div>
-
-          <div class="chart-container">
-            <h3>Uso da RAM (%) por hora</h3>
-            <canvas id="ramUso"></canvas>
-          </div> -->
       </div>
     </div>
   </div>
+<script src="./js/situacao.js"></script>
 
-  <script>
-    // Gráfico de Requisições por dia
-    const ctxDia = document.getElementById("requisicoesDia");
-    new Chart(ctxDia, {
-      type: "bar",
-      data: {
-        labels: ["Seg", "Ter", "Qua", "Qui", "Sex"],
-        datasets: [
-          {
-            axis: "y",
-            label: "Requisições",
-            data: [100000, 80000, 120000, 150000, 90000],
-            backgroundColor: "#2D6A54",
-            borderColor: "#2D6A54",
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        indexAxis: "y",
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-        },
-      },
-    });
-
-    // Gráfico de Requisições por hora
-    const ctxHora = document.getElementById("requisicoesHora");
-    new Chart(ctxHora, {
-      type: "line",
-      data: {
-        labels: ["00", "01", "02", "03", "04", "05"],
-        datasets: [
-          {
-            label: "Requisições",
-            data: [5000, 10000, 8000, 9000, 8000, 10000],
-            backgroundColor: "#D8F4EA",
-            borderColor: "#28a745",
-            borderWidth: 2,
-            fill: true,
-            tension: 0.4,
-          },
-        ],
-      },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } },
-    });
-    // Gráfico de Uso da CPU
-    const ctxCPU = document.getElementById("cpuUso");
-    new Chart(ctxCPU, {
-      type: "line",
-      data: {
-        labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
-        datasets: [
-          {
-            label: "Uso da CPU (%)",
-            data: [35, 50, 70, 90, 65, 45, 55],
-            backgroundColor: "rgba(255, 82, 82, 0.2)",
-            borderColor: "#ff5252",
-            borderWidth: 2,
-            fill: true,
-            tension: 0.4,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            title: { display: true, text: "%" },
-          },
-        },
-      },
-    });
-
-    // Gráfico de Uso da RAM
-    const ctxRAM = document.getElementById("ramUso");
-    new Chart(ctxRAM, {
-      type: "line",
-      data: {
-        labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
-        datasets: [
-          {
-            label: "Uso da RAM (%)",
-            data: [60, 55, 65, 85, 75, 70, 60],
-            backgroundColor: "rgba(0, 188, 212, 0.2)",
-            borderColor: "#00bcd4",
-            borderWidth: 2,
-            fill: true,
-            tension: 0.4,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            title: { display: true, text: "%" },
-          },
-        },
-      },
-    });
-  </script>
-  <script></script>
-  <script src="./js/situacaoServidores.js"></script>
+  <!-- <script src="./js/situacaoServidores.js"></script> -->
 </body>
 
 </html>

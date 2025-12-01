@@ -1,11 +1,10 @@
-const ctxDia = document.getElementById("requisicoesDia");
-const containerGrafico1 = document.getElementById(
-  "dash__conteudo__grupo__graficos__container1"
-);
+import { pegarDadosS3 } from "./comparativo.js";
 
-let servidores = [];
-let servidoresProcessamento = [];
-let dadosGrafico = [];
+window.pegarDataServidor = pegarDataServidor;
+window.puxarDadosServidor = puxarDadosServidor;
+window.validarSessaoAdministrador = validarSessaoAdministrador;
+window.pegarInformacoesServidor = pegarInformacoesServidor;
+window.pegarRegistrosServidor = pegarRegistrosServidor;
 
 function puxarDadosServidor() {
   /* Essa função puxa os dados de servidores do banco de dados */
@@ -26,6 +25,7 @@ function puxarDadosServidor() {
       return res.json();
     })
     .then((data) => {
+      console.log(data);
       listarServidores(data);
     });
 }
@@ -34,7 +34,7 @@ function listarServidores(data) {
   console.log("Me chamou listarServidores(data)");
   console.log(data);
   servidores = data;
-  const selectServidores = document.getElementById("fitro_nome_servidor");
+
   selectServidores.innerHTML = "<option value='Todos'>Todos</option>";
 
   for (let i = 0; i < data.length; i++) {
@@ -86,10 +86,35 @@ function pegarInformacoesServidor(idServidor) {
   `;
   setTimeout(() => {
     if (idServidor == "Todos") {
+      let arrayCodecs = servidores.map((servidorAtual) => {
+        return servidorAtual.codec;
+      });
+      console.log(arrayCodecs);
       tbodyServidoresCodec.innerHTML = `
             <tr>
               <td>Quantidade Servidores Processamento</td>
               <td>${servidoresProcessamento.length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores CODEC H.265</td>
+              <td>${arrayCodecs.filter((x) => x === "H-265").length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores CODEC H.264</td>
+              <td>${arrayCodecs.filter((x) => x === "H-264").length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores CODEC MPEG-2</td>
+              <td>${arrayCodecs.filter((x) => x === "MPEG-2").length}</td>
+            </tr>
+            <tr>
+              <td>Quantidade Servidores Outros CODECS</td>
+              <td>${
+                servidoresProcessamento.length -
+                arrayCodecs.filter((x) => x === "H-265").length -
+                arrayCodecs.filter((x) => x === "MPEG-2").length -
+                arrayCodecs.filter((x) => x === "H-264").length
+              }</td>
             </tr>
           `;
       pegarRegistrosServidor("Todos");
@@ -135,7 +160,12 @@ function pegarInformacoesServidor(idServidor) {
   }, 1000);
 }
 
-function pegarRegistrosServidor(nomeServidor) {
+async function pegarRegistrosServidor(nomeServidor) {
+  let arrayDataSelecionada = formatoDataCurta
+    .format(dataSelecionada)
+    .split("/");
+  console.log(arrayDataSelecionada);
+
   if (nomeServidor == "Todos") {
     let promessas = [];
 
@@ -143,12 +173,17 @@ function pegarRegistrosServidor(nomeServidor) {
       let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
       console.log(nomeServidorMinusculo);
 
-      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-27--${nomeServidorMinusculo}.json`;
+      //let url = `http://44.217.46.168:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
 
-      let p = fetch(url)
+      let p = await pegarDadosS3(
+        arrayDataSelecionada[2],
+        arrayDataSelecionada[1],
+        arrayDataSelecionada[0],
+        nomeServidorMinusculo
+      )
         .then((response) => {
           if (!response.ok) {
-            console.log("Erro na resposta:", url);
+            console.log("Erro na resposta:");
             return null;
           }
           return response.json();
@@ -176,8 +211,18 @@ function pegarRegistrosServidor(nomeServidor) {
   } else {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
-        fetch(
-          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_2025-11-27--${nomeServidor.toLowerCase()}.json`
+        /* fetch(
+          `http://44.217.46.168:3000/s3Route/dados/dados_maquina_${
+            arrayDataSelecionada[2]
+          }-${arrayDataSelecionada[1]}-${
+            arrayDataSelecionada[0]
+          }--${nomeServidor.toLowerCase()}.json`
+        ) */
+        await pegarDadosS3(
+          arrayDataSelecionada[2],
+          arrayDataSelecionada[1],
+          arrayDataSelecionada[0],
+          nomeServidor.toLowerCase()
         )
           .then((response) => {
             if (response.ok) {
@@ -226,13 +271,12 @@ function plotarGraficoLinha(resposta) {
   let labels = [];
 
   console.log(resposta);
-
   // Criando estrutura para plotar gráfico - dados
   let dados = {
     labels: labels,
     datasets: [
       {
-        label: resposta[0].user,
+        label: resposta[0][0].user,
         data: [],
         backgroundColor: "rgba(40,167,69,0.2)",
         borderColor: "#28a745",
@@ -251,7 +295,7 @@ function plotarGraficoLinha(resposta) {
 
   // Inserindo valores recebidos em estrutura para plotar o gráfico
   // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
-  for (i = 0; i < resposta[0].length; i++) {
+  for (let i = 0; i < resposta[0].length; i++) {
     var registro = resposta[0][i];
     labels.push(registro.timestamp.split(" ")[1]);
     dados.datasets[0].data.push(registro.proc1_cpu_pct);
@@ -280,7 +324,7 @@ function plotarGraficoLinha(resposta) {
         },
       },
       responsive: true,
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: true } },
     },
   };
 
@@ -288,7 +332,9 @@ function plotarGraficoLinha(resposta) {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML = "Porcentagem de CPU consumida em 22/11/2025";
+  tituloGrafico.innerHTML = `Porcentagem de CPU consumida do CODEC em ${formatoDataCurta.format(
+    dataSelecionada
+  )}`;
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
   dadosGrafico = [];
@@ -312,8 +358,8 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
 
   // criando um dataset de cada item do array
 
-  for (i = 0; i < arrayRespostas.length; i++) {
-    for (j = 0; j < arrayRespostas[i].length; j++) {
+  for (let i = 0; i < arrayRespostas.length; i++) {
+    for (let j = 0; j < arrayRespostas[i].length; j++) {
       var registro = arrayRespostas[i][j];
       //labels.push(registro.timestamp.split(" ")[1]);
       dataIteracao.push(registro.proc1_cpu_pct);
@@ -323,7 +369,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
     let objetoIteracao = {
       label: nomeLabel,
       data: dataIteracao,
-      backgroundColor: "rgba(125,187,249,0.2)",
+      backgroundColor: randomColor,
       borderColor: randomColor,
       borderWidth: 2,
       fill: false,
@@ -361,7 +407,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
         },
       },
       responsive: true,
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: true } },
     },
   };
 
@@ -369,8 +415,9 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   let tituloGrafico = document.getElementById(
     "dash__conteudo__grupo__graficos__titulo"
   );
-  tituloGrafico.innerHTML =
-    "Porcentagem de CPU consumida dos servidores de processamento em 22/11/2025";
+  tituloGrafico.innerHTML = `Porcentagem de CPU consumida dos CODECS em ${formatoDataCurta.format(
+    dataSelecionada
+  )}`;
   // Adicionando gráfico criado em div na tela
   let myChart = new Chart(document.getElementById(`requisicoesHora`), config);
 
@@ -378,6 +425,37 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
 
   //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
 }
+
+function pegarDataServidor() {
+  let dataFiltro = document.getElementById("filtro_data_servidor").value;
+  if (dataFiltro == "" || dataFiltro == null) {
+    dataSelecionada = new Date().setDate(dataHoje.getDate() - 1);
+    console.log(formatoDataCurta.format(dataSelecionada));
+  } else {
+    console.log(dataFiltro);
+    console.log(typeof dataFiltro);
+    let arrayDataFiltro = dataFiltro.split("-");
+    console.log(arrayDataFiltro);
+    dataSelecionada = new Date(
+      arrayDataFiltro[0],
+      arrayDataFiltro[1] - 1,
+      arrayDataFiltro[2]
+    );
+    console.log(formatoDataCurta.format(dataSelecionada));
+    selectServidores.selectedIndex = 0;
+    pegarInformacoesServidor("Todos");
+  }
+
+  //
+}
+
+module.exports = {
+  pegarDataServidor,
+  puxarDadosServidor,
+  validarSessaoAdministrador,
+  pegarInformacoesServidor,
+  pegarRegistrosServidor,
+};
 
 // Gráfico de Requisições por hora
 /* const ctxHora = document.getElementById("requisicoesHora");
