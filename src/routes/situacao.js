@@ -1,14 +1,13 @@
 const express = require("express");
-const router = express.Router();
-
+var router = express.Router();
 var situacaoController = require("../controllers/situacaoController");
 
-router.get("/select", function(req, res){
-    situacaoController.buscarDadosS3(req, res)
-});
-
 router.get("/buscarParametro/:idEmpresa", function(req, res){
-    situacaoController.buscarParametros(req, res)
+    situacaoController.buscarParametro(req, res)
 })
 
-module.express = router;
+router.get("/buscarTodos", function(req, res){
+    situacaoController.buscarTodos(req, res)
+})
+
+module.exports = router;

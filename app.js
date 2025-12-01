@@ -14,11 +14,13 @@ var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
 
 var app = express();
-
+var trafegoRouter = require("./src/routes/trafego");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
 var dadosRouter = require("./src/routes/comparativo");
+var situacaoRouter = require("./src/routes/situacao");
+// var predicaoRouter = require("./src/routes/predicoes")
 
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
@@ -33,11 +35,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
-
+app.use("/trafego", trafegoRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
+app.use("/situacao", situacaoRouter);
 app.use("/dados", dadosRouter);
+// app.use("/predicoes", predicaoRouter)
 
 app.listen(PORTA_APP, function () {
   console.log(`

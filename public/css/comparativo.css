@@ -1,20 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-<<<<<<< HEAD
-=======
-    :root {
-      --primary-color: #00863f;
-      --light-primary-color: #00a335;
-      --lightiest-primary-color: #87c984;
-      --active-color: #10B981;
-      --dash-bg: #F9FAFB;
-      --white: #ffffff;
-      --text-grey: #8b979f;
-      --danger: #ff5252;
-      --success: #28a745;
-    }
->>>>>>> Gabriel
-
 
 :root {
 
@@ -913,9 +898,132 @@ a {
 
 }
 
+/* Adicione ou substitua essa classe */
 .graph-container {
-  position: relative;
-  height: 300px;
-  width: 100%;
-  overflow: hidden;
+    position: relative;
+    height: 350px; /* Altura fixa para o gráfico não crescer infinitamente */
+    width: 100%;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.alerts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.alert-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 300px; /* Altura fixa para forçar o scroll */
+}
+
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.alert-header h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+}
+
+.alert-header i {
+    color: #f39c12; 
+    font-size: 1.2rem;
+}
+
+.alert-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px; 
+}
+
+.alert-content::-webkit-scrollbar {
+    width: 6px;
+}
+.alert-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.alert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+}
+
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+.alert-time {
+    font-weight: bold;
+    color: #555;
+    min-width: 70px;
+}
+
+.alert-msg {
+    flex: 1;
+    margin-left: 10px;
+    color: #444;
+}
+
+.alert-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-danger { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb;
+} 
+
+.badge-warning { 
+    background-color: #fff3cd; 
+    color: #856404; 
+    border: 1px solid #ffeeba;
+} 
+
+.badge-info { 
+    background-color: #d1ecf1; 
+    color: #0c5460; 
+    border: 1px solid #bee5eb;
+} 
+
+.empty-msg {
+    text-align: center;
+    color: #999;
+    margin-top: 50px;
+}
+.alert-content {
+    overflow-y: auto;
+    max-height: 300px;
 }
