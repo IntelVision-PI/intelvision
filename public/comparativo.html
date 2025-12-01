@@ -22,7 +22,7 @@
 
     <script type="module" src="js/comparativo.js"></script>
     <script src="./js/sessao.js"></script>
-    <script src="./js/alerta.js"></script>
+    <!-- <script src="./js/a"></script> -->
 
 
 
@@ -313,11 +313,6 @@
 
             </div>
             <div class="charts-area">
-                ```
-
-
-
-
 
 
             <div class="charts-area">
@@ -356,205 +351,165 @@
 
 
    <script type="module">
-        import { pegarDadosS3, inicializarGraficos, atualizarGraficos } from "./js/comparativo.js";
+import { pegarDadosS3, inicializarGraficos, atualizarGraficosIncremental, atualizarGraficosFinal } from "./js/comparativo.js";
 
-        document.addEventListener("DOMContentLoaded", async () => {
-            inicializarGraficos();
+document.addEventListener("DOMContentLoaded", async () => {
+    inicializarGraficos();
+    const hoje = new Date().toISOString().split("T")[0];
+    date1.value = hoje;
+    date2.value = hoje;
+    await carregarServidores();
+    btnConsultar.addEventListener("click", atualizar);
+});
 
-            const hoje = new Date().toISOString().split("T")[0];
-            document.getElementById("date1").value = hoje;
-            document.getElementById("date2").value = hoje;
-
-            const select = document.getElementById("selectServidor");
-            try {
-                const res = await fetch("/dados/select"); 
-                const servidores = await res.json();
-                select.innerHTML = `<option value="">Selecione...</option>`;
-                servidores.forEach(s => {
-                    const opt = document.createElement("option");
-                    opt.value = s.nome || s.hostname || s.id;
-                    opt.textContent = s.nome || s.hostname || s.id;
-                    select.appendChild(opt);
-                });
-            } catch (err) {
-                console.error(err);
-                select.innerHTML = `<option>Erro ao carregar</option>`;
-            }
-
-            const btn = document.getElementById("btnConsultar");
-            if (btn) btn.addEventListener("click", atualizar);
-
-            async function atualizar() {
-                const servidor = select.value;
-                if (!servidor || servidor === "Carregando..." || servidor === "") {
-                    alert("Por favor, selecione um servidor primeiro.");
-                    return;
-                }
-
-                const textoOriginal = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Buscando...';
-                btn.disabled = true;
-
-                const [ano1, mes1, dia1] = document.getElementById("date1").value.split("-");
-                const [ano2, mes2, dia2] = document.getElementById("date2").value.split("-");
-
-                try {
-                    const dadosRef = await pegarDadosS3(ano1, mes1, dia1, servidor);
-                    const dadosAtual = await pegarDadosS3(ano2, mes2, dia2, servidor);
-
-                    if (dadosRef.vazio || dadosAtual.vazio) {
-                        document.getElementById("msgErro").style.display = "block";
-                        atualizarGraficos({ vazio: true }, { vazio: true });
-                        resetarKPIs();
-                    } else {
-                        document.getElementById("msgErro").style.display = "none";
-                        atualizarGraficos(dadosRef, dadosAtual);
-                        
-                        calcularEExibirKPIs(dadosRef, dadosAtual);
-                    }
-                } catch (error) {
-                    console.error("Erro ao atualizar:", error);
-                } finally {
-                    btn.innerHTML = textoOriginal;
-                    btn.disabled = false;
-                }
-            }
-
-
-            function calcularEExibirKPIs(ref, atual) {
-               
-                atualizarCardKPI("kpiCPU", "deltaCPU", ref, atual, "cpu");
-                atualizarCardKPI("kpiRAM", "deltaRAM", ref, atual, "ram");
-                atualizarCardKPI("kpiDisco", "deltaDisco", ref, atual, "disco");
-            }
-
-            function atualizarCardKPI(idValor, idDelta, dadosRef, dadosAtual, metrica) {
-                const mediaRef = calcularMediaArray(dadosRef, metrica);
-                const mediaAtual = calcularMediaArray(dadosAtual, metrica);
-
-                const diferenca = mediaAtual - mediaRef;
-
-                document.getElementById(idValor).innerText = mediaAtual.toFixed(1) + "%";
-
-                const divDelta = document.getElementById(idDelta);
-                
-                let icone = "";
-                let cor = "";
-                let sinal = diferenca > 0 ? "+" : ""; 
-
-                
-                if (diferenca > 0.1) {
-                    icone = '<i class="fa-solid fa-arrow-trend-up"></i>';
-                    cor = "red";
-                } else if (diferenca < -0.1) {
-                    icone = '<i class="fa-solid fa-arrow-trend-down"></i>';
-                    cor = "green"; 
-                } else {
-                    icone = '<i class="fa-solid fa-minus"></i>';
-                    cor = "gray"; 
-                }
-
-                divDelta.innerHTML = `
-                    <span style="color: ${cor}; font-weight: bold; display: flex; align-items: center; gap: 5px;">
-                        ${icone} ${sinal}${diferenca.toFixed(1)}%
-                    </span>
-                    <span style="color: #999; font-size: 12px; margin-left: 5px;">vs ref.</span>
-                `;
-            }
-
-            function calcularMediaArray(dados, chave) {
-                const lista = Array.isArray(dados) ? dados : (dados.dados || []);
-                
-                if (lista.length === 0) return 0;
-
-                const soma = lista.reduce((acc, item) => {
-                    return acc + (parseFloat(item[chave]) || 0);
-                }, 0);
-
-                return soma / lista.length;
-            }
-
-            function resetarKPIs() {
-                ["kpiCPU", "kpiRAM", "kpiDisco"].forEach(id => document.getElementById(id).innerText = "--%");
-                ["deltaCPU", "deltaRAM", "deltaDisco"].forEach(id => document.getElementById(id).innerHTML = "<span>--</span>");
-            }
+async function carregarServidores() {
+    try {
+        const res = await fetch("/dados/select");
+        const servidores = await res.json();
+        selectServidor.innerHTML = `<option value="">Selecione...</option>`;
+        servidores.forEach(s => {
+            const opt = document.createElement("option");
+            opt.value = s.nome || s.hostname || s.id;
+            opt.textContent = opt.value;
+            selectServidor.appendChild(opt);
         });
+    } catch {
+        selectServidor.innerHTML = `<option>Erro ao carregar</option>`;
+    }
+}
 
-        function renderizarAlertas(dadosRef, dadosAtual) {
-            preencherListaAlertas("listaAlertasRef", dadosRef);
-            preencherListaAlertas("listaAlertasAtual", dadosAtual);
+async function atualizar() {
+    const servidor = selectServidor.value;
+    if (!servidor) return alert("Selecione um servidor.");
+
+    limparAlertasDaTela();
+    resetarKPIs();
+
+    const texto = btnConsultar.innerHTML;
+    btnConsultar.disabled = true;
+    btnConsultar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Buscando...';
+
+    const [a1, m1, d1] = date1.value.split("-");
+    const [a2, m2, d2] = date2.value.split("-");
+
+    try {
+        const refFull = await pegarDadosS3(a1, m1, d1, servidor);
+        const atualFull = await pegarDadosS3(a2, m2, d2, servidor);
+
+        const listaRef = refFull?.dados || refFull;
+        const listaAtual = atualFull?.dados || atualFull;
+
+        if (!listaRef.length || !listaAtual.length) {
+            msgErro.style.display = "block";
+            return;
         }
 
-        function preencherListaAlertas(elementId, dados) {
-            const divLista = document.getElementById(elementId);
-            divLista.innerHTML = ""; 
+        msgErro.style.display = "none";
 
-            const lista = Array.isArray(dados) ? dados : (dados.dados || []);
+        await processarLista(listaRef, "listaAlertasRef", true);
+        await processarLista(listaAtual, "listaAlertasAtual", false);
 
-            const alertas = lista.filter(d => {
-                return (d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") ||
-                       (d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") ||
-                       (d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO");
-            });
+        atualizarGraficosFinal();
+        calcularEExibirKPIs(listaRef, listaAtual);
 
-            if (alertas.length === 0) {
-                divLista.innerHTML = '<p class="empty-msg">Nenhum alerta registrado nesta data. <i class="fa-solid fa-check-circle" style="color:green"></i></p>';
-                return;
-            }
+    } catch (err) {
+        console.error("Erro:", err);
+    }
 
-            alertas.forEach(d => {
-                const hora = d.timestamp.split(" ")[1] || d.timestamp;
+    btnConsultar.disabled = false;
+    btnConsultar.innerHTML = texto;
+}
 
-                let htmlConteudo = "";
+async function processarLista(lista, elemento, isReferencia) {
+    const div = document.getElementById(elemento);
+    let buffer = [];
 
-                if (d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") {
-                    htmlConteudo += criarItemAlerta(hora, "CPU", d.status_cpu, d.cpu);
-                }
-                if (d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") {
-                    htmlConteudo += criarItemAlerta(hora, "RAM", d.status_ram, d.ram);
-                }
-                if (d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO") {
-                    htmlConteudo += criarItemAlerta(hora, "Disco", d.status_disco, d.disco);
-                }
+    for (const linha of lista) {
+        const html = processarAlertaLinha(linha);
+        if (html) buffer.push(html);
+        atualizarGraficosIncremental(linha, isReferencia);
+        await Promise.resolve();
+    }
 
-                divLista.innerHTML += htmlConteudo;
-            });
-        }
+    div.innerHTML = buffer.join("");
+}
 
-        function criarItemAlerta(hora, componente, status, valor) {
-            const statusUpper = status.toUpperCase();
-            
-            let classeBadge = "";
-            let iconeStatus = "";
+function processarAlertaLinha(registro) {
+    const alerta =
+        (registro.status_cpu !== "OK" && registro.status_cpu !== "SEM_PARAMETRO") ||
+        (registro.status_ram !== "OK" && registro.status_ram !== "SEM_PARAMETRO") ||
+        (registro.status_disco !== "OK" && registro.status_disco !== "SEM_PARAMETRO");
 
-            if (statusUpper.includes("CRITICO") || statusUpper.includes("CRÍTICO")) {
-                classeBadge = "badge-danger";
-                iconeStatus = '<i class="fa-solid fa-circle-exclamation" style="margin-right:5px"></i>';
-            
-            } else if (statusUpper.includes("ALERTA")) {
-                classeBadge = "badge-warning";
-                iconeStatus = '<i class="fa-solid fa-triangle-exclamation" style="margin-right:5px"></i>';
-            
-            } else if (statusUpper.includes("ABAIXO")) {
-                classeBadge = "badge-info";
-                iconeStatus = '<i class="fa-solid fa-arrow-trend-down" style="margin-right:5px"></i>';
-            
-            } else {
-                classeBadge = "badge-warning";
-            }
+    if (!alerta) return "";
 
-            return `
-                <div class="alert-item">
-                    <span class="alert-time">${hora}</span>
-                    <span class="alert-msg">
-                        ${iconeStatus}
-                        <strong>${componente}</strong>: ${valor}%
-                    </span>
-                    <span class="alert-badge ${classeBadge}">${status}</span>
-                </div>
-            `;
-        }
-    </script>
+    const hora = registro.timestamp.split(" ")[1];
+    let html = "";
+
+    if (registro.status_cpu !== "OK" && registro.status_cpu !== "SEM_PARAMETRO")
+        html += criarItemAlerta(hora, "CPU", registro.status_cpu, registro.cpu);
+
+    if (registro.status_ram !== "OK" && registro.status_ram !== "SEM_PARAMETRO")
+        html += criarItemAlerta(hora, "RAM", registro.status_ram, registro.ram);
+
+    if (registro.status_disco !== "OK" && registro.status_disco !== "SEM_PARAMETRO")
+        html += criarItemAlerta(hora, "Disco", registro.status_disco, registro.disco);
+
+    return html;
+}
+
+function criarItemAlerta(hora, componente, status, valor) {
+    const s = status.toUpperCase();
+    let classe = "";
+    let icone = "";
+
+    if (s.includes("CRITICO")) { classe = "badge-danger"; icone = '<i class="fa-solid fa-circle-exclamation"></i>'; }
+    else if (s.includes("ALERTA")) { classe = "badge-warning"; icone = '<i class="fa-solid fa-triangle-exclamation"></i>'; }
+    else { classe = "badge-info"; icone = '<i class="fa-solid fa-arrow-trend-down"></i>'; }
+
+    return `
+        <div class="alert-item">
+            <span class="alert-time">${hora}</span>
+            <span class="alert-msg">${icone} <strong>${componente}</strong>: ${valor}%</span>
+            <span class="alert-badge ${classe}">${status}</span>
+        </div>
+    `;
+}
+
+function calcularEExibirKPIs(ref, atual) {
+    atualizarCard("kpiCPU", "deltaCPU", ref, atual, "cpu");
+    atualizarCard("kpiRAM", "deltaRAM", ref, atual, "ram");
+    atualizarCard("kpiDisco", "deltaDisco", ref, atual, "disco");
+}
+
+function atualizarCard(idValor, idDelta, ref, atual, metrica) {
+    const mRef = ref.reduce((a, x) => a + (+x[metrica] || 0), 0) / ref.length;
+    const mAtual = atual.reduce((a, x) => a + (+x[metrica] || 0), 0) / atual.length;
+    const diff = mAtual - mRef;
+
+    document.getElementById(idValor).innerText = mAtual.toFixed(1) + "%";
+
+    const cor = diff >= 0 ? "red" : "green";
+    const icon = diff >= 0 ? "fa-arrow-trend-up" : "fa-arrow-trend-down";
+
+    document.getElementById(idDelta).innerHTML =
+        `<span style="color:${cor}"><i class="fa-solid ${icon}"></i> ${diff.toFixed(1)}%</span>`;
+}
+
+function limparAlertasDaTela() {
+    listaAlertasRef.innerHTML = "";
+    listaAlertasAtual.innerHTML = "";
+}
+
+function resetarKPIs() {
+    kpiCPU.innerText = "--%";
+    kpiRAM.innerText = "--%";
+    kpiDisco.innerText = "--%";
+    deltaCPU.innerHTML = "--";
+    deltaRAM.innerHTML = "--";
+    deltaDisco.innerHTML = "--";
+}
+
+</script>
 
 </body>
 

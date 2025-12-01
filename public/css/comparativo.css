@@ -1014,3 +1014,7 @@ a {
     color: #999;
     margin-top: 50px;
 }
+.alert-content {
+    overflow-y: auto;
+    max-height: 300px;
+}

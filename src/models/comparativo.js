@@ -14,10 +14,11 @@ async function streamParaString(stream) {
  
 async function buscarDadosS3(ano, mes, dia, servidor) {
   const bucket = "my-bucket-client-nicolas";
-  const servidorTransformado = servidor.toLowerCase();
-  
-  const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidorTransformado}.json`;
-  
+
+  const servidorLower = servidor.toLowerCase(); 
+
+const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidor.toLowerCase()}.json`;
+
   console.log("-------------------------------------------------");
   console.log(`[S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
   console.log(`[S3 DEBUG] Caminho (Key) gerado: ${key}`);
