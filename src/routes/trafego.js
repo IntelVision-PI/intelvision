@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 
-// AQUI ESTAVA O ERRO: Ele tentava importar o controller e não achava
 var trafegoController = require("../controllers/trafego");
 
 router.get("/servidores", function (req, res) {
