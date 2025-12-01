@@ -2,8 +2,6 @@
 var ambiente_processo = "desenvolvimento";
 
 var caminho_env = ambiente_processo === "producao" ? ".env" : ".env.dev";
-// Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
-// A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 
 require("dotenv").config({ path: caminho_env });
 
@@ -19,7 +17,8 @@ var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
 var dadosRouter = require("./src/routes/comparativo");
-var predicaoRouter = require("./src/routes/predicoes");
+var situacaoRouter = require("./src/routes/situacao");
+// var predicaoRouter = require("./src/routes/predicoes")
 
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
@@ -38,10 +37,9 @@ app.use("/trafego", trafegoRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
+app.use("/situacao", situacaoRouter);
 app.use("/dados", dadosRouter);
-app.use("/dados", predicaoRouter);
-
-
+// app.use("/predicoes", predicaoRouter)
 
 app.listen(PORTA_APP, function () {
   console.log(`

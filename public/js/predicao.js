@@ -9,6 +9,7 @@ async function carregarArquivosS3() {
 
     // Arquivo Ano Atual
     const r2025 = await fetch(`/predicoes/${ano}/${mes}/${dia}/servidor14.jasudjc-2025.json`);
+
     if (r2025.ok) dados2025 = await r2025.json();
     else console.error("Erro ao buscar servidor14.jasudjc-2025.json");
 
