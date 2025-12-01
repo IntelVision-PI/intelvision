@@ -8,12 +8,12 @@ async function carregarArquivosS3() {
     const dia = "27";
 
     // Arquivo Ano Atual
-    const r2025 = await fetch(`/predicoes/${ano}/${mes}/${dia}/servidor14.jasudjc-2025`);
+    const r2025 = await fetch(`/predicoes/${ano}/${mes}/${dia}/servidor14.jasudjc-2025.json`);
     if (r2025.ok) dados2025 = await r2025.json();
     else console.error("Erro ao buscar servidor14.jasudjc-2025.json");
 
     // Arquivo Ano Anterior
-    const r2024 = await fetch(`/predicoes/${ano}/${mes}/${dia}/servidor14.jasudjc-2024`);
+    const r2024 = await fetch(`/predicoes/${ano}/${mes}/${dia}/servidor14.jasudjc-2024.json`);
     if (r2024.ok) dados2024 = await r2024.json();
     else console.error("Erro ao buscar servidor14.jasudjc-2024.json");
 
@@ -21,3 +21,4 @@ async function carregarArquivosS3() {
     console.error("Falha ao carregar arquivos S3:", e);
   }
 }
+
