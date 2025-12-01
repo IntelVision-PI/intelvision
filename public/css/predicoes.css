@@ -2,6 +2,15 @@
   --primary-color: #00863f;
   --light-primary-color: #00a335;
   --lightiest-primary-color: #87c984;
+  --color-gray-50: #f9fafb;
+  --color-gray-200: #e5e7eb;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
 }
 
 /* PÁGINA DE PREDICOES.HTML */
@@ -96,7 +105,7 @@
 .div-relatorio {
   width: 100%;
   height: auto;
-  /* background-color: #00863f; */
+  margin-top: 32px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -226,4 +235,115 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23d4004c' d='M19 22h10v20H19zM32 8h10v34H32zM6 30h10v12H6z'/%3E%3Cg fill='%23a00'%3E%3Cpath d='m11 8l10 10V8z'/%3E%3Cpath d='m9.394 22.437l-2.828-2.828l9.969-9.969l2.828 2.828z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* PARTE DA KPI DE RELATÓRIOS DA SITUAÇÃO */
+.div_cadastrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 50;
+  border: none; 
+}
+
+.cadastro_wrapper {
+  width: 90vw;
+  max-width: 800px;
+  height: auto;
+  max-height: 90vh;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  overflow: hidden;
+}
+
+.cabecalho_cadastro.report-header {
+  background-color: var(--color-emerald-600);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cabecalho_cadastro .reportar-titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cabecalho_cadastro .X {
+  background-color: var(--color-emerald-700);
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px;
+  transition: background-color 0.2s;
+  font-size: 24px;
+}
+.cabecalho_cadastro .X:hover {
+  background-color: var(--color-emerald-800);
+}
+
+.div-situacao-container.report-body-grid {
+  display: flex;
+  padding: 0;
+  justify-content: space-evenly;
+}
+
+.div-situacao {
+  width: 100%;
+  height: auto;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.icon-container-risk, .icon-container-safe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.report-subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-top: 8px;
+}
+.text-risk {
+  color: var(--color-red-500);
+}
+.text-safe {
+  color: var(--color-emerald-600);
+}
+
+.div-situacao-servidores {
+  padding: 8px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 300px;
+  height: 40px;
+  background: var(--color-emerald-300);
+  border: 2px solid var(--color-emerald-600);
+  border-radius: 5px;
+}
+
+.coluna-de-risco .negativo {
+
+}
+
+.coluna-de-risco .negativo {
+  
 }
