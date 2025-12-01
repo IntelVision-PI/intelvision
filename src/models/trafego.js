@@ -18,7 +18,7 @@ async function streamParaString(stream) {
 
 // Busca o JSON no Bucket S3
 async function buscarDadosS3(ano, mes, dia, servidor) {
-    const bucket = "s3-client-04251119"; // Seu bucket
+    const bucket = "my-bucket-client-nicolas"; // Seu bucket
     const servidorTransformado = servidor.toLowerCase();
     
     // Caminho do arquivo
