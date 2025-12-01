@@ -73,6 +73,16 @@
             </span>
           </div>
         </a>
+        <div class="btn-nav inativo">
+          <a href="/comparativo.html">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              background="#FFFFFF" fill="#8b979f">
+              <path
+                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z" />
+            </svg>
+            <h3>Comparativo</h3>
+          </a>
+        </div>
 
         <a href="./tela-servidores-codecs.html">
           <div class="btn-nav inativo" id="btn-nav-admin-servidores">
@@ -108,20 +118,35 @@
           <span id="dataHora"></span>
         </div> -->
         <div class="kpi-container">
-          <div class="kpi">
-            <h4>Servidores de armazenamento em alerta ou crítico</h4>
-            <p>5</p>
-            <span>Total de 10 servidores</span>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Servidores de Armazenamento em alerta ou crítico</span>
+              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
+            </div>
+            <div class="kpi-value" id="kpiCPU">--</div>
+            <div class="kpi-delta" id="deltaCPU">
+              <span style="color: #999; font-weight: 400;">Aguardando...</span>
+            </div>
           </div>
-          <div class="kpi">
-            <h4>Servidores WEB em alerta ou crítico</h4>
-            <p>3</p>
-            <span>Total de 5 servidores</span>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Servidores de WEB em alerta ou crítico</span>
+              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
+            </div>
+            <div class="kpi-value" id="kpiCPU">--</div>
+            <div class="kpi-delta" id="deltaCPU">
+              <span style="color: #999; font-weight: 400;">Aguardando...</span>
+            </div>
           </div>
-          <div class="kpi">
-            <h4>Servidores de processamento em alerta ou crítico</h4>
-            <p>9</p>
-            <span>Total de 15 servidores</span>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Servidores de Processamento em alerta ou crítico</span>
+              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
+            </div>
+            <div class="kpi-value" id="kpiCPU">--</div>
+            <div class="kpi-delta" id="deltaCPU">
+              <span style="color: #999; font-weight: 400;">Aguardando...</span>
+            </div>
           </div>
         </div>
         <!-- Filtro Servidores -->
@@ -178,7 +203,7 @@
             <div class="cabecalhoGraficoUm">
               <h3>Top 5 Uso de RAM</h3>
               <div class="filtrosGraficoUm">
-                <select name="" id="">
+                <select name="" id="" class="select-input">
                   <option value="Todos">Todos</option>
                   <option value="Armazenamento">Armazenamento</option>
                   <option value="Processamento">Processamento</option>

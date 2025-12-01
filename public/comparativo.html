@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelVision | Comparativo de Performance</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/comparativo.css" />
+    
+    <style>
+        .kpi-subtext { font-size: 0.85rem; color: #666; margin-top: -5px; margin-bottom: 10px; }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-left: 10px; display: inline-block;}
+        .status-ok { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-alerta { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .status-critico { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/sessao.js"></script>
+</head>
+
+<body onload="validarSessaoAdministrador()">
+
+    <div class="header-left">
+
+        <h1>IntelVision</h1>
+
+
+
+        <div class="escolhaDash">
+
+
+
+            <div class="btn-nav inativo">
+
+                <a href="servidores.html">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+
+                        <path
+                            d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+
+                    </svg>
+
+                    <h3>Dashboard</h3>
+
+                </a>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="btn-nav inativo">
+
+                <a href="./tela-administracao-usuario.html">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+
+                        <path
+                            d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+
+                    </svg>
+
+                    <h3>Adm - Usuários</h3>
+
+                </a>
+
+            </div>
+
+
+
+            <div class="btn-nav inativo">
+
+                <a href="./tela-administracao-servidores.html">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+
+                        <path
+                            d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+
+                    </svg>
+
+                    <h3>Adm - Servidores</h3>
+
+                </a>
+
+            </div>
+
+            <div class="btn-nav ativo">
+
+                <a href="#">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+
+                        <path
+                            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z" />
+
+                    </svg>
+
+                    <h3>Comparativo</h3>
+
+                </a>
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
+
+            <a href="./index.html">
+
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+
+                    <path
+                        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+
+                </svg>
+
+                <h3>Sair</h3>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="dash">
+        <div class="dash__conteudo">
+
+            <div class="control-bar">
+                <div class="input-wrapper">
+                    <p class="control-label">Servidor <span id="statusBadge"></span></p>
+                    <select id="selectServidor" class="select-input">
+                        <option>Carregando...</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <div class="input-wrapper">
+                        <p class="control-label">Data Referência</p>
+                        <input type="date" id="date1" class="date-input">
+                    </div>
+                    <div class="vs-badge">VS</div>
+                    <div class="input-wrapper">
+                        <p class="control-label">Data Atual</p>
+                        <input type="date" id="date2" class="date-input">
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="btnConsultar">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> Comparar
+                </button>
+            </div>
+
+            <div id="msgErro" style="display:none; color:red; font-size:18px; margin-top:12px;">
+                Nenhum dado encontrado.
+            </div>
+
+            <div class="summary-grid">
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">CPU (Média)</span>
+                        <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div>
+                    </div>
+                    <div class="kpi-value" id="kpiCPU">--%</div>
+                    <div class="kpi-subtext">Pico: <span id="picoCPU">--%</span></div>
+                    
+                    <div class="kpi-delta" id="deltaCPU">
+                        <span style="color: #999;">Aguardando...</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">RAM (Média)</span>
+                        <div class="kpi-icon"><i class="fa-solid fa-memory"></i></div>
+                    </div>
+                    <div class="kpi-value" id="kpiRAM">--%</div>
+                    <div class="kpi-subtext">Pico: <span id="picoRAM">--%</span></div>
+
+                    <div class="kpi-delta" id="deltaRAM">
+                        <span style="color: #999;">Aguardando...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alerts-grid">
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <h3>Alertas (Ref) <span id="labelDataRef" style="font-size:0.8em; color:#666;"></span></h3>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content" id="listaAlertasRef">
+                        <p class="empty-msg">Aguardando dados...</p>
+                    </div>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-header">
+                        <h3>Alertas (Atual) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="alert-content" id="listaAlertasAtual">
+                        <p class="empty-msg">Aguardando dados...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-area">
+                <div class="chart-wrapper">
+                    <div class="chart-header"><h3>Processamento (CPU)</h3></div>
+                    <div class="graph-container"><canvas id="chartCPU"></canvas></div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="chart-header"><h3>Memória (RAM)</h3></div>
+                    <div class="graph-container"><canvas id="chartRAM"></canvas></div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="chart-header"><h3>Armazenamento (Tendência)</h3></div>
+                    <div class="graph-container"><canvas id="chartDisco"></canvas></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        document.addEventListener("DOMContentLoaded", async () => {
+            inicializarGraficos();
+
+            const hoje = new Date();
+            const ontem = new Date();
+            ontem.setDate(ontem.getDate() - 1);
+
+            if (document.getElementById("date1")) document.getElementById("date1").value = ontem.toISOString().split("T")[0];
+            if (document.getElementById("date2")) document.getElementById("date2").value = hoje.toISOString().split("T")[0];
+
+            await carregarServidores();
+            const btnConsultar = document.getElementById("btnConsultar");
+            if (btnConsultar) btnConsultar.addEventListener("click", atualizar);
+        });
+
+        async function carregarServidores() {
+            const selectServidor = document.getElementById("selectServidor");
+            try {
+                const res = await fetch("/dados/select");
+                if (!res.ok) throw new Error("Erro API");
+                const lista = await res.json();
+                selectServidor.innerHTML = `<option value="">Selecione...</option>`;
+                lista.forEach(item => {
+                    const valor = item.nome || item.hostname || item.id;
+                    const opt = document.createElement("option");
+                    opt.value = valor;
+                    opt.textContent = valor;
+                    selectServidor.appendChild(opt);
+                });
+            } catch (err) {
+                console.error(err);
+                selectServidor.innerHTML = `<option value="">Erro ao carregar</option>`;
+            }
+        }
+
+        async function pegarDadosS3(ano, mes, dia, servidor) {
+            const url = `/dados/${ano}/${mes}/${dia}/${servidor}`;
+            try {
+                const res = await fetch(url, { cache: "no-store" });
+                if (!res.ok) return [];
+                const json = await res.json();
+                return json.dados || json || [];
+            } catch { return []; }
+        }
+
+        async function atualizar() {
+            const servidor = document.getElementById("selectServidor").value;
+            if (!servidor) return alert("Selecione um servidor.");
+
+            const btn = document.getElementById("btnConsultar");
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ...';
+
+            resetarKPIs();
+            limparAlertas();
+            document.getElementById("statusBadge").innerHTML = "";
+
+            const [a1, m1, d1] = document.getElementById("date1").value.split("-");
+            const [a2, m2, d2] = document.getElementById("date2").value.split("-");
+
+            document.getElementById("labelDataRef").innerText = `(${d1}/${m1})`;
+            document.getElementById("labelDataAtual").innerText = `(${d2}/${m2})`;
+
+            try {
+                const [rawRef, rawAtual] = await Promise.all([
+                    pegarDadosS3(a1, m1, d1, servidor),
+                    pegarDadosS3(a2, m2, d2, servidor)
+                ]);
+
+                if (rawRef.length === 0 && rawAtual.length === 0) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    return alert("Sem dados.");
+                }
+
+                const refAgrupado = agruparPorJanela30min(rawRef);
+                const atualAgrupado = agruparPorJanela30min(rawAtual);
+
+                plotarGraficosOtimizados(refAgrupado, atualAgrupado);
+                
+                calcularKPIsComPico(refAgrupado, atualAgrupado);
+                definirStatusGeral(atualAgrupado);
+
+                gerarListaAlertas(refAgrupado, "listaAlertasRef");
+                gerarListaAlertas(atualAgrupado, "listaAlertasAtual");
+
+            } catch (erro) {
+                console.error(erro);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+       function agruparPorJanela30min(dados) {
+    if (!dados) return [];
+    const mapa = {};
+
+    for (let h = 0; h < 24; h++) {
+        for (let m = 0; m < 60; m += 30) {
+            const horaStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+            mapa[horaStr] = { 
+                cpu: [], ram: [], disco: [], 
+                status_cpu: [], status_ram: [], status_disco: [] 
+            };
+        }
+    }
+
+    dados.forEach(reg => {
+        const dt = new Date(reg.timestamp || reg.dtHora);
+        const min = dt.getMinutes();
+        const minArredondado = min < 30 ? 0 : 30;
+        dt.setMinutes(minArredondado, 0, 0);
+        const chave = dt.toTimeString().substring(0, 5);
+        
+        if (mapa[chave]) {
+            mapa[chave].cpu.push(Number(reg.cpu));
+            mapa[chave].ram.push(Number(reg.ram));
+            mapa[chave].disco.push(Number(reg.disco));
+            
+            if(reg.status_cpu) mapa[chave].status_cpu.push(reg.status_cpu);
+            if(reg.status_ram) mapa[chave].status_ram.push(reg.status_ram);
+            if(reg.status_disco) mapa[chave].status_disco.push(reg.status_disco);
+        }
+    });
+    
+    
+    const definirPiorStatus = (listaStatus) => {
+        if (listaStatus.includes("CRITICO")) return "CRITICO";
+        if (listaStatus.includes("ALERTA")) return "ALERTA";
+        return "OK"; 
+    };
+
+    const resultado = [];
+    Object.keys(mapa).sort().forEach(key => {
+        const bucket = mapa[key];
+        if (bucket.cpu.length > 0) {
+            resultado.push({
+                timestamp: key,
+                cpu: media(bucket.cpu),
+                ram: media(bucket.ram),
+                disco: media(bucket.disco),
+                cpuMax: Math.max(...bucket.cpu), 
+                ramMax: Math.max(...bucket.ram),
+                discoMax: Math.max(...bucket.disco),
+                status_cpu: definirPiorStatus(bucket.status_cpu),
+                status_ram: definirPiorStatus(bucket.status_ram),
+                status_disco: definirPiorStatus(bucket.status_disco)
+            });
+        }
+    });
+    return resultado;
+}
+
+        function media(arr) {
+            if (!arr.length) return 0;
+            return arr.reduce((a, b) => a + b, 0) / arr.length;
+        }
+
+        function calcularKPIsComPico(ref, atual) {
+            atualizarKPI("kpiCPU", "picoCPU", "deltaCPU", ref, atual, "cpu", "cpuMax");
+            atualizarKPI("kpiRAM", "picoRAM", "deltaRAM", ref, atual, "ram", "ramMax");
+        }
+
+        function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
+            const elMed = document.getElementById(idMed);
+            const elPico = document.getElementById(idPico);
+            const elDelta = document.getElementById(idDelta);
+
+            const mAtual = media(atual.map(d => d[campoMed]));
+            const mRef = media(ref.map(d => d[campoMed]));
+            const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : 0;
+
+            if (isNaN(mAtual) || atual.length === 0) {
+                elMed.innerText = "--%";
+                elPico.innerText = "--%";
+                return;
+            }
+
+            elMed.innerText = mAtual.toFixed(1) + "%";
+            elPico.innerText = picoAtual.toFixed(1) + "%";
+
+            if(ref.length === 0) {
+                elDelta.innerHTML = "Sem ref";
+                return;
+            }
+
+            const diff = mAtual - mRef;
+            let cor = diff > 0.1 ? "#e74c3c" : (diff < -0.1 ? "#2ecc71" : "#7f8c8d");
+            let icon = diff > 0.1 ? "fa-arrow-trend-up" : (diff < -0.1 ? "fa-arrow-trend-down" : "fa-minus");
+            let sinal = diff > 0.1 ? "+" : "";
+
+            elDelta.innerHTML = `<span style="color:${cor}; font-weight:bold"><i class="fa-solid ${icon}"></i> ${sinal}${diff.toFixed(1)}% ref</span>`;
+        }
+
+        function definirStatusGeral(dados) {
+            const badge = document.getElementById("statusBadge");
+            if(!dados.length) return;
+
+            const maxCPU = Math.max(...dados.map(d => d.cpuMax || d.cpu));
+            const maxRAM = Math.max(...dados.map(d => d.ramMax || d.ram));
+            const maiorPico = Math.max(maxCPU, maxRAM);
+
+            badge.className = "status-badge";
+            if (maiorPico >= 90) {
+                badge.classList.add("status-critico");
+                badge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> CRÍTICO';
+            } else if (maiorPico >= 75) {
+                badge.classList.add("status-alerta");
+                badge.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ALERTA';
+            } else {
+                badge.classList.add("status-ok");
+                badge.innerHTML = '<i class="fa-solid fa-check-circle"></i> NORMAL';
+            }
+        }
+
+        let chartCPU, chartRAM, chartDisco;
+        function inicializarGraficos() {
+            chartCPU = criarChart("chartCPU");
+            chartRAM = criarChart("chartRAM");
+            chartDisco = criarChart("chartDisco");
+        }
+        function criarChart(id) {
+            return new Chart(document.getElementById(id).getContext("2d"), {
+                type: 'line',
+                data: { labels: [], datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } },
+                    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100 } },
+                    elements: { point: { radius: 2 }, line: { tension: 0.3 } }
+                }
+            });
+        }
+        function plotarGraficosOtimizados(ref, atual) {
+            const labels = Array.from(new Set([...ref.map(d=>d.timestamp), ...atual.map(d=>d.timestamp)])).sort();
+            const mapData = (list, key) => labels.map(l => { const f = list.find(x=>x.timestamp===l); return f ? f[key] : null; });
+
+            updChart(chartCPU, labels, mapData(ref, 'cpu'), mapData(atual, 'cpu'));
+            updChart(chartRAM, labels, mapData(ref, 'ram'), mapData(atual, 'ram'));
+            updChart(chartDisco, labels, mapData(ref, 'disco'), mapData(atual, 'disco'));
+        }
+        function updChart(chart, lbls, dRef, dAtu) {
+            chart.data.labels = lbls;
+            chart.data.datasets = [
+                { label: 'Ref', data: dRef, borderColor: '#bdc3c7', borderDash:[5,5], borderWidth:2, pointRadius:0 },
+                { label: 'Atual', data: dAtu, borderColor: '#2ecc71', backgroundColor:'rgba(46,204,113,0.1)', borderWidth:2, fill:true }
+            ];
+            chart.update();
+        }
+
+       function gerarListaAlertas(lista, id) {
+    const div = document.getElementById(id);
+    div.innerHTML = "";
+    
+    
+    const dadosComAlerta = lista.filter(d => 
+        (d.status_cpu === "CRITICO" || d.status_cpu === "ALERTA") ||
+        (d.status_ram === "CRITICO" || d.status_ram === "ALERTA") ||
+        (d.status_disco === "CRITICO" || d.status_disco === "ALERTA")
+    );
+
+    if(!dadosComAlerta.length) {
+        div.innerHTML = '<p class="empty-msg">Nenhum alerta crítico encontrado.</p>';
+        return;
+    }
+
+    let html = "";
+    dadosComAlerta.forEach(d => {
+        if(d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") 
+            html += cardAlerta(d.timestamp, "CPU", d.cpuMax, d.status_cpu);
+            
+        if(d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") 
+            html += cardAlerta(d.timestamp, "RAM", d.ramMax, d.status_ram);
+            
+        if(d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO") 
+            html += cardAlerta(d.timestamp, "Disco", d.discoMax || d.disco, d.status_disco);
+    });
+    div.innerHTML = html;
+}
+
+function cardAlerta(hora, tipo, valor, status) {
+    let cor = "#7f8c8d";
+    let icon = "fa-circle-info";
+
+    if (status === "CRITICO") {
+        cor = "#e74c3c"; 
+        icon = "fa-circle-xmark";
+    } else if (status === "ALERTA") {
+        cor = "#f1c40f"; 
+        icon = "fa-triangle-exclamation";
+    } else if (status === "OK") {
+        cor = "#2ecc71"; 
+        icon = "fa-check-circle";
+    }
+
+    return `
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:10px; border-bottom:1px solid #eee; font-size:0.9rem;">
+        <div style="display:flex; flex-direction:column;">
+            <span style="font-weight:bold; color:#333;">${hora} - ${tipo}</span>
+            <span style="font-size:0.75rem; color:${cor}; font-weight:bold;">
+                <i class="fa-solid ${icon}"></i> ${status}
+            </span>
+        </div>
+        <div style="text-align:right;">
+            <span style="font-size:1.1rem; font-weight:bold; color:#555;">${valor.toFixed(1)}%</span>
+        </div>
+    </div>`;
+}
+
+        
+
+        function resetarKPIs() {
+            ["CPU", "RAM"].forEach(t => {
+                document.getElementById(`kpi${t}`).innerText = "--%";
+                document.getElementById(`pico${t}`).innerText = "--%";
+                document.getElementById(`delta${t}`).innerHTML = "Aguardando...";
+            });
+        }
+        function limparAlertas() {
+            document.getElementById("listaAlertasRef").innerHTML = "...";
+            document.getElementById("listaAlertasAtual").innerHTML = "...";
+        }
+    </script>
+</body>
+</html>

@@ -39,7 +39,7 @@
   </head>
 
   <body
-    onload="puxarDadosServidor(), validarSessaoAdministrador(),pegarInformacoesServidor('Todos'), pegarRegistrosServidor(1)"
+    onload="pegarDataServidor(), puxarDadosServidor(), validarSessaoAdministrador(),pegarInformacoesServidor('Todos'), pegarRegistrosServidor(1), pegarDadosBucketClient()"
   >
     <header>
       <div class="cabecalho-dash">
@@ -174,6 +174,14 @@
                 class="ipt_procura"
               ></select>
             </div>
+            <div class="filtro_servidores div-ipt-procura">
+              <p>Filtrar por data:</p>
+              <input
+                type="date"
+                id="filtro_data_servidor"
+                onchange="pegarDataServidor()"
+              />
+            </div>
           </div>
           <div class="dash__conteudo__grupo">
             <div class="dash__conteudo__grupo__descricao-servidor">
@@ -207,4 +215,30 @@
 </html>
 <script src="js/verificarCampos.js"></script>
 <script src="js/verifyLogin.js"></script>
-<script src="js/tela-servidores-codecs.js"></script>
+<script src="js/tela-servidores-codecs.js" type="module"></script>
+<script>
+  const ctxDia = document.getElementById("requisicoesDia");
+  const containerGrafico1 = document.getElementById(
+    "dash__conteudo__grupo__graficos__container1"
+  );
+  const selectServidores = document.getElementById("fitro_nome_servidor");
+
+  const dataHoje = new Date();
+  const formatoBrasileiro = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "long",
+    timeStyle: "medium",
+  });
+  console.log("Data Brasileira");
+  console.log(formatoBrasileiro.format(dataHoje));
+  const formatoDataCurta = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "short",
+  });
+  console.log("Data Brasileira Curta");
+  console.log(formatoDataCurta.format(dataHoje));
+
+  let dataSelecionada;
+
+  let servidores = [];
+  let servidoresProcessamento = [];
+  let dadosGrafico = [];
+</script>
