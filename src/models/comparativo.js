@@ -13,7 +13,7 @@ async function streamParaString(stream) {
 
  
 async function buscarDadosS3(ano, mes, dia, servidor) {
-  const bucket = "leticia04251048-client";
+  const bucket = "my-bucket-client-nicolas";
 
   const servidorLower = servidor.toLowerCase(); 
 
