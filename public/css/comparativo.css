@@ -1,20 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-<<<<<<< HEAD
-=======
-    :root {
-      --primary-color: #00863f;
-      --light-primary-color: #00a335;
-      --lightiest-primary-color: #87c984;
-      --active-color: #10B981;
-      --dash-bg: #F9FAFB;
-      --white: #ffffff;
-      --text-grey: #8b979f;
-      --danger: #ff5252;
-      --success: #28a745;
-    }
->>>>>>> Gabriel
-
 
 :root {
 
@@ -913,11 +898,21 @@ a {
 
 }
 
+/* Adicione ou substitua essa classe */
 .graph-container {
-  position: relative;
-  height: 300px;
-  width: 100%;
-  overflow: hidden;
+    position: relative;
+    height: 350px; /* Altura fixa para o gráfico não crescer infinitamente */
+    width: 100%;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .alerts-grid {
