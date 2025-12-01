@@ -36,6 +36,29 @@ async function buscarDadosS3(ano, mes, dia, servidor) {
   }
 }
 
+async function buscarChamadosS3() {
+  const bucket = "my-bucket-client-nicolas";
+  
+  const key = `jira/chamados/chamados.csv`;
+  
+  console.log("-------------------------------------------------");
+  console.log(`[S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
+  console.log(`[S3 DEBUG] Caminho (Key) gerado: ${key}`);
+  console.log("-------------------------------------------------");
+
+  const params = { Bucket: bucket, Key: key };
+
+  try {
+    const response = await s3.send(new GetObjectCommand(params));
+    const bodyString = await streamParaString(response.Body);
+    return JSON.parse(bodyString);
+  } catch (err) {
+    console.error(`[S3 ERRO] Falha ao baixar o arquivo: ${key}`);
+    console.error(`[S3 ERRO] Detalhe: ${err.message || err.Code}`);
+    return null;
+  }
+}
+
 function buscarServidores() {
   const instrucaoSql = `select * from servidor`;
   return database.executar(instrucaoSql);
@@ -43,5 +66,6 @@ function buscarServidores() {
 
 module.exports = {
   buscarDadosS3,
-  buscarServidores
+  buscarServidores,
+  buscarChamadosS3
 };
