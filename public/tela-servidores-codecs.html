@@ -38,47 +38,129 @@
     ></script>
   </head>
 
-  <body onload="puxarDadosServidor(), validarSessaoAdministrador()">
+  <body
+    onload="pegarDataServidor(), puxarDadosServidor(), validarSessaoAdministrador(),pegarInformacoesServidor('Todos'), pegarRegistrosServidor(1), pegarDadosBucketClient()"
+  >
     <header>
       <div class="cabecalho-dash">
         <div class="nome-dash">
-          <img src="./assets/img/icon-codec.png" alt="" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+            fill="#000000"
+          >
+            <path
+              d="M160-400v-80h640v80H160Zm0-120v-80h640v80H160ZM440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160Z"
+            />
+          </svg>
           <h3>Análise - Codecs de Servidores de Processamento</h3>
         </div>
       </div>
     </header>
     <div class="janela">
+      <!-- MENU -->
+      <!-- MENU -->
       <div class="header-left">
         <h1>IntelVision</h1>
-
-        <div class="btn-nav">
-          <a href="servidores.html">
-            <i class="fa-solid fa-chart-simple"></i>
-            <h3>Dashboard</h3>
+        <div class="escolhaDash">
+          <a href="./servidores.html">
+            <div class="btn-nav inativo">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#8b979f"
+                >
+                  <path
+                    d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                  />
+                </svg>
+                <h3>Dashboard</h3>
+              </span>
+            </div>
           </a>
-        </div>
 
-        <div class="btn-nav ativo" id="btn-nav-admin-usuarios">
           <a href="./tela-administracao-usuario.html">
-            <i class="fa-solid fa-user-gear"></i>
-            <h3>Adm - Usuários</h3>
+            <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#8b979f"
+                >
+                  <path
+                    d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z"
+                  />
+                </svg>
+                <h3>Adm - Usuários</h3>
+              </span>
+            </div>
           </a>
-        </div>
 
-        <div class="btn-nav" id="btn-nav-admin-servidores">
           <a href="./tela-administracao-servidores.html">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            <h3>Adm - Servidores</h3>
+            <div class="btn-nav inativo" id="btn-nav-admin-servidores">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#8b979f"
+                >
+                  <path
+                    d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"
+                  />
+                </svg>
+                <h3>Adm - Servidores</h3>
+              </span>
+            </div>
+          </a>
+
+          <a href="./tela-servidores-codecs.html">
+            <div class="btn-nav ativo" id="btn-nav-admin-servidores">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#8b979f"
+                >
+                  <path
+                    d="M160-400v-80h640v80H160Zm0-120v-80h640v80H160ZM440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160Z"
+                  />
+                </svg>
+                <h3>Análise-Codecs</h3>
+              </span>
+            </div>
           </a>
         </div>
 
-        <div class="btn-nav btn-logout" onclick="limparSessao()">
+        <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
           <a href="./index.html">
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#8b979f"
+            >
+              <path
+                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"
+              />
+            </svg>
             <h3>Sair</h3>
           </a>
         </div>
       </div>
+
+      <!-- FIM MENU -->
 
       <div class="dash">
         <div class="dash__conteudo">
@@ -88,78 +170,42 @@
               <select
                 name="fitro_nome_servidor"
                 id="fitro_nome_servidor"
-                onchange="puxarDadosServidor()"
+                onchange="pegarInformacoesServidor(fitro_nome_servidor.value)"
                 class="ipt_procura"
               ></select>
             </div>
-          </div>
-
-          <div class="dash__conteudo__descricao-servidor">
-            <img src="./assets/img/servidores/servidorDemo.png" alt="" />
-            <table>
-              <thead>
-                <tr>
-                  <th>Descrição</th>
-                  <th>Valores</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Nome</td>
-                  <td>SRV001</td>
-                </tr>
-                <tr>
-                  <td>Modelo</td>
-                  <td>AV-CSCX16T</td>
-                </tr>
-                <tr>
-                  <td>Service Tag</td>
-                  <td>123ABC</td>
-                </tr>
-                <tr>
-                  <td>Endereço MAC</td>
-                  <td>d4:77:c4:dc:34:ab</td>
-                </tr>
-                <tr>
-                  <td>Disco Rígido</td>
-                  <td>512 SSD</td>
-                </tr>
-                <tr>
-                  <td>RAM</td>
-                  <td>64GB</td>
-                </tr>
-                <tr>
-                  <td>CPU</td>
-                  <td>i9-7842</td>
-                </tr>
-                <tr>
-                  <td>GPU</td>
-                  <td>Nvidia RTX 3500</td>
-                </tr>
-                <tr>
-                  <td>Tipo</td>
-                  <td>Processamento</td>
-                </tr>
-                <tr>
-                  <td>Codec</td>
-                  <td>H.264</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="dash__conteudo__graficos">
-            <!-- Gráfico de requisições por dia -->
-            <div class="chart-container">
-              <h3>Consumo de CPU do codec do servidor em ambiente estático</h3>
-              <canvas id="requisicoesDia"></canvas>
+            <div class="filtro_servidores div-ipt-procura">
+              <p>Filtrar por data:</p>
+              <input
+                type="date"
+                id="filtro_data_servidor"
+                onchange="pegarDataServidor()"
+              />
             </div>
-            <!-- Gráficos de requisições por hora -->
-            <div class="chart-container">
-              <h3>
-                Consumo de CPU do cliente (simulador local) do codec em ambiente
-                estático
-              </h3>
-              <canvas id="requisicoesHora"></canvas>
+          </div>
+          <div class="dash__conteudo__grupo">
+            <div class="dash__conteudo__grupo__descricao-servidor">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th>Valores</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody_servidores_codec"></tbody>
+              </table>
+            </div>
+            <div class="dash__conteudo__grupo__graficos">
+              <!-- Gráficos de requisições por hora -->
+              <div
+                class="chart-container"
+                id="dash__conteudo__grupo__graficos__container1"
+              >
+                <h3 id="dash__conteudo__grupo__graficos__titulo">
+                  Aguarde ...
+                </h3>
+                <canvas id="requisicoesHora"></canvas>
+              </div>
             </div>
           </div>
         </div>
@@ -169,4 +215,30 @@
 </html>
 <script src="js/verificarCampos.js"></script>
 <script src="js/verifyLogin.js"></script>
-<script src="js/tela-servidores-codecs.js"></script>
+<script src="js/tela-servidores-codecs.js" type="module"></script>
+<script>
+  const ctxDia = document.getElementById("requisicoesDia");
+  const containerGrafico1 = document.getElementById(
+    "dash__conteudo__grupo__graficos__container1"
+  );
+  const selectServidores = document.getElementById("fitro_nome_servidor");
+
+  const dataHoje = new Date();
+  const formatoBrasileiro = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "long",
+    timeStyle: "medium",
+  });
+  console.log("Data Brasileira");
+  console.log(formatoBrasileiro.format(dataHoje));
+  const formatoDataCurta = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "short",
+  });
+  console.log("Data Brasileira Curta");
+  console.log(formatoDataCurta.format(dataHoje));
+
+  let dataSelecionada;
+
+  let servidores = [];
+  let servidoresProcessamento = [];
+  let dadosGrafico = [];
+</script>

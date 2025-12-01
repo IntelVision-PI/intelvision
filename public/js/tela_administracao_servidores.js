@@ -1,5 +1,5 @@
 let servidores = [];
-let servidorSelecionado = null; // Id servidor selecionado
+let servidorSelecionado = null;
 
 function mostrarNavbar() {
   const larguraTela = window.innerWidth;
@@ -19,10 +19,7 @@ function mostrarNavbar() {
   }
 }
 
-/* Parte da administraçao servidor */
-
 function puxarDadosServidor() {
-  /* Essa função puxa os dados de servidores do banco de dados */
   console.log("Me chamou puxarDadosServidor()");
   const idEmpresa = Number(sessionStorage.fkEmpresa);
   console.log(idEmpresa);
@@ -55,7 +52,6 @@ function listarServidores(data) {
     const servidor = data[i];
     const tr = document.createElement("tr");
 
-    // <td class="colunaStatusServidor">${servidor.atividade}</td>
     tr.innerHTML = `
           <td class="colunaNomeServidor">${servidor.nome}</td>
           <td class="colunaTipoServidor">${servidor.tipo}</td>
@@ -71,7 +67,6 @@ function listarServidores(data) {
                 tune
             </span>
           </td>
-          
         `;
 
     if (servidor.nome == 0) {
@@ -197,18 +192,11 @@ function selecionarTipo() {
   }
 }
 
-/* Parte de editar servidor */
 
 let idModalServidorSelecionado;
-let out_edit_configuracaoServidor_local = document.getElementById(
-  "out_edit_configuracaoServidor"
-);
-let close_edit_configuracaoServidor_button_local = document.getElementById(
-  "close_edit_configuracaoServidor_button"
-);
-let edit_configuracaoServidor_modal_local = document.getElementById(
-  "edit_configuracaoServidor_modal"
-);
+let out_edit_configuracaoServidor_local = document.getElementById("out_edit_configuracaoServidor");
+let close_edit_configuracaoServidor_button_local = document.getElementById("close_edit_configuracaoServidor_button");
+let edit_configuracaoServidor_modal_local = document.getElementById("edit_configuracaoServidor_modal");
 
 const close_modal_configuracaoServidor = () => {
   out_edit_configuracaoServidor_local.style.visibility = "hidden";
@@ -219,36 +207,66 @@ const close_modal_configuracaoServidor = () => {
   edit_configuracaoServidor_modal_local.style.opacity = 0;
 };
 
-const open_modal_configuracaoServidor = (numero) => {
-  idModalSelecionado = Number(numero);
+const open_modal_configuracaoServidor = (idServidor) => {
+  idModalSelecionado = Number(idServidor);
   console.log("id do modal selecionado: " + idModalSelecionado);
+
   out_edit_configuracaoServidor_local.style.visibility = "visible";
   edit_configuracaoServidor_modal_local.style.visibility = "visible";
   out_edit_configuracaoServidor_local.style.pointerEvents = "auto";
   edit_configuracaoServidor_modal_local.style.pointerEvents = "auto";
   out_edit_configuracaoServidor_local.style.opacity = 1;
   edit_configuracaoServidor_modal_local.style.opacity = 1;
+
+  fetch(`/servidores/buscar/${idServidor}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+  }).then(resposta => {
+    if (resposta.ok) {
+      resposta.json().then(json => {
+        const dados = json[0];
+        document.getElementById("ipt_id_servidor_edit").value = dados.id;
+        document.getElementById("ipt_edit_nome").value = dados.nome;
+        document.getElementById("ipt_edit_modelo").value = dados.modelo;
+        document.getElementById("ipt_edit_so").value = dados.sistema_operacional;
+        document.getElementById("select_edit_tipo").value = dados.tipo;
+        document.getElementById("ipt_edit_tag").value = dados.service_tag;
+        document.getElementById("ipt_edit_mac").value = dados.macaddress;
+      });
+    } else {
+      alert("Erro ao buscar dados do servidor!");
+    }
+  });
 };
 
-out_edit_configuracaoServidor_local.addEventListener(
-  "click",
-  close_modal_configuracaoServidor
-);
-close_edit_configuracaoServidor_button_local.addEventListener(
-  "click",
-  close_modal_configuracaoServidor
-);
+function salvarEdicaoServidor() {
+    const idServidor = document.getElementById("ipt_id_servidor_edit").value;
+    const nome = document.getElementById("ipt_edit_nome").value;
+    const modelo = document.getElementById("ipt_edit_modelo").value;
+    const so = document.getElementById("ipt_edit_so").value;
+    const tipo = document.getElementById("select_edit_tipo").value;
 
-/* Parte de editar servidor - Aplicativos */
+    fetch(`/servidores/atualizar/${idServidor}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, modelo, so, tipo })
+    }).then(resposta => {
+        if (resposta.ok) {
+            alert("Servidor atualizado com sucesso!");
+            close_modal_configuracaoServidor();
+            puxarDadosServidor();
+        } else {
+            alert("Erro ao atualizar servidor!");
+        }
+    });
+}
 
-let out_edit_configuracaoServidorAplicativos_local = document.getElementById(
-  "out_edit_configuracaoServidorAplicativos"
-);
-let close_edit_configuracaoServidorAplicativos_button_local =
-  document.getElementById("close_edit_configuracaoServidorAplicativos_button");
-let edit_configuracaoServidorAplicativos_modal_local = document.getElementById(
-  "edit_configuracaoServidorAplicativos_modal"
-);
+out_edit_configuracaoServidor_local.addEventListener("click", close_modal_configuracaoServidor);
+close_edit_configuracaoServidor_button_local.addEventListener("click", close_modal_configuracaoServidor);
+
+let out_edit_configuracaoServidorAplicativos_local = document.getElementById("out_edit_configuracaoServidorAplicativos");
+let close_edit_configuracaoServidorAplicativos_button_local = document.getElementById("close_edit_configuracaoServidorAplicativos_button");
+let edit_configuracaoServidorAplicativos_modal_local = document.getElementById("edit_configuracaoServidorAplicativos_modal");
 
 const close_modal_configuracaoServidorAplicativos = () => {
   out_edit_configuracaoServidorAplicativos_local.style.visibility = "hidden";
@@ -261,7 +279,6 @@ const close_modal_configuracaoServidorAplicativos = () => {
 
 const open_modal_configuracaoServidorAplicativos = (numero) => {
   idModalSelecionado = Number(numero);
-  console.log("id do modal selecionado: " + idModalSelecionado);
   out_edit_configuracaoServidorAplicativos_local.style.visibility = "visible";
   edit_configuracaoServidorAplicativos_modal_local.style.visibility = "visible";
   out_edit_configuracaoServidorAplicativos_local.style.pointerEvents = "auto";
@@ -270,14 +287,9 @@ const open_modal_configuracaoServidorAplicativos = (numero) => {
   edit_configuracaoServidorAplicativos_modal_local.style.opacity = 1;
 };
 
-out_edit_configuracaoServidorAplicativos_local.addEventListener(
-  "click",
-  close_modal_configuracaoServidorAplicativos
-);
-close_edit_configuracaoServidorAplicativos_button_local.addEventListener(
-  "click",
-  close_modal_configuracaoServidorAplicativos
-);
+out_edit_configuracaoServidorAplicativos_local.addEventListener("click", close_modal_configuracaoServidorAplicativos);
+close_edit_configuracaoServidorAplicativos_button_local.addEventListener("click", close_modal_configuracaoServidorAplicativos);
+
 
 const outEditComponente = document.getElementById("out_edit_componente");
 const modalEditComponente = document.getElementById("edit_componente_modal");
@@ -288,9 +300,7 @@ const modalTitle = document.getElementById("componente_modal_title");
 
 function open_modal_componente(idServidor, nomeServidor) {
   console.log(`Abrindo modal de componentes para o servidor ID: ${idServidor}`);
-
   iptServidorId.value = idServidor;
-  
   modalTitle.innerHTML = `Parâmetros - ${nomeServidor}`;
 
   outEditComponente.style.visibility = "visible";
@@ -310,60 +320,47 @@ function close_modal_componente() {
   modalEditComponente.style.visibility = "hidden";
   modalEditComponente.style.opacity = 0;
   modalEditComponente.style.pointerEvents = "none";
-
   iptServidorId.value = "";
   
-  // CPU
-  document.getElementById("ipt_cpu_risco_min").value = "";
-  document.getElementById("ipt_cpu_alerta").value = "";
-  document.getElementById("ipt_cpu_risco_max").value = "";
-  
-  // RAM
-  document.getElementById("ipt_ram_risco_min").value = "";
-  document.getElementById("ipt_ram_alerta").value = "";
-  document.getElementById("ipt_ram_risco_max").value = "";
-
-  // Disco
-  document.getElementById("ipt_disco_risco_min").value = "";
-  document.getElementById("ipt_disco_alerta").value = "";
-  document.getElementById("ipt_disco_risco_max").value = "";
+  const inputs = modalEditComponente.querySelectorAll("input[type='number']");
+  inputs.forEach(input => input.value = "");
 }
 
 function fetchComponenteData(idServidor) {
-  console.log(`Buscando dados de parâmetros para o ID: ${idServidor}`);
-  const mockData = {
-    cpu_risco_min: 10,
-    cpu_alerta: 75,
-    cpu_risco_max: 90,
-    ram_risco_min: 10,
-    ram_alerta: 70,
-    ram_risco_max: 85,
-    disco_risco_min: 5,
-    disco_alerta: 80,
-    disco_risco_max: 95
-  };
-  populateComponenteModal(mockData);
-}
-
-function populateComponenteModal(data) {
-  // CPU
-  document.getElementById("ipt_cpu_risco_min").value = data.cpu_risco_min;
-  document.getElementById("ipt_cpu_alerta").value = data.cpu_alerta;
-  document.getElementById("ipt_cpu_risco_max").value = data.cpu_risco_max;
+  console.log(`Buscando parâmetros reais para o ID: ${idServidor}`);
   
-  // RAM
-  document.getElementById("ipt_ram_risco_min").value = data.ram_risco_min;
-  document.getElementById("ipt_ram_alerta").value = data.ram_alerta;
-  document.getElementById("ipt_ram_risco_max").value = data.ram_risco_max;
-
-  // Disco
-  document.getElementById("ipt_disco_risco_min").value = data.disco_risco_min;
-  document.getElementById("ipt_disco_alerta").value = data.disco_alerta;
-  document.getElementById("ipt_disco_risco_max").value = data.disco_risco_max;
+  fetch(`/servidores/buscarParametros/${idServidor}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+  }).then(resposta => {
+    if (resposta.ok) {
+      resposta.json().then(dados => {
+        dados.forEach(item => {
+          if (item.componente === 'CPU') {
+            document.getElementById("ipt_cpu_risco_min").value = item.em_risco_min;
+            document.getElementById("ipt_cpu_alerta").value = item.alerta;
+            document.getElementById("ipt_cpu_risco_max").value = item.em_risco_max;
+          } 
+          else if (item.componente === 'RAM') {
+            document.getElementById("ipt_ram_risco_min").value = item.em_risco_min;
+            document.getElementById("ipt_ram_alerta").value = item.alerta;
+            document.getElementById("ipt_ram_risco_max").value = item.em_risco_max;
+          } 
+          else if (item.componente === 'HD') {
+            document.getElementById("ipt_disco_risco_min").value = item.em_risco_min;
+            document.getElementById("ipt_disco_alerta").value = item.alerta;
+            document.getElementById("ipt_disco_risco_max").value = item.em_risco_max;
+          }
+        });
+      });
+    } else if (resposta.status == 204) {
+       console.log("Nenhum parâmetro configurado ainda.");
+    }
+  });
 }
 
 function updateComponenteData() {
-  const idServidor = iptServidorId.value;
+  const idServidor = document.getElementById("ipt_componente_servidor_id").value;
   
   const dadosAtualizados = {
     cpu_risco_min: document.getElementById("ipt_cpu_risco_min").value,
@@ -379,9 +376,24 @@ function updateComponenteData() {
     disco_risco_max: document.getElementById("ipt_disco_risco_max").value
   };
 
-  console.log(`Salvando dados para o ID: ${idServidor}`, dadosAtualizados);
-  alert("Dados salvos (simulação)!");
-  close_modal_componente();
+  console.log("Enviando atualização...", dadosAtualizados);
+
+  fetch(`/servidores/atualizarParametros/${idServidor}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dadosAtualizados)
+  }).then(resposta => {
+    if (resposta.ok) {
+      alert("Parâmetros atualizados com sucesso!");
+      close_modal_componente();
+    } else {
+      resposta.text().then(texto => {
+        alert("Erro ao atualizar: " + texto);
+      });
+    }
+  }).catch(erro => {
+    console.error("Erro na requisição: ", erro);
+  });
 }
 
 closeBtnComponente.addEventListener("click", close_modal_componente);

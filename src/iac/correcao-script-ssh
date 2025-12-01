@@ -1,0 +1,7 @@
+sudo docker pull guilhermesdias45/site:1.0
+
+sudo docker pull guilhermesdias45/database:1.0
+
+sudo apt install docker
+
+sudo docker-compose up -d
