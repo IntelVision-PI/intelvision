@@ -241,6 +241,9 @@
 // ------------------------------------------
 //  FUNÇÃO DE REGRESSÃO LINEAR
 // ------------------------------------------
+// -----------------------------------------------------------
+//  REGRESSÃO LINEAR
+// -----------------------------------------------------------
 function regressaoLinear(valores) {
   const n = valores.length;
   const xs = valores.map((_, i) => i);
@@ -260,9 +263,9 @@ function regressaoLinear(valores) {
   return { m, b };
 }
 
-// ------------------------------------------
-//  PREVER PRÓXIMOS VALORES
-// ------------------------------------------
+// -----------------------------------------------------------
+//  PREVISÃO
+// -----------------------------------------------------------
 function preverProximos(reg, quantidade, base) {
   const inicio = base.length;
   const result = [];
@@ -276,40 +279,35 @@ function preverProximos(reg, quantidade, base) {
 let grafico;
 const desvio = 5;
 
-// ------------------------------------------
-//  GRÁFICO DE PREDIÇÃO
-// ------------------------------------------
+// -----------------------------------------------------------
+//  GRÁFICO DE PREDIÇÃO USANDO SOMENTE "disco"
+// -----------------------------------------------------------
 function mostrarGraficoPredicao() {
-  if (!dados2025 || !dados2025.meses_anteriores) {
-    console.error("ERRO: dados2025.meses_anteriores não encontrado");
+
+  if (!dados2025 || !Array.isArray(dados2025)) {
+    console.error("dados2025 não é um array.");
     return;
   }
 
-  const ultimos4 = dados2025.meses_anteriores;
+  // pegar SOMENTE os valores de disco
+  const valoresDisco = dados2025
+    .map(x => Number(x.disco))
+    .filter(v => !isNaN(v));
 
-  if (!Array.isArray(ultimos4) || ultimos4.length < 4) {
-    console.error("ERRO: meses_anteriores precisa de pelo menos 4 valores");
+  if (valoresDisco.length < 4) {
+    console.error("ERRO: precisa de pelo menos 4 registros de disco.");
     return;
   }
 
+  const ultimos4 = valoresDisco.slice(-4);
   const reg = regressaoLinear(ultimos4);
   const predicoes = preverProximos(reg, 3, ultimos4);
 
   const labels = ["M-3", "M-2", "M-1", "M-0", "M+1", "M+2", "M+3"];
   const valores = [...ultimos4, ...predicoes];
 
-  const desvioPositivo = [];
-  const desvioNegativo = [];
-
-  for (let i = 0; i < valores.length; i++) {
-    if (i >= 3) {
-      desvioPositivo[i] = valores[i] + desvio;
-      desvioNegativo[i] = valores[i] - desvio;
-    } else {
-      desvioPositivo[i] = null;
-      desvioNegativo[i] = null;
-    }
-  }
+  const desvioPositivo = valores.map((v, i) => (i >= 3 ? v + desvio : null));
+  const desvioNegativo = valores.map((v, i) => (i >= 3 ? v - desvio : null));
 
   if (grafico) grafico.destroy();
 
@@ -341,110 +339,55 @@ function mostrarGraficoPredicao() {
           borderColor: "rgba(0, 200, 0, 0.4)",
           backgroundColor: "rgba(0,200,0,0.15)",
           fill: "+1",
-          borderWidth: 2,
-          tension: 0
+          borderWidth: 2
         },
         {
           label: "Desvio -",
           data: desvioNegativo,
-          borderColor: "rgba(0, 200, 0, 0.4)",
-          backgroundColor: "rgba(0,200,0,0.15)",
+          borderColor: "rgba(200, 0, 0, 0.4)",
+          backgroundColor: "rgba(200,0,0,0.15)",
           fill: false,
-          borderWidth: 2,
-          tension: 0
+          borderWidth: 2
         }
       ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: true,
-          labels: { font: { size: 16 } }
-        },
-        annotation: {
-          annotations: {
-            linhaVertical: {
-              type: 'line',
-              xMin: 3,
-              xMax: 3,
-              borderColor: '#585555',
-              borderWidth: 2,
-              borderDash: [4, 3]
-            },
-            linhaHorizontal: {
-              type: 'line',
-              yMin: 80,
-              yMax: 80,
-              borderColor: '#ff0000',
-              borderWidth: 2
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: { font: { size: 14 } },
-          title: { display: true, text: "Meses", font: { size: 18 } }
-        },
-        y: {
-          ticks: { font: { size: 14 } },
-          title: { display: true, text: "Quantidade de disco usado (GB)", font: { size: 18 } }
-        }
-      }
     }
   });
 }
 
-// ------------------------------------------
-//  GRÁFICO ANUAL
-// ------------------------------------------
+// -----------------------------------------------------------
+//  GRÁFICO ANUAL — usando SOMENTE valores de “disco”
+// -----------------------------------------------------------
 function criarGraficoAnual() {
   if (!dados2024 || !dados2025) return;
 
-  const ctxCPU = document.getElementById("discoAnual");
+  const valores2024 = dados2024.map(x => Number(x.disco));
+  const valores2025 = dados2025.map(x => Number(x.disco));
 
-  new Chart(ctxCPU, {
+  const ctx = document.getElementById("discoAnual");
+
+  new Chart(ctx, {
     type: "bar",
     data: {
-      labels: [
-        "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-        "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
-      ],
+      labels: ["Registros 2024", "Registros 2025"],
       datasets: [
         {
-          label: "Ano atual",
-          data: dados2025.meses_ano_atual,
-          backgroundColor: "#64748b",
-          borderWidth: 2,
-          borderRadius: { topLeft: 7, topRight: 7 }
+          label: "Média Ano 2024",
+          data: [valores2024.reduce((a,b)=>a+b)/valores2024.length],
+          backgroundColor: "#1e293b"
         },
         {
-          label: "Ano anterior",
-          data: dados2024.meses_ano_anterior,
-          backgroundColor: "#1e293b",
-          borderWidth: 2,
-          borderRadius: { topLeft: 7, topRight: 7 }
+          label: "Média Ano 2025",
+          data: [valores2025.reduce((a,b)=>a+b)/valores2025.length],
+          backgroundColor: "#64748b"
         }
       ]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: true } },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          title: { display: true, text: "%" }
-        }
-      }
     }
   });
 }
 
-// ------------------------------------------
-//  CARREGAR ARQUIVOS DO S3 E EXIBIR GRÁFICOS
-// ------------------------------------------
+// -----------------------------------------------------------
+//  APÓS CARREGAR OS ARQUIVOS DO S3
+// -----------------------------------------------------------
 carregarArquivosS3().then(() => {
   mostrarGraficoPredicao();
   criarGraficoAnual();
