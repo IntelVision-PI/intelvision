@@ -251,6 +251,7 @@
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 50;
   border: none; 
+  margin-left: 8%;
 }
 
 .cadastro_wrapper {
