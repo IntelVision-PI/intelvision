@@ -53,35 +53,35 @@ function normalizeServerList(rawList) {
 }
 
 // ----------------- KPI -----------------
-function calcularKPIs(listaNormalizada) {
-    const kpis = { Armazenamento: 0, Web: 0, Processamento: 0 };
+    // function calcularKPIs(listaNormalizada) {
+    //     const kpis = { Armazenamento: 0, Web: 0, Processamento: 0 };
 
-    listaNormalizada.forEach(s => {
-        const statusGeral = calcularStatusGeral(s.original);
-        const tipo = (s.tipo_servidor || "Todos");
+    //     listaNormalizada.forEach(s => {
+    //         const statusGeral = calcularStatusGeral(s.original);
+    //         const tipo = (s.tipo_servidor || "Todos");
 
-        if (statusGeral === "ALERTA" || statusGeral === "CRITICO") {
-            if (tipo.toLowerCase() === "armazenamento") kpis.Armazenamento++;
-            else if (tipo.toLowerCase() === "web") kpis.Web++;
-            else if (tipo.toLowerCase() === "processamento") kpis.Processamento++;
-            else {
-                // se tipo não bater, não contamos em buckets específicos
-            }
-        }
-    });
+    //         if (statusGeral === "ALERTA" || statusGeral === "CRITICO") {
+    //             if (tipo.toLowerCase() === "armazenamento") kpis.Armazenamento++;
+    //             else if (tipo.toLowerCase() === "web") kpis.Web++;
+    //             else if (tipo.toLowerCase() === "processamento") kpis.Processamento++;
+    //             else {
+    //                 // se tipo não bater, não contamos em buckets específicos
+    //             }
+    //         }
+    //     });
 
-    atualizarKPIsTela(kpis);
-}
+    //     atualizarKPIsTela(kpis);
+    // }
 
-function atualizarKPIsTela(kpis) {
-    const elemArm = document.getElementById("kpiArmazenamento");
-    const elemWeb = document.getElementById("kpiWeb");
-    const elemProc = document.getElementById("kpiProcessamento");
+// function atualizarKPIsTela(kpis) {
+//     const elemArm = document.getElementById("kpiArmazenamento");
+//     const elemWeb = document.getElementById("kpiWeb");
+//     const elemProc = document.getElementById("kpiProcessamento");
 
-    if (elemArm) elemArm.innerText = kpis.Armazenamento;
-    if (elemWeb) elemWeb.innerText = kpis.Web;
-    if (elemProc) elemProc.innerText = kpis.Processamento;
-}
+//     if (elemArm) elemArm.innerText = kpis.Armazenamento;
+//     if (elemWeb) elemWeb.innerText = kpis.Web;
+//     if (elemProc) elemProc.innerText = kpis.Processamento;
+// }
 
 // ----------------- Top 5 -----------------
 function calcularMediaCampoPorServidor(datasetServidor, campo) {
@@ -132,10 +132,10 @@ function plotarTop5(lista, campo) {
     graficoTop5 = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: lista.map(i => i.servidor),
+        labels: ['servidor.1', 'servidor.2', 'servidor.3', 'servidor.4'],
             datasets: [{
-                label: `Média ${campo.toUpperCase()}`,
-                data: lista.map(i => Number(i.valor.toFixed(2))),
+                label: [10, 30, 50, 60],
+                data: [55, 46, 38, 34],
                 backgroundColor: "#2D6A54"
             }]
         },
@@ -258,10 +258,10 @@ function mostrarServidores(lista) {
     const listaNormalizada = normalizeServerList(lista);
 
     // KPIs
-    calcularKPIs(listaNormalizada);
+    // calcularKPIs(listaNormalizada);
 
     // Heatmap: usa a ordem da lista retornada
-    preencherMapaCalor(listaNormalizada);
+    // preencherMapaCalor(listaNormalizada);
 
     // Top5 default: RAM (1) e Todos os tipos
     // ligar selects
