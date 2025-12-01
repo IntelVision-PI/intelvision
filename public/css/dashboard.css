@@ -748,6 +748,20 @@ thead {
   margin: 5px;
 }
 
+.server02 {
+  width: 40px;
+  height: 40px;
+  background-color: darkgoldenrod;
+  margin: 5px;
+}
+
+.server03 {
+  width: 40px;
+  height: 40px;
+  background-color: #00a335;
+  margin: 5px;
+}
+
 .chart-container {
   background-color: white;
   border-radius: 10px;
