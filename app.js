@@ -18,6 +18,7 @@ var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
 var dadosRouter = require("./src/routes/comparativo");
 var situacaoRouter = require("./src/routes/situacao");
+// var predicaoRouter = require("./src/routes/predicoes")
 
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
@@ -38,6 +39,7 @@ app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
 app.use("/situacao", situacaoRouter);
 app.use("/dados", dadosRouter);
+// app.use("/predicoes", predicaoRouter)
 
 app.listen(PORTA_APP, function () {
   console.log(`
