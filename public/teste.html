@@ -238,30 +238,9 @@
 
 <script type="module">
 
-  if (!dados2025 || !Array.isArray(dados2025)) {
-    console.error("ERRO: dados2025 não é um array válido:", dados2025);
-    return;
-}
-
-// pegar o disco dos últimos registros
-const valoresDisco = dados2025.map(item => Number(item.disco));
-
-// garantir que existem pelo menos 4 registros
-if (valoresDisco.length < 4) {
-    console.error("ERRO: não há dados suficientes para regressão. Registros:", valoresDisco.length);
-    return;
-}
-
-// últimos 4 valores
-const ultimos4 = valoresDisco.slice(-4);
-
-// rodar a regressão linear
-const reg = regressaoLinear(ultimos4);
-
-
-const desvio = 5;
-
-// Regressão
+// ------------------------------------------
+//  FUNÇÃO DE REGRESSÃO LINEAR
+// ------------------------------------------
 function regressaoLinear(valores) {
   const n = valores.length;
   const xs = valores.map((_, i) => i);
@@ -281,6 +260,9 @@ function regressaoLinear(valores) {
   return { m, b };
 }
 
+// ------------------------------------------
+//  PREVER PRÓXIMOS VALORES
+// ------------------------------------------
 function preverProximos(reg, quantidade, base) {
   const inicio = base.length;
   const result = [];
@@ -291,13 +273,25 @@ function preverProximos(reg, quantidade, base) {
   return result;
 }
 
-// Predição
 let grafico;
+const desvio = 5;
 
+// ------------------------------------------
+//  GRÁFICO DE PREDIÇÃO
+// ------------------------------------------
 function mostrarGraficoPredicao() {
-  if (!dados2025) return;
+  if (!dados2025 || !dados2025.meses_anteriores) {
+    console.error("ERRO: dados2025.meses_anteriores não encontrado");
+    return;
+  }
 
   const ultimos4 = dados2025.meses_anteriores;
+
+  if (!Array.isArray(ultimos4) || ultimos4.length < 4) {
+    console.error("ERRO: meses_anteriores precisa de pelo menos 4 valores");
+    return;
+  }
+
   const reg = regressaoLinear(ultimos4);
   const predicoes = preverProximos(reg, 3, ultimos4);
 
@@ -342,7 +336,7 @@ function mostrarGraficoPredicao() {
           fill: false
         },
         {
-          label: "desvio +",
+          label: "Desvio +",
           data: desvioPositivo,
           borderColor: "rgba(0, 200, 0, 0.4)",
           backgroundColor: "rgba(0,200,0,0.15)",
@@ -351,9 +345,9 @@ function mostrarGraficoPredicao() {
           tension: 0
         },
         {
-          label: "desvio -",
+          label: "Desvio -",
           data: desvioNegativo,
-          borderColor: "rgba(0, 200, 0, 0, 0.4)",
+          borderColor: "rgba(0, 200, 0, 0.4)",
           backgroundColor: "rgba(0,200,0,0.15)",
           fill: false,
           borderWidth: 2,
@@ -402,7 +396,9 @@ function mostrarGraficoPredicao() {
   });
 }
 
-// Grafico Anual
+// ------------------------------------------
+//  GRÁFICO ANUAL
+// ------------------------------------------
 function criarGraficoAnual() {
   if (!dados2024 || !dados2025) return;
 
@@ -411,27 +407,24 @@ function criarGraficoAnual() {
   new Chart(ctxCPU, {
     type: "bar",
     data: {
-      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+      labels: [
+        "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+        "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+      ],
       datasets: [
         {
           label: "Ano atual",
           data: dados2025.meses_ano_atual,
           backgroundColor: "#64748b",
           borderWidth: 2,
-          borderRadius: {
-            topLeft: 7, topRight: 7,
-            bottomLeft: 0, bottomRight: 0
-          }
+          borderRadius: { topLeft: 7, topRight: 7 }
         },
         {
           label: "Ano anterior",
           data: dados2024.meses_ano_anterior,
           backgroundColor: "#1e293b",
           borderWidth: 2,
-          borderRadius: {
-            topLeft: 7, topRight: 7,
-            bottomLeft: 0, bottomRight: 0
-          }
+          borderRadius: { topLeft: 7, topRight: 7 }
         }
       ]
     },
@@ -449,9 +442,13 @@ function criarGraficoAnual() {
   });
 }
 
-// Após carregar tudo do S3 → mostrar gráficos
+// ------------------------------------------
+//  CARREGAR ARQUIVOS DO S3 E EXIBIR GRÁFICOS
+// ------------------------------------------
 carregarArquivosS3().then(() => {
   mostrarGraficoPredicao();
   criarGraficoAnual();
 });
+
 </script>
+
