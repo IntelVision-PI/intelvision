@@ -86,8 +86,7 @@
                 <div class="kpi-container div-procura" style="width: 100%; display: flex;margin-top: 25px;">
                     <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
                         <p>Filtrar Tipo dos Servidores:</p>
-                        <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
-                            class="ipt_procura">
+                        <select name="fitro_tipo_servidor" id="filtro_tipo_servidor" class="ipt_procura">
                             <option value="Todos">Todos</option>
                             <option value="Armazenamento">Armazenamento</option>
                             <option value="Processamento">Processamento</option>
@@ -96,25 +95,23 @@
                     </div>
                     <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
                         <p>Filtrar Situação dos Chamados:</p>
-                        <select name="fitro_tipo_servidor" id="fitro_tipo_servidor" onchange="puxarDadosServidor()"
-                            class="ipt_procura">
+                        <select name="fitro_tipo_servidor" id="filtro_situacao_chamado" class="ipt_procura">
                             <option value="Todos">Todos</option>
-                            <option value="Aberto">Em aberto</option>
-                            <option value="Fechado">Fechado</option>
+                            <option value="Aberto">Abertos</option>
+                            <option value="Fechado">Fechados</option>
                         </select>
                     </div>
                     <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
                         <p>Filtrar Situação dos Servidores:</p>
-                        <select name="fitro_situacao_servidor" id="fitro_situacao_servidor"
-                            onchange="puxarDadosServidor()" class="ipt_procura">
+                        <select name="fitro_situacao_servidor" id="filtro_situacao_servidor" class="ipt_procura">
                             <option value="Todos">Todos</option>
-                            <option value="critico">Crítico</option>
-                            <option value="alerta">Alerta</option>
-                            <option value="ok">Ok</option>
+                            <option value="ABAIXO">Abaixo</option>
+                            <option value="ALERTA">Alerta</option>
+                            <option value="CRITICO">Crítico</option>
                         </select>
                     </div>
                     <div class="div-links-contas" style="width: 20%;">
-                        <a onclick="cadastrar()" class="X">
+                        <a onclick="atualizarDados()" class="X">
                             <!-- <div class="div-botao"> -->
                             <h3>Atualizar</h3>
                             <!-- </div> -->
@@ -186,8 +183,11 @@
         });
 
         let csv;
+        let chamadosFiltrados = [];
+
 
         async function carregarCSV() {
+            // const response = await fetch("/dados/chamados");
             const response = await fetch("./dados_csv/chamados.csv");
             const text = await response.text();
 
@@ -201,7 +201,7 @@
                 header.forEach((key, index) => {
                     const cleanedValue = values[index]?.replace(/^"|"$/g, "") || "";
                     obj[key] = cleanedValue;
-                    
+
                     obj["Criado"] = new Date(obj["Criado"]);
                 });
 
@@ -212,6 +212,10 @@
         carregarCSV();
 
         function atualizarDados() {
+            let tipoSelecionado = document.getElementById("filtro_tipo_servidor").value;
+            let situacaoChamado = document.getElementById("filtro_situacao_chamado").value;
+            let situacaoServidor = document.getElementById("filtro_situacao_servidor").value;
+
             let dataInicio = new Date(document.getElementById("dataInicio").value);
             let dataFim = new Date(document.getElementById("dataFim").value);
 
@@ -232,14 +236,39 @@
                 contArm[d] = 0;
             });
 
+            chamadosFiltrados = [];
+
             csv.forEach(item => {
                 if (item["Criado"] >= dataInicio && item["Criado"] <= dataFim) {
 
                     let tipo = detectarTipo(item["Labels"]);
 
-                    if (tipo === "Web") contWeb[formatarData(item["Criado"])]++;
-                    if (tipo === "Processamento") contProc[formatarData(item["Criado"])]++;
-                    if (tipo === "Armazenamento") contArm[formatarData(item["Criado"])]++;
+                    if (tipoSelecionado != "Todos" && tipo != tipoSelecionado)
+                        return;
+
+                    if (situacaoChamado === "Fechado" && item["Status"] !== "Concluído") {
+                        return;
+                    }
+
+                    if (situacaoChamado === "Aberto" && item["Status"] === "Concluído") {
+                        return;
+                    };
+
+                    let labels = parseLabels(item["Labels"]);
+                    if (situacaoServidor !== "Todos") {
+                        let filtroNormalizado = removerAcentos(situacaoServidor.toUpperCase());
+                        if (!labels.includes(filtroNormalizado)) return;
+                    }
+
+
+
+                    let dataFormatada = formatarData(item["Criado"]);
+
+                    if (tipo === "Web") contWeb[dataFormatada]++;
+                    if (tipo === "Processamento") contProc[dataFormatada]++;
+                    if (tipo === "Armazenamento") contArm[dataFormatada]++;
+
+                    chamadosFiltrados.push(item);
                 }
             });
 
@@ -279,6 +308,8 @@
             chart.data.datasets[1].data = datasContagemProc;
             chart.data.datasets[2].data = datasContagemArm;
             chart.update();
+
+            atualizarTempoMedioResolucao(chamadosFiltrados);
         }
 
         function detectarTipo(labelsString) {
@@ -295,6 +326,54 @@
 
             return null;
         }
+
+        function parseLabels(labelsString) {
+            try {
+                let arr = JSON.parse(labelsString);
+                return arr.map(l => removerAcentos(l.toUpperCase()));
+            } catch {
+                return [];
+            }
+        }
+
+        function removerAcentos(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        // Função MTTR
+
+        function extrairDias(descricao) {
+            if (!descricao) return null;
+            const match = descricao.match(/^\d+/);
+            return match ? parseInt(match[0], 10) : null;
+        }
+
+        function calcularMediaResolucaoFiltrada(chamadosFiltrados) {
+            if (!chamadosFiltrados || chamadosFiltrados.length === 0) return 0;
+
+            let soma = 0;
+            let count = 0;
+
+            chamadosFiltrados.forEach(item => {
+                const dias = extrairDias(item["Descricao"]);
+                if (dias !== null) {
+                    soma += dias;
+                    count++;
+                }
+            });
+
+            return count > 0 ? soma / count : 0;
+        }
+
+
+        function atualizarTempoMedioResolucao(chamadosFiltrados) {
+            const media = calcularMediaResolucaoFiltrada(chamadosFiltrados);
+            const dias = Math.floor(media);
+            const horas = Math.floor((media - dias) * 24);
+            const h1 = document.querySelector(".mttr h1");
+            h1.textContent = `${dias}d${horas}h`;
+        }
+
     </script>
     <script src="./js/situacaoServidores.js"></script>
 </body>

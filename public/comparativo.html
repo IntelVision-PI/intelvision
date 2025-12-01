@@ -8,13 +8,41 @@
 
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/comparativo.css" />
-    
+
     <style>
-        .kpi-subtext { font-size: 0.85rem; color: #666; margin-top: -5px; margin-bottom: 10px; }
-        .status-badge { padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-left: 10px; display: inline-block;}
-        .status-ok { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .status-alerta { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
-        .status-critico { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .kpi-subtext {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+        .status-ok {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-alerta {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .status-critico {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -24,114 +52,135 @@
 <body onload="validarSessaoAdministrador()">
 
     <div class="header-left">
-
         <h1>IntelVision</h1>
-
-
-
         <div class="escolhaDash">
-
-
-
-            <div class="btn-nav inativo">
-
-                <a href="servidores.html">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-
-                        <path
-                            d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
-
-                    </svg>
-
-                    <h3>Dashboard</h3>
-
-                </a>
-
-            </div>
-
-
-
-
-
-
-
-            <div class="btn-nav inativo">
-
-                <a href="./tela-administracao-usuario.html">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-
-                        <path
-                            d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
-
-                    </svg>
-
-                    <h3>Adm - Usuários</h3>
-
-                </a>
-
-            </div>
-
-
-
-            <div class="btn-nav inativo">
-
-                <a href="./tela-administracao-servidores.html">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-
-                        <path
-                            d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
-
-                    </svg>
-
-                    <h3>Adm - Servidores</h3>
-
-                </a>
-
-            </div>
-
-            <div class="btn-nav ativo">
-
-                <a href="#">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-
-                        <path
-                            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z" />
-
-                    </svg>
-
-                    <h3>Comparativo</h3>
-
-                </a>
-
-            </div>
-
-
-
-        </div>
-
-
-
-        <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
-
-            <a href="./index.html">
-
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-
-                    <path
-                        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
-
-                </svg>
-
-                <h3>Sair</h3>
-
+            <a href="./servidores.html">
+                <div class="btn-nav inativo">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+                            </svg> -->
+                        <h3>Dashboard</h3>
+                    </span>
+                </div>
             </a>
 
+            <a href="./trafego.html">
+                <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+                            </svg> -->
+                        <h3>Trafego</h3>
+                    </span>
+                </div>
+            </a>
+
+            <a href="./comparativo.html">
+                <div class="btn-nav ativo" id="btn-nav-admin-usuarios">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+                            </svg> -->
+                        <h3>Comparativo</h3>
+                    </span>
+                </div>
+            </a>
+
+            <a href="./predicao.html">
+                <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+                            </svg> -->
+                        <h3>Predição</h3>
+                    </span>
+                </div>
+            </a>
+
+            <a href="./guilherme/dashboard-jira.html">
+                <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+                            </svg> -->
+                        <h3>Jira</h3>
+                    </span>
+                </div>
+            </a>
+
+            <a href="./tela-administracao-usuario.html">
+                <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+                            </svg> -->
+                        <h3>Adm - Usuários</h3>
+                    </span>
+                </div>
+            </a>
+
+            <a href="./tela-servidores-codecs.html">
+                <div class="btn-nav inativo" id="btn-nav-admin-servidores">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M160-400v-80h640v80H160Zm0-120v-80h640v80H160ZM440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160Z" />
+                            </svg> -->
+                        <h3>Análise-Codecs</h3>
+                    </span>
+                </div>
+            </a>
+
+            <a href="./tela-administracao-servidores.html">
+                <div class="btn-nav inativo" id="btn-nav-admin-servidores">
+                    <span>
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#8b979f">
+                                <path
+                                    d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+                            </svg> -->
+                        <h3>Adm - Servidores</h3>
+                    </span>
+                </div>
+            </a>
+            <div class="btn-nav ativo">
+                <a href="/comparativo.html">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            background="#FFFFFF" fill="#8b979f">
+                            <path
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z" />
+                        </svg> -->
+                    <h3>Comparativo</h3>
+                </a>
+            </div>
+
+
         </div>
 
+        <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
+            <a href="./index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#8b979f">
+                    <path
+                        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+                </svg>
+                <h3>Sair</h3>
+            </a>
+        </div>
     </div>
 
     <div class="dash">
@@ -174,7 +223,7 @@
                     </div>
                     <div class="kpi-value" id="kpiCPU">--%</div>
                     <div class="kpi-subtext">Pico: <span id="picoCPU">--%</span></div>
-                    
+
                     <div class="kpi-delta" id="deltaCPU">
                         <span style="color: #999;">Aguardando...</span>
                     </div>
@@ -218,15 +267,21 @@
 
             <div class="charts-area">
                 <div class="chart-wrapper">
-                    <div class="chart-header"><h3>Processamento (CPU)</h3></div>
+                    <div class="chart-header">
+                        <h3>Processamento (CPU)</h3>
+                    </div>
                     <div class="graph-container"><canvas id="chartCPU"></canvas></div>
                 </div>
                 <div class="chart-wrapper">
-                    <div class="chart-header"><h3>Memória (RAM)</h3></div>
+                    <div class="chart-header">
+                        <h3>Memória (RAM)</h3>
+                    </div>
                     <div class="graph-container"><canvas id="chartRAM"></canvas></div>
                 </div>
                 <div class="chart-wrapper">
-                    <div class="chart-header"><h3>Armazenamento (Tendência)</h3></div>
+                    <div class="chart-header">
+                        <h3>Armazenamento (Tendência)</h3>
+                    </div>
                     <div class="graph-container"><canvas id="chartDisco"></canvas></div>
                 </div>
             </div>
@@ -315,7 +370,7 @@
                 const atualAgrupado = agruparPorJanela30min(rawAtual);
 
                 plotarGraficosOtimizados(refAgrupado, atualAgrupado);
-                
+
                 calcularKPIsComPico(refAgrupado, atualAgrupado);
                 definirStatusGeral(atualAgrupado);
 
@@ -330,65 +385,65 @@
             }
         }
 
-       function agruparPorJanela30min(dados) {
-    if (!dados) return [];
-    const mapa = {};
+        function agruparPorJanela30min(dados) {
+            if (!dados) return [];
+            const mapa = {};
 
-    for (let h = 0; h < 24; h++) {
-        for (let m = 0; m < 60; m += 30) {
-            const horaStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-            mapa[horaStr] = { 
-                cpu: [], ram: [], disco: [], 
-                status_cpu: [], status_ram: [], status_disco: [] 
-            };
-        }
-    }
+            for (let h = 0; h < 24; h++) {
+                for (let m = 0; m < 60; m += 30) {
+                    const horaStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+                    mapa[horaStr] = {
+                        cpu: [], ram: [], disco: [],
+                        status_cpu: [], status_ram: [], status_disco: []
+                    };
+                }
+            }
 
-    dados.forEach(reg => {
-        const dt = new Date(reg.timestamp || reg.dtHora);
-        const min = dt.getMinutes();
-        const minArredondado = min < 30 ? 0 : 30;
-        dt.setMinutes(minArredondado, 0, 0);
-        const chave = dt.toTimeString().substring(0, 5);
-        
-        if (mapa[chave]) {
-            mapa[chave].cpu.push(Number(reg.cpu));
-            mapa[chave].ram.push(Number(reg.ram));
-            mapa[chave].disco.push(Number(reg.disco));
-            
-            if(reg.status_cpu) mapa[chave].status_cpu.push(reg.status_cpu);
-            if(reg.status_ram) mapa[chave].status_ram.push(reg.status_ram);
-            if(reg.status_disco) mapa[chave].status_disco.push(reg.status_disco);
-        }
-    });
-    
-    
-    const definirPiorStatus = (listaStatus) => {
-        if (listaStatus.includes("CRITICO")) return "CRITICO";
-        if (listaStatus.includes("ALERTA")) return "ALERTA";
-        return "OK"; 
-    };
+            dados.forEach(reg => {
+                const dt = new Date(reg.timestamp || reg.dtHora);
+                const min = dt.getMinutes();
+                const minArredondado = min < 30 ? 0 : 30;
+                dt.setMinutes(minArredondado, 0, 0);
+                const chave = dt.toTimeString().substring(0, 5);
 
-    const resultado = [];
-    Object.keys(mapa).sort().forEach(key => {
-        const bucket = mapa[key];
-        if (bucket.cpu.length > 0) {
-            resultado.push({
-                timestamp: key,
-                cpu: media(bucket.cpu),
-                ram: media(bucket.ram),
-                disco: media(bucket.disco),
-                cpuMax: Math.max(...bucket.cpu), 
-                ramMax: Math.max(...bucket.ram),
-                discoMax: Math.max(...bucket.disco),
-                status_cpu: definirPiorStatus(bucket.status_cpu),
-                status_ram: definirPiorStatus(bucket.status_ram),
-                status_disco: definirPiorStatus(bucket.status_disco)
+                if (mapa[chave]) {
+                    mapa[chave].cpu.push(Number(reg.cpu));
+                    mapa[chave].ram.push(Number(reg.ram));
+                    mapa[chave].disco.push(Number(reg.disco));
+
+                    if (reg.status_cpu) mapa[chave].status_cpu.push(reg.status_cpu);
+                    if (reg.status_ram) mapa[chave].status_ram.push(reg.status_ram);
+                    if (reg.status_disco) mapa[chave].status_disco.push(reg.status_disco);
+                }
             });
+
+
+            const definirPiorStatus = (listaStatus) => {
+                if (listaStatus.includes("CRITICO")) return "CRITICO";
+                if (listaStatus.includes("ALERTA")) return "ALERTA";
+                return "OK";
+            };
+
+            const resultado = [];
+            Object.keys(mapa).sort().forEach(key => {
+                const bucket = mapa[key];
+                if (bucket.cpu.length > 0) {
+                    resultado.push({
+                        timestamp: key,
+                        cpu: media(bucket.cpu),
+                        ram: media(bucket.ram),
+                        disco: media(bucket.disco),
+                        cpuMax: Math.max(...bucket.cpu),
+                        ramMax: Math.max(...bucket.ram),
+                        discoMax: Math.max(...bucket.disco),
+                        status_cpu: definirPiorStatus(bucket.status_cpu),
+                        status_ram: definirPiorStatus(bucket.status_ram),
+                        status_disco: definirPiorStatus(bucket.status_disco)
+                    });
+                }
+            });
+            return resultado;
         }
-    });
-    return resultado;
-}
 
         function media(arr) {
             if (!arr.length) return 0;
@@ -418,7 +473,7 @@
             elMed.innerText = mAtual.toFixed(1) + "%";
             elPico.innerText = picoAtual.toFixed(1) + "%";
 
-            if(ref.length === 0) {
+            if (ref.length === 0) {
                 elDelta.innerHTML = "Sem ref";
                 return;
             }
@@ -433,7 +488,7 @@
 
         function definirStatusGeral(dados) {
             const badge = document.getElementById("statusBadge");
-            if(!dados.length) return;
+            if (!dados.length) return;
 
             const maxCPU = Math.max(...dados.map(d => d.cpuMax || d.cpu));
             const maxRAM = Math.max(...dados.map(d => d.ramMax || d.ram));
@@ -472,8 +527,8 @@
             });
         }
         function plotarGraficosOtimizados(ref, atual) {
-            const labels = Array.from(new Set([...ref.map(d=>d.timestamp), ...atual.map(d=>d.timestamp)])).sort();
-            const mapData = (list, key) => labels.map(l => { const f = list.find(x=>x.timestamp===l); return f ? f[key] : null; });
+            const labels = Array.from(new Set([...ref.map(d => d.timestamp), ...atual.map(d => d.timestamp)])).sort();
+            const mapData = (list, key) => labels.map(l => { const f = list.find(x => x.timestamp === l); return f ? f[key] : null; });
 
             updChart(chartCPU, labels, mapData(ref, 'cpu'), mapData(atual, 'cpu'));
             updChart(chartRAM, labels, mapData(ref, 'ram'), mapData(atual, 'ram'));
@@ -482,58 +537,58 @@
         function updChart(chart, lbls, dRef, dAtu) {
             chart.data.labels = lbls;
             chart.data.datasets = [
-                { label: 'Ref', data: dRef, borderColor: '#bdc3c7', borderDash:[5,5], borderWidth:2, pointRadius:0 },
-                { label: 'Atual', data: dAtu, borderColor: '#2ecc71', backgroundColor:'rgba(46,204,113,0.1)', borderWidth:2, fill:true }
+                { label: 'Ref', data: dRef, borderColor: '#bdc3c7', borderDash: [5, 5], borderWidth: 2, pointRadius: 0 },
+                { label: 'Atual', data: dAtu, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.1)', borderWidth: 2, fill: true }
             ];
             chart.update();
         }
 
-       function gerarListaAlertas(lista, id) {
-    const div = document.getElementById(id);
-    div.innerHTML = "";
-    
-    
-    const dadosComAlerta = lista.filter(d => 
-        (d.status_cpu === "CRITICO" || d.status_cpu === "ALERTA") ||
-        (d.status_ram === "CRITICO" || d.status_ram === "ALERTA") ||
-        (d.status_disco === "CRITICO" || d.status_disco === "ALERTA")
-    );
+        function gerarListaAlertas(lista, id) {
+            const div = document.getElementById(id);
+            div.innerHTML = "";
 
-    if(!dadosComAlerta.length) {
-        div.innerHTML = '<p class="empty-msg">Nenhum alerta crítico encontrado.</p>';
-        return;
-    }
 
-    let html = "";
-    dadosComAlerta.forEach(d => {
-        if(d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO") 
-            html += cardAlerta(d.timestamp, "CPU", d.cpuMax, d.status_cpu);
-            
-        if(d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO") 
-            html += cardAlerta(d.timestamp, "RAM", d.ramMax, d.status_ram);
-            
-        if(d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO") 
-            html += cardAlerta(d.timestamp, "Disco", d.discoMax || d.disco, d.status_disco);
-    });
-    div.innerHTML = html;
-}
+            const dadosComAlerta = lista.filter(d =>
+                (d.status_cpu === "CRITICO" || d.status_cpu === "ALERTA") ||
+                (d.status_ram === "CRITICO" || d.status_ram === "ALERTA") ||
+                (d.status_disco === "CRITICO" || d.status_disco === "ALERTA")
+            );
 
-function cardAlerta(hora, tipo, valor, status) {
-    let cor = "#7f8c8d";
-    let icon = "fa-circle-info";
+            if (!dadosComAlerta.length) {
+                div.innerHTML = '<p class="empty-msg">Nenhum alerta crítico encontrado.</p>';
+                return;
+            }
 
-    if (status === "CRITICO") {
-        cor = "#e74c3c"; 
-        icon = "fa-circle-xmark";
-    } else if (status === "ALERTA") {
-        cor = "#f1c40f"; 
-        icon = "fa-triangle-exclamation";
-    } else if (status === "OK") {
-        cor = "#2ecc71"; 
-        icon = "fa-check-circle";
-    }
+            let html = "";
+            dadosComAlerta.forEach(d => {
+                if (d.status_cpu !== "OK" && d.status_cpu !== "SEM_PARAMETRO")
+                    html += cardAlerta(d.timestamp, "CPU", d.cpuMax, d.status_cpu);
 
-    return `
+                if (d.status_ram !== "OK" && d.status_ram !== "SEM_PARAMETRO")
+                    html += cardAlerta(d.timestamp, "RAM", d.ramMax, d.status_ram);
+
+                if (d.status_disco !== "OK" && d.status_disco !== "SEM_PARAMETRO")
+                    html += cardAlerta(d.timestamp, "Disco", d.discoMax || d.disco, d.status_disco);
+            });
+            div.innerHTML = html;
+        }
+
+        function cardAlerta(hora, tipo, valor, status) {
+            let cor = "#7f8c8d";
+            let icon = "fa-circle-info";
+
+            if (status === "CRITICO") {
+                cor = "#e74c3c";
+                icon = "fa-circle-xmark";
+            } else if (status === "ALERTA") {
+                cor = "#f1c40f";
+                icon = "fa-triangle-exclamation";
+            } else if (status === "OK") {
+                cor = "#2ecc71";
+                icon = "fa-check-circle";
+            }
+
+            return `
     <div style="display:flex; align-items:center; justify-content:space-between; padding:10px; border-bottom:1px solid #eee; font-size:0.9rem;">
         <div style="display:flex; flex-direction:column;">
             <span style="font-weight:bold; color:#333;">${hora} - ${tipo}</span>
@@ -545,9 +600,9 @@ function cardAlerta(hora, tipo, valor, status) {
             <span style="font-size:1.1rem; font-weight:bold; color:#555;">${valor.toFixed(1)}%</span>
         </div>
     </div>`;
-}
+        }
 
-        
+
 
         function resetarKPIs() {
             ["CPU", "RAM"].forEach(t => {
@@ -562,4 +617,5 @@ function cardAlerta(hora, tipo, valor, status) {
         }
     </script>
 </body>
+
 </html>

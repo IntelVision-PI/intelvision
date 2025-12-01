@@ -16,15 +16,6 @@ function buscarParametro(req, res) {
     })
 }
 
-
-async function buscarChamadosS3(req, res) {
-    const resultado = await comparativoModel.buscarChamadosS3();
-    if (!resultado) {
-        return res.status(404).json({ erro: "Arquivo não encontrado no S3" });
-    }
-    res.json(resultado);
-}
-
 function buscarTodos(req, res) {
     situacaoModel.buscarTodos().then(function (resultado) {
         if (resultado.length > 0) {
@@ -41,6 +32,5 @@ function buscarTodos(req, res) {
 
 module.exports = {
     buscarTodos,
-    buscarParametro,
-    buscarChamadosS3
+    buscarParametro
 };

@@ -132,10 +132,10 @@ function plotarTop5(lista, campo) {
     graficoTop5 = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: lista.map(i => i.servidor),
+        labels: ['servidor.1', 'servidor.2', 'servidor.3', 'servidor.4'],
             datasets: [{
-                label: `Média ${campo.toUpperCase()}`,
-                data: lista.map(i => Number(i.valor.toFixed(2))),
+                label: [10, 30, 50, 60],
+                data: [55, 46, 38, 34],
                 backgroundColor: "#2D6A54"
             }]
         },
