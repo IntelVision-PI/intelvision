@@ -98,38 +98,68 @@
     <!-- Conteúdo da página -->
     <div class="dash">
       <div class="dash__conteudo">
-      <div class="div_cadastrar" id="statusReportModal" >
-    <div class="cadastro_wrapper">
+      <div class="div_cadastrar" id="statusReportModal" style="display-flex;">
+    <div class="cadastro_wrapper max-w-report">
+        <!-- Cabeçalho (Fundo Verde do Modal) -->
         <div class="cabecalho_cadastro report-header">
             <h2 class="report-title">
+                <!-- Ícone AlertTriangle (Lucide-React) ou similar -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
                 Relatórios da Situação
             </h2>
-            <span class="material-symbols-outlined X" onclick="document.getElementById('statusReportModal').style.display='none'"> X </span>
+            <!-- Botão de Fechar -->
+            <span class="material-symbols-outlined X" onclick="document.getElementById('statusReportModal').style.display='none'"> close </span>
         </div>
+
+        <!-- Corpo do Modal: Divisão em duas colunas -->
         <div class="div-situacao-container report-body-grid">
             
-            <div class="div-situacao coluna-de-risco">
+            <!-- Coluna 1: Situação de Risco (Vermelho) -->
+            <div class="div-situacao risk-column">
                 <div class="icon-container-risk">
+                    <!-- Ícone AlertTriangle (Lucide-React) ou similar -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="#fee2e2" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle drop-shadow-sm"><path d="m21.73 18.23-8.87-15.04a2 2 0 0 0-3.52 0l-8.87 15.04a2 2 0 0 0 1.76 2.77h17.74a2 2 0 0 0 1.76-2.77z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
                     <h4 class="report-subtitle text-risk">Situação de risco</h4>
                 </div>
-
-                <div class="div-situacao-servidores negativo">sadasdasdasd</div>
-                <div class="div">sadasdasdasd</div>
                 
+                <ul class="report-list">
+                    <li class="report-list-item">
+                        <span class="list-dot"></span>
+                        O servidor <strong>SRV-DB-02</strong> entrará em risco em <strong>2 meses</strong>
+                    </li>
+                    <li class="report-list-item">
+                        <span class="list-dot"></span>
+                        O servidor <strong>SRV-WEB-01</strong> entrará em risco em <strong>15 dias</strong>
+                    </li>
+                    <li class="report-list-item">
+                        <span class="list-dot"></span>
+                        O servidor <strong>SRV-BACKUP</strong> entrará em risco em <strong>1 mês</strong>
+                    </li>
+                </ul>
             </div>
 
-            <div class="div-situacao coluna-positiva">
+            <!-- Coluna 2: Situação Fora de Risco (Verde/Cinza) -->
+            <div class="div-situacao safe-column">
                 <div class="icon-container-safe">
+                    <!-- Ícone ThumbsUp (Lucide-React) ou similar -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="#d1fae5" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thumbs-up drop-shadow-sm"><path d="M7 10v12h10l3.5-7L16 10h-6l2-7H4v7"/><path d="M7 10v12"/></svg>
                     <h4 class="report-subtitle text-safe">Situação fora de risco</h4>
                 </div>
-              
+                
+                <ul class="report-list">
+                    <li class="report-list-item">
+                        <span class="list-dot"></span>
+                        Pelos próximos <strong>3 meses</strong>, o servidor <strong>SRV-APP-05</strong> estará estável.
+                    </li>
+                    <li class="report-list-item">
+                        <span class="list-dot"></span>
+                        Pelos próximos <strong>6 meses</strong>, o servidor <strong>SRV-CDN-01</strong> estará estável.
+                    </li>
+                </ul>
             </div>
         </div>
-      </div>
     </div>
+</div>
         <!-- KPI do relatório -->
         <div class="div-kpi-1">
           <div class="div-relatorio">
@@ -169,6 +199,7 @@
                 </div>
                 <div class="div-bola-relatorio">
                   <span class="mdi--file-report-outline"></span>
+                  <!-- <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio"> -->
                 </div>
               </div>
             </div>
