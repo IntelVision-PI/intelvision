@@ -110,13 +110,12 @@ header {
 .header-left h1 {
   text-align: center;
   color: #00863f;
-  margin-top: 40px;
-  margin-bottom: 50px;
+  margin: 30px 0;
   font-family: alro-400;
 }
 
 .btn-nav {
-  padding: 20px 15px;
+  padding: 15px;
   margin: 5px 10px;
   border-radius: 10px;
   cursor: pointer;
