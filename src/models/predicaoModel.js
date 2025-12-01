@@ -8,6 +8,7 @@ async function streamParaString(stream) {
     stream.on("data", chunk => data += chunk);
     stream.on("end", () => resolve(data));
     stream.on("error", reject);
+
   });
 }
 
@@ -17,7 +18,8 @@ async function buscarDadosS3(ano, mes, dia, servidor) {
 
   const servidorLower = servidor.toLowerCase(); 
 
-const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidor.toLowerCase()}.json`;
+  const key = `${ano}/${mes}/${dia}/${servidor}`;
+
 
   console.log("-------------------------------------------------");
   console.log(`[S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
