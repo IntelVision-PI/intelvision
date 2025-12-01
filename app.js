@@ -14,7 +14,7 @@ var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
 
 var app = express();
-
+var trafegoRouter = require("./src/routes/trafego");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresas");
 var servidorRouter = require("./src/routes/servidores");
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
-
+app.use("/trafego", trafegoRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
