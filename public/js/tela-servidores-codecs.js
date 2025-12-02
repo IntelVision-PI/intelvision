@@ -204,19 +204,17 @@ function pegarRegistrosServidor(nomeServidor) {
           console.log("Erro no fetch:", err);
           return null;
         });
-
-      console.log("Resposta está com json vazio ?");
-      if (Object.keys(p).length == 0) {
-        console.log("Objeto está vazio");
-        console.log(p);
-      } else {
-        promessas.push(p);
-      }
+      promessas.push(p);
     }
 
     Promise.allSettled(promessas).then((resultados) => {
       resultados.forEach((resultado) => {
-        if (resultado.status === "fulfilled" && resultado.value) {
+        console.log(resultado.value);
+        if (
+          resultado.status === "fulfilled" &&
+          resultado.value &&
+          resultado.value.length > 0
+        ) {
           dadosGrafico.push(resultado.value);
         }
       });
@@ -357,6 +355,16 @@ function plotarGraficoLinha(resposta) {
 function plotarGraficoLinhaTodos(arrayRespostas) {
   console.log("iniciando plotagem do gráfico de todos servidores...");
   console.log(arrayRespostas);
+
+  if (arrayRespostas.length <= 0) {
+    containerGrafico1.innerHTML = `
+            <h3 id="dash__conteudo__grupo__graficos__titulo">
+                            Não existem registros desses servidores nesse dias
+                          </h3>
+                          <canvas id="requisicoesHora"></canvas>
+            `;
+    return;
+  }
 
   // Criando estrutura para plotar gráfico - labels
   let labels = [
