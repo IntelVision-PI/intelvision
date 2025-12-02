@@ -190,7 +190,7 @@ function pegarRegistrosServidor(nomeServidor) {
       let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
       console.log(nomeServidorMinusculo);
 
-      let url = `http://s3viewer:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
+      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
 
       let p = fetch(url)
         .then((response) => {
@@ -205,7 +205,13 @@ function pegarRegistrosServidor(nomeServidor) {
           return null;
         });
 
-      promessas.push(p);
+      console.log("Resposta está com json vazio ?");
+      if (Object.keys(p).length == 0) {
+        console.log("Objeto está vazio");
+        console.log(p);
+      } else {
+        promessas.push(p);
+      }
     }
 
     Promise.allSettled(promessas).then((resultados) => {
@@ -224,7 +230,7 @@ function pegarRegistrosServidor(nomeServidor) {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
         fetch(
-          `http://s3viewer:3000/s3Route/dados/dados_maquina_${
+          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${
             arrayDataSelecionada[2]
           }-${arrayDataSelecionada[1]}-${
             arrayDataSelecionada[0]
