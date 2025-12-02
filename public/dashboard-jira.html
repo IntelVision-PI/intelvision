@@ -125,7 +125,7 @@
                     <div class="chart-container" style="flex:2">
                         <div>
                             <label for="">Início: </label>
-                            <input type="date" value="2025-12-02" onchange="atualizarDados()" id="dataInicio">
+                            <input type="date" value="2025-11-25" onchange="atualizarDados()" id="dataInicio">
                             <label for="">Fim: </label>
                             <input type="date" value="2025-12-02" onchange="atualizarDados()" id="dataFim">
                         </div>
@@ -207,6 +207,7 @@
 
                 return obj;
             });
+            atualizarDados();
         }
 
         carregarCSV();
