@@ -277,11 +277,6 @@ const desvio = 5;
 
 function mostrarGraficoPredicao() {
 
-  if (!dados2025 || !Array.isArray(dados2025)) {
-    console.error("dados2025 não é um array.");
-    return;
-  }
-
   // pegar SOMENTE os valores de disco
   const valoresDisco = dados2025
     .map(x => Number(x.disco))
@@ -289,6 +284,11 @@ function mostrarGraficoPredicao() {
 
   if (valoresDisco.length < 4) {
     console.error("ERRO: precisa de pelo menos 4 registros de disco.");
+    return;
+  }
+
+  if (!dados2025 || !Array.isArray(dados2025)) {
+    console.error("dados2025 não é um array.");
     return;
   }
 
@@ -347,29 +347,34 @@ function mostrarGraficoPredicao() {
   });
 }
 
-// -----------------------------------------------------------
-//  GRÁFICO ANUAL — usando SOMENTE valores de “disco”
-// -----------------------------------------------------------
-// -------------------------------
-// 1) Função para calcular média mês a mês
-// -------------------------------
 function calcularMediaPorMes(dados) {
-  const grupos = {};
+const registros = [
+  { timestamp: "2025-01-05 08:00:00", user: "servidor16" },
+  { timestamp: "2025-01-29 15:39:30", user: "servidor14" },
+  { timestamp: "2025-02-10 10:15:00", user: "servidor15" },
+  { timestamp: "2025-02-25 22:00:00", user: "servidor17" },
+  { timestamp: "2025-03-01 09:00:00", user: "servidor18" }
+];
 
-  dados.forEach(item => {
-    if (!item.timestamp || !item.disco) return;
+// Função para pegar o último registro de cada mês
+function ultimoPorMes(registros) {
+  const mapa = {};
 
-    const data = new Date(item.timestamp.replace(" ", "T"));
-    if (isNaN(data)) return;
+  registros.forEach(r => {
+    const dt = new Date(r.timestamp.replace(" ", "T"));
+    const chave = `${dt.getFullYear()}-${dt.getMonth()}`; // ano-mês
 
-    const mes = String(data.getMonth() + 1).padStart(2, "0");
-    const valor = Number(item.disco);
-
-    if (!grupos[mes]) grupos[mes] = [];
-    grupos[mes].push(valor);
+    // Se não existe ou se o registro atual é mais recente, substitui
+    if (!mapa[chave] || new Date(r.timestamp.replace(" ", "T")) > new Date(mapa[chave].timestamp.replace(" ", "T"))) {
+      mapa[chave] = r;
+    }
   });
 
-  return medias;
+  return Object.values(mapa);
+}
+
+console.log(ultimoPorMes(registros));
+
 }
 
 function criarGraficoAnual() {
