@@ -106,7 +106,7 @@ async function gerarTop5(listaServidores, componente = "1", tipoFiltro = "Todos"
         }
         const nomeServidor = s.servidor;
         try {
-            const dados = await pegarDadosS3(ano, mes, dia, nomeServidor);
+            const dados = await pegarDadosS3(2025, 11, 27, nomeServidor);
             if (!dados || dados.vazio) {
                 resultados.push({ servidor: nomeServidor, valor: 0 });
                 continue;
@@ -132,10 +132,10 @@ function plotarTop5(lista, campo) {
     graficoTop5 = new Chart(ctx, {
         type: "bar",
         data: {
-        labels: ['servidor.1', 'servidor.2', 'servidor.3', 'servidor.4'],
+        labels: lista.map(i => i.servidor),
             datasets: [{
-                label: [10, 30, 50, 60],
-                data: [55, 46, 38, 34],
+            label: `Média ${campo.toUpperCase()}`,
+                data: lista.map(i => Number(i.valor.toFixed(2))),
                 backgroundColor: "#2D6A54"
             }]
         },
@@ -255,35 +255,54 @@ function plotarGraficoRequisicoes(labels, data) {
 // ----------------- Fluxo principal -----------------
 function mostrarServidores(lista) {
     // normaliza a lista
-    const listaNormalizada = normalizeServerList(lista);
+    let listaNormalizada = normalizeServerList(lista);
+    console.log(listaNormalizada)
+
+
+    // Remove duplicados pelo nome do servidor
+    const nomesUnicos = new Set();
+    listaNormalizada = listaNormalizada.filter(s => {
+        if (nomesUnicos.has(s.servidor)) return false;
+        nomesUnicos.add(s.servidor);
+        return true;
+    });
 
     // KPIs
     // calcularKPIs(listaNormalizada);
 
     // Heatmap: usa a ordem da lista retornada
-    // preencherMapaCalor(listaNormalizada);
+    preencherMapaCalor(listaNormalizada);
 
     // Top5 default: RAM (1) e Todos os tipos
-    // ligar selects
     const tipoSelect = document.getElementById("select_tipoServidor");
     const componenteSelect = document.getElementById("select_tipoComponente");
 
-    // dispara o Top5 com base nos selects atuais
+    // pega selects atuais
     const tipoAtual = tipoSelect ? tipoSelect.value : "Todos";
     const compAtual = componenteSelect ? componenteSelect.value : "1";
-    gerarTop5(listaNormalizada, compAtual, tipoAtual);
 
-    // liga eventos de mudança
+    // pega data atual dinamicamente
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
+
+    // gera Top5 e gráfico de requisições usando lista sem duplicados
+    gerarTop5(listaNormalizada, compAtual, tipoAtual);
+    gerarGraficoRequisicoes(2025, 11, 27, listaNormalizada);
+    console.log(listaNormalizada)
+    // liga eventos de mudança nos selects
     if (tipoSelect) {
-        tipoSelect.onchange = () => gerarTop5(listaNormalizada, componenteSelect ? componenteSelect.value : "1", tipoSelect.value);
+        tipoSelect.onchange = () => gerarTop5(
+            listaNormalizada,
+            componenteSelect ? componenteSelect.value : "1",
+            tipoSelect.value
+        );
     }
     if (componenteSelect) {
-        componenteSelect.onchange = () => gerarTop5(listaNormalizada, componenteSelect.value, tipoSelect ? tipoSelect.value : "Todos");
+        componenteSelect.onchange = () => gerarTop5(
+            listaNormalizada,
+            componenteSelect.value,
+            tipoSelect ? tipoSelect.value : "Todos"
+        );
     }
-
-    // Requisições por hora
-    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
-    gerarGraficoRequisicoes(2025, 11, 27, listaNormalizada);
 }
 
 // ----------------- Fetch lista de servidores (API) -----------------
