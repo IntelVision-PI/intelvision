@@ -22,6 +22,7 @@ let dataSelecionada;
 let servidores = [];
 let servidoresProcessamento = [];
 let dadosGrafico = [];
+let objServidorSelecionado;
 
 function puxarDadosServidor() {
   /* Essa função puxa os dados de servidores do banco de dados */
@@ -138,6 +139,7 @@ function pegarInformacoesServidor(idServidor) {
     } else {
       for (let i = 0; i < servidores.length; i++) {
         if (servidores[i].id == Number(idServidor)) {
+          objServidorSelecionado = servidores[i];
           tbodyServidoresCodec.innerHTML = `
             <tr>
               <td>Nome</td>
@@ -204,19 +206,17 @@ function pegarRegistrosServidor(nomeServidor) {
           console.log("Erro no fetch:", err);
           return null;
         });
-
-      console.log("Resposta está com json vazio ?");
-      if (Object.keys(p).length == 0) {
-        console.log("Objeto está vazio");
-        console.log(p);
-      } else {
-        promessas.push(p);
-      }
+      promessas.push(p);
     }
 
     Promise.allSettled(promessas).then((resultados) => {
       resultados.forEach((resultado) => {
-        if (resultado.status === "fulfilled" && resultado.value) {
+        console.log(resultado.value);
+        if (
+          resultado.status === "fulfilled" &&
+          resultado.value &&
+          resultado.value.length > 0
+        ) {
           dadosGrafico.push(resultado.value);
         }
       });
@@ -296,6 +296,16 @@ function plotarGraficoLinha(resposta) {
         fill: true,
         tension: 0.4,
       },
+      {
+        label: "Linha de limite do servidor",
+        data: [],
+        borderColor: "#FF0000",
+        backgroundColor: "#FF0000",
+        borderWidth: 3,
+        fill: false,
+        radius: 1,
+        pointStyle: false,
+      },
     ],
   };
 
@@ -307,10 +317,11 @@ function plotarGraficoLinha(resposta) {
 
   // Inserindo valores recebidos em estrutura para plotar o gráfico
   // NOTA: Ajustar para que as Labels sejam em Horas pois isso é para omesmo dia
-  for (i = 0; i < resposta[0].length; i++) {
+  for (i = 0; i < resposta[0].length; i += 30) {
     var registro = resposta[0][i];
     labels.push(registro.timestamp.split(" ")[1]);
     dados.datasets[0].data.push(registro.proc1_cpu_pct);
+    dados.datasets[1].data.push(objServidorSelecionado.em_risco_max);
   }
 
   console.log("----------------------------------------------");
@@ -358,10 +369,114 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   console.log("iniciando plotagem do gráfico de todos servidores...");
   console.log(arrayRespostas);
 
+  if (arrayRespostas.length <= 0) {
+    containerGrafico1.innerHTML = `
+            <h3 id="dash__conteudo__grupo__graficos__titulo">
+                            Não existem registros desses servidores nesse dia
+                          </h3>
+                          <canvas id="requisicoesHora"></canvas>
+            `;
+    return;
+  }
+
   // Criando estrutura para plotar gráfico - labels
   let labels = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23,
+    "00:00",
+    "00:15",
+    "00:30",
+    "00:45",
+    "01:00",
+    "01:15",
+    "01:30",
+    "01:45",
+    "02:00",
+    "02:15",
+    "02:30",
+    "02:45",
+    "03:00",
+    "03:15",
+    "03:30",
+    "03:45",
+    "04:00",
+    "04:15",
+    "04:30",
+    "04:45",
+    "05:00",
+    "05:15",
+    "05:30",
+    "05:45",
+    "06:00",
+    "06:15",
+    "06:30",
+    "06:45",
+    "07:00",
+    "07:15",
+    "07:30",
+    "07:45",
+    "08:00",
+    "08:15",
+    "08:30",
+    "08:45",
+    "09:00",
+    "09:15",
+    "09:30",
+    "09:45",
+    "10:00",
+    "10:15",
+    "10:30",
+    "10:45",
+    "11:00",
+    "11:15",
+    "11:30",
+    "11:45",
+    "12:00",
+    "12:15",
+    "12:30",
+    "12:45",
+    "13:00",
+    "13:15",
+    "13:30",
+    "13:45",
+    "14:00",
+    "14:15",
+    "14:30",
+    "14:45",
+    "15:00",
+    "15:15",
+    "15:30",
+    "15:45",
+    "16:00",
+    "16:15",
+    "16:30",
+    "16:45",
+    "17:00",
+    "17:15",
+    "17:30",
+    "17:45",
+    "18:00",
+    "18:15",
+    "18:30",
+    "18:45",
+    "19:00",
+    "19:15",
+    "19:30",
+    "19:45",
+    "20:00",
+    "20:15",
+    "20:30",
+    "20:45",
+    "21:00",
+    "21:15",
+    "21:30",
+    "21:45",
+    "22:00",
+    "22:15",
+    "22:30",
+    "22:45",
+    "23:00",
+    "23:15",
+    "23:30",
+    "23:45",
   ];
 
   // Criando estrutura para plotar gráfico - daatsets
@@ -371,10 +486,23 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   // criando um dataset de cada item do array
 
   for (i = 0; i < arrayRespostas.length; i++) {
-    for (j = 0; j < arrayRespostas[i].length; j++) {
+    for (j = 0; j < arrayRespostas[i].length; j += 6) {
       var registro = arrayRespostas[i][j];
+
+      let dataRegistro = registro.timestamp.split(" ")[1].substring(0, 5);
+      console.log(dataRegistro);
+      if (labels.includes(dataRegistro)) {
+        for (k = 0; k < labels.length; k++) {
+          if (dataRegistro == labels[k]) {
+            console.log("Vou plotar" + registro.proc1_cpu_pct);
+            dataIteracao.push(registro.proc1_cpu_pct);
+            break;
+          } else if (dataIteracao[k] == undefined) {
+            dataIteracao.push(0);
+          }
+        }
+      }
       //labels.push(registro.timestamp.split(" ")[1]);
-      dataIteracao.push(registro.proc1_cpu_pct);
     }
     var nomeLabel = arrayRespostas[i][0].user;
     var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -408,6 +536,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   const config = {
     type: "line",
     data: dados,
+    showTooltips: true,
     options: {
       scales: {
         x: {
@@ -420,6 +549,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
       },
       responsive: true,
       plugins: { legend: { display: true } },
+      spanGaps: true,
     },
   };
 
