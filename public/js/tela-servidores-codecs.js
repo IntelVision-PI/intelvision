@@ -192,7 +192,7 @@ function pegarRegistrosServidor(nomeServidor) {
       let nomeServidorMinusculo = servidoresProcessamento[i].nome.toLowerCase();
       console.log(nomeServidorMinusculo);
 
-      let url = `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
+      let url = `http://3.214.106.104:3000/s3Route/dados/dados_maquina_${arrayDataSelecionada[2]}-${arrayDataSelecionada[1]}-${arrayDataSelecionada[0]}--${nomeServidorMinusculo}.json`;
 
       let p = fetch(url)
         .then((response) => {
@@ -230,7 +230,7 @@ function pegarRegistrosServidor(nomeServidor) {
     for (let i = 0; i < servidoresProcessamento.length; i++) {
       if (servidoresProcessamento[i].nome == nomeServidor) {
         fetch(
-          `http://127.0.0.1:3000/s3Route/dados/dados_maquina_${
+          `http://3.214.106.104:3000/s3Route/dados/dados_maquina_${
             arrayDataSelecionada[2]
           }-${arrayDataSelecionada[1]}-${
             arrayDataSelecionada[0]
