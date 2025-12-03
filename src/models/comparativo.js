@@ -1,4 +1,6 @@
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+
 const database = require("../database/config"); 
 const s3 = new S3Client({ region: process.env.AWS_REGION || "us-east-1" });
 
@@ -50,9 +52,9 @@ async function buscarChamadosS3() {
   const params = { Bucket: bucket, Key: key };
 
   try {
-    const response = await s3.send(new GetObjectCommand(params));
-    const bodyString = await streamParaString(response.Body);
-    return JSON.parse(bodyString);
+    const response = new GetObjectCommand(params);
+    const url = await getSignedUrl(s3, response, { expiresIn: 300 });
+    return { url: url };
   } catch (err) {
     console.error(`[S3 ERRO] Falha ao baixar o arquivo: ${key}`);
     console.error(`[S3 ERRO] Detalhe: ${err.message || err.Code}`);
