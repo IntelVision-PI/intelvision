@@ -53,35 +53,35 @@ function normalizeServerList(rawList) {
 }
 
 // ----------------- KPI -----------------
-    // function calcularKPIs(listaNormalizada) {
-    //     const kpis = { Armazenamento: 0, Web: 0, Processamento: 0 };
+    function calcularKPIs(listaNormalizada) {
+        const kpis = { Armazenamento: 0, Web: 0, Processamento: 0 };
 
-    //     listaNormalizada.forEach(s => {
-    //         const statusGeral = calcularStatusGeral(s.original);
-    //         const tipo = (s.tipo_servidor || "Todos");
+        listaNormalizada.forEach(s => {
+            const statusGeral = calcularStatusGeral(s.original);
+            const tipo = (s.tipo_servidor || "Todos");
 
-    //         if (statusGeral === "ALERTA" || statusGeral === "CRITICO") {
-    //             if (tipo.toLowerCase() === "armazenamento") kpis.Armazenamento++;
-    //             else if (tipo.toLowerCase() === "web") kpis.Web++;
-    //             else if (tipo.toLowerCase() === "processamento") kpis.Processamento++;
-    //             else {
-    //                 // se tipo não bater, não contamos em buckets específicos
-    //             }
-    //         }
-    //     });
+            if (statusGeral === "ALERTA" || statusGeral === "CRITICO") {
+                if (tipo.toLowerCase() === "armazenamento") kpis.Armazenamento++;
+                else if (tipo.toLowerCase() === "web") kpis.Web++;
+                else if (tipo.toLowerCase() === "processamento") kpis.Processamento++;
+                else {
+                    // se tipo não bater, não contamos em buckets específicos
+                }
+            }
+        });
 
-    //     atualizarKPIsTela(kpis);
-    // }
+        atualizarKPIsTela(kpis);
+    }
 
-// function atualizarKPIsTela(kpis) {
-//     const elemArm = document.getElementById("kpiArmazenamento");
-//     const elemWeb = document.getElementById("kpiWeb");
-//     const elemProc = document.getElementById("kpiProcessamento");
+function atualizarKPIsTela(kpis) {
+    const elemArm = document.getElementById("kpiArmazenamento");
+    const elemWeb = document.getElementById("kpiWeb");
+    const elemProc = document.getElementById("kpiProcessamento");
 
-//     if (elemArm) elemArm.innerText = kpis.Armazenamento;
-//     if (elemWeb) elemWeb.innerText = kpis.Web;
-//     if (elemProc) elemProc.innerText = kpis.Processamento;
-// }
+    if (elemArm) elemArm.innerText = kpis.Armazenamento;
+    if (elemWeb) elemWeb.innerText = kpis.Web;
+    if (elemProc) elemProc.innerText = kpis.Processamento;
+}
 
 // ----------------- Top 5 -----------------
 function calcularMediaCampoPorServidor(datasetServidor, campo) {
@@ -150,41 +150,68 @@ function plotarTop5(lista, campo) {
     });
 }
 
-// ----------------- Heatmap -----------------
-function preencherMapaCalor(listaNormalizada) {
+async function preencherMapaCalor(listaNormalizada) {
     const container = document.getElementById("mapa_situacaoServidores");
-
-    // limpar blocos antigos
     container.innerHTML = "";
 
-    // criar um bloco para cada servidor
-    listaNormalizada.forEach((servidor, index) => {
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
+
+    for (let index = 0; index < listaNormalizada.length; index++) {
+        const servidor = listaNormalizada[index];
+
         const bloco = document.createElement("div");
         bloco.classList.add("server01");
         bloco.id = `server-box-${index}`;
 
-        // se não existir servidor nessa posição
+        // Caso não exista servidor nessa posição
         if (!servidor) {
             bloco.style.backgroundColor = "#eee";
             bloco.title = "Vazio";
             container.appendChild(bloco);
-            return;
+            continue;
         }
 
-        const statusGeral = calcularStatusGeral(servidor.original);
+        const nomeServidor = servidor.servidor;
+        let cpu = "SEM_PARAMETRO";
+        let ram = "SEM_PARAMETRO";
+        let disco = "SEM_PARAMETRO";
 
-        let cor = "#ccc";
-        if (statusGeral === "OK") cor = "#2ECC71";
-        if (statusGeral === "ALERTA") cor = "#F1C40F";
-        if (statusGeral === "CRITICO") cor = "#E74C3C";
-        if (statusGeral === "SEM_PARAMETRO") cor = "#95A5A6";
+        try {
+            const dadosS3 = await pegarDadosS3(2025, 11, 27, nomeServidor);
+
+            if (dadosS3 && !dadosS3.vazio && Array.isArray(dadosS3) && dadosS3.length > 0) {
+                // usar o último registro
+                const ultimo = dadosS3[dadosS3.length - 1];
+
+                cpu = (ultimo.status_cpu || "").toUpperCase();
+                ram = (ultimo.status_ram || "").toUpperCase();
+                disco = (ultimo.status_disco || "").toUpperCase();
+            }
+        } catch (e) {
+            console.error(`Erro ao consultar S3 para ${nomeServidor}`, e);
+        }
+
+        // prioridade de cor
+        let cor = "#95A5A6"; // sem parâmetro
+
+        if (cpu === "CRITICO" || ram === "CRITICO" || disco === "CRITICO") {
+            cor = "#E74C3C";
+             // vermelho
+        } 
+        else if (cpu === "ALERTA" || ram === "ALERTA" || disco === "ALERTA") {
+            cor = "#F1C40F"; // amarelo
+        } 
+        else if (cpu === "OK" && ram === "OK" && disco === "OK") {
+            cor = "#2ECC71"; // verde
+        }
 
         bloco.style.backgroundColor = cor;
-        bloco.title = `${servidor.servidor} — ${statusGeral}`;
+        bloco.title = `${nomeServidor} — CPU: ${cpu}, RAM: ${ram}, Disco: ${disco}`;
 
         container.appendChild(bloco);
-    });
+    }
 }
+
 
 // ----------------- Requisições por hora (time series) -----------------
 async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
@@ -256,7 +283,6 @@ function plotarGraficoRequisicoes(labels, data) {
 function mostrarServidores(lista) {
     // normaliza a lista
     let listaNormalizada = normalizeServerList(lista);
-    console.log(listaNormalizada)
 
 
     // Remove duplicados pelo nome do servidor
@@ -266,9 +292,11 @@ function mostrarServidores(lista) {
         nomesUnicos.add(s.servidor);
         return true;
     });
+    console.log(listaNormalizada)
+
 
     // KPIs
-    // calcularKPIs(listaNormalizada);
+    calcularKPIs(listaNormalizada);
 
     // Heatmap: usa a ordem da lista retornada
     preencherMapaCalor(listaNormalizada);
