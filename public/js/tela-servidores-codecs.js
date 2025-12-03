@@ -22,6 +22,7 @@ let dataSelecionada;
 let servidores = [];
 let servidoresProcessamento = [];
 let dadosGrafico = [];
+let objServidorSelecionado;
 
 function puxarDadosServidor() {
   /* Essa função puxa os dados de servidores do banco de dados */
@@ -138,6 +139,7 @@ function pegarInformacoesServidor(idServidor) {
     } else {
       for (let i = 0; i < servidores.length; i++) {
         if (servidores[i].id == Number(idServidor)) {
+          objServidorSelecionado = servidores[i];
           tbodyServidoresCodec.innerHTML = `
             <tr>
               <td>Nome</td>
@@ -294,6 +296,16 @@ function plotarGraficoLinha(resposta) {
         fill: true,
         tension: 0.4,
       },
+      {
+        label: "Linha de limite do servidor",
+        data: [],
+        borderColor: "#FF0000",
+        backgroundColor: "#FF0000",
+        borderWidth: 3,
+        fill: false,
+        radius: 1,
+        pointStyle: false,
+      },
     ],
   };
 
@@ -309,6 +321,7 @@ function plotarGraficoLinha(resposta) {
     var registro = resposta[0][i];
     labels.push(registro.timestamp.split(" ")[1]);
     dados.datasets[0].data.push(registro.proc1_cpu_pct);
+    dados.datasets[1].data.push(objServidorSelecionado.em_risco_max);
   }
 
   console.log("----------------------------------------------");
@@ -485,7 +498,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
             dataIteracao.push(registro.proc1_cpu_pct);
             break;
           } else if (dataIteracao[k] == undefined) {
-            dataIteracao.push(null);
+            dataIteracao.push(0);
           }
         }
       }
@@ -523,6 +536,7 @@ function plotarGraficoLinhaTodos(arrayRespostas) {
   const config = {
     type: "line",
     data: dados,
+    showTooltips: true,
     options: {
       scales: {
         x: {
