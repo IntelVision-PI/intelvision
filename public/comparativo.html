@@ -269,12 +269,12 @@
                     </div>
                     <div class="graph-container"><canvas id="chartRAM"></canvas></div>
                 </div>
-                <div class="chart-wrapper">
+                <!-- <div class="chart-wrapper">
                     <div class="chart-header">
                         <h3>Armazenamento (Tendência)</h3>
                     </div>
                     <div class="graph-container"><canvas id="chartDisco"></canvas></div>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -619,10 +619,8 @@ function plotarGraficosOtimizados(ref, atual) {
 }
 
 function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
-    // salva labels e dados no chart (útil para tooltip)
     chart.data.labels = lbls;
 
-    // guarda os picos no chart para usar no tooltip
     chart._picosRef = dRefMax || [];
     chart._picosAtu = dAtuMax || [];
 
