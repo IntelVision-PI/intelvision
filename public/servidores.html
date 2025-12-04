@@ -159,34 +159,32 @@
         <div class="kpi-container">
           <div class="kpi-card">
             <div class="kpi-header">
-              <span class="kpi-title">Servidores de Armazenamento em alerta ou crítico</span>
+              <span class="kpi-title">Servidores críticos</span>
               <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
             </div>
-            <div class="kpi-value" id="kpiArmazenamento">2</div>
+            <div class="kpi-value" id="kpiCritico">2</div>
             <div class="kpi-delta" id="deltaArmazenamento">
               <!-- <span style="color: #999; font-weight: 400;">Aguardando...</span> -->
             </div>
           </div>
           <div class="kpi-card">
             <div class="kpi-header">
-              <span class="kpi-title">Servidores de WEB em alerta ou crítico</span>
+              <span class="kpi-title">Servidores em alerta</span>
               <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
             </div>
-            <div class="kpi-value" id="kpiWeb">1</div>
+            <div class="kpi-value" id="kpiAlerta">1</div>
             <div class="kpi-delta" id="deltaWeb">
               <!-- <span style="color: #999; font-weight: 400;">Aguardando...</span> -->
             </div>
           </div>
-          <div class="kpi-card">
+          <!-- <div class="kpi-card">
             <div class="kpi-header">
               <span class="kpi-title">Servidores de Processamento em alerta ou crítico</span>
-              <!-- <div class="kpi-icon"><i class="fa-solid fa-microchip"></i></div> -->
             </div>
             <div class="kpi-value" id="kpiProcessamento">1</div>
             <div class="kpi-delta" id="deltaProcessamento">
-              <!-- <span style="color: #999; font-weight: 400;">Aguardando...</span> -->
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- Filtro Servidores -->
         <!-- <div class="kpi-container div-procura">
@@ -240,7 +238,7 @@
         <div class="graficos-dados-gerais">
           <div class="chart-container">
             <div class="cabecalhoGraficoUm">
-              <h3>Top 5 Uso de <span id="qualComponente">RAM</span></h3>
+              <h3>Top máquinas com mais uso de <span id="qualComponente">RAM</span></h3>
               <div class="filtrosGraficoUm">
                 <select name="" id="select_tipoServidor" class="select-input">
                   <option value="Todos">Todos</option>
@@ -262,10 +260,7 @@
           <div class="mapaServidores">
             <h3>Situação dos servidores</h3>
             <div id="mapa_situacaoServidores" class="mapaDeCalor">
-              <div class="server01"></div>
-              <div class="server03"></div>
-              <div class="server02"></div>
-              <div class="server03"></div>
+              carregando...
             </div>
           </div>
         </div>

@@ -53,34 +53,44 @@ function normalizeServerList(rawList) {
 }
 
 // ----------------- KPI -----------------
-    function calcularKPIs(listaNormalizada) {
-        const kpis = { Armazenamento: 0, Web: 0, Processamento: 0 };
+async function calcularKPIs(listaNormalizada) {
+    let totalCritico = 0;
+    let totalAlerta = 0;
 
-        listaNormalizada.forEach(s => {
-            const statusGeral = calcularStatusGeral(s.original);
-            const tipo = (s.tipo_servidor || "Todos");
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
 
-            if (statusGeral === "ALERTA" || statusGeral === "CRITICO") {
-                if (tipo.toLowerCase() === "armazenamento") kpis.Armazenamento++;
-                else if (tipo.toLowerCase() === "web") kpis.Web++;
-                else if (tipo.toLowerCase() === "processamento") kpis.Processamento++;
-                else {
-                    // se tipo não bater, não contamos em buckets específicos
-                }
-            }
-        });
+    for (let servidor of listaNormalizada) {
+        if (!servidor) continue;
 
-        atualizarKPIsTela(kpis);
+        const nomeServidor = servidor.servidor;
+
+        try {
+            const dados = await pegarDadosS3(2025, 11, 27, nomeServidor);
+
+            if (!dados || dados.vazio || !Array.isArray(dados) || dados.length === 0)
+                continue;
+
+            const ultimo = dados[dados.length - 1];
+
+            const cpu = (ultimo.status_cpu || "").toUpperCase();
+            const ram = (ultimo.status_ram || "").toUpperCase();
+            const disco = (ultimo.status_disco || "").toUpperCase();
+
+            const temCritico =
+                cpu === "CRITICO" || ram === "CRITICO" || disco === "CRITICO";
+
+            const temAlerta =
+                cpu === "ALERTA" || ram === "ALERTA" || disco === "ALERTA";
+
+            if (temCritico) totalCritico++;
+            else if (temAlerta) totalAlerta++;
+        } catch (e) {
+            console.error("Erro ao calcular KPI do servidor:", nomeServidor, e);
+        }
     }
 
-function atualizarKPIsTela(kpis) {
-    const elemArm = document.getElementById("kpiArmazenamento");
-    const elemWeb = document.getElementById("kpiWeb");
-    const elemProc = document.getElementById("kpiProcessamento");
-
-    if (elemArm) elemArm.innerText = kpis.Armazenamento;
-    if (elemWeb) elemWeb.innerText = kpis.Web;
-    if (elemProc) elemProc.innerText = kpis.Processamento;
+    document.getElementById("kpiCritico").innerText = totalCritico;
+    document.getElementById("kpiAlerta").innerText = totalAlerta;
 }
 
 // ----------------- Top 5 -----------------

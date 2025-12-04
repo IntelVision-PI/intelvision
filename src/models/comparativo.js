@@ -1,5 +1,5 @@
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+// const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
 const database = require("../database/config"); 
 const s3 = new S3Client({ region: process.env.AWS_REGION || "us-east-1" });
@@ -15,7 +15,7 @@ async function streamParaString(stream) {
 
  
 async function buscarDadosS3(ano, mes, dia, servidor) {
-  const bucket = "my-bucket-client-nicolas";
+  const bucket = "leticia04251048-client";
 
   const servidorLower = servidor.toLowerCase(); 
 

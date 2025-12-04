@@ -638,7 +638,7 @@ thead {
 
 .kpi-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 25px;
   /* margin-top: 40px; */
 }
@@ -735,16 +735,21 @@ thead {
   margin: 40px 0;
 }
 
+.mapaServidores h3 {
+  margin-bottom: 25px;
+}
+
 .mapaDeCalor {
   display: flex;
   flex-wrap: wrap;
 }
 
 .server01 {
-  width: 40px;
-  height: 40px;
-  background-color: red;
+  width: 60px;
+  height: 60px;
   margin: 5px;
+  border-radius: 5px;
+  background-color: #95A5A6;
 }
 
 .server02 {
