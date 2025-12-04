@@ -23,13 +23,38 @@ async function carregarArquivosS3() {
   }
 }
 
-async function pegarDadosS3(ano, mes, dia, servidor) {
-  const url = `/dados/${ano}/${mes}/${dia}/${servidor}`;
+async function buscarDadosS3(ano, mes, dia, servidor) {
+  const bucket = "client-testee";
+
+  const servidorLower = servidor.toLowerCase(); 
+
+const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidor.toLowerCase()}.json`;
+
+  console.log("-------------------------------------------------");
+  console.log(`[S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
+  console.log(`[S3 DEBUG] Caminho (Key) gerado: ${key}`);
+  console.log("-------------------------------------------------");
+
+  const params = { Bucket: bucket, Key: key };
+
   try {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) return [];
-      const json = await res.json();
-      return json.dados || json || [];
-  } catch { return []; }
+    const response = await s3.send(new GetObjectCommand(params));
+    const bodyString = await streamParaString(response.Body);
+    return JSON.parse(bodyString);
+  } catch (err) {
+    console.error(`[S3 ERRO] Falha ao baixar o arquivo: ${key}`);
+    console.error(`[S3 ERRO] Detalhe: ${err.message || err.Code}`);
+    return null;
+  }
 }
+
+// async function pegarDadosS3(ano, mes, dia, servidor) {
+//   const url = `/dados/${ano}/${mes}/${dia}/${servidor}`;
+//   try {
+//       const res = await fetch(url, { cache: "no-store" });
+//       if (!res.ok) return [];
+//       const json = await res.json();
+//       return json.dados || json || [];
+//   } catch { return []; }
+// }
 
