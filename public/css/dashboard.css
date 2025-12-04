@@ -1016,3 +1016,49 @@ thead {
   padding: 1%;
   text-align: center;
 }
+
+.bloco_kpi_jira{
+  width: 23%;
+  height: 100%;
+  text-align: center;
+  border-radius: 7px;
+}
+
+.titulo_kpi_jira{
+  width: 100%;
+  height: auto;
+  padding: 5px;
+}
+
+.div_dashboard_kpis_jira{
+  display: flex;
+  margin-top: 3%;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 60px;
+  font-weight: bolder;
+}
+
+.div_container_jira{
+  width: 100%;
+  display: flex;
+  margin-top: 25px;
+}
+
+.div_container_jira .filtro_servidores{
+  width: 20%;
+}
+
+.grafico_rosca_mttr{
+  display: block;
+  width: 40%;
+  text-align: center;
+}
+
+.grafico_rosca_mttr .mttr{
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
