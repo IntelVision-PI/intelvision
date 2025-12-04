@@ -551,7 +551,7 @@ function definirStatusGeral(dados) {
 function inicializarGraficos() {
     chartCPU = criarChart("chartCPU");
     chartRAM = criarChart("chartRAM");
-    chartDisco = criarChart("chartDisco");
+    // chartDisco = criarChart("chartDisco");
 }
 
 function criarChart(id) {
@@ -611,11 +611,11 @@ function plotarGraficosOtimizados(ref, atual) {
         limitesGlobais["RAM"]
     );
 
-    updChart(chartDisco, labels,
-        mapData(ref, 'disco'), mapData(atual, 'disco'),
-        mapData(ref, 'discoMax'), mapData(atual, 'discoMax'),
-        limitesGlobais["Disco"]
-    );
+    // updChart(chartDisco, labels,
+    //     mapData(ref, 'disco'), mapData(atual, 'disco'),
+    //     mapData(ref, 'discoMax'), mapData(atual, 'discoMax'),
+    //     limitesGlobais["Disco"]
+    // );
 }
 
 function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
@@ -661,7 +661,7 @@ function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
         {
             label: 'Atual (Média)',
             data: dAtuAvg,
-            picoData: dAtuMax, // mantém compatibilidade com tooltips antigos
+            picoData: dAtuMax, 
             borderColor: '#2ecc71',
             backgroundColor: 'rgba(46,204,113,0.08)',
             borderWidth: 2,
@@ -690,30 +690,37 @@ function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
             showLine: false
         }
     ];
+chart.options.plugins.tooltip.callbacks.label = function(context) {
+    const idx = context.dataIndex;
+    const ds = context.dataset;
+    let txt = ds.label + ": ";
 
-    chart.options.plugins.tooltip.callbacks.label = function(context) {
-        let txt = '';
-        if (context.dataset && context.dataset.label) {
-            txt += context.dataset.label + ': ';
-        }
-        if (context.parsed && context.parsed.y != null) {
-            txt += context.parsed.y.toFixed(1) + '%';
-        }
+    if (context.parsed.y != null) {
+        txt += context.parsed.y.toFixed(1) + "%";
+    }
 
-        const idx = context.dataIndex;
+    const picoRef = chart._picosRef[idx];
+    const picoAtu = chart._picosAtu[idx];
 
-        const picoAtu = (chart._picosAtu && chart._picosAtu[idx] != null) ? chart._picosAtu[idx] : null;
-        const picoRef = (chart._picosRef && chart._picosRef[idx] != null) ? chart._picosRef[idx] : null;
+     if (ds.label === "Ref (Média)" && picoRef != null) {
+        txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
+    }
 
-        if (picoAtu != null) {
-            txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
-        }
-        if (picoRef != null) {
-            txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
-        }
+    if (ds.label === "Ref (Pico)" && picoRef != null) {
+        txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
+    }
 
-        return txt;
-    };
+    if (ds.label === "Atual (Média)" && picoAtu != null) {
+        txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
+    }
+
+    if (ds.label === "Atual (Pico)" && picoAtu != null) {
+        txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
+    }
+
+    return txt;
+};
+
 
     chart.update();
 }
