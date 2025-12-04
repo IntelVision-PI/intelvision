@@ -6,15 +6,17 @@ async function carregarArquivosS3() {
     const ano = "2025";
     const mes = "11";
     const dia = "27";
+    const servidor1 = "servidor14.jasudjc-2025.json";
+    const servidor2 = "servidor14.jasudjc-2024.json";
 
     // Arquivo Ano Atual
-    const r2025 = await fetch(`/predicoes/${ano}/${mes}/${dia}/${servidor}`);
+    const r2025 = await fetch(`/predicoes/${ano}/${mes}/${dia}/${servidor1}`);
 
     if (r2025.ok) dados2025 = await r2025.json();
     else console.error("Erro ao buscar servidor14.jasudjc-2025.json");
 
     // Arquivo Ano Anterior
-    const r2024 = await fetch(`/predicoes/${ano}/${mes}/${dia}/${servidor}`);
+    const r2024 = await fetch(`/predicoes/${ano}/${mes}/${dia}/${servidor2}`);
     if (r2024.ok) dados2024 = await r2024.json();
     else console.error("Erro ao buscar servidor14.jasudjc-2024.json");
 
