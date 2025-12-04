@@ -262,12 +262,12 @@
                     </div>
                     <div class="graph-container"><canvas id="chartRAM"></canvas></div>
                 </div>
-                <div class="chart-wrapper">
+                <!-- <div class="chart-wrapper">
                     <div class="chart-header">
                         <h3>Armazenamento (Tendência)</h3>
                     </div>
                     <div class="graph-container"><canvas id="chartDisco"></canvas></div>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -490,7 +490,7 @@ function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
     const mRef = media(ref.map(d => d[campoMed]));
 
     const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : 0;
-
+    const picoRef   = ref.length   ? Math.max(...ref.map(d => d[campoMax] || d[campoMed])) : 0;
     if (isNaN(mAtual) || atual.length === 0) {
         elMed.innerText = "--%";
         elPico.innerText = "--%";
@@ -544,7 +544,7 @@ function definirStatusGeral(dados) {
 function inicializarGraficos() {
     chartCPU = criarChart("chartCPU");
     chartRAM = criarChart("chartRAM");
-    chartDisco = criarChart("chartDisco");
+    // chartDisco = criarChart("chartDisco");
 }
 
 function criarChart(id) {
@@ -592,24 +592,30 @@ function plotarGraficosOtimizados(ref, atual) {
         return f ? f[key] : null;
     });
 
-    updChart(chartCPU, labels,
+     updChart(chartCPU, labels,
         mapData(ref, 'cpu'), mapData(atual, 'cpu'),
-        mapData(atual, 'cpuMax'), limitesGlobais["CPU"]
+        mapData(ref, 'cpuMax'), mapData(atual, 'cpuMax'),
+        limitesGlobais["CPU"]
     );
 
     updChart(chartRAM, labels,
         mapData(ref, 'ram'), mapData(atual, 'ram'),
-        mapData(atual, 'ramMax'), limitesGlobais["RAM"]
+        mapData(ref, 'ramMax'), mapData(atual, 'ramMax'),
+        limitesGlobais["RAM"]
     );
 
-    updChart(chartDisco, labels,
-        mapData(ref, 'disco'), mapData(atual, 'disco'),
-        mapData(atual, 'discoMax'), limitesGlobais["Disco"]
-    );
+    // updChart(chartDisco, labels,
+    //     mapData(ref, 'disco'), mapData(atual, 'disco'),
+    //     mapData(ref, 'discoMax'), mapData(atual, 'discoMax'),
+    //     limitesGlobais["Disco"]
+    // );
 }
 
-function updChart(chart, lbls, dRef, dAtuAvg, dAtuMax, limites) {
+function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
     chart.data.labels = lbls;
+
+    chart._picosRef = dRefMax || [];
+    chart._picosAtu = dAtuMax || [];
 
     const paramAlerta  = limites ? limites.alerta  : null;
     const paramCritico = limites ? limites.critico : null;
@@ -617,39 +623,97 @@ function updChart(chart, lbls, dRef, dAtuAvg, dAtuMax, limites) {
     chart.data.datasets = [
         {
             label: 'Ref (Média)',
-            data: dRef,
+            data: dRefAvg,
             borderColor: '#bdc3c7',
             borderDash: [5, 5],
             borderWidth: 2,
-            pointRadius: 0
+            pointRadius: 0,
+            fill: false
+        },
+        {
+            label: 'Ref (Pico)',
+            data: dRefMax,
+            type: 'line',
+            borderWidth: 0,
+            fill: false,
+            pointStyle: 'circle',
+            pointRadius: function(ctx) {
+                const v = ctx.dataset.data[ctx.dataIndex];
+                return (paramAlerta != null && v != null && v >= paramAlerta) ? 5 : 0;
+            },
+            pointBackgroundColor: function(ctx) {
+                if (!limites) return 'transparent';
+                const v = ctx.dataset.data[ctx.dataIndex];
+                if (v == null) return 'transparent';
+                if (v >= paramCritico) return '#e74c3c';
+                if (v >= paramAlerta)  return '#f1c40f';
+                return 'transparent';
+            },
+            showLine: false
         },
         {
             label: 'Atual (Média)',
             data: dAtuAvg,
-            picoData: dAtuMax,
+            picoData: dAtuMax, 
             borderColor: '#2ecc71',
-            backgroundColor: 'rgba(46,204,113,0.1)',
+            backgroundColor: 'rgba(46,204,113,0.08)',
             borderWidth: 2,
             fill: true,
-
-            pointBackgroundColor(context) {
+            pointRadius: 0
+        },
+        {
+            label: 'Atual (Pico)',
+            data: dAtuMax,
+            type: 'line',
+            borderWidth: 0,
+            fill: false,
+            pointStyle: 'circle',
+            pointRadius: function(ctx) {
+                const v = ctx.dataset.data[ctx.dataIndex];
+                return (paramAlerta != null && v != null && v >= paramAlerta) ? 6 : 0;
+            },
+            pointBackgroundColor: function(ctx) {
                 if (!limites) return 'transparent';
-                const pico = context.dataset.picoData[context.dataIndex];
-                if (pico >= paramCritico) return '#e74c3c';
-                if (pico >= paramAlerta)  return '#f1c40f';
+                const v = ctx.dataset.data[ctx.dataIndex];
+                if (v == null) return 'transparent';
+                if (v >= paramCritico) return '#e74c3c';
+                if (v >= paramAlerta)  return '#f1c40f';
                 return 'transparent';
             },
-
-            pointRadius(context) {
-                if (!limites) return 0;
-                const pico = context.dataset.picoData[context.dataIndex];
-                if (pico >= paramAlerta) return 5;
-                return 0;
-            },
-
-            pointHoverRadius: 7
+            showLine: false
         }
     ];
+chart.options.plugins.tooltip.callbacks.label = function(context) {
+    const idx = context.dataIndex;
+    const ds = context.dataset;
+    let txt = ds.label + ": ";
+
+    if (context.parsed.y != null) {
+        txt += context.parsed.y.toFixed(1) + "%";
+    }
+
+    const picoRef = chart._picosRef[idx];
+    const picoAtu = chart._picosAtu[idx];
+
+     if (ds.label === "Ref (Média)" && picoRef != null) {
+        txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
+    }
+
+    if (ds.label === "Ref (Pico)" && picoRef != null) {
+        txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
+    }
+
+    if (ds.label === "Atual (Média)" && picoAtu != null) {
+        txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
+    }
+
+    if (ds.label === "Atual (Pico)" && picoAtu != null) {
+        txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
+    }
+
+    return txt;
+};
+
 
     chart.update();
 }
