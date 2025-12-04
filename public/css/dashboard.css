@@ -582,6 +582,8 @@ thead {
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: 'Exo 2', sans-serif;
+  width: 400px;
+  height: 110px;
 }
 
 .kpi-header {
@@ -750,20 +752,49 @@ thead {
   margin: 5px;
   border-radius: 5px;
   background-color: #95A5A6;
+  cursor: pointer;
+  position: relative;
 }
 
-.server02 {
-  width: 40px;
-  height: 40px;
-  background-color: darkgoldenrod;
-  margin: 5px;
+.server01:hover .dadosServidor{
+  visibility: visible;
 }
 
-.server03 {
-  width: 40px;
-  height: 40px;
-  background-color: #00a335;
-  margin: 5px;
+.dadosServidor {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px 15px;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 130%;
+  left: 30%;
+  margin-left: -80px;
+}
+
+.dadosServidor::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.nomeServidor p {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nomeServidor {
+  margin-bottom: 5px;
+}
+
+.info-server p {
+  font-size: 14px;
 }
 
 .chart-container {
@@ -843,7 +874,7 @@ thead {
   color: #333;
 }
 
-.chart-container2 #graficoRequisicaoHora{
+.chart-container2 #graficoRequisicaoHora {
   width: 100%;
   height: 35vh;
 }
@@ -971,12 +1002,12 @@ thead {
 }
 
 .conteudo-principal {
-    width: 85%;
-    margin-left: 15%;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 32px;
-    background-color: #f9fafb;
+  width: 85%;
+  margin-left: 15%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 32px;
+  background-color: #f9fafb;
 }
 
 /* pagina dashboards - parte filtro*/

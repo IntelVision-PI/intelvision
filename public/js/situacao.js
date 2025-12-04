@@ -37,7 +37,6 @@ function calcularStatusGeral(item) {
 }
 
 function normalizeServerList(rawList) {
-    // Garante que cada item terá: servidor, tipo_servidor, status_cpu/status_ram/status_disco
     return rawList.map(item => {
         const servidor = item.servidor || item.user || item.nome || item.host || item.server || "";
         const tipo = item.tipo_servidor || item.tipo || item.kind || "Todos";
@@ -45,9 +44,12 @@ function normalizeServerList(rawList) {
             original: item,
             servidor,
             tipo_servidor: tipo,
-            status_cpu: item.status_cpu || item.statusCpu || item.status?.cpu || item.original?.status_cpu || "",
-            status_ram: item.status_ram || item.statusRam || item.status?.ram || "",
-            status_disco: item.status_disco || item.statusDisco || item.status?.disco || ""
+            cpu_por: 0,
+            ram_por: 0,
+            disco_por: 0,
+            status_cpu: item.status_cpu || "",
+            status_ram: item.status_ram || "",
+            status_disco: item.status_disco || ""
         };
     });
 }
@@ -106,24 +108,31 @@ async function gerarTop5(listaServidores, componente = "1", tipoFiltro = "Todos"
     const campoMap = { "1": "ram", "2": "disco", "3": "cpu" };
     const campo = campoMap[componente] || "ram";
 
-    // Para cada servidor na listaServidores precisamos buscar os dados do S3 (do dia atual)
     const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
+
     const resultados = [];
 
     for (const s of listaServidores) {
         if (tipoFiltro !== "Todos" && (s.tipo_servidor || "").toLowerCase() !== tipoFiltro.toLowerCase()) {
             continue;
         }
+
         const nomeServidor = s.servidor;
+
         try {
             const dados = await pegarDadosS3(2025, 11, 27, nomeServidor);
-            if (!dados || dados.vazio) {
+
+            if (!dados || dados.vazio || !Array.isArray(dados) || dados.length === 0) {
                 resultados.push({ servidor: nomeServidor, valor: 0 });
                 continue;
             }
-            // S3 no seu exemplo tem strings, convert
-            const media = calcularMediaCampoPorServidor(dados, campo);
-            resultados.push({ servidor: nomeServidor, valor: media });
+
+            // pega o último registro
+            const ultimo = dados[dados.length - 1];
+
+            const valor = Number(ultimo[campo]) || 0;
+
+            resultados.push({ servidor: nomeServidor, valor });
         } catch (err) {
             console.error("Erro Top5 - buscar s3", nomeServidor, err);
             resultados.push({ servidor: nomeServidor, valor: 0 });
@@ -134,6 +143,7 @@ async function gerarTop5(listaServidores, componente = "1", tipoFiltro = "Todos"
     plotarTop5(top5, campo);
 }
 
+
 function plotarTop5(lista, campo) {
     const ctx = document.getElementById("SerivdorMaiorUso").getContext("2d");
 
@@ -142,9 +152,9 @@ function plotarTop5(lista, campo) {
     graficoTop5 = new Chart(ctx, {
         type: "bar",
         data: {
-        labels: lista.map(i => i.servidor),
+            labels: lista.map(i => i.servidor),
             datasets: [{
-            label: `Média ${campo.toUpperCase()}`,
+                label: `Média ${campo.toUpperCase()}`,
                 data: lista.map(i => Number(i.valor.toFixed(2))),
                 backgroundColor: "#2D6A54"
             }]
@@ -168,6 +178,7 @@ async function preencherMapaCalor(listaNormalizada) {
 
     for (let index = 0; index < listaNormalizada.length; index++) {
         const servidor = listaNormalizada[index];
+        console.log(servidor)
 
         const bloco = document.createElement("div");
         bloco.classList.add("server01");
@@ -177,14 +188,19 @@ async function preencherMapaCalor(listaNormalizada) {
         if (!servidor) {
             bloco.style.backgroundColor = "#eee";
             bloco.title = "Vazio";
+            bloco.innerHTML = "<div class='dadosServidor'>Sem dados</div>"
             container.appendChild(bloco);
             continue;
         }
 
         const nomeServidor = servidor.servidor;
-        let cpu = "SEM_PARAMETRO";
-        let ram = "SEM_PARAMETRO";
-        let disco = "SEM_PARAMETRO";
+        const tipoServidor = servidor.tipo_servidor;
+        let cpu = "Sem dados";
+        let ram = "Sem dados";
+        let disco = "Sem dados";
+        let cpuPor = "Sem dados";
+        let ramPor = "Sem dados";
+        let discoPor = "Sem dados";
 
         try {
             const dadosS3 = await pegarDadosS3(2025, 11, 27, nomeServidor);
@@ -196,6 +212,10 @@ async function preencherMapaCalor(listaNormalizada) {
                 cpu = (ultimo.status_cpu || "").toUpperCase();
                 ram = (ultimo.status_ram || "").toUpperCase();
                 disco = (ultimo.status_disco || "").toUpperCase();
+                cpuPor = ultimo.cpu ?? 0;
+                ramPor = ultimo.ram ?? 0;
+                discoPor = ultimo.disco ?? 0;
+
             }
         } catch (e) {
             console.error(`Erro ao consultar S3 para ${nomeServidor}`, e);
@@ -205,18 +225,28 @@ async function preencherMapaCalor(listaNormalizada) {
         let cor = "#95A5A6"; // sem parâmetro
 
         if (cpu === "CRITICO" || ram === "CRITICO" || disco === "CRITICO") {
-            cor = "#E74C3C";
-             // vermelho
-        } 
+            cor = "#EF4444";
+        }
         else if (cpu === "ALERTA" || ram === "ALERTA" || disco === "ALERTA") {
-            cor = "#F1C40F"; // amarelo
-        } 
+            cor = "#EAB308";
+        }
         else if (cpu === "OK" && ram === "OK" && disco === "OK") {
-            cor = "#2ECC71"; // verde
+            cor = "#22C55E";
         }
 
         bloco.style.backgroundColor = cor;
         bloco.title = `${nomeServidor} — CPU: ${cpu}, RAM: ${ram}, Disco: ${disco}`;
+        bloco.innerHTML = `
+            <div class="dadosServidor">
+              <div class="nomeServidor"><p>${nomeServidor}</p></div>
+              <div class="info-server">
+                <div class="tipo-server"><p>${tipoServidor}</p></div>
+                <div class="info-ram"><p>RAM: ${ramPor}</p></div>
+                <div class="info-cpu"><p>CPU: ${cpuPor}</p></div>
+                <div class="info-disco"><p>Disco: ${discoPor}</p></div>
+              </div>
+            </div>
+        `;
 
         container.appendChild(bloco);
     }
