@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
-app.use("/trafego", trafegoRouter);
+// app.use("/trafego", trafegoRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresaRouter);
 app.use("/servidores", servidorRouter);
