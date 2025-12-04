@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Comparação Disco 2024 vs 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    canvas { max-width: 900px; margin: 0 auto; display: block; }
+  </style>
+</head>
+<body>
+  <h2>Uso de Disco — último registro de cada mês (2024 vs 2025)</h2>
+  <canvas id="grafico" width="900" height="400"></canvas>
+
+  <script>
+    // seus dados de exemplo (substitua pelos JSONs reais)
+    const registros2024 = [
+      { timestamp: "2024-01-05 08:00:00", user: "servidor16", disco: 50.2},
+      { timestamp: "2024-01-29 15:39:30", user: "servidor14", disco: 60.2},
+      { timestamp: "2024-02-10 10:15:00", user: "servidor15", disco: 80.2},
+      { timestamp: "2024-02-25 22:00:00", user: "servidor17", disco: 90.2},
+      { timestamp: "2024-03-01 09:00:00", user: "servidor18", disco: 100.2}
+    ];
+
+    const registros2025 = [
+      { timestamp: "2025-01-05 08:00:00", user: "servidor16", disco: 40.2},
+      { timestamp: "2025-01-29 15:39:30", user: "servidor14", disco: 50.2},
+      { timestamp: "2025-02-10 10:15:00", user: "servidor15", disco: 55.2},
+      { timestamp: "2025-02-25 22:00:00", user: "servidor17", disco: 60.2},
+      { timestamp: "2025-03-01 09:00:00", user: "servidor18", disco: 70.2}
+    ];
+
+    // retorna array [jan..dez] com o valor do último 'disco' do mês para o ano informado,
+    // ou null se não houver registro naquele mês.
+    function ultimoDiscoPorMesParaAno(registros, ano) {
+      const ultimoPorMes = {}; // chave: 0..11 -> registro mais recente
+
+      registros.forEach(r => {
+        if (!r.timestamp) return;
+        const dt = new Date(r.timestamp.replace(" ", "T"));
+        if (dt.getFullYear() !== ano) return;
+
+        const m = dt.getMonth(); // 0..11
+        const atual = ultimoPorMes[m];
+        if (!atual) {
+          ultimoPorMes[m] = r;
+        } else {
+          // compara timestamps para manter o mais recente
+          const dtAtual = new Date(atual.timestamp.replace(" ", "T"));
+          if (dt > dtAtual) ultimoPorMes[m] = r;
+        }
+      });
+
+      // monta array de 12 meses (null para meses sem registro)
+      const resultado = Array.from({length: 12}, (_, i) => {
+        return ultimoPorMes[i] ? Number(ultimoPorMes[i].disco) : null;
+      });
+
+      return resultado;
+    }
+
+    function criarGraficoComparativo() {
+      const dados2024 = ultimoDiscoPorMesParaAno(registros2024, 2024);
+      const dados2025 = ultimoDiscoPorMesParaAno(registros2025, 2025);
+
+      const labels = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+
+      const ctx = document.getElementById("grafico").getContext("2d");
+
+      // destrói gráfico anterior se já existir (útil em re-renders)
+      if (window._meuGrafico) {
+        window._meuGrafico.destroy();
+      }
+
+      window._meuGrafico = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "2024",
+              data: dados2024,
+              backgroundColor: "rgba(54, 162, 235, 0.6)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1
+            },
+            {
+              label: "2025",
+              data: dados2025,
+              backgroundColor: "rgba(255, 159, 64, 0.6)",
+              borderColor: "rgba(255, 159, 64, 1)",
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                // mostra 'Sem dado' quando é null
+                label: function(context) {
+                  const v = context.parsed.y;
+                  return context.dataset.label + ': ' + (v === null ? 'Sem dado' : v);
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Uso do Disco — último registro de cada mês'
+            }
+          },
+          scales: {
+            x: {
+              stacked: false
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Uso do Disco'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // executa quando a página carregar
+    document.addEventListener("DOMContentLoaded", criarGraficoComparativo);
+  </script>
+</body>
+</html>

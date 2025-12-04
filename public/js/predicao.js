@@ -33,8 +33,8 @@ async function buscarDadosS3(ano, mes, dia, servidor) {
 const key = `${ano}/${mes}/${dia}/dados_maquina_${ano}-${mes}-${dia}--${servidor.toLowerCase()}.json`;
 
   console.log("-------------------------------------------------");
-  console.log(`[S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
-  console.log(`[S3 DEBUG] Caminho (Key) gerado: ${key}`);
+  console.log(` Predição: [S3 DEBUG] Tentando buscar no Bucket: ${bucket}`);
+  console.log(` Predição: [S3 DEBUG] Caminho (Key) gerado: ${key}`);
   console.log("-------------------------------------------------");
 
   const params = { Bucket: bucket, Key: key };

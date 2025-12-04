@@ -391,88 +391,125 @@ function mostrarGraficoPredicao() {
   });
 }
 
-function calcularMediaPorMes(dados) {
-const registros = [
-  { timestamp: "2025-01-05 08:00:00", user: "servidor16" },
-  { timestamp: "2025-01-29 15:39:30", user: "servidor14" },
-  { timestamp: "2025-02-10 10:15:00", user: "servidor15" },
-  { timestamp: "2025-02-25 22:00:00", user: "servidor17" },
-  { timestamp: "2025-03-01 09:00:00", user: "servidor18" }
-];
+
 
 // Função para pegar o último registro de cada mês
-function ultimoPorMes(registros) {
-  const mapa = {};
+const registros2024 = [
+      { timestamp: "2024-01-05 08:00:00", user: "servidor16", disco: 50.2},
+      { timestamp: "2024-01-29 15:39:30", user: "servidor14", disco: 60.2},
+      { timestamp: "2024-02-10 10:15:00", user: "servidor15", disco: 80.2},
+      { timestamp: "2024-02-25 22:00:00", user: "servidor17", disco: 90.2},
+      { timestamp: "2024-03-01 09:00:00", user: "servidor18", disco: 100.2}
+    ];
 
-  registros.forEach(r => {
-    const dt = new Date(r.timestamp.replace(" ", "T"));
-    const chave = `${dt.getFullYear()}-${dt.getMonth()}`; // ano-mês
+    const registros2025 = [
+      { timestamp: "2025-01-05 08:00:00", user: "servidor16", disco: 40.2},
+      { timestamp: "2025-01-29 15:39:30", user: "servidor14", disco: 50.2},
+      { timestamp: "2025-02-10 10:15:00", user: "servidor15", disco: 55.2},
+      { timestamp: "2025-02-25 22:00:00", user: "servidor17", disco: 60.2},
+      { timestamp: "2025-03-01 09:00:00", user: "servidor18", disco: 70.2}
+    ];
 
-    // Se não existe ou se o registro atual é mais recente, substitui
-    if (!mapa[chave] || new Date(r.timestamp.replace(" ", "T")) > new Date(mapa[chave].timestamp.replace(" ", "T"))) {
-      mapa[chave] = r;
-    }
-  });
+    // retorna array [jan..dez] com o valor do último 'disco' do mês para o ano informado,
+    // ou null se não houver registro naquele mês.
+    function ultimoDiscoPorMesParaAno(registros, ano) {
+      const ultimoPorMes = {}; // chave: 0..11 -> registro mais recente
 
-  return Object.values(mapa);
-}
+      registros.forEach(r => {
+        if (!r.timestamp) return;
+        const dt = new Date(r.timestamp.replace(" ", "T"));
+        if (dt.getFullYear() !== ano) return;
 
-console.log(ultimoPorMes(registros));
-
-}
-
-function criarGraficoAnual() {
-  if (!dados2024 || !dados2025) return;
-
-  const medias2024 = calcularMediaPorMes(dados2024);
-  const medias2025 = calcularMediaPorMes(dados2025);
-
-  const ctx = document.getElementById("discoAnual");
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: [
-        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-        "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-      ],
-      datasets: [
-        {
-          label: "Ano 2025",
-          data: medias2025,
-          backgroundColor: "#64748b",
-          borderWidth: 2,
-          borderRadius: 7
-        },
-        {
-          label: "Ano 2024",
-          data: medias2024,
-          backgroundColor: "#1e293b",
-          borderWidth: 2,
-          borderRadius: 7
+        const m = dt.getMonth(); // 0..11
+        const atual = ultimoPorMes[m];
+        if (!atual) {
+          ultimoPorMes[m] = r;
+        } else {
+          // compara timestamps para manter o mais recente
+          const dtAtual = new Date(atual.timestamp.replace(" ", "T"));
+          if (dt > dtAtual) ultimoPorMes[m] = r;
         }
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          title: {
-            display: true,
-            text: "%"
+      });
+
+      // monta array de 12 meses (null para meses sem registro)
+      const resultado = Array.from({length: 12}, (_, i) => {
+        return ultimoPorMes[i] ? Number(ultimoPorMes[i].disco) : null;
+      });
+
+      return resultado;
+    }
+
+    function criarGraficoComparativo() {
+      const dados2024 = ultimoDiscoPorMesParaAno(registros2024, 2024);
+      const dados2025 = ultimoDiscoPorMesParaAno(registros2025, 2025);
+
+      const labels = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+
+      const ctx = document.getElementById("grafico").getContext("2d");
+
+      // destrói gráfico anterior se já existir (útil em re-renders)
+      if (window._meuGrafico) {
+        window._meuGrafico.destroy();
+      }
+
+      window._meuGrafico = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "2024",
+              data: dados2024,
+              backgroundColor: "rgba(54, 162, 235, 0.6)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1
+            },
+            {
+              label: "2025",
+              data: dados2025,
+              backgroundColor: "rgba(255, 159, 64, 0.6)",
+              borderColor: "rgba(255, 159, 64, 1)",
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                // mostra 'Sem dado' quando é null
+                label: function(context) {
+                  const v = context.parsed.y;
+                  return context.dataset.label + ': ' + (v === null ? 'Sem dado' : v);
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Uso do Disco — último registro de cada mês'
+            }
+          },
+          scales: {
+            x: {
+              stacked: false
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Uso do Disco'
+              }
+            }
           }
         }
-      }
+      });
     }
-  });
-}
 
-
-// -----------------------------------------------------------
-//  APÓS CARREGAR OS ARQUIVOS DO S3
-// -----------------------------------------------------------
+    // executa quando a página carregar
+    document.addEventListener("DOMContentLoaded", criarGraficoComparativo);
 carregarArquivosS3().then(() => {
   mostrarGraficoPredicao();
   criarGraficoAnual();
