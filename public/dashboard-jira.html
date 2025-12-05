@@ -212,9 +212,7 @@
                 </div>
                 <div class="div-links-contas filtro_servidores">
                     <a onclick="atualizarDados()" class="X">
-                        <!-- <div class="div-botao"> -->
                         <h3>Atualizar</h3>
-                        <!-- </div> -->
                     </a>
                 </div>
             </div>
@@ -238,13 +236,25 @@
                     <h2>Tempo Médio de Resolução</h2>
                     <div class="mttr">
                         <img src="../assets/img/rosca-verde.png" width="100%">
-                        <h1 style="position: absolute;" id="valor_mttr">3d12h</h1>
+                        <h1 style="position: absolute;" id="valor_mttr">0d0h</h1>
                     </div>
                 </div>
             </div>
+            <div class="mostrarUsuarios mostrarChamados">
+                <table>
+                    <thead>
+                        <tr class="nomeColuna">
+                            <th class="colunaChamado">Chamado</th>
+                            <th class="colunaEmail">Tipo Servidor</th>
+                            <th class="colunaEmail">Data Criação</th>
+                            <th class="colunaStatus">Status</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="tbody_chamados"></tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    </div>
     </div>
 
     <script>
@@ -441,6 +451,7 @@
             chart.update();
 
             atualizarTempoMedioResolucao(chamadosFiltrados);
+            listarChamados(chamadosFiltrados)
         }
 
         function detectarTipo(labelsString) {
@@ -493,7 +504,7 @@
                 }
             });
 
-            return count > 0 ? (soma / count)/24 : 0;
+            return count > 0 ? (soma / count) / 24 : 0;
         }
 
 
@@ -502,9 +513,9 @@
             const dias = Math.floor(media);
             const horas = Math.floor((media - dias) * 24);
             const h1 = document.getElementById("valor_mttr");
-            if(dias <= 0){
+            if (dias <= 0) {
                 h1.textContent = `${horas}h`;
-            } else{
+            } else {
                 h1.textContent = `${dias}d${horas}h`;
             }
 
@@ -529,6 +540,56 @@
             dataFim.value = dataHoje;
         }
 
+
+        // Listar Chamados mais antigos
+
+        function listarChamados(chamadosFiltrados) {
+            console.log("Me chamou listar(data)");
+            console.log(chamadosFiltrados);
+
+            const chamadosValidos = chamadosFiltrados.filter(chamado => {
+                const labels = chamado["Labels"] || [];
+                return labels.includes("CPU") || labels.includes("RAM") || labels.includes("HD");
+            });
+
+            chamadosValidos.sort((a, b) => {
+                return new Date(a.Criado) - new Date(b.Criado);
+            });
+
+            const chamados = chamadosValidos.slice(0, 5);
+
+            const tbody = document.getElementById("tbody_chamados");
+            tbody.innerHTML = "";
+
+            for (let i = 0; i < chamados.length; i++) {
+                const chamado = chamados[i];
+                const tr = document.createElement("tr");
+
+                let data = chamado["Criado"];
+                const dia = String(data.getDate()).padStart(2, "0");
+                const mes = String(data.getMonth() + 1).padStart(2, "0");
+                const ano = data.getFullYear();
+
+                let tipo = chamado["Labels"];
+                let resTipo;
+                if (tipo.includes("CPU")) {
+                    resTipo = "Web";
+                } else if (tipo.includes("RAM")) {
+                    resTipo = "Processamento";
+                } else if (tipo.includes("HD")) {
+                    resTipo = "Armazenamento";
+                }
+
+                tr.innerHTML = `
+                    <td class="colunaRepresentante"><a href="https://sptech-team-a6j2hxx3.atlassian.net/jira/servicedesk/projects/CHAM/queues/custom/34/${chamado["Key"]}" target="_blank">${chamado["Key"]}</a></td>
+                    <td class="colunaEmail">${resTipo}</td>
+                    <td class="colunaEmail">${dia}/${mes}/${ano}</td>
+                    <td class="colunaAcesso">${chamado["Status"].includes("Concluído") ? "<span style='color: #296CF2; border: 1px solid #DBEAFE; background-color: #EFF6FF; border-radius: 20px; padding: 5px 10px; font-weight: 800; font-size: 12px;'>Concluído</span>" : "<span style='color: #D96B0B; border: 1px solid #FEF3C7; background-color: #FFFBEB; border-radius: 20px; padding: 5px 10px; font-weight: 800; font-size: 12px;'>Aberto</span>"
+                    }</td>`;
+
+                tbody.appendChild(tr);
+            }
+        }
     </script>
     <script src="./js/situacaoServidores.js"></script>
 </body>
