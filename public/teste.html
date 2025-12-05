@@ -439,10 +439,11 @@ function mostrarGraficoPredicao() {
       return resultado;
     }
 
-    async function criarGraficoComparativo() {
+    async function criarGraficoAnual() {
       try {
         const r2025 = await fetch(`/predicoes/2025/11/27/servidor14.jasudjc-2025.json`);
       const lista = await r2025.json();
+      console.log(lista);
       }catch(e) {
         console.log(e)
       }
