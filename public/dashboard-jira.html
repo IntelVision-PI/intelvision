@@ -549,7 +549,8 @@
 
             const chamadosValidos = chamadosFiltrados.filter(chamado => {
                 const labels = chamado["Labels"] || [];
-                return labels.includes("CPU") || labels.includes("RAM") || labels.includes("HD");
+                const status = chamado["Status"];
+                return (labels.includes("CPU") || labels.includes("RAM") || labels.includes("HD")) && !status.includes("Concluído");
             });
 
             chamadosValidos.sort((a, b) => {

@@ -122,7 +122,7 @@ async function calcularKPIs(listaNormalizada) {
         const nomeServidor = servidor.servidor;
 
         try {
-            const dados = await pegarDadosS3(2025, 11, 27, nomeServidor);
+            const dados = await pegarDadosS3(2025, 11, 29, nomeServidor);
 
             if (!dados || dados.vazio || !Array.isArray(dados) || dados.length === 0)
                 continue;
@@ -175,7 +175,7 @@ async function gerarTop5(listaServidores, componente = "1", tipoFiltro = "Todos"
         const nomeServidor = s.servidor;
 
         try {
-            const dados = await pegarDadosS3(2025, 11, 27, nomeServidor);
+            const dados = await pegarDadosS3(2025, 11, 29, nomeServidor);
 
             if (!dados || dados.vazio || !Array.isArray(dados) || dados.length === 0) {
                 resultados.push({ servidor: nomeServidor, valor: 0 });
@@ -258,7 +258,7 @@ async function preencherMapaCalor(listaNormalizada) {
         let discoPor = "Sem dados";
 
         try {
-            const dadosS3 = await pegarDadosS3(2025, 11, 27, nomeServidor);
+            const dadosS3 = await pegarDadosS3(2025, 11, 29, nomeServidor);
 
             if (dadosS3 && !dadosS3.vazio && Array.isArray(dadosS3) && dadosS3.length > 0) {
                 // usar o último registro
@@ -285,7 +285,7 @@ async function preencherMapaCalor(listaNormalizada) {
         else if (cpu === "ALERTA" || ram === "ALERTA" || disco === "ALERTA") {
             cor = "#EAB308";
         }
-        else if (cpu === "OK" && ram === "OK" && disco === "OK") {
+        else if (cpu === "OK" && ram === "OK" && disco === "SEM_PARAMETRO") {
             cor = "#22C55E";
         }
 
@@ -417,7 +417,7 @@ function mostrarServidores(lista) {
     });
     
     console.log(listaNormalizada)
-    gerarGraficoRequisicoes(2025, 11, 27, listaNormalizada);
+    gerarGraficoRequisicoes(2025, 11, 29, listaNormalizada);
     calcularKPIs(listaNormalizada);
     preencherMapaCalor(listaNormalizada);
     gerarTop5(listaNormalizada, compAtual, tipoAtual);
