@@ -498,65 +498,65 @@
   }
 
   // montar select
-  function montarSelect() {
-    const select = document.getElementById("riscoSelect");
-    for (let i = 70; i <= 100; i += 5) {
-      const op = document.createElement("option");
-      op.value = i;
-      op.textContent = i + "%";
-      select.appendChild(op);
-    }
-  }
+  // function montarSelect() {
+  //   const select = document.getElementById("riscoSelect");
+  //   for (let i = 70; i <= 100; i += 5) {
+  //     const op = document.createElement("option");
+  //     op.value = i;
+  //     op.textContent = i + "%";
+  //     select.appendChild(op);
+  //   }
+  // }
 
-  montarSelect();
-  document.getElementById("riscoSelect").addEventListener("change", filtrarServidores);
+  // montarSelect();
+  // document.getElementById("riscoSelect").addEventListener("change", filtrarServidores);
 
 
-  // Gráfico de comparação anual de disco
-  const ctxDiscoComparacao = document.getElementById("discoAnual");
-  new Chart(ctxDiscoComparacao, {
-    type: "bar",
-    data: {
-      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-      datasets: [
-        {
-          label: "Ano atual",
-          data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
-          backgroundColor: "#64748b",
-          borderWidth: 2,
-          borderRadius: {
-            topLeft: 7,
-            topRight: 7,
-            bottomLeft: 0,
-            bottomRight: 0
-          }
-        },
-        {
-          label: "Ano anterior",
-          data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
-          backgroundColor: "#1e293b",
-          borderWidth: 2,
-          borderRadius: {
-            topLeft: 7,
-            topRight: 7,
-            bottomLeft: 0,
-            bottomRight: 0
-          }
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: true } },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          title: { display: true, text: "%" },
-        },
-      },
-    },
-  });
+  // // Gráfico de comparação anual de disco
+  // const ctxDiscoComparacao = document.getElementById("discoAnual");
+  // new Chart(ctxDiscoComparacao, {
+  //   type: "bar",
+  //   data: {
+  //     labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+  //     datasets: [
+  //       {
+  //         label: "Ano atual",
+  //         data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+  //         backgroundColor: "#64748b",
+  //         borderWidth: 2,
+  //         borderRadius: {
+  //           topLeft: 7,
+  //           topRight: 7,
+  //           bottomLeft: 0,
+  //           bottomRight: 0
+  //         }
+  //       },
+  //       {
+  //         label: "Ano anterior",
+  //         data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+  //         backgroundColor: "#1e293b",
+  //         borderWidth: 2,
+  //         borderRadius: {
+  //           topLeft: 7,
+  //           topRight: 7,
+  //           bottomLeft: 0,
+  //           bottomRight: 0
+  //         }
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     plugins: { legend: { display: true } },
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //         max: 100,
+  //         title: { display: true, text: "%" },
+  //       },
+  //     },
+  //   },
+  // });
 
-  carregarServidores();
+  // carregarServidores();
 </script>
