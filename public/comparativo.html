@@ -253,12 +253,17 @@
             </div>
 
             <div class="charts-area">
-                <div style="display:flex; gap:8px; align-items:center; margin-left:12px;">
-    <button class="btn-secondary" type="button" onclick="zoomPeriodo(0,8)">00:00 - 08:00</button>
-    <button class="btn-secondary" type="button" onclick="zoomPeriodo(8,16)">08:00 - 16:00</button>
-    <button class="btn-secondary" type="button" onclick="zoomPeriodo(16,24)">16:00 - 00:00</button>
-    <button class="btn-secondary" type="button" onclick="resetZoom()">Resetar Zoom</button>
+              <div class="zoom-section">
+    <p class="zoom-title">Visualização por períodos do dia</p>
+
+    <div class="zoom-controls">
+        <button class="btn-zoom" onclick="zoomPeriodo(0,8)">00:00 – 08:00</button>
+        <button class="btn-zoom" onclick="zoomPeriodo(8,16)">08:00 – 16:00</button>
+        <button class="btn-zoom" onclick="zoomPeriodo(16,24)">16:00 – 00:00</button>
+        <button class="btn-zoom btn-zoom-primary" onclick="resetZoom()">Resetar Visualização</button>
+    </div>
 </div>
+
 
                 <div class="chart-wrapper">
                     <div class="chart-header">
@@ -922,7 +927,7 @@ async function carregarParametros(idServidor) {
     }
 }
 
-    
+
 window.zoomPeriodo = zoomPeriodo;
 window.resetZoom = resetZoom;
 
