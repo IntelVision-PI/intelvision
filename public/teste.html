@@ -422,7 +422,7 @@ function mostrarGraficoPredicao() {
     }
 
     async function criarGraficoAnual() {
-      const lista = [];
+      let lista;
       try {
       const r2025 = await fetch(`/predicoes/2025/11/27/servidor14.jasudjc-2025.json`);
       lista = await r2025.json();
