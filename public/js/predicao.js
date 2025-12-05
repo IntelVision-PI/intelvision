@@ -2,6 +2,7 @@ let dados2024 = null;
 let dados2025 = null;
 
 async function carregarArquivosS3() {
+  console.log("CHEGUEI AQUI")
   try {
     const ano = "2025";
     const mes = "11";
