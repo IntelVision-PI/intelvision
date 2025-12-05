@@ -91,7 +91,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                 fill="#8b979f">
                 <path
-                  d="M160-400v-80h640v80H160Zm0-120v-80h640v80H160ZM440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160Z" />
+                  d="M440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160ZM160-400v-80h640v80H160Zm0-120v-80h640v80H160Z" />
               </svg>
               <h3>Análise-Codecs</h3>
             </span>
@@ -263,12 +263,14 @@
 
         <div class="card-container">
           <h3>Gráfico do servidor selecionado:</h3>
-          <canvas id="grafico" height="120"></canvas>
+          <!-- Note que este é o gráfico de predição principal -->
+          <canvas id="grafico" height="120"></canvas> 
         </div>
 
         <div class="chart-container-teste">
           <h3>Comparação anual de disco</h3>
-          <canvas id="discoAnual"></canvas>
+          <!-- Este é o gráfico de comparação anual -->
+          <canvas id="discoAnual"></canvas> 
         </div>
       </div>
     </div>
@@ -286,225 +288,137 @@
 </script>
 
 <script src="js/predicao.js"></script>
+<script src="predicao_chart_logic.js"></script> <!-- Certifique-se de que este arquivo está sendo carregado -->
 
 <script type="module">
-function regressaoLinear(valores) {
-  const n = valores.length;
-  const xs = valores.map((_, i) => i);
+  // Funções auxiliares de regressão linear (mantidas para o gráfico de predição)
+  function regressaoLinear(valores) {
+    const n = valores.length;
+    const xs = valores.map((_, i) => i);
 
-  let somaX = 0, somaY = 0, somaXY = 0, somaX2 = 0;
+    let somaX = 0, somaY = 0, somaXY = 0, somaX2 = 0;
 
-  for (let i = 0; i < n; i++) {
-    somaX += xs[i];
-    somaY += valores[i];
-    somaXY += xs[i] * valores[i];
-    somaX2 += xs[i] * xs[i];
-  }
-
-  const m = (n * somaXY - somaX * somaY) / (n * somaX2 - somaX * somaX);
-  const b = (somaY - m * somaX) / n;
-
-  return { m, b };
-}
-function preverProximos(reg, quantidade, base) {
-  const inicio = base.length;
-  const result = [];
-
-  for (let i = 0; i < quantidade; i++) {
-    result.push(reg.m * (inicio + i) + reg.b);
-  }
-  return result;
-}
-
-let grafico;
-const desvio = 5;
-
-function mostrarGraficoPredicao() {
-
-  // pegar SOMENTE os valores de disco
-  const valoresDisco = dados2025
-    .map(x => Number(x.disco))
-    .filter(v => !isNaN(v));
-
-  if (valoresDisco.length < 4) {
-    console.error("ERRO: precisa de pelo menos 4 registros de disco.");
-    return;
-  }
-
-  if (!dados2025 || !Array.isArray(dados2025)) {
-    console.error("dados2025 não é um array.");
-    return;
-  }
-
-  const ultimos4 = valoresDisco.slice(-4);
-  const reg = regressaoLinear(ultimos4);
-  const predicoes = preverProximos(reg, 3, ultimos4);
-
-  const labels = ["M-3", "M-2", "M-1", "M-0", "M+1", "M+2", "M+3"];
-  const valores = [...ultimos4, ...predicoes];
-
-  const desvioPositivo = valores.map((v, i) => (i >= 3 ? v + desvio : null));
-  const desvioNegativo = valores.map((v, i) => (i >= 3 ? v - desvio : null));
-
-  if (grafico) grafico.destroy();
-
-  const ctx = document.getElementById("grafico");
-
-  grafico = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels,
-      datasets: [
-        {
-          label: "Valores reais",
-          data: [...ultimos4, null, null, null],
-          borderColor: "#28a745",
-          borderWidth: 3,
-          fill: false
-        },
-        {
-          label: "Predição",
-          data: [null, null, null, ultimos4[3], ...predicoes],
-          borderColor: "#6990A7",
-          borderDash: [5, 5],
-          borderWidth: 3,
-          fill: false
-        },
-        {
-          label: "Desvio +",
-          data: desvioPositivo,
-          borderColor: "rgba(0, 200, 0, 0.4)",
-          backgroundColor: "rgba(0,200,0,0.15)",
-          fill: "+1",
-          borderWidth: 2
-        },
-        {
-          label: "Desvio -",
-          data: desvioNegativo,
-          borderColor: "rgba(200, 0, 0, 0.4)",
-          backgroundColor: "rgba(200,0,0,0.15)",
-          fill: false,
-          borderWidth: 2
-        }
-      ]
-    }
-  });
-}
-
-
-
-// Função para pegar o último registro de cada mês
-    function ultimoDiscoPorMesParaAno(registros, ano) {
-      const ultimoPorMes = {}; // chave: 0..11 -> registro mais recente
-
-      registros.forEach(r => {
-        if (!r.timestamp) return;
-        const dt = new Date(r.timestamp.replace(" ", "T"));
-        if (dt.getFullYear() !== ano) return;
-
-        const m = dt.getMonth(); // 0..11
-        const atual = ultimoPorMes[m];
-        if (!atual) {
-          ultimoPorMes[m] = r;
-        } else {
-          // compara timestamps para manter o mais recente
-          const dtAtual = new Date(atual.timestamp.replace(" ", "T"));
-          if (dt > dtAtual) ultimoPorMes[m] = r;
-        }
-      });
-
-      // monta array de 12 meses (null para meses sem registro)
-      const resultado = Array.from({length: 12}, (_, i) => {
-        return ultimoPorMes[i] ? Number(ultimoPorMes[i].disco) : null;
-      });
-
-      return resultado;
+    for (let i = 0; i < n; i++) {
+      somaX += xs[i];
+      somaY += valores[i];
+      somaXY += xs[i] * valores[i];
+      somaX2 += xs[i] * xs[i];
     }
 
-    async function criarGraficoAnual() {
-      let lista;
-      try {
-      const r2025 = await fetch(`/predicoes/2025/11/27/servidor14.jasudjc-2025.json`);
-      lista = await r2025.json();
-      console.log(lista);
-      }catch(e) {
-        console.log(e)
-      }
+    const m = (n * somaXY - somaX * somaY) / (n * somaX2 - somaX * somaX);
+    const b = (somaY - m * somaX) / n;
 
-      const dados2024 = ultimoDiscoPorMesParaAno(lista["disco"], 2025);
-      const dados2025 = ultimoDiscoPorMesParaAno(registros2025, 2025);
+    return { m, b };
+  }
+  function preverProximos(reg, quantidade, base) {
+    const inicio = base.length;
+    const result = [];
 
-      const labels = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+    for (let i = 0; i < quantidade; i++) {
+      result.push(reg.m * (inicio + i) + reg.b);
+    }
+    return result;
+  }
+  
+  // Variáveis globais de predição
+  let grafico;
+  const desvio = 5;
 
-      const ctx = document.getElementById("grafico").getContext("2d");
+  // Função fictícia para simular o carregamento de dados e iniciar os gráficos
+  // No seu projeto real, você precisará de uma função que busca os dados brutos
+  // e os atribui a 'registros2025' para o gráfico de predição funcionar.
+  async function carregarArquivosS3() {
+    // Simulação dos dados que o gráfico de predição precisa
+    // Você precisa garantir que registros2025 (do arquivo .js) seja populado aqui
+    // Exemplo: registros2025 = await fetch('/caminho/do/seu/json').then(r => r.json());
+    console.log("Simulando carregamento de dados do S3...");
+  }
+  
+  // Função que usa as variáveis globais registros2025 (que devem ser preenchidas)
+  function mostrarGraficoPredicao() {
 
-      // destrói gráfico anterior se já existir (útil em re-renders)
-      if (window._meuGrafico) {
-        window._meuGrafico.destroy();
-      }
+    // A variável global 'registros2025' deve ser populada ANTES desta função ser chamada.
+    // O código de predição abaixo depende dela ter sido populada no 'predicao_chart_logic.js'
+    // ou por alguma outra função de fetch. Se estiver vazia, vai dar erro no 'map' ou 'slice'.
+    if (!registros2025 || registros2025.length === 0) {
+        console.error("ERRO: dados2025 está vazio ou não foi carregado para o gráfico de Predição.");
+        return;
+    }
+    
+    // pegar SOMENTE os valores de disco
+    const valoresDisco = registros2025 // Usando registros2025 global
+      .map(x => Number(x.disco))
+      .filter(v => !isNaN(v));
 
-      window._meuGrafico = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "2024",
-              data: dados2024,
-              backgroundColor: "rgba(54, 162, 235, 0.6)",
-              borderColor: "rgba(54, 162, 235, 1)",
-              borderWidth: 1
-            },
-            {
-              label: "2025",
-              data: dados2025,
-              backgroundColor: "rgba(255, 159, 64, 0.6)",
-              borderColor: "rgba(255, 159, 64, 1)",
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            tooltip: {
-              mode: 'index',
-              intersect: false,
-              callbacks: {
-                // mostra 'Sem dado' quando é null
-                label: function(context) {
-                  const v = context.parsed.y;
-                  return context.dataset.label + ': ' + (v === null ? 'Sem dado' : v);
-                }
-              }
-            },
-            title: {
-              display: true,
-              text: 'Uso do Disco — último registro de cada mês'
-            }
+    if (valoresDisco.length < 4) {
+      console.error("ERRO: precisa de pelo menos 4 registros de disco para a predição.");
+      return;
+    }
+
+    const ultimos4 = valoresDisco.slice(-4);
+    const reg = regressaoLinear(ultimos4);
+    const predicoes = preverProximos(reg, 3, ultimos4);
+
+    const labels = ["M-3", "M-2", "M-1", "M-0", "M+1", "M+2", "M+3"];
+    const valores = [...ultimos4, ...predicoes];
+
+    const desvioPositivo = valores.map((v, i) => (i >= 3 ? v + desvio : null));
+    const desvioNegativo = valores.map((v, i) => (i >= 3 ? v - desvio : null));
+
+    if (grafico) grafico.destroy();
+
+    const ctx = document.getElementById("grafico");
+
+    grafico = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Valores reais",
+            data: [...ultimos4, null, null, null],
+            borderColor: "#28a745",
+            borderWidth: 3,
+            fill: false
           },
-          scales: {
-            x: {
-              stacked: false
-            },
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: 'Uso do Disco'
-              }
-            }
+          {
+            label: "Predição",
+            data: [null, null, null, ultimos4[3], ...predicoes],
+            borderColor: "#6990A7",
+            borderDash: [5, 5],
+            borderWidth: 3,
+            fill: false
+          },
+          {
+            label: "Desvio +",
+            data: desvioPositivo,
+            borderColor: "rgba(0, 200, 0, 0.4)",
+            backgroundColor: "rgba(0,200,0,0.15)",
+            fill: "+1",
+            borderWidth: 2
+          },
+          {
+            label: "Desvio -",
+            data: desvioNegativo,
+            borderColor: "rgba(200, 0, 0, 0.4)",
+            backgroundColor: "rgba(200,0,0,0.15)",
+            fill: false,
+            borderWidth: 2
           }
-        }
+        ]
+      }
+    });
+  }
+  
+  // Ajuste na ordem de chamada para garantir que o fetch seja feito antes de criar os gráficos.
+  // Você precisa de uma função que resolva a Promise do fetch. 
+  // O 'criarGraficoAnual' já está no predicao_chart_logic.js e faz o fetch.
+  document.addEventListener("DOMContentLoaded", () => {
+      // Chama a função principal de criação do gráfico anual (que faz o fetch)
+      // Esta função populará 'registros2025' e 'registros2024'.
+      criarGraficoAnual().then(() => {
+          // Após o fetch ter populado 'registros2025', podemos mostrar o gráfico de predição.
+          mostrarGraficoPredicao();
       });
-    }
-
-    // executa quando a página carregar
-    document.addEventListener("DOMContentLoaded", criarGraficoAnual);
-carregarArquivosS3().then(() => {
-  mostrarGraficoPredicao();
-  criarGraficoAnual();
-});
-
+  });
 </script>
-
