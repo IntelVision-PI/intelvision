@@ -188,7 +188,7 @@
                     </div>
                     <div class="vs-badge">VS</div>
                     <div class="input-wrapper">
-                        <p class="control-label">Data Atual</p>
+                        <p class="control-label">Data Comparada</p>
                         <input type="date" id="date2" class="date-input">
                     </div>
                 </div>
@@ -243,7 +243,7 @@
 
                 <div class="alert-card">
                     <div class="alert-header">
-                        <h3>Alertas (Atual) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
+                        <h3>Alertas (Comparada) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div class="alert-content" id="listaAlertasAtual">
@@ -262,7 +262,7 @@
 
                 <div class="chart-wrapper">
                     <div class="chart-header">
-                        <h3>Processamento (CPU)</h3>
+                        <h3>Processamento CPU em %</h3>
                     </div>
                     <div class="graph-container"><canvas id="chartCPU"></canvas></div>
                 </div>
@@ -787,7 +787,7 @@ function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
             showLine: false
         },
         {
-            label: "Atual (Média)",
+            label: "Comparada (Média)",
             data: dAtuAvg,
             borderColor: "#2ecc71",
             backgroundColor: "rgba(46,204,113,0.1)",
@@ -796,7 +796,7 @@ function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
             pointRadius: 0
         },
         {
-            label: "Atual (Pico)",
+            label: "Comparada (Pico)",
             data: dAtuMax,
             type: "line",
             borderWidth: 0,
@@ -921,6 +921,8 @@ async function carregarParametros(idServidor) {
         console.error("Erro ao buscar parâmetros:", e);
     }
 }
+
+    
 window.zoomPeriodo = zoomPeriodo;
 window.resetZoom = resetZoom;
 
