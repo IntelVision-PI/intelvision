@@ -54,6 +54,61 @@ function normalizeServerList(rawList) {
     });
 }
 
+async function calcularMedia7Dias(listaServidores, ano, mes, dia) {
+    const dias = [];
+
+    // gerar lista dos últimos 7 dias
+    for (let i = 1; i <= 7; i++) {
+        const d = new Date(`${ano}-${mes}-${dia}T00:00:00`);
+        d.setDate(d.getDate() - i);
+
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+
+        dias.push({ ano: y, mes: m, dia: dd });
+    }
+
+    // agregação por hora como: {"00:00": soma, "01:00": soma ...}
+    const agregacao7 = {};
+
+    for (const diaInfo of dias) {
+        for (const s of listaServidores) {
+            const servidor = s.servidor;
+
+            try {
+                const dados = await pegarDadosS3(diaInfo.ano, diaInfo.mes, diaInfo.dia, servidor);
+                if (!dados || dados.vazio) continue;
+
+                for (const r of dados) {
+                    const ts = r.timestamp || r.hora;
+                    if (!ts) continue;
+
+                    const hora = ts.slice(11, 13) + ":00";
+                    const pacote = safeNum(r.package_recv || 0);
+
+                    if (!agregacao7[hora]) agregacao7[hora] = [];
+                    agregacao7[hora].push(pacote);
+                }
+            } catch (e) {
+                console.error("Erro média 7 dias:", servidor, e);
+            }
+        }
+    }
+
+    // média por hora
+    const horas = Object.keys(agregacao7).sort();
+    const medias = horas.map(h => {
+        const arr = agregacao7[h];
+        if (!arr || arr.length === 0) return 0;
+        const soma = arr.reduce((a, b) => a + b, 0);
+        return soma / arr.length;
+    });
+
+    return { horas, medias };
+}
+
+
 // ----------------- KPI -----------------
 async function calcularKPIs(listaNormalizada) {
     let totalCritico = 0;
@@ -255,9 +310,9 @@ async function preencherMapaCalor(listaNormalizada) {
 
 // ----------------- Requisições por hora (time series) -----------------
 async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
-    // vamos criar uma série temporal agregada por timestamp (usando package_recv)
-    const agregacao = {}; // chave: timestamp (ex: "2025-11-28 13:38:24") -> soma packages
+    const agregacao = {};
 
+    // linha principal do dia atual
     for (const s of listaServidores) {
         const servidor = s.servidor;
         try {
@@ -265,14 +320,13 @@ async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
             if (!dados || dados.vazio) continue;
 
             for (const registro of dados) {
-                const ts = registro.timestamp || registro.hora || registro.time || null;
+                const ts = registro.timestamp || registro.hora;
                 if (!ts) continue;
 
-                // Só a hora (HH) para o eixo X
-                const chave = ts.slice(11, 13) + ":00";
+                const hora = ts.slice(11, 13) + ":00";
+                const pacote = safeNum(registro.package_recv || 0);
 
-                const pacote = safeNum(registro.package_recv || registro.package || registro.req || 0);
-                agregacao[chave] = (agregacao[chave] || 0) + pacote;
+                agregacao[hora] = (agregacao[hora] || 0) + pacote;
             }
 
         } catch (err) {
@@ -280,15 +334,25 @@ async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
         }
     }
 
-    // ordenar por chave cronológica
-    const keys = Object.keys(agregacao).sort();
-    const values = keys.map(k => agregacao[k]);
+    const labels = Object.keys(agregacao).sort();
+    const valoresHoje = labels.map(h => agregacao[h]);
 
-    plotarGraficoRequisicoes(keys, values);
+    const { horas: horas7, medias: medias7 } = await calcularMedia7Dias(listaServidores, ano, mes, dia);
+
+    // garantir alinhamento do eixo X
+    const todasHoras = Array.from(new Set([...labels, ...horas7])).sort();
+
+    const valoresHojeAlinhados = todasHoras.map(h => agregacao[h] || 0);
+    const medias7Alinhadas = todasHoras.map(h => {
+        const idx = horas7.indexOf(h);
+        return idx >= 0 ? medias7[idx] : 0;
+    });
+
+    // plotar
+    plotarGraficoRequisicoes(todasHoras, valoresHojeAlinhados, medias7Alinhadas);
 }
 
-function plotarGraficoRequisicoes(labels, data) {
-    // cria canvas se necessário
+function plotarGraficoRequisicoes(labels, dataHoje, dataMedia7) {
     const container = document.getElementById("graficoRequisicaoHora");
     container.innerHTML = `<canvas id="requisicoesHora"></canvas>`;
     const ctx = document.getElementById("requisicoesHora").getContext("2d");
@@ -299,15 +363,28 @@ function plotarGraficoRequisicoes(labels, data) {
         type: "line",
         data: {
             labels,
-            datasets: [{
-                label: "Requisições (package_recv)",
-                data,
-                fill: true,
-                tension: 0.3
-            }]
+            datasets: [
+                {
+                    label: "Requisições Hoje",
+                    data: dataHoje,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                },
+                {
+                    label: "Média últimos 7 dias",
+                    data: dataMedia7,
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }
+            ]
         },
         options: {
-            plugins: { legend: { display: false } },
+            plugins: {
+                legend: { display: false }
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -319,44 +396,34 @@ function plotarGraficoRequisicoes(labels, data) {
     });
 }
 
+
 // ----------------- Fluxo principal -----------------
 function mostrarServidores(lista) {
     // normaliza a lista
     let listaNormalizada = normalizeServerList(lista);
 
 
-    // Remove duplicados pelo nome do servidor
+    const tipoSelect = document.getElementById("select_tipoServidor");
+    const componenteSelect = document.getElementById("select_tipoComponente");
+    const tipoAtual = tipoSelect ? tipoSelect.value : "Todos";
+    const compAtual = componenteSelect ? componenteSelect.value : "1";
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
+
     const nomesUnicos = new Set();
     listaNormalizada = listaNormalizada.filter(s => {
         if (nomesUnicos.has(s.servidor)) return false;
         nomesUnicos.add(s.servidor);
         return true;
     });
+    
     console.log(listaNormalizada)
-
-
-    // KPIs
-    calcularKPIs(listaNormalizada);
-
-    // Heatmap: usa a ordem da lista retornada
-    preencherMapaCalor(listaNormalizada);
-
-    // Top5 default: RAM (1) e Todos os tipos
-    const tipoSelect = document.getElementById("select_tipoServidor");
-    const componenteSelect = document.getElementById("select_tipoComponente");
-
-    // pega selects atuais
-    const tipoAtual = tipoSelect ? tipoSelect.value : "Todos";
-    const compAtual = componenteSelect ? componenteSelect.value : "1";
-
-    // pega data atual dinamicamente
-    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
-
-    // gera Top5 e gráfico de requisições usando lista sem duplicados
-    gerarTop5(listaNormalizada, compAtual, tipoAtual);
     gerarGraficoRequisicoes(2025, 11, 27, listaNormalizada);
+    calcularKPIs(listaNormalizada);
+    preencherMapaCalor(listaNormalizada);
+    gerarTop5(listaNormalizada, compAtual, tipoAtual);
     console.log(listaNormalizada)
-    // liga eventos de mudança nos selects
+
+
     if (tipoSelect) {
         tipoSelect.onchange = () => gerarTop5(
             listaNormalizada,
