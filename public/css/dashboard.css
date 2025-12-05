@@ -737,8 +737,20 @@ thead {
   margin: 40px 0;
 }
 
+.mapaServidores {
+  background-color: #fff;
+  width: 50%;
+  padding: 30px;
+  border: 1px solid #EBEEEE;
+  /* height: auto; */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column  ;
+}
+
 .mapaServidores h3 {
   margin-bottom: 25px;
+  color: #333;
 }
 
 .mapaDeCalor {
@@ -797,6 +809,49 @@ thead {
   font-size: 14px;
 }
 
+.legendaSituacaoServidor {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  border-top: 1px solid #EBEEEE;
+}
+
+.blocoLegenda {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+
+.quadradinhoLegenda {
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  margin: 0 5px;
+  border-radius: 3px;
+}
+
+.blocoLegenda p {
+  font-size: 14px;
+  color: #888;
+}
+
+.corVerde {
+  background-color: #22C55E;
+}
+
+.corAmarela {
+  background-color: #EAB308;
+}
+
+.corVermelha {
+  background-color: #EF4444;
+}
+
+.corCinza {
+  background-color: #95A5A6;
+}
+
 .chart-container {
   background-color: white;
   border-radius: 10px;
@@ -832,19 +887,6 @@ thead {
   background-position: right 15px center;
   background-size: 18px;
 } */
-
-.mapaServidores {
-  background-color: #fff;
-  width: 50%;
-  padding: 30px;
-  border: 1px solid #EBEEEE;
-  /* height: auto; */
-  border-radius: 10px;
-}
-
-.mapaServidores h3 {
-  color: #333;
-}
 
 .chart-container h3 {
   margin-top: 0;

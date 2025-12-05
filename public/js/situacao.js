@@ -277,7 +277,7 @@ async function preencherMapaCalor(listaNormalizada) {
         }
 
         // prioridade de cor
-        let cor = "#95A5A6"; // sem parâmetro
+        let cor = "#95A5A6";
 
         if (cpu === "CRITICO" || ram === "CRITICO" || disco === "CRITICO") {
             cor = "#EF4444";
