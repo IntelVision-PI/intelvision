@@ -439,7 +439,14 @@ function mostrarGraficoPredicao() {
       return resultado;
     }
 
-    function criarGraficoComparativo() {
+    async function criarGraficoComparativo() {
+      try {
+        const r2025 = await fetch(`/predicoes/2025/11/27/servidor14.jasudjc-2025.json`);
+      const lista = await r2025.json();
+      }catch(e) {
+        console.log(e)
+      }
+
       const dados2024 = ultimoDiscoPorMesParaAno(registros2024, 2024);
       const dados2025 = ultimoDiscoPorMesParaAno(registros2025, 2025);
 
