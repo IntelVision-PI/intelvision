@@ -394,24 +394,6 @@ function mostrarGraficoPredicao() {
 
 
 // Função para pegar o último registro de cada mês
-// const registros2024 = [
-//       { timestamp: "2024-01-05 08:00:00", user: "servidor16", disco: 50.2},
-//       { timestamp: "2024-01-29 15:39:30", user: "servidor14", disco: 60.2},
-//       { timestamp: "2024-02-10 10:15:00", user: "servidor15", disco: 80.2},
-//       { timestamp: "2024-02-25 22:00:00", user: "servidor17", disco: 90.2},
-//       { timestamp: "2024-03-01 09:00:00", user: "servidor18", disco: 100.2}
-//     ];
-
-//     const registros2025 = [
-//       { timestamp: "2025-01-05 08:00:00", user: "servidor16", disco: 40.2},
-//       { timestamp: "2025-01-29 15:39:30", user: "servidor14", disco: 50.2},
-//       { timestamp: "2025-02-10 10:15:00", user: "servidor15", disco: 55.2},
-//       { timestamp: "2025-02-25 22:00:00", user: "servidor17", disco: 60.2},
-//       { timestamp: "2025-03-01 09:00:00", user: "servidor18", disco: 70.2}
-//     ];
-
-    // retorna array [jan..dez] com o valor do último 'disco' do mês para o ano informado,
-    // ou null se não houver registro naquele mês.
     function ultimoDiscoPorMesParaAno(registros, ano) {
       const ultimoPorMes = {}; // chave: 0..11 -> registro mais recente
 
@@ -448,7 +430,7 @@ function mostrarGraficoPredicao() {
         console.log(e)
       }
 
-      const dados2024 = ultimoDiscoPorMesParaAno(registros2024, 2024);
+      const dados2024 = ultimoDiscoPorMesParaAno(lista["disco"], 2024);
       const dados2025 = ultimoDiscoPorMesParaAno(registros2025, 2025);
 
       const labels = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
