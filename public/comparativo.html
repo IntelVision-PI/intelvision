@@ -218,7 +218,7 @@
 
                 <div class="kpi-card">
                     <div class="kpi-header">
-                        <span class="kpi-title">RAM (Média)</span>
+                        <span class="kpi-title">RAM Média em %</span>
                         <div class="kpi-icon"><i class="fa-solid fa-memory"></i></div>
                     </div>
                     <div class="kpi-value" id="kpiRAM">--%</div>
@@ -505,8 +505,9 @@ function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
     const mAtual = media(atual.map(d => d[campoMed]));
     const mRef = media(ref.map(d => d[campoMed]));
 
-    const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : 0;
-    const picoRef   = ref.length   ? Math.max(...ref.map(d => d[campoMax] || d[campoMed])) : 0;
+    const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : null;
+    const picoRef   = ref.length   ? Math.max(...ref.map(d => d[campoMax] || d[campoMed])) : null;
+
     if (isNaN(mAtual) || atual.length === 0) {
         elMed.innerText = "--%";
         elPico.innerText = "--%";
@@ -514,7 +515,11 @@ function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
     }
 
     elMed.innerText = mAtual.toFixed(1) + "%";
-    elPico.innerText = picoAtual.toFixed(1) + "%";
+
+     const txtRef = picoRef != null ? `${picoRef.toFixed(1)}% (Ref)` : "-- (Ref)";
+    const txtAtual = picoAtual != null ? `${picoAtual.toFixed(1)}% (Comp)` : "-- (Comp)";
+
+    elPico.innerHTML = `${txtRef} | ${txtAtual}`;
 
     if (ref.length === 0) {
         elDelta.innerHTML = "Sem ref";
@@ -765,59 +770,79 @@ function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
     const critico = limites?.critico ?? 0;
 
     chart.data.datasets = [
-        {
-            label: "Ref (Média)",
-            data: dRefAvg,
-            borderColor: "#bdc3c7",
-            borderWidth: 2,
-            borderDash: [5, 5],
-            pointRadius: 0,
-            fill: false
+    {
+        label: "Ref (Média)",
+        data: dRefAvg,
+        borderColor: "#bdc3c7",
+        borderWidth: 2,
+        borderDash: [5, 5],
+        pointRadius: 0,
+        fill: false
+    },
+    {
+        label: "Ref (Pico)",
+        data: dRefMax,
+        type: "line",
+        borderWidth: 0,
+        fill: false,
+        pointStyle: "circle",
+        pointRadius: ctx => dRefMax[ctx.dataIndex] != null ? 6 : 0,
+        pointBackgroundColor: ctx => {
+            const v = dRefMax[ctx.dataIndex];
+            if (v == null) return "transparent";
+            if (v >= critico) return "purple";
+            if (v >= alerta) return "orange";
+            return "transparent";
         },
-        {
-            label: "Ref (Pico)",
-            data: dRefMax,
-            type: "line",
-            borderWidth: 0,
-            fill: false,
-            pointStyle: "circle",
-            pointRadius: ctx => dRefMax[ctx.dataIndex] != null ? 6 : 0,
-            pointBackgroundColor: ctx => {
-                const v = dRefMax[ctx.dataIndex];
-                if (v == null) return "transparent";
-                if (v >= critico) return "purple";      
-                if (v >= alerta) return "orange";      
-                return "transparent";
-            },
-            showLine: false
+        showLine: false
+    },
+    {
+        label: "Comparada (Média)",
+        data: dAtuAvg,
+        borderColor: "#2ecc71",
+        backgroundColor: "rgba(46,204,113,0.1)",
+        borderWidth: 2,
+        fill: true,
+        pointRadius: 0
+    },
+    {
+        label: "Comparada (Pico)",
+        data: dAtuMax,
+        type: "line",
+        borderWidth: 0,
+        fill: false,
+        pointStyle: "rectRounded",
+        pointRadius: ctx => dAtuMax[ctx.dataIndex] != null ? 7 : 0,
+        pointBackgroundColor: ctx => {
+            const v = dAtuMax[ctx.dataIndex];
+            if (v == null) return "transparent";
+            if (v >= critico) return "#e74c3c";
+            if (v >= alerta) return "#f1c40f";
+            return "transparent";
         },
+        showLine: false
+    },
+
+     {
+        label: "Limite de Alerta",
+        data: lbls.map(() => alerta),
+        borderColor: "#f1c40f",
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        fill: false
+    },
+
         {
-            label: "Comparada (Média)",
-            data: dAtuAvg,
-            borderColor: "#2ecc71",
-            backgroundColor: "rgba(46,204,113,0.1)",
-            borderWidth: 2,
-            fill: true,
-            pointRadius: 0
-        },
-        {
-            label: "Comparada (Pico)",
-            data: dAtuMax,
-            type: "line",
-            borderWidth: 0,
-            fill: false,
-            pointStyle: "rectRounded",
-            pointRadius: ctx => dAtuMax[ctx.dataIndex] != null ? 7 : 0,
-            pointBackgroundColor: ctx => {
-                const v = dAtuMax[ctx.dataIndex];
-                if (v == null) return "transparent";
-                if (v >= critico) return "#e74c3c";     
-                if (v >= alerta) return "#f1c40f";      
-                return "transparent";
-            },
-            showLine: false
-        }
-    ];
+        label: "Limite Crítico",
+        data: lbls.map(() => critico),
+        borderColor: "#e74c3c",
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        fill: false
+    }
+];
 
     chart.update();
 }
