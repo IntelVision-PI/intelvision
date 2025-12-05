@@ -16,7 +16,7 @@
 </head>
 
 <body onload="
-  validarSessaoAdministrador(), puxarDadosServidor()
+  validarSessaoAdministrador(), puxarDadosServidor(), dataAtual()
   ">
     <header>
         <div class="cabecalho-dash">
@@ -159,9 +159,32 @@
     <!-- Conteúdo da página -->
     <div class="dash">
         <div class="dash__conteudo">
+
+            <div class="div_dashboard_kpis_jira">
+                <div class="ipt_procura bloco_kpi_jira" style="border: 3px solid #3e65ff;">
+                    <div class="titulo_kpi_jira" style="background: #a1b4ff;">
+                        <h3>Chamados em Abaixo</h3>
+                    </div>
+                    <p id="kpi_chamados_abaixo">0</p>
+                </div>
+                <div class="ipt_procura bloco_kpi_jira" style="border: 3px solid #ffb855;">
+                    <div class="titulo_kpi_jira" style="background: #ffd78c;">
+                        <h3>Chamados em Alerta</h3>
+                    </div>
+                    <p id="kpi_chamados_alerta">0</p>
+                </div>
+                <div class="ipt_procura bloco_kpi_jira" style="border: 3px solid #ff4d4d;">
+                    <div class="titulo_kpi_jira" style="background: #ff8383;">
+                        <h3>Chamados em Crítico</h3>
+                    </div>
+                    <p id="kpi_chamados_critico">0</p>
+                </div>
+            </div>
+
             <!-- Filtro Servidores -->
-            <div class="kpi-container div-procura" style="width: 100%; display: flex;margin-top: 25px;">
-                <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
+            <div class="kpi-container div-procura div_container_jira">
+
+                <div class="filtro_servidores div-ipt-procura">
                     <p>Filtrar Tipo dos Servidores:</p>
                     <select name="fitro_tipo_servidor" id="filtro_tipo_servidor" class="ipt_procura">
                         <option value="Todos">Todos</option>
@@ -170,7 +193,7 @@
                         <option value="Web">WEB</option>
                     </select>
                 </div>
-                <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
+                <div class="filtro_servidores div-ipt-procura">
                     <p>Filtrar Situação dos Chamados:</p>
                     <select name="fitro_tipo_servidor" id="filtro_situacao_chamado" class="ipt_procura">
                         <option value="Todos">Todos</option>
@@ -178,7 +201,7 @@
                         <option value="Fechado">Fechados</option>
                     </select>
                 </div>
-                <div class="filtro_servidores div-ipt-procura" style="width: 20%;">
+                <div class="filtro_servidores div-ipt-procura">
                     <p>Filtrar Situação dos Servidores:</p>
                     <select name="fitro_situacao_servidor" id="filtro_situacao_servidor" class="ipt_procura">
                         <option value="Todos">Todos</option>
@@ -187,11 +210,9 @@
                         <option value="CRITICO">Crítico</option>
                     </select>
                 </div>
-                <div class="div-links-contas" style="width: 20%;">
+                <div class="div-links-contas filtro_servidores">
                     <a onclick="atualizarDados()" class="X">
-                        <!-- <div class="div-botao"> -->
                         <h3>Atualizar</h3>
-                        <!-- </div> -->
                     </a>
                 </div>
             </div>
@@ -202,31 +223,45 @@
                 <div class="chart-container" style="flex:2">
                     <div>
                         <label for="">Início: </label>
-                        <input type="date" value="2025-11-25" onchange="atualizarDados()" id="dataInicio">
+                        <input type="date" onchange="atualizarDados()" id="dataInicio">
                         <label for="">Fim: </label>
-                        <input type="date" value="2025-12-02" onchange="atualizarDados()" id="dataFim">
+                        <input type="date" onchange="atualizarDados()" id="dataFim">
                     </div>
                     <h3>Quantidade de Chamados abertos</h3>
                     <canvas id="requisicoesDia"></canvas>
                 </div>
 
                 <!-- Rosca -->
-                <!-- <h2>Tempo Médio de Resolução</h2> -->
-                <div class="mttr" style="flex:1;display: flex;justify-content: center;align-items: center;">
-                    <img src="../assets/img/rosca-verde.png" width="100%">
-                    <h1 style="position: absolute;">3d12h</h1>
+                <div class="grafico_rosca_mttr">
+                    <h2>Tempo Médio de Resolução</h2>
+                    <div class="mttr">
+                        <img src="../assets/img/rosca-verde.png" width="100%">
+                        <h1 style="position: absolute;" id="valor_mttr">0d0h</h1>
+                    </div>
                 </div>
+            </div>
+            <div class="mostrarUsuarios mostrarChamados">
+                <table>
+                    <thead>
+                        <tr class="nomeColuna">
+                            <th class="colunaChamado">Chamado</th>
+                            <th class="colunaEmail">Tipo Servidor</th>
+                            <th class="colunaEmail">Data Criação</th>
+                            <th class="colunaStatus">Status</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="tbody_chamados"></tbody>
+                </table>
             </div>
         </div>
     </div>
-    </div>
-    </div>
 
     <script>
-        let datasLabel = ["01/11/2025", "02/11/2025", "03/11/2025", "04/11/2025", "05/11/2025", "06/11/2025", "07/11/2025"]
-        let datasContagemWeb = [200, 350, 100, 290, 65, 82, 105];
-        let datasContagemProc = [300, 360, 340, 210, 260, 100, 120];
-        let datasContagemArm = [50, 200, 210, 60, 65, 79, 92];
+        let datasLabel = []
+        let datasContagemWeb = [];
+        let datasContagemProc = [];
+        let datasContagemArm = [];
 
 
         // Gráfico de Requisições por dia
@@ -261,6 +296,9 @@
 
         let csv;
         let chamadosFiltrados = [];
+        let contAbaixoKPI = 0;
+        let contAlertaKPI = 0;
+        let contCriticoKPI = 0;
 
 
         async function carregarCSV() {
@@ -273,7 +311,6 @@
             const dataUrl = await response.json();
             const download = await fetch(dataUrl.url);
             const text = await download.text();
-            console.log(text)
 
             const lines = text.split("\n").map(l => l.trim());
             const header = lines[0].split(";");
@@ -311,6 +348,10 @@
 
             let datas = gerarDatasEntre(dataInicio, dataFim);
 
+            contAbaixoKPI = 0;
+            contAlertaKPI = 0;
+            contCriticoKPI = 0;
+
             let contWeb = {};
             let contProc = {};
             let contArm = {};
@@ -340,6 +381,15 @@
                     };
 
                     let labels = parseLabels(item["Labels"]);
+
+                    if (labels.includes("ABAIXO")) {
+                        contAbaixoKPI++;
+                    } else if (labels.includes("ALERTA")) {
+                        contAlertaKPI++;
+                    } else if (labels.includes("CRITICO")) {
+                        contCriticoKPI++;
+                    }
+
                     if (situacaoServidor !== "Todos") {
                         let filtroNormalizado = removerAcentos(situacaoServidor.toUpperCase());
                         if (!labels.includes(filtroNormalizado)) return;
@@ -349,9 +399,15 @@
 
                     let dataFormatada = formatarData(item["Criado"]);
 
-                    if (tipo === "Web") contWeb[dataFormatada]++;
-                    if (tipo === "Processamento") contProc[dataFormatada]++;
-                    if (tipo === "Armazenamento") contArm[dataFormatada]++;
+                    if (tipo === "Web") {
+                        contWeb[dataFormatada]++;
+                    }
+                    if (tipo === "Processamento") {
+                        contProc[dataFormatada]++;
+                    }
+                    if (tipo === "Armazenamento") {
+                        contArm[dataFormatada]++;
+                    }
 
                     chamadosFiltrados.push(item);
                 }
@@ -395,6 +451,7 @@
             chart.update();
 
             atualizarTempoMedioResolucao(chamadosFiltrados);
+            listarChamados(chamadosFiltrados)
         }
 
         function detectarTipo(labelsString) {
@@ -447,7 +504,7 @@
                 }
             });
 
-            return count > 0 ? soma / count : 0;
+            return count > 0 ? (soma / count) / 24 : 0;
         }
 
 
@@ -455,10 +512,85 @@
             const media = calcularMediaResolucaoFiltrada(chamadosFiltrados);
             const dias = Math.floor(media);
             const horas = Math.floor((media - dias) * 24);
-            const h1 = document.querySelector(".mttr h1");
-            h1.textContent = `${dias}d${horas}h`;
+            const h1 = document.getElementById("valor_mttr");
+            if (dias <= 0) {
+                h1.textContent = `${horas}h`;
+            } else {
+                h1.textContent = `${dias}d${horas}h`;
+            }
+
+            const kpiAbaixo = document.getElementById("kpi_chamados_abaixo");
+            const kpiAlerta = document.getElementById("kpi_chamados_alerta");
+            const kpiCritico = document.getElementById("kpi_chamados_critico");
+
+            kpiAbaixo.textContent = `${contAbaixoKPI}`;
+            kpiAlerta.textContent = `${contAlertaKPI}`;
+            kpiCritico.textContent = `${contCriticoKPI}`;
         }
 
+        function dataAtual() {
+            let diaHoje = new Date();
+            let dia7atras = new Date();
+            dia7atras.setDate(dia7atras.getDate() - 7);
+
+            const dataHoje = diaHoje.toISOString().split('T')[0];
+            const data7diasAtras = dia7atras.toISOString().split('T')[0];
+
+            dataInicio.value = data7diasAtras;
+            dataFim.value = dataHoje;
+        }
+
+
+        // Listar Chamados mais antigos
+
+        function listarChamados(chamadosFiltrados) {
+            console.log("Me chamou listar(data)");
+            console.log(chamadosFiltrados);
+
+            const chamadosValidos = chamadosFiltrados.filter(chamado => {
+                const labels = chamado["Labels"] || [];
+                const status = chamado["Status"];
+                return (labels.includes("CPU") || labels.includes("RAM") || labels.includes("HD")) && !status.includes("Concluído");
+            });
+
+            chamadosValidos.sort((a, b) => {
+                return new Date(a.Criado) - new Date(b.Criado);
+            });
+
+            const chamados = chamadosValidos.slice(0, 5);
+
+            const tbody = document.getElementById("tbody_chamados");
+            tbody.innerHTML = "";
+
+            for (let i = 0; i < chamados.length; i++) {
+                const chamado = chamados[i];
+                const tr = document.createElement("tr");
+
+                let data = chamado["Criado"];
+                const dia = String(data.getDate()).padStart(2, "0");
+                const mes = String(data.getMonth() + 1).padStart(2, "0");
+                const ano = data.getFullYear();
+
+                let tipo = chamado["Labels"];
+                let resTipo;
+                if (tipo.includes("CPU")) {
+                    resTipo = "Web";
+                } else if (tipo.includes("RAM")) {
+                    resTipo = "Processamento";
+                } else if (tipo.includes("HD")) {
+                    resTipo = "Armazenamento";
+                }
+
+                tr.innerHTML = `
+                    <td class="colunaRepresentante"><a href="https://sptech-team-a6j2hxx3.atlassian.net/jira/servicedesk/projects/CHAM/queues/custom/34/${chamado["Key"]}" target="_blank">${chamado["Key"]}</a></td>
+                    <td class="colunaEmail">${resTipo}</td>
+                    <td class="colunaEmail">${dia}/${mes}/${ano}</td>
+                    <td class="colunaAcesso">${chamado["Status"].includes("Concluído") ? "<span style='color: #296CF2; border: 1px solid #DBEAFE; background-color: #EFF6FF; border-radius: 20px; padding: 5px 10px; font-weight: 800; font-size: 12px;'>Concluído</span>" : "<span style='color: #D96B0B; border: 1px solid #FEF3C7; background-color: #FFFBEB; border-radius: 20px; padding: 5px 10px; font-weight: 800; font-size: 12px;'>Aberto</span>"
+                    }</td>`;
+
+                tbody.appendChild(tr);
+            }
+        }
     </script>
     <script src="./js/situacaoServidores.js"></script>
 </body>

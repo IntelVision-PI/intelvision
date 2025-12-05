@@ -37,7 +37,6 @@ function calcularStatusGeral(item) {
 }
 
 function normalizeServerList(rawList) {
-    // Garante que cada item terá: servidor, tipo_servidor, status_cpu/status_ram/status_disco
     return rawList.map(item => {
         const servidor = item.servidor || item.user || item.nome || item.host || item.server || "";
         const tipo = item.tipo_servidor || item.tipo || item.kind || "Todos";
@@ -45,43 +44,111 @@ function normalizeServerList(rawList) {
             original: item,
             servidor,
             tipo_servidor: tipo,
-            status_cpu: item.status_cpu || item.statusCpu || item.status?.cpu || item.original?.status_cpu || "",
-            status_ram: item.status_ram || item.statusRam || item.status?.ram || "",
-            status_disco: item.status_disco || item.statusDisco || item.status?.disco || ""
+            cpu_por: 0,
+            ram_por: 0,
+            disco_por: 0,
+            status_cpu: item.status_cpu || "",
+            status_ram: item.status_ram || "",
+            status_disco: item.status_disco || ""
         };
     });
 }
 
+async function calcularMedia7Dias(listaServidores, ano, mes, dia) {
+    const dias = [];
+
+    // gerar lista dos últimos 7 dias
+    for (let i = 1; i <= 7; i++) {
+        const d = new Date(`${ano}-${mes}-${dia}T00:00:00`);
+        d.setDate(d.getDate() - i);
+
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+
+        dias.push({ ano: y, mes: m, dia: dd });
+    }
+
+    // agregação por hora como: {"00:00": soma, "01:00": soma ...}
+    const agregacao7 = {};
+
+    for (const diaInfo of dias) {
+        for (const s of listaServidores) {
+            const servidor = s.servidor;
+
+            try {
+                const dados = await pegarDadosS3(diaInfo.ano, diaInfo.mes, diaInfo.dia, servidor);
+                if (!dados || dados.vazio) continue;
+
+                for (const r of dados) {
+                    const ts = r.timestamp || r.hora;
+                    if (!ts) continue;
+
+                    const hora = ts.slice(11, 13) + ":00";
+                    const pacote = safeNum(r.package_recv || 0);
+
+                    if (!agregacao7[hora]) agregacao7[hora] = [];
+                    agregacao7[hora].push(pacote);
+                }
+            } catch (e) {
+                console.error("Erro média 7 dias:", servidor, e);
+            }
+        }
+    }
+
+    // média por hora
+    const horas = Object.keys(agregacao7).sort();
+    const medias = horas.map(h => {
+        const arr = agregacao7[h];
+        if (!arr || arr.length === 0) return 0;
+        const soma = arr.reduce((a, b) => a + b, 0);
+        return soma / arr.length;
+    });
+
+    return { horas, medias };
+}
+
+
 // ----------------- KPI -----------------
-    // function calcularKPIs(listaNormalizada) {
-    //     const kpis = { Armazenamento: 0, Web: 0, Processamento: 0 };
+async function calcularKPIs(listaNormalizada) {
+    let totalCritico = 0;
+    let totalAlerta = 0;
 
-    //     listaNormalizada.forEach(s => {
-    //         const statusGeral = calcularStatusGeral(s.original);
-    //         const tipo = (s.tipo_servidor || "Todos");
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
 
-    //         if (statusGeral === "ALERTA" || statusGeral === "CRITICO") {
-    //             if (tipo.toLowerCase() === "armazenamento") kpis.Armazenamento++;
-    //             else if (tipo.toLowerCase() === "web") kpis.Web++;
-    //             else if (tipo.toLowerCase() === "processamento") kpis.Processamento++;
-    //             else {
-    //                 // se tipo não bater, não contamos em buckets específicos
-    //             }
-    //         }
-    //     });
+    for (let servidor of listaNormalizada) {
+        if (!servidor) continue;
 
-    //     atualizarKPIsTela(kpis);
-    // }
+        const nomeServidor = servidor.servidor;
 
-// function atualizarKPIsTela(kpis) {
-//     const elemArm = document.getElementById("kpiArmazenamento");
-//     const elemWeb = document.getElementById("kpiWeb");
-//     const elemProc = document.getElementById("kpiProcessamento");
+        try {
+            const dados = await pegarDadosS3(2025, 11, 29, nomeServidor);
 
-//     if (elemArm) elemArm.innerText = kpis.Armazenamento;
-//     if (elemWeb) elemWeb.innerText = kpis.Web;
-//     if (elemProc) elemProc.innerText = kpis.Processamento;
-// }
+            if (!dados || dados.vazio || !Array.isArray(dados) || dados.length === 0)
+                continue;
+
+            const ultimo = dados[dados.length - 1];
+
+            const cpu = (ultimo.status_cpu || "").toUpperCase();
+            const ram = (ultimo.status_ram || "").toUpperCase();
+            const disco = (ultimo.status_disco || "").toUpperCase();
+
+            const temCritico =
+                cpu === "CRITICO" || ram === "CRITICO" || disco === "CRITICO";
+
+            const temAlerta =
+                cpu === "ALERTA" || ram === "ALERTA" || disco === "ALERTA";
+
+            if (temCritico) totalCritico++;
+            else if (temAlerta) totalAlerta++;
+        } catch (e) {
+            console.error("Erro ao calcular KPI do servidor:", nomeServidor, e);
+        }
+    }
+
+    document.getElementById("kpiCritico").innerText = totalCritico;
+    document.getElementById("kpiAlerta").innerText = totalAlerta;
+}
 
 // ----------------- Top 5 -----------------
 function calcularMediaCampoPorServidor(datasetServidor, campo) {
@@ -96,24 +163,31 @@ async function gerarTop5(listaServidores, componente = "1", tipoFiltro = "Todos"
     const campoMap = { "1": "ram", "2": "disco", "3": "cpu" };
     const campo = campoMap[componente] || "ram";
 
-    // Para cada servidor na listaServidores precisamos buscar os dados do S3 (do dia atual)
     const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
+
     const resultados = [];
 
     for (const s of listaServidores) {
         if (tipoFiltro !== "Todos" && (s.tipo_servidor || "").toLowerCase() !== tipoFiltro.toLowerCase()) {
             continue;
         }
+
         const nomeServidor = s.servidor;
+
         try {
-            const dados = await pegarDadosS3(ano, mes, dia, nomeServidor);
-            if (!dados || dados.vazio) {
+            const dados = await pegarDadosS3(2025, 11, 29, nomeServidor);
+
+            if (!dados || dados.vazio || !Array.isArray(dados) || dados.length === 0) {
                 resultados.push({ servidor: nomeServidor, valor: 0 });
                 continue;
             }
-            // S3 no seu exemplo tem strings, convert
-            const media = calcularMediaCampoPorServidor(dados, campo);
-            resultados.push({ servidor: nomeServidor, valor: media });
+
+            // pega o último registro
+            const ultimo = dados[dados.length - 1];
+
+            const valor = Number(ultimo[campo]) || 0;
+
+            resultados.push({ servidor: nomeServidor, valor });
         } catch (err) {
             console.error("Erro Top5 - buscar s3", nomeServidor, err);
             resultados.push({ servidor: nomeServidor, valor: 0 });
@@ -124,6 +198,7 @@ async function gerarTop5(listaServidores, componente = "1", tipoFiltro = "Todos"
     plotarTop5(top5, campo);
 }
 
+
 function plotarTop5(lista, campo) {
     const ctx = document.getElementById("SerivdorMaiorUso").getContext("2d");
 
@@ -132,10 +207,10 @@ function plotarTop5(lista, campo) {
     graficoTop5 = new Chart(ctx, {
         type: "bar",
         data: {
-        labels: ['servidor.1', 'servidor.2', 'servidor.3', 'servidor.4'],
+            labels: lista.map(i => i.servidor),
             datasets: [{
-                label: [10, 30, 50, 60],
-                data: [55, 46, 38, 34],
+                label: `Média ${campo.toUpperCase()}`,
+                data: lista.map(i => Number(i.valor.toFixed(2))),
                 backgroundColor: "#2D6A54"
             }]
         },
@@ -150,47 +225,94 @@ function plotarTop5(lista, campo) {
     });
 }
 
-// ----------------- Heatmap -----------------
-function preencherMapaCalor(listaNormalizada) {
+async function preencherMapaCalor(listaNormalizada) {
     const container = document.getElementById("mapa_situacaoServidores");
-
-    // limpar blocos antigos
     container.innerHTML = "";
 
-    // criar um bloco para cada servidor
-    listaNormalizada.forEach((servidor, index) => {
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
+
+    for (let index = 0; index < listaNormalizada.length; index++) {
+        const servidor = listaNormalizada[index];
+        console.log(servidor)
+
         const bloco = document.createElement("div");
         bloco.classList.add("server01");
         bloco.id = `server-box-${index}`;
 
-        // se não existir servidor nessa posição
+        // Caso não exista servidor nessa posição
         if (!servidor) {
             bloco.style.backgroundColor = "#eee";
             bloco.title = "Vazio";
+            bloco.innerHTML = "<div class='dadosServidor'>Sem dados</div>"
             container.appendChild(bloco);
-            return;
+            continue;
         }
 
-        const statusGeral = calcularStatusGeral(servidor.original);
+        const nomeServidor = servidor.servidor;
+        const tipoServidor = servidor.tipo_servidor;
+        let cpu = "Sem dados";
+        let ram = "Sem dados";
+        let disco = "Sem dados";
+        let cpuPor = "Sem dados";
+        let ramPor = "Sem dados";
+        let discoPor = "Sem dados";
 
-        let cor = "#ccc";
-        if (statusGeral === "OK") cor = "#2ECC71";
-        if (statusGeral === "ALERTA") cor = "#F1C40F";
-        if (statusGeral === "CRITICO") cor = "#E74C3C";
-        if (statusGeral === "SEM_PARAMETRO") cor = "#95A5A6";
+        try {
+            const dadosS3 = await pegarDadosS3(2025, 11, 29, nomeServidor);
+
+            if (dadosS3 && !dadosS3.vazio && Array.isArray(dadosS3) && dadosS3.length > 0) {
+                // usar o último registro
+                const ultimo = dadosS3[dadosS3.length - 1];
+
+                cpu = (ultimo.status_cpu || "").toUpperCase();
+                ram = (ultimo.status_ram || "").toUpperCase();
+                disco = (ultimo.status_disco || "").toUpperCase();
+                cpuPor = ultimo.cpu ?? 0;
+                ramPor = ultimo.ram ?? 0;
+                discoPor = ultimo.disco ?? 0;
+
+            }
+        } catch (e) {
+            console.error(`Erro ao consultar S3 para ${nomeServidor}`, e);
+        }
+
+        // prioridade de cor
+        let cor = "#95A5A6";
+
+        if (cpu === "CRITICO" || ram === "CRITICO" || disco === "CRITICO") {
+            cor = "#EF4444";
+        }
+        else if (cpu === "ALERTA" || ram === "ALERTA" || disco === "ALERTA") {
+            cor = "#EAB308";
+        }
+        else if (cpu === "OK" && ram === "OK" && disco === "SEM_PARAMETRO") {
+            cor = "#22C55E";
+        }
 
         bloco.style.backgroundColor = cor;
-        bloco.title = `${servidor.servidor} — ${statusGeral}`;
+        bloco.title = `${nomeServidor} — CPU: ${cpu}, RAM: ${ram}, Disco: ${disco}`;
+        bloco.innerHTML = `
+            <div class="dadosServidor">
+              <div class="nomeServidor"><p>${nomeServidor}</p></div>
+              <div class="info-server">
+                <div class="tipo-server"><p>${tipoServidor}</p></div>
+                <div class="info-ram"><p>RAM: ${ramPor}</p></div>
+                <div class="info-cpu"><p>CPU: ${cpuPor}</p></div>
+                <div class="info-disco"><p>Disco: ${discoPor}</p></div>
+              </div>
+            </div>
+        `;
 
         container.appendChild(bloco);
-    });
+    }
 }
+
 
 // ----------------- Requisições por hora (time series) -----------------
 async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
-    // vamos criar uma série temporal agregada por timestamp (usando package_recv)
-    const agregacao = {}; // chave: timestamp (ex: "2025-11-28 13:38:24") -> soma packages
+    const agregacao = {};
 
+    // linha principal do dia atual
     for (const s of listaServidores) {
         const servidor = s.servidor;
         try {
@@ -198,14 +320,13 @@ async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
             if (!dados || dados.vazio) continue;
 
             for (const registro of dados) {
-                const ts = registro.timestamp || registro.hora || registro.time || null;
+                const ts = registro.timestamp || registro.hora;
                 if (!ts) continue;
 
-                // Só a hora (HH) para o eixo X
-                const chave = ts.slice(11, 13) + ":00";
+                const hora = ts.slice(11, 13) + ":00";
+                const pacote = safeNum(registro.package_recv || 0);
 
-                const pacote = safeNum(registro.package_recv || registro.package || registro.req || 0);
-                agregacao[chave] = (agregacao[chave] || 0) + pacote;
+                agregacao[hora] = (agregacao[hora] || 0) + pacote;
             }
 
         } catch (err) {
@@ -213,15 +334,25 @@ async function gerarGraficoRequisicoes(ano, mes, dia, listaServidores) {
         }
     }
 
-    // ordenar por chave cronológica
-    const keys = Object.keys(agregacao).sort();
-    const values = keys.map(k => agregacao[k]);
+    const labels = Object.keys(agregacao).sort();
+    const valoresHoje = labels.map(h => agregacao[h]);
 
-    plotarGraficoRequisicoes(keys, values);
+    const { horas: horas7, medias: medias7 } = await calcularMedia7Dias(listaServidores, ano, mes, dia);
+
+    // garantir alinhamento do eixo X
+    const todasHoras = Array.from(new Set([...labels, ...horas7])).sort();
+
+    const valoresHojeAlinhados = todasHoras.map(h => agregacao[h] || 0);
+    const medias7Alinhadas = todasHoras.map(h => {
+        const idx = horas7.indexOf(h);
+        return idx >= 0 ? medias7[idx] : 0;
+    });
+
+    // plotar
+    plotarGraficoRequisicoes(todasHoras, valoresHojeAlinhados, medias7Alinhadas);
 }
 
-function plotarGraficoRequisicoes(labels, data) {
-    // cria canvas se necessário
+function plotarGraficoRequisicoes(labels, dataHoje, dataMedia7) {
     const container = document.getElementById("graficoRequisicaoHora");
     container.innerHTML = `<canvas id="requisicoesHora"></canvas>`;
     const ctx = document.getElementById("requisicoesHora").getContext("2d");
@@ -232,15 +363,28 @@ function plotarGraficoRequisicoes(labels, data) {
         type: "line",
         data: {
             labels,
-            datasets: [{
-                label: "Requisições (package_recv)",
-                data,
-                fill: true,
-                tension: 0.3
-            }]
+            datasets: [
+                {
+                    label: "Requisições Hoje",
+                    data: dataHoje,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                },
+                {
+                    label: "Média últimos 7 dias",
+                    data: dataMedia7,
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }
+            ]
         },
         options: {
-            plugins: { legend: { display: false } },
+            plugins: {
+                legend: { display: false }
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -252,38 +396,48 @@ function plotarGraficoRequisicoes(labels, data) {
     });
 }
 
+
 // ----------------- Fluxo principal -----------------
 function mostrarServidores(lista) {
     // normaliza a lista
-    const listaNormalizada = normalizeServerList(lista);
+    let listaNormalizada = normalizeServerList(lista);
 
-    // KPIs
-    // calcularKPIs(listaNormalizada);
 
-    // Heatmap: usa a ordem da lista retornada
-    // preencherMapaCalor(listaNormalizada);
-
-    // Top5 default: RAM (1) e Todos os tipos
-    // ligar selects
     const tipoSelect = document.getElementById("select_tipoServidor");
     const componenteSelect = document.getElementById("select_tipoComponente");
-
-    // dispara o Top5 com base nos selects atuais
     const tipoAtual = tipoSelect ? tipoSelect.value : "Todos";
     const compAtual = componenteSelect ? componenteSelect.value : "1";
-    gerarTop5(listaNormalizada, compAtual, tipoAtual);
+    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
 
-    // liga eventos de mudança
+    const nomesUnicos = new Set();
+    listaNormalizada = listaNormalizada.filter(s => {
+        if (nomesUnicos.has(s.servidor)) return false;
+        nomesUnicos.add(s.servidor);
+        return true;
+    });
+    
+    console.log(listaNormalizada)
+    gerarGraficoRequisicoes(2025, 11, 29, listaNormalizada);
+    calcularKPIs(listaNormalizada);
+    preencherMapaCalor(listaNormalizada);
+    gerarTop5(listaNormalizada, compAtual, tipoAtual);
+    console.log(listaNormalizada)
+
+
     if (tipoSelect) {
-        tipoSelect.onchange = () => gerarTop5(listaNormalizada, componenteSelect ? componenteSelect.value : "1", tipoSelect.value);
+        tipoSelect.onchange = () => gerarTop5(
+            listaNormalizada,
+            componenteSelect ? componenteSelect.value : "1",
+            tipoSelect.value
+        );
     }
     if (componenteSelect) {
-        componenteSelect.onchange = () => gerarTop5(listaNormalizada, componenteSelect.value, tipoSelect ? tipoSelect.value : "Todos");
+        componenteSelect.onchange = () => gerarTop5(
+            listaNormalizada,
+            componenteSelect.value,
+            tipoSelect ? tipoSelect.value : "Todos"
+        );
     }
-
-    // Requisições por hora
-    const [ano, mes, dia] = new Date().toISOString().split("T")[0].split("-");
-    gerarGraficoRequisicoes(2025, 11, 27, listaNormalizada);
 }
 
 // ----------------- Fetch lista de servidores (API) -----------------

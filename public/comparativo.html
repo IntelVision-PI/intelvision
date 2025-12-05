@@ -46,6 +46,9 @@
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+
+
     <script src="./js/sessao.js"></script>
 </head>
 
@@ -185,7 +188,7 @@
                     </div>
                     <div class="vs-badge">VS</div>
                     <div class="input-wrapper">
-                        <p class="control-label">Data Atual</p>
+                        <p class="control-label">Data Comparada</p>
                         <input type="date" id="date2" class="date-input">
                     </div>
                 </div>
@@ -215,7 +218,7 @@
 
                 <div class="kpi-card">
                     <div class="kpi-header">
-                        <span class="kpi-title">RAM (Média)</span>
+                        <span class="kpi-title">RAM Média em %</span>
                         <div class="kpi-icon"><i class="fa-solid fa-memory"></i></div>
                     </div>
                     <div class="kpi-value" id="kpiRAM">--%</div>
@@ -240,7 +243,7 @@
 
                 <div class="alert-card">
                     <div class="alert-header">
-                        <h3>Alertas (Atual) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
+                        <h3>Alertas (Comparada) <span id="labelDataAtual" style="font-size:0.8em; color:#666;"></span></h3>
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div class="alert-content" id="listaAlertasAtual">
@@ -250,9 +253,21 @@
             </div>
 
             <div class="charts-area">
+              <div class="zoom-section">
+    <p class="zoom-title">Visualização por períodos do dia</p>
+
+    <div class="zoom-controls">
+        <button class="btn-zoom" onclick="zoomPeriodo(0,8)">00:00 – 08:00</button>
+        <button class="btn-zoom" onclick="zoomPeriodo(8,16)">08:00 – 16:00</button>
+        <button class="btn-zoom" onclick="zoomPeriodo(16,24)">16:00 – 00:00</button>
+        <button class="btn-zoom btn-zoom-primary" onclick="resetZoom()">Resetar Visualização</button>
+    </div>
+</div>
+
+
                 <div class="chart-wrapper">
                     <div class="chart-header">
-                        <h3>Processamento (CPU)</h3>
+                        <h3>Processamento CPU em %</h3>
                     </div>
                     <div class="graph-container"><canvas id="chartCPU"></canvas></div>
                 </div>
@@ -394,6 +409,7 @@ async function atualizar() {
     } catch (erro) {
         console.error(erro);
     } finally {
+        resetZoom();
         btn.disabled = false;
         btn.innerHTML = originalText;
     }
@@ -489,8 +505,9 @@ function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
     const mAtual = media(atual.map(d => d[campoMed]));
     const mRef = media(ref.map(d => d[campoMed]));
 
-    const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : 0;
-    const picoRef   = ref.length   ? Math.max(...ref.map(d => d[campoMax] || d[campoMed])) : 0;
+    const picoAtual = atual.length ? Math.max(...atual.map(d => d[campoMax] || d[campoMed])) : null;
+    const picoRef   = ref.length   ? Math.max(...ref.map(d => d[campoMax] || d[campoMed])) : null;
+
     if (isNaN(mAtual) || atual.length === 0) {
         elMed.innerText = "--%";
         elPico.innerText = "--%";
@@ -498,7 +515,11 @@ function atualizarKPI(idMed, idPico, idDelta, ref, atual, campoMed, campoMax) {
     }
 
     elMed.innerText = mAtual.toFixed(1) + "%";
-    elPico.innerText = picoAtual.toFixed(1) + "%";
+
+     const txtRef = picoRef != null ? `${picoRef.toFixed(1)}% (Ref)` : "-- (Ref)";
+    const txtAtual = picoAtual != null ? `${picoAtual.toFixed(1)}% (Comp)` : "-- (Comp)";
+
+    elPico.innerHTML = `${txtRef} | ${txtAtual}`;
 
     if (ref.length === 0) {
         elDelta.innerHTML = "Sem ref";
@@ -544,45 +565,172 @@ function definirStatusGeral(dados) {
 function inicializarGraficos() {
     chartCPU = criarChart("chartCPU");
     chartRAM = criarChart("chartRAM");
-    // chartDisco = criarChart("chartDisco");
 }
 
 function criarChart(id) {
     return new Chart(document.getElementById(id).getContext("2d"), {
         type: 'line',
         data: { labels: [], datasets: [] },
+
         options: {
             responsive: true,
             maintainAspectRatio: false,
             interaction: { mode: 'index', intersect: false },
+
             plugins: {
-                legend: { position: 'top' },
+                legend: {
+                    position: "top",
+                    labels: {
+                        usePointStyle: true,
+                        generateLabels(chart) {
+                            return [
+                                {
+                                    text: "Média Ref",
+                                    strokeStyle: "#bdc3c7",
+                                    fillStyle: "#bdc3c7",
+                                    lineWidth: 2,
+                                    borderDash: [5, 5],
+                                    pointStyle: "line"
+                                },
+                                {
+                                    text: "Média Atual",
+                                    strokeStyle: "#2ecc71",
+                                    fillStyle: "#2ecc71",
+                                    lineWidth: 2,
+                                    pointStyle: "line"
+                                },
+                                {
+                                    text: "Pico Ref (Atenção)",
+                                    fillStyle: "orange",
+                                    strokeStyle: "orange",
+                                    pointStyle: "circle",
+                                    lineWidth: 0
+                                },
+                                {
+                                    text: "Pico Ref (Crítico)",
+                                    fillStyle: "purple",
+                                    strokeStyle: "purple",
+                                    pointStyle: "circle",
+                                    lineWidth: 0
+                                },
+                                {
+                                    text: "Pico Atual (Atenção)",
+                                    fillStyle: "#f1c40f",
+                                    strokeStyle: "#f1c40f",
+                                    pointStyle: "rectRounded",
+                                    lineWidth: 0
+                                },
+                                {
+                                    text: "Pico Atual (Crítico)",
+                                    fillStyle: "#e74c3c",
+                                    strokeStyle: "#e74c3c",
+                                    pointStyle: "rectRounded",
+                                    lineWidth: 0
+                                }
+                            ];
+                        }
+                    }
+                },
+
                 tooltip: {
                     callbacks: {
                         label(context) {
-                            let label = context.dataset.label || '';
-                            if (label) label += ': ';
-                            if (context.parsed.y !== null)
-                                label += context.parsed.y.toFixed(1) + '%';
+                            let txt = context.dataset.label + ": ";
 
-                            if (context.dataset.picoData) {
-                                const pico = context.dataset.picoData[context.dataIndex];
-                                if (pico)
-                                    label += ` (Pico: ${pico.toFixed(1)}%)`;
-                            }
-                            return label;
+                            if (context.parsed.y != null)
+                                txt += context.parsed.y.toFixed(1) + "%";
+
+                            const idx = context.dataIndex;
+                            const picoRef = context.chart._picosRef ? context.chart._picosRef[idx] : null;
+                            const picoAtu = context.chart._picosAtu ? context.chart._picosAtu[idx] : null;
+
+                            if (context.dataset.label.includes("Ref") && picoRef != null)
+                                txt += ` • Pico Ref: ${picoRef.toFixed(1)}%`;
+
+                            if (context.dataset.label.includes("Atual") && picoAtu != null)
+                                txt += ` • Pico Atual: ${picoAtu.toFixed(1)}%`;
+
+                            return txt;
                         }
+                    }
+                },
+
+                zoom: {
+                    zoom: {
+                        wheel: { enabled: true },
+                        pinch: { enabled: true },
+                        mode: "x"
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: "x"
                     }
                 }
             },
+
             scales: {
                 x: { grid: { display: false } },
                 y: { beginAtZero: true, max: 100 }
             },
-            elements: { point: { radius: 0 }, line: { tension: 0.3 } }
+
+            elements: {
+                point: { radius: 0 },
+                line: { tension: 0.3 }
+            }
         }
     });
 }
+
+function zoomPeriodo(hInicio, hFim) {
+     [chartCPU, chartRAM].forEach(chart => {
+        if (!chart || !chart.data || !chart.data.labels) return;
+
+        const labels = chart.data.labels;
+        const pad = (n) => String(n).padStart(2, '0');
+
+         let startIndex = labels.findIndex(l => {
+            const hh = Number(l.substring(0,2));
+            return hh >= hInicio && hh < 24;
+        });
+        if (startIndex === -1) startIndex = 0;
+
+        let endIndex;
+        if (hFim === 24) {
+            endIndex = labels.length - 1;
+        } else {
+            endIndex = labels.findIndex(l => {
+                const hh = Number(l.substring(0,2));
+                return hh >= hFim;
+            });
+            if (endIndex === -1) endIndex = labels.length - 1;
+            else endIndex = Math.max(0, endIndex - 1);
+        }
+
+        const minLabel = labels[Math.min(startIndex, labels.length-1)];
+        const maxLabel = labels[Math.min(endIndex, labels.length-1)];
+
+        if (minLabel == null || maxLabel == null) return;
+
+        chart.options.scales.x.min = minLabel;
+        chart.options.scales.x.max = maxLabel;
+        chart.update();
+    });
+}
+
+function resetZoom() {
+    [chartCPU, chartRAM].forEach(chart => {
+        if (!chart) return;
+        if (chart.options && chart.options.scales && chart.options.scales.x) {
+            delete chart.options.scales.x.min;
+            delete chart.options.scales.x.max;
+            chart.update();
+        } else if (chart.resetZoom) {
+             chart.resetZoom();
+        }
+    });
+}
+
+
 
 function plotarGraficosOtimizados(ref, atual) {
     const labels = Array.from(new Set([...ref.map(d => d.timestamp), ...atual.map(d => d.timestamp)])).sort();
@@ -612,112 +760,92 @@ function plotarGraficosOtimizados(ref, atual) {
 }
 
 function updChart(chart, lbls, dRefAvg, dAtuAvg, dRefMax, dAtuMax, limites) {
+
     chart.data.labels = lbls;
 
-    chart._picosRef = dRefMax || [];
-    chart._picosAtu = dAtuMax || [];
+    chart._picosRef = dRefMax;
+    chart._picosAtu = dAtuMax;
 
-    const paramAlerta  = limites ? limites.alerta  : null;
-    const paramCritico = limites ? limites.critico : null;
+    const alerta = limites?.alerta ?? 0;
+    const critico = limites?.critico ?? 0;
 
     chart.data.datasets = [
-        {
-            label: 'Ref (Média)',
-            data: dRefAvg,
-            borderColor: '#bdc3c7',
-            borderDash: [5, 5],
-            borderWidth: 2,
-            pointRadius: 0,
-            fill: false
+    {
+        label: "Ref (Média)",
+        data: dRefAvg,
+        borderColor: "#bdc3c7",
+        borderWidth: 2,
+        borderDash: [5, 5],
+        pointRadius: 0,
+        fill: false
+    },
+    {
+        label: "Ref (Pico)",
+        data: dRefMax,
+        type: "line",
+        borderWidth: 0,
+        fill: false,
+        pointStyle: "circle",
+        pointRadius: ctx => dRefMax[ctx.dataIndex] != null ? 6 : 0,
+        pointBackgroundColor: ctx => {
+            const v = dRefMax[ctx.dataIndex];
+            if (v == null) return "transparent";
+            if (v >= critico) return "purple";
+            if (v >= alerta) return "orange";
+            return "transparent";
         },
-        {
-            label: 'Ref (Pico)',
-            data: dRefMax,
-            type: 'line',
-            borderWidth: 0,
-            fill: false,
-            pointStyle: 'circle',
-            pointRadius: function(ctx) {
-                const v = ctx.dataset.data[ctx.dataIndex];
-                return (paramAlerta != null && v != null && v >= paramAlerta) ? 5 : 0;
-            },
-            pointBackgroundColor: function(ctx) {
-                if (!limites) return 'transparent';
-                const v = ctx.dataset.data[ctx.dataIndex];
-                if (v == null) return 'transparent';
-                if (v >= paramCritico) return '#e74c3c';
-                if (v >= paramAlerta)  return '#f1c40f';
-                return 'transparent';
-            },
-            showLine: false
+        showLine: false
+    },
+    {
+        label: "Comparada (Média)",
+        data: dAtuAvg,
+        borderColor: "#2ecc71",
+        backgroundColor: "rgba(46,204,113,0.1)",
+        borderWidth: 2,
+        fill: true,
+        pointRadius: 0
+    },
+    {
+        label: "Comparada (Pico)",
+        data: dAtuMax,
+        type: "line",
+        borderWidth: 0,
+        fill: false,
+        pointStyle: "rectRounded",
+        pointRadius: ctx => dAtuMax[ctx.dataIndex] != null ? 7 : 0,
+        pointBackgroundColor: ctx => {
+            const v = dAtuMax[ctx.dataIndex];
+            if (v == null) return "transparent";
+            if (v >= critico) return "#e74c3c";
+            if (v >= alerta) return "#f1c40f";
+            return "transparent";
         },
+        showLine: false
+    },
+
+     {
+        label: "Limite de Alerta",
+        data: lbls.map(() => alerta),
+        borderColor: "#f1c40f",
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        fill: false
+    },
+
         {
-            label: 'Atual (Média)',
-            data: dAtuAvg,
-            picoData: dAtuMax, 
-            borderColor: '#2ecc71',
-            backgroundColor: 'rgba(46,204,113,0.08)',
-            borderWidth: 2,
-            fill: true,
-            pointRadius: 0
-        },
-        {
-            label: 'Atual (Pico)',
-            data: dAtuMax,
-            type: 'line',
-            borderWidth: 0,
-            fill: false,
-            pointStyle: 'circle',
-            pointRadius: function(ctx) {
-                const v = ctx.dataset.data[ctx.dataIndex];
-                return (paramAlerta != null && v != null && v >= paramAlerta) ? 6 : 0;
-            },
-            pointBackgroundColor: function(ctx) {
-                if (!limites) return 'transparent';
-                const v = ctx.dataset.data[ctx.dataIndex];
-                if (v == null) return 'transparent';
-                if (v >= paramCritico) return '#e74c3c';
-                if (v >= paramAlerta)  return '#f1c40f';
-                return 'transparent';
-            },
-            showLine: false
-        }
-    ];
-chart.options.plugins.tooltip.callbacks.label = function(context) {
-    const idx = context.dataIndex;
-    const ds = context.dataset;
-    let txt = ds.label + ": ";
-
-    if (context.parsed.y != null) {
-        txt += context.parsed.y.toFixed(1) + "%";
+        label: "Limite Crítico",
+        data: lbls.map(() => critico),
+        borderColor: "#e74c3c",
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        fill: false
     }
-
-    const picoRef = chart._picosRef[idx];
-    const picoAtu = chart._picosAtu[idx];
-
-     if (ds.label === "Ref (Média)" && picoRef != null) {
-        txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
-    }
-
-    if (ds.label === "Ref (Pico)" && picoRef != null) {
-        txt += `  •  Pico Ref: ${picoRef.toFixed(1)}%`;
-    }
-
-    if (ds.label === "Atual (Média)" && picoAtu != null) {
-        txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
-    }
-
-    if (ds.label === "Atual (Pico)" && picoAtu != null) {
-        txt += `  •  Pico Atual: ${picoAtu.toFixed(1)}%`;
-    }
-
-    return txt;
-};
-
+];
 
     chart.update();
 }
-
 
  
 function gerarListaAlertas(lista, id) {
@@ -823,6 +951,10 @@ async function carregarParametros(idServidor) {
         console.error("Erro ao buscar parâmetros:", e);
     }
 }
+
+
+window.zoomPeriodo = zoomPeriodo;
+window.resetZoom = resetZoom;
 
 </script>
 
