@@ -253,6 +253,13 @@
             </div>
 
             <div class="charts-area">
+                <div style="display:flex; gap:8px; align-items:center; margin-left:12px;">
+    <button class="btn-secondary" type="button" onclick="zoomPeriodo(0,8)">00:00 - 08:00</button>
+    <button class="btn-secondary" type="button" onclick="zoomPeriodo(8,16)">08:00 - 16:00</button>
+    <button class="btn-secondary" type="button" onclick="zoomPeriodo(16,24)">16:00 - 00:00</button>
+    <button class="btn-secondary" type="button" onclick="resetZoom()">Resetar Zoom</button>
+</div>
+
                 <div class="chart-wrapper">
                     <div class="chart-header">
                         <h3>Processamento (CPU)</h3>
@@ -397,6 +404,7 @@ async function atualizar() {
     } catch (erro) {
         console.error(erro);
     } finally {
+        resetZoom();
         btn.disabled = false;
         btn.innerHTML = originalText;
     }
@@ -553,6 +561,7 @@ function criarChart(id) {
     return new Chart(document.getElementById(id).getContext("2d"), {
         type: 'line',
         data: { labels: [], datasets: [] },
+
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -617,6 +626,7 @@ function criarChart(id) {
                     callbacks: {
                         label(context) {
                             let txt = context.dataset.label + ": ";
+
                             if (context.parsed.y != null)
                                 txt += context.parsed.y.toFixed(1) + "%";
 
@@ -633,6 +643,18 @@ function criarChart(id) {
                             return txt;
                         }
                     }
+                },
+
+                zoom: {
+                    zoom: {
+                        wheel: { enabled: true },
+                        pinch: { enabled: true },
+                        mode: "x"
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: "x"
+                    }
                 }
             },
 
@@ -648,6 +670,56 @@ function criarChart(id) {
         }
     });
 }
+
+function zoomPeriodo(hInicio, hFim) {
+     [chartCPU, chartRAM].forEach(chart => {
+        if (!chart || !chart.data || !chart.data.labels) return;
+
+        const labels = chart.data.labels;
+        const pad = (n) => String(n).padStart(2, '0');
+
+         let startIndex = labels.findIndex(l => {
+            const hh = Number(l.substring(0,2));
+            return hh >= hInicio && hh < 24;
+        });
+        if (startIndex === -1) startIndex = 0;
+
+        let endIndex;
+        if (hFim === 24) {
+            endIndex = labels.length - 1;
+        } else {
+            endIndex = labels.findIndex(l => {
+                const hh = Number(l.substring(0,2));
+                return hh >= hFim;
+            });
+            if (endIndex === -1) endIndex = labels.length - 1;
+            else endIndex = Math.max(0, endIndex - 1);
+        }
+
+        const minLabel = labels[Math.min(startIndex, labels.length-1)];
+        const maxLabel = labels[Math.min(endIndex, labels.length-1)];
+
+        if (minLabel == null || maxLabel == null) return;
+
+        chart.options.scales.x.min = minLabel;
+        chart.options.scales.x.max = maxLabel;
+        chart.update();
+    });
+}
+
+function resetZoom() {
+    [chartCPU, chartRAM].forEach(chart => {
+        if (!chart) return;
+        if (chart.options && chart.options.scales && chart.options.scales.x) {
+            delete chart.options.scales.x.min;
+            delete chart.options.scales.x.max;
+            chart.update();
+        } else if (chart.resetZoom) {
+             chart.resetZoom();
+        }
+    });
+}
+
 
 
 function plotarGraficosOtimizados(ref, atual) {
@@ -849,6 +921,8 @@ async function carregarParametros(idServidor) {
         console.error("Erro ao buscar parâmetros:", e);
     }
 }
+window.zoomPeriodo = zoomPeriodo;
+window.resetZoom = resetZoom;
 
 </script>
 
