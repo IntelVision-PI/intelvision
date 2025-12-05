@@ -517,7 +517,7 @@ function mostrarGraficoPredicao() {
     }
 
     // executa quando a página carregar
-    document.addEventListener("DOMContentLoaded", criarGraficoComparativo);
+    document.addEventListener("DOMContentLoaded", criarGraficoAnual);
 carregarArquivosS3().then(() => {
   mostrarGraficoPredicao();
   criarGraficoAnual();
