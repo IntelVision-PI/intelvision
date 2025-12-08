@@ -136,7 +136,8 @@ function obterServidoresCodecs(idEmpresa) {
       servidor.tipo, 
       servidor.modelo, 
       servidor.service_tag,
-      componente.unidade_medida as codec
+      componente.unidade_medida as codec,
+      parametro.em_risco_max
       FROM servidor 
       INNER JOIN parametro ON parametro.fkServidor = servidor.id 
       INNER JOIN componente ON parametro.fkComponente = componente.id

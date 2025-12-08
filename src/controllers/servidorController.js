@@ -60,8 +60,7 @@ function cadastrarParametro(req, res) {
 
 function obterServidores(req, res) {
   const idEmpresa = req.params.idEmpresa;
-  servidorModel
-    .obterServidores(idEmpresa)
+  servidorModel.obterServidores(idEmpresa)
     .then((resultado) => res.json(resultado))
     .catch((erro) => {
       console.log(erro);

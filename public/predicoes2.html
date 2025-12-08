@@ -1,181 +1,301 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IntelVision | Servidores</title>
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="./css/dashboard.css" />
-    <link rel="stylesheet" href="./css/predicoes.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
-    <script src="./js/sessao.js"></script>
-  </head>
 
-  <body onload="validarSessaoAdministrador(), puxarDadosServidor()">
-    <header>
-      <div class="cabecalho-dash">
-        <div class="nome-dash">
-          <i class="fa-solid fa-chart-simple"></i>
-          <h3>Dashboard</h3>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IntelVision | Servidores</title>
+  <link rel="stylesheet" href="./css/global.css" />
+  <link rel="stylesheet" href="./css/dashboard.css" />
+  <link rel="stylesheet" href="./css/predicoes.css" />
+  <link rel="stylesheet" href="./css/p2.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
+  <script src="./js/sessao.js"></script>
+</head>
 
-        <div class="icone-usuario">
-          <i class="fa-solid fa-user"></i>
-        </div>
+<body onload="validarSessaoAdministrador(), puxarDadosServidor()">
+  <header>
+    <div class="cabecalho-dash">
+      <div class="nome-dash">
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
+        <h3>Dashboard</h3>
       </div>
-    </header>
 
-    <div class="janela">
-      <div class="header-left">
-        <h1>IntelVision</h1>
+      <div class="icone-usuario">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </div>
+  </header>
 
-        <div class="btn-nav ativo">
-          <a href="servidores.html">
-            <i class="fa-solid fa-chart-simple"></i>
-            <h3>Dashboard</h3>
-          </a>
+  <div class="janela">
+    <div class="header-left">
+      <h1>IntelVision</h1>
+      <div class="escolhaDash">
+        <a href="servidores.html">
+          <div class="btn-nav inativo">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+              </svg>
+              <h3>Dashboard</h3>
+            </span>
+          </div>
+        </a>
+
+        <a href="comparativo.html">
+          <div class="btn-nav inativo">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                background="#FFFFFF" fill="#8b979f">
+                <path
+                  d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-80H240v80ZM200-200v-560 560Z" />
+              </svg>
+              <h3>Comparativo</h3>
+            </span>
+          </div>
+        </a>
+
+        <a href="predicao.html">
+          <div class="btn-nav ativo">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M480-120 232-360l-112 80v-98l120-86 245 238 167-134h188v80H680L480-120Zm0-360L305-655 120-520v-99l193-141 175 175 352-255v99L480-480Z" />
+              </svg>
+              <h3>Predição</h3>
+            </span>
+          </div>
+        </a>
+
+        <a href="trafego.html">
+          <div class="btn-nav inativo">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M198-278q-57-57-87.5-129.5T80-560q0-80 30.5-152.5T198-842l48 48q-47 47-72.5 107.5T148-560q0 66 25.5 126.5T246-326l-48 48Zm92-92q-38-38-58-87t-20-103q0-54 20-103t58-87l48 48q-29 29-43.5 65.5T280-560q0 40 14.5 76.5T338-418l-48 48Zm150 250v-348q-27-12-43.5-37T380-560q0-42 29-71t71-29q42 0 71 29t29 71q0 30-16.5 55T520-468v348h-80Zm230-250-48-48q29-29 43.5-65.5T680-560q0-40-14.5-76.5T622-702l48-48q38 38 58 87t20 103q0 54-20 103t-58 87Zm92 92-48-48q47-47 72.5-107.5T812-560q0-66-25.5-126.5T714-794l48-48q57 57 87.5 129.5T880-560q0 80-30.5 152.5T762-278Z" />
+              </svg>
+              <h3>Tráfego de rede</h3>
+            </span>
+          </div>
+        </a>
+
+        <a href="./tela-servidores-codecs.html">
+          <div class="btn-nav inativo" id="btn-nav-admin-servidores">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#8b979f">
+                <path
+                  d="M160-400v-80h640v80H160Zm0-120v-80h640v80H160ZM440-80v-128l-64 64-56-56 160-160 160 160-56 56-64-62v126h-80Zm40-560L320-800l56-56 64 64v-128h80v128l64-64 56 56-160 160Z" />
+              </svg>
+              <h3>Análise-Codecs</h3>
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <a href="./dashboard-jira.html">
+        <div class="btn-nav inativo">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b979f">
+              <path
+                d="M160-160v-440h160v440H160Zm0-480v-160h160v160H160Zm240 480v-320h160v320H400Zm0-360v-160h160v160H400Zm240 360v-200h160v200H640Zm0-240v-160h160v160H640Z" />
+            </svg>
+            <h3>Chamados</h3>
+          </span>
         </div>
+      </a>
 
-        <!-- <div class="btn-nav">
-          <a href="./mainPage.html">
-            <i class="fa-solid fa-magnifying-glass-chart"></i>
-            <h3>Análise de dados</h3>
-          </a>
-        </div> -->
-
-        <div class="btn-nav" id="btn-nav-admin-usuarios">
-          <a href="./tela-administracao-usuario.html">
-            <i class="fa-solid fa-user-gear"></i>
+      <a href="./tela-administracao-usuario.html">
+        <div class="btn-nav inativo" id="btn-nav-admin-usuarios">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b979f">
+              <path
+                d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" />
+            </svg>
             <h3>Adm - Usuários</h3>
-          </a>
+          </span>
         </div>
+      </a>
 
-        <div class="btn-nav" id="btn-nav-admin-servidores">
-          <a href="./tela-administracao-servidores.html">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
+      <a href="./tela-administracao-servidores.html">
+        <div class="btn-nav inativo" id="btn-nav-admin-servidores">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b979f">
+              <path
+                d="M200-200v-160 4-4 160Zm0 80q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360H200v160h400v80H200Zm0-400q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 0v-160 160ZM760-40v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z" />
+            </svg>
             <h3>Adm - Servidores</h3>
-          </a>
+          </span>
         </div>
+      </a>
 
-        <div class="btn-nav btn-logout" onclick="limparSessao()">
-          <a href="./index.html">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <h3>Sair</h3>
-          </a>
-        </div>
-      </div>
-
-      <!-- Conteúdo da página -->
-      <div class="dash">
-        <div class="dash__conteudo">
-
-            <!-- KPI do relatório -->
-          <div class="div-kpi-1">
-            <div class="div-relatorio">
-              <div class="div-kpi-predicao">
-                <div class="div-textos-kpi">
-                  <span class="span-titulo-kpi">Servidores saudáveis</span>
-                  <span class="span-numero-kpi">04</span>
-                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
-                </div>
-
-                <div class="div-simbolo-kpi">
-                  <div class="div-bola-relatorio">
-                    <span class="flat-color-icons--negative-dynamic"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="div-kpi-predicao">
-                <div class="div-textos-kpi">
-                  <span class="span-titulo-kpi">Servidores em perigo</span>
-                  <span class="span-numero-kpi">10</span>
-                  <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
-                </div>
-
-                <div class="div-simbolo-kpi">
-                  <div class="div-bola-relatorio perigo">
-                    <span class="flat-color-icons--positive-dynamic"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="div-relatorio">
-                <div class="div-botao-relatorio">
-                    <div class="div-flex">
-                    <div class="div-textos">
-                    <h2 class="h2-branco">Relatórios da situação</h2>
-                    <p class="p-verde">Relatórios e análise para auxílio</p>
-                    </div>
-                    <div class="div-bola-relatorio">
-                      <span class="mdi--file-report-outline"></span>
-                      <!-- <img src="./assets/dashboard/relatorio.png" alt="Relatórios" class="img_relatorio"> -->
-                    </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-          <!-- Gráficos de requisições por hora -->
-          <div class="chart-container-teste">
-              <h3>Predição de disco</h3>
-            <div class="div-sub-titulo">
-              <h3>Passado</h3>
-              <h3>Futuro</h3>
-            </div>
-            <canvas id="predicaoDisco"></canvas>
-          </div>
-
-          <div class="div-relatorio">
-            <div class="div-botao-relatorio">
-                  <div class="div-flex">
-                  <div class="div-textos">
-                  <h2 class="h2-branco">Anotações passadas</h2>
-                  <p class="p-verde">Leia anotações do ano passado</p>
-                  </div>
-                  <div class="div-bola-relatorio">
-                    <img src="./assets/dashboard/anotacoes.png" alt="Relatórios" class="img_relatorio">
-                  </div>
-                  </div>
-            </div>
-            <div class="div-botao-relatorio">
-                  <div class="div-flex">
-                  <div class="div-textos">
-                  <h2 class="h2-branco">Anotações atuais</h2>
-                  <p class="p-verde">Faça suas anotações</p>
-                  </div>
-                  <div class="div-bola-relatorio">
-                    <img src="./assets/dashboard/anotacoes.png" alt="Relatórios" class="img_relatorio">
-                  </div>
-                  </div>
-            </div>
-          </div>
-
-          <div class="chart-container">
-            <h3>Comparação anual de disco</h3>
-            <canvas id="cpuUso"></canvas>
-          </div>
-        </div>
+      <div class="btn-nav btn-logout inativo" onclick="limparSessao()">
+        <a href="./index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#8b979f">
+            <path
+              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+          </svg>
+          <h3>Sair</h3>
+        </a>
       </div>
     </div>
 
+    <!-- Conteúdo da página -->
+    <div class="dash">
+      <div class="dash__conteudo">
+        <!-- <div class="div_cadastrar" id="statusReportModal">
+          <div class="cadastro_wrapper">
+            <div class="cabecalho_cadastro report-header">
+              <h2 class="report-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-file-text">
+                  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <line x1="16" x2="8" y1="13" y2="13" />
+                  <line x1="16" x2="8" y1="17" y2="17" />
+                  <line x1="10" x2="8" y1="9" y2="9" />
+                </svg>
+                Relatórios da Situação
+              </h2>
+              <span class="material-symbols-outlined X"
+                onclick="document.getElementById('statusReportModal').style.display='none'"> X </span>
+            </div>
+            <div class="div-situacao-container report-body-grid">
+
+              <div class="div-situacao coluna-de-risco">
+                <div class="icon-container-risk">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="#fee2e2"
+                    stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-alert-triangle drop-shadow-sm">
+                    <path
+                      d="m21.73 18.23-8.87-15.04a2 2 0 0 0-3.52 0l-8.87 15.04a2 2 0 0 0 1.76 2.77h17.74a2 2 0 0 0 1.76-2.77z" />
+                    <path d="M12 9v4" />
+                    <path d="M12 17h.01" />
+                  </svg>
+                  <h4 class="report-subtitle text-risk">Situação de risco</h4>
+                </div>
+
+                <div class="div-situacao-servidores negativo">sadasdasdasd</div>
+                <div class="div">sadasdasdasd</div>
+
+              </div>
+
+              <div class="div-situacao coluna-positiva">
+                <div class="icon-container-safe">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="#d1fae5"
+                    stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-thumbs-up drop-shadow-sm">
+                    <path d="M7 10v12h10l3.5-7L16 10h-6l2-7H4v7" />
+                    <path d="M7 10v12" />
+                  </svg>
+                  <h4 class="report-subtitle text-safe">Situação fora de risco</h4>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- KPI do relatório -->
+        <div class="div-kpi-1">
+          <div class="div-relatorio">
+            <div class="div-kpi-predicao">
+              <div class="div-textos-kpi">
+                <span class="span-titulo-kpi">Servidores saudáveis</span>
+                <span class="span-numero-kpi">04</span>
+                <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+              </div>
+
+              <div class="div-simbolo-kpi">
+                <div class="div-bola-relatorio">
+                  <span class="flat-color-icons--negative-dynamic"></span>
+                </div>
+              </div>
+            </div>
+            <div class="div-kpi-predicao">
+              <div class="div-textos-kpi">
+                <span class="span-titulo-kpi">Servidores em perigo</span>
+                <span class="span-numero-kpi">10</span>
+                <span class="span-sub-titulo-kpi">nos próximos 3 meses</span>
+              </div>
+
+              <div class="div-simbolo-kpi">
+                <div class="div-bola-relatorio perigo">
+                  <span class="flat-color-icons--positive-dynamic"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Gráficos de requisições por hora -->
+        <div class="grafico-predicao-container">
+          <div class="card-container">
+            <label for="riscoSelect" class="risk-select-label">Nível de risco:</label>
+            <select id="riscoSelect" class="risk-select"></select>
+          </div>
+
+          <div class="card-container">
+            <h3 class="card-title">Top 3 servidores mais críticos:</h3>
+
+            <!-- Aqui serão as cards dos 3 mais críticos -->
+            <div id="resultado" class="server-grid"></div>
+          </div>
+        </div>
+
+        <div class="card-container">
+          <h3>Gráfico do servidor selecionado:</h3>
+          <canvas id="grafico" height="120"></canvas>
+        </div>
+
+        <!-- <div class="chart-container-teste">
+          <h3>Comparação anual de disco</h3>
+          <canvas id="discoAnual"></canvas>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
 <script>
-const ultimos4 = [2000, 10000, 7000, 9000];
-const desvio = 1000;
+  function toggleSelection(element) {
+    document.querySelectorAll('.server-card').forEach(card => {
+      card.classList.remove('selected');
+    });
+    element.classList.add('selected');
+  }
+</script>
+<script src="js/ped.js"></script>
 
+<script>
+  async function carregarServidores() {
+    const resposta = await fetch("/predicoes/select");
+    servidores = await resposta.json();
+  }
 
-function regressaoLinear(valores) {
+  async function buscarDadosS3(ano, mes, dia, servidor) {
+    const resp = await fetch(`/predicoes/${ano}/${mes}/${dia}/${servidor}`);
+    if (!resp.ok) {
+      console.error("Erro ao buscar S3");
+      return null;
+    }
+    return await resp.json();
+  }
+
+  const desvio = 5;
+
+  function regressaoLinear(valores) {
     const n = valores.length;
     const xs = valores.map((_, i) => i);
 
     const somaX = xs.reduce((a, b) => a + b, 0);
     const somaY = valores.reduce((a, b) => a + b, 0);
-
     const somaXY = xs.reduce((acc, x, i) => acc + x * valores[i], 0);
     const somaX2 = xs.reduce((acc, x) => acc + x * x, 0);
 
@@ -183,331 +303,274 @@ function regressaoLinear(valores) {
     const b = (somaY - m * somaX) / n;
 
     return { m, b };
-}
+  }
 
-function preverProximosMeses(regressao, quantidade, valoresBase) { 
-    const inicio = valoresBase.length;
-    let preds = [];
 
-    for (let i = 0; i < quantidade; i++) {
-        const x = inicio + i;
-        preds.push(regressao.m * x + regressao.b);
+  function preverProximos(reg, quantidade, base) {
+    const inicio = base.length;
+    return Array.from({ length: quantidade }, (_, i) => reg.m * (inicio + i) + reg.b);
+  }
+
+  function filtrarServidores() {
+    const risco = Number(document.getElementById("riscoSelect").value);
+    const div = document.getElementById("resultado");
+
+    if (!risco) {
+      div.innerHTML = "<p class='no-results'>Selecione um nível de risco.</p>";
+      return;
     }
-    return preds;
-}
 
-//Fazer a predição para os próximos 3 meses
-const reg = regressaoLinear(ultimos4);
-const predicoes = preverProximosMeses(reg, 3, ultimos4);
+    // Servidores que estão em risco
+    const lista = servidores
+      .filter(s => s.riscoConfig === risco)
+      .slice(0, 3)
+      .map(s => {
+        const reg = regressaoLinear(s.ultimos4);
+        const pred = preverProximos(reg, 3, s.ultimos4);
 
-console.log("Predições:", predicoes);
+        return {
+          nome: s.nome,
+          riscoConfig: s.riscoConfig,
+          ultimos4: s.ultimos4,
+          predicoes: pred
+        };
+      });
 
-const valores = [
-  null, // Setembro
-  null, // Outubro
-  null, // Novembro
-  ultimos4[3],// Dezembro
-  predicoes[0], // Janeiro (x=4)
-  predicoes[1], // Fevereiro (x=5)
-  predicoes[2],  // Março (x=6)
-];
+    renderizar(lista);
+  }
 
-// Gráfico De predição
-const ctxHora = document.getElementById("predicaoDisco");
+  function renderizar(lista) {
+    const div = document.getElementById("resultado");
+    div.innerHTML = "";
 
-new Chart(ctxHora, {
-  type: "line",
-  data: {
-    labels: [
-      "Setembro", "Outubro", "Novembro", "Dezembro",
-      "Janeiro", "Fevereiro", "Março"
-    ],
-    datasets: [
-      {
-        label: "Servidor passado",
-        data: ultimos4,          // <-- agora usa o mesmo array de onde vem a regressão
-        borderColor: "#28a745",
-        borderWidth: 3,
-        fill: true,
-        tension: 0.2,
-        backgroundColor: "rgba(40,167,69,0.0)"
-      },
-      {
-        label: "Predição",
-        data: valores,
-        borderColor: "#6990A7",
-        borderWidth: 3,
-        fill: false,
-        tension: 0,
-        borderDash: [5, 5]
-      },
-      {
-        label: "Desvio padrão positivo",
-        data: valores.map(v => v ? v + desvio : null),
-        borderColor: "#06b98057",
-        borderWidth: 3,
-        fill: '+1',
-        tension: 0,
-        backgroundColor: "#06b98057"
-      },
-      {
-        label: "Desvio padrão negativo",
-        data: valores.map(v => v ? v - desvio : null),
-        borderColor: "#06b98057",
-        borderWidth: 3,
-        fill: false,
-        tension: 0,
-        backgroundColor: "#06b98057"
-      }
-    ],
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        labels: {
-          font: { size: 16 }
-        }
-      },
-      annotation: {
-        annotations: {
-          linhaVertical: {
-            type: 'line',
-            xMin: 3,
-            xMax: 3,
-            borderColor: '#585555',
-            borderWidth: 2,
-            borderDash: [4, 3]
-          },
-          linhaHorizontal: {
-            type: 'line',
-            yMin: 16000,
-            yMax: 16000,
-            borderColor: '#ff0000',
-            borderWidth: 2,
-          },
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          font: { size: 14 }
-        },
-        title: {
-          display: true,
-          text: "Meses",
-          font: { size: 18 }
-        }
-      },
-      y: {
-        ticks: {
-          font: { size: 14 }
-        },
-        title: {
-          display: true,
-          text: "Quantidade de disco usado (em Gb)",
-          font: { size: 18 }
-        }
-      }
+    if (lista.length == 0) {
+      div.innerHTML = "<p class='no-results'>Nenhum servidor possui esse nível configurado.</p>";
+      return;
+    }
+
+    lista.forEach(s => {
+      const card = document.createElement("div");
+      card.className = "server-card";
+      card.setAttribute("onclick", "toggleSelection(this)");
+      card.innerHTML = `
+    <h4>${s.nome}</h4>
+    <p>Risco configurado: <span class="risk-percentage">${s.riscoConfig}%</span></p>
+
+    <button class="server-card-button"
+        onclick='mostrarGrafico(${JSON.stringify(JSON.stringify(s))})'>
+        Ver gráfico
+    </button>
+`;
+      div.appendChild(card);
+    });
+  }
+
+  let grafico;
+
+  function mostrarGrafico(jsonData) {
+  const s = JSON.parse(jsonData);
+
+  const labels = ["M-3", "M-2", "M-1", "M-0", "M+1", "M+2", "M+3"];
+  const valores = [...s.ultimos4, ...s.predicoes];
+
+  // Função para calcular desvio padrão
+  function calcularDesvioPadrao(arr) {
+    const filtrados = arr.filter(v => v != null); // remove nulls
+    const n = filtrados.length;
+    if (n === 0) return 0;
+
+    const media = filtrados.reduce((a, b) => a + b, 0) / n;
+    const variancia = filtrados.reduce((acc, v) => acc + Math.pow(v - media, 2), 0) / n;
+    return Math.sqrt(variancia);
+  }
+
+  const desvio = calcularDesvioPadrao(valores);
+
+  // Arrays para desvio positivo/negativo
+  const desvioPositivo = [];
+  const desvioNegativo = [];
+
+  for (let i = 0; i < valores.length; i++) {
+    if (i >= 3 && valores[i] != null) {
+      desvioPositivo.push(valores[i] + desvio);
+      desvioNegativo.push(valores[i] - desvio);
+    } else {
+      desvioPositivo.push(null);
+      desvioNegativo.push(null);
     }
   }
-});
 
+  if (grafico) {
+    grafico.destroy();
+  }
 
-// -------------------------------------------------------------------------------------------
-// const valores = [null, null, null, 10000, 12000, 14000, 16000];
-// const desvio = 1000;
-// const ctxHora = document.getElementById("predicaoDisco");
+  const ctx = document.getElementById("grafico");
 
-// new Chart(ctxHora, {
-//   type: "line",
-//   data: {
-//     labels: ["Setembro" ,"Outubro", "Novembro", "Dezembro", "Janeiro", "Fevereiro", "Março"],
-//     datasets: [
-//       {
-//         label: "Servidor passado",
-//         data: [2000, 5000, 7000, 10000],
-//         borderColor: "#28a745",
-//         borderWidth: 3,
-//         fill: true,
-//         tension: 0.2,
-//         backgroundColor: "rgba(40,167,69,0.0)"
-//       },
-//       {
-//         label: "Predição",
-//         data: valores,
-//         borderColor: "#6990A7",
-//         borderWidth: 3,
-//         fill: false,
-//         tension: 0,
-//         borderDash: [5, 5]
-//       },
-//       {
-//         label: "Desvio padrão positivo",
-//         data: valores.map(v => v ? v + desvio : null),
-//         borderColor: "#06b98057",
-//         borderWidth: 3,
-//         fill: '+1', // preenche até o próximo dataset (inferior)
-//         tension: 0,
-//         backgroundColor: "#06b98057" // cor da faixa
-
-//       },
-//       {
-//         label: "Desvio padrão negativo",
-//         data: valores.map(v => v ? v - desvio : null),
-//         borderColor: "#06b98057",
-//         borderWidth: 3,
-//         fill: false,
-//         tension: 0,
-//         backgroundColor: "#06b98057" // cor da faixa
-//       }
-//     ],
-//   },
-// options: {
-//   responsive: true,
-//   plugins: {
-//     legend: {
-//       display: true,
-//       labels: {
-//         font: {
-//           size: 16   // aumenta fonte da legenda
-//         }
-//       }
-//     },
-//     annotation: {
-//       annotations: {
-//         linhaVertical: {
-//           type: 'line',
-//           xMin: 3,
-//           xMax: 3,
-//           borderColor: '#585555',
-//           borderWidth: 2,
-//           borderDash: [4, 3]
-//         },
-//         linhaHorizontal: {
-//           type: 'line',
-//           yMin: 16000,
-//           yMax: 16000,
-//           borderColor: '#ff0000',
-//           borderWidth: 2,
-//         },
-//       }
-//     }
-//   },
-//   scales: {
-//     x: {
-//       ticks: {
-//         font: {
-//           size: 14
-//         }
-//       },
-//       title: {
-//         display: true,
-//         text: "Meses",
-//         font: {
-//           size: 18
-//         }
-//       }
-//     },
-//     y: {
-//       ticks: {
-//         font: {
-//           size: 14
-//         }
-//       },
-//       title: {
-//         display: true,
-//         text: "Quantidade de disco usado (em Gb)",
-//         font: {
-//           size: 18
-//         }
-//       }
-//     }
-//   }
-// }
-
-
-// });
-
-      // Gráfico de comparação anual de disco
-      const ctxCPU = document.getElementById("cpuUso");
-      new Chart(ctxCPU, {
-        type: "bar",
-        data: {
-          labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto" ,"Setembro" ,"Outubro", "Novembro", "Dezembro"],
-          datasets: [
-            {
-              label: "Ano atual",
-              data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
-              backgroundColor: "#64748b",
-              borderWidth: 2,
-              borderRadius: {
-                topLeft: 7,
-                topRight: 7,
-                bottomLeft: 0,
-                bottomRight: 0
-              }
-            },
-            {
-              label: "Ano anterior",
-              data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
-              backgroundColor: "#1e293b",
-              borderWidth: 2,
-              borderRadius: {
-                topLeft: 7,
-                topRight: 7,
-                bottomLeft: 0,
-                bottomRight: 0
-              }
-            },
-          ],
+  grafico = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: s.nome + " - Valores reais",
+          data: [...s.ultimos4, null, null, null],
+          borderColor: "#28a745",
+          borderWidth: 3,
+          fill: false
         },
-        options: {
-          responsive: true,
-          plugins: { legend: { display: true } },
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              title: { display: true, text: "%" },
+        {
+          label: s.nome + " - Predição",
+          data: [null, null, null, s.ultimos4[3], ...s.predicoes],
+          borderColor: "#6990A7",
+          borderDash: [5, 5],
+          borderWidth: 3,
+          fill: false
+        },
+        {
+          label: "desvio +",
+          data: desvioPositivo,
+          borderColor: "rgba(0, 200, 0, 0.4)",
+          backgroundColor: "rgba(0,200,0,0.15)",
+          fill: "+1",
+          borderWidth: 2,
+          tension: 0
+        },
+        {
+          label: "desvio -",
+          data: desvioNegativo,
+          borderColor: "rgba(0, 200, 0, 0.4)",
+          backgroundColor: "rgba(0,200,0,0.15)",
+          fill: false,
+          borderWidth: 2,
+          tension: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            font: {
+              size: 16
+            }
+          }
+        },
+        annotation: {
+          annotations: {
+            linhaVertical: {
+              type: 'line',
+              xMin: 3,
+              xMax: 3,
+              borderColor: '#585555',
+              borderWidth: 2,
+              borderDash: [4, 3]
             },
+            linhaHorizontal: {
+              type: 'line',
+              yMin: 80,
+              yMax: 80,
+              borderColor: '#ff0000',
+              borderWidth: 2,
+            },
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            font: {
+              size: 14
+            }
           },
+          title: {
+            display: true,
+            text: "Meses",
+            font: {
+              size: 18
+            }
+          }
         },
-      });
-
-      // Gráfico de Uso da RAM
-      const ctxRAM = document.getElementById("ramUso");
-      new Chart(ctxRAM, {
-        type: "line",
-        data: {
-          labels: ["00h", "04h", "08h", "12h", "16h", "20h", "24h"],
-          datasets: [
-            {
-              label: "Uso da RAM (%)",
-              data: [60, 55, 65, 85, 75, 70, 60],
-              backgroundColor: "rgba(0, 188, 212, 0.2)",
-              borderColor: "#00bcd4",
-              borderWidth: 2,
-              fill: true,
-              tension: 0.4,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              title: { display: true, text: "%" },
-            },
+        y: {
+          ticks: {
+            font: {
+              size: 14
+            }
           },
-        },
-      });
-    </script>
-    <!-- <script src="./js/situacaoServidores.js"></script> -->
-  </body>
-</html>
+          title: {
+            display: true,
+            text: "Quantidade de disco usado (em Gb)",
+            font: {
+              size: 18
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+  // montar select
+  function montarSelect() {
+    const select = document.getElementById("riscoSelect");
+    for (let i = 70; i <= 100; i += 5) {
+      const op = document.createElement("option");
+      op.value = i;
+      op.textContent = i + "%";
+      select.appendChild(op);
+    }
+  }
+
+  montarSelect();
+  document.getElementById("riscoSelect").addEventListener("change", filtrarServidores);
+
+
+  // Gráfico de comparação anual de disco
+  // const ctxDiscoComparacao = document.getElementById("discoAnual");
+  // new Chart(ctxDiscoComparacao, {
+  //   type: "bar",
+  //   data: {
+  //     labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+  //     datasets: [
+  //       {
+  //         label: "Ano atual",
+  //         data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+  //         backgroundColor: "#64748b",
+  //         borderWidth: 2,
+  //         borderRadius: {
+  //           topLeft: 7,
+  //           topRight: 7,
+  //           bottomLeft: 0,
+  //           bottomRight: 0
+  //         }
+  //       },
+  //       {
+  //         label: "Ano anterior",
+  //         data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+  //         backgroundColor: "#1e293b",
+  //         borderWidth: 2,
+  //         borderRadius: {
+  //           topLeft: 7,
+  //           topRight: 7,
+  //           bottomLeft: 0,
+  //           bottomRight: 0
+  //         }
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     plugins: { legend: { display: true } },
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //         max: 100,
+  //         title: { display: true, text: "%" },
+  //       },
+  //     },
+  //   },
+  // });
+
+  carregarServidores();
+</script>
