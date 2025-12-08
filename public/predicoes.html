@@ -13,6 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.2.1"></script>
   <script src="./js/sessao.js"></script>
+  <script src="./js/predicao.js"></script>
 </head>
 
 <body onload="validarSessaoAdministrador(), puxarDadosServidor()">
@@ -272,7 +273,6 @@
   }
 </script>
 <script src="js/ped.js"></script>
-
 <script>
   async function carregarServidores() {
     const resposta = await fetch("/predicoes/select");
@@ -535,7 +535,7 @@
   //     datasets: [
   //       {
   //         label: "Ano atual",
-  //         data: [35, 50, 70, 90, 65, 45, 55, 20, 50, 20, 10, null],
+  //         data: meses2025,
   //         backgroundColor: "#64748b",
   //         borderWidth: 2,
   //         borderRadius: {
@@ -547,7 +547,7 @@
   //       },
   //       {
   //         label: "Ano anterior",
-  //         data: [60, 50, 20, 10, 100, 45, 55, 90, 80, 90, 80, 95],
+  //         data: meses2024,
   //         backgroundColor: "#1e293b",
   //         borderWidth: 2,
   //         borderRadius: {

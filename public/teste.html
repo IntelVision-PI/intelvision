@@ -264,13 +264,13 @@
         <div class="card-container">
           <h3>Gráfico do servidor selecionado:</h3>
           <!-- Note que este é o gráfico de predição principal -->
-          <canvas id="grafico" height="120"></canvas> 
+          <canvas id="grafico" height="120"></canvas>
         </div>
 
         <div class="chart-container-teste">
           <h3>Comparação anual de disco</h3>
           <!-- Este é o gráfico de comparação anual -->
-          <canvas id="discoAnual"></canvas> 
+          <canvas id="discoAnual"></canvas>
         </div>
       </div>
     </div>
@@ -319,32 +319,24 @@
     }
     return result;
   }
-  
+
   // Variáveis globais de predição
   let grafico;
   const desvio = 5;
 
-  // Função fictícia para simular o carregamento de dados e iniciar os gráficos
-  // No seu projeto real, você precisará de uma função que busca os dados brutos
-  // e os atribui a 'registros2025' para o gráfico de predição funcionar.
   async function carregarArquivosS3() {
-    // Simulação dos dados que o gráfico de predição precisa
-    // Você precisa garantir que registros2025 (do arquivo .js) seja populado aqui
-    // Exemplo: registros2025 = await fetch('/caminho/do/seu/json').then(r => r.json());
+
     console.log("Simulando carregamento de dados do S3...");
   }
-  
+
   // Função que usa as variáveis globais registros2025 (que devem ser preenchidas)
   function mostrarGraficoPredicao() {
 
-    // A variável global 'registros2025' deve ser populada ANTES desta função ser chamada.
-    // O código de predição abaixo depende dela ter sido populada no 'predicao_chart_logic.js'
-    // ou por alguma outra função de fetch. Se estiver vazia, vai dar erro no 'map' ou 'slice'.
     if (!registros2025 || registros2025.length === 0) {
-        console.error("ERRO: dados2025 está vazio ou não foi carregado para o gráfico de Predição.");
-        return;
+      console.error("ERRO: dados2025 está vazio ou não foi carregado para o gráfico de Predição.");
+      return;
     }
-    
+
     // pegar SOMENTE os valores de disco
     const valoresDisco = registros2025 // Usando registros2025 global
       .map(x => Number(x.disco))
@@ -409,16 +401,12 @@
       }
     });
   }
-  
-  // Ajuste na ordem de chamada para garantir que o fetch seja feito antes de criar os gráficos.
-  // Você precisa de uma função que resolva a Promise do fetch. 
-  // O 'criarGraficoAnual' já está no predicao_chart_logic.js e faz o fetch.
+
+
   document.addEventListener("DOMContentLoaded", () => {
-      // Chama a função principal de criação do gráfico anual (que faz o fetch)
-      // Esta função populará 'registros2025' e 'registros2024'.
-      criarGraficoAnual().then(() => {
-          // Após o fetch ter populado 'registros2025', podemos mostrar o gráfico de predição.
-          mostrarGraficoPredicao();
-      });
+
+    criarGraficoAnual().then(() => {
+      mostrarGraficoPredicao();
+    });
   });
 </script>
